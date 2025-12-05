@@ -1,0 +1,44 @@
+<svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Paleta de Cores -->
+  <defs>
+    <style>
+      .bg-light { fill: #D6EAF5; }
+      .bg-warm { fill: #FAE5D3; }
+      .primary { fill: #1E4D6B; }
+      .secondary { fill: #2D9B6A; }
+      .accent { fill: #C41E3A; }
+    </style>
+  </defs>
+
+  <!-- Fundo Abstrato -->
+  <circle cx="250" cy="200" r="180" class="bg-warm" opacity="0.6"/>
+
+  <!-- Pessoas (Ícones Abstratos) -->
+  <g id="person1">
+    <circle cx="250" cy="100" r="35" class="primary"/>
+    <rect x="220" y="135" width="60" height="80" rx="30" class="primary"/>
+  </g>
+  <g id="person2">
+    <circle cx="120" cy="160" r="30" class="secondary"/>
+    <rect x="95" y="190" width="50" height="70" rx="25" class="secondary"/>
+  </g>
+  <g id="person3">
+    <circle cx="380" cy="160" r="30" class="accent"/>
+    <rect x="355" y="190" width="50" height="70" rx="25" class="accent"/>
+  </g>
+  <g id="person4">
+    <circle cx="150" cy="280" r="25" class="primary" opacity="0.8"/>
+    <rect x="130" y="305" width="40" height="60" rx="20" class="primary" opacity="0.8"/>
+  </g>
+  <g id="person5">
+    <circle cx="350" cy="280" r="25" class="secondary" opacity="0.8"/>
+    <rect x="330" y="305" width="40" height="60" rx="20" class="secondary" opacity="0.8"/>
+  </g>
+
+  <!-- Linhas de Conexão -->
+  <path d="M230 140 Q 150 150 140 180" stroke="#1E4D6B" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M270 140 Q 350 150 360 180" stroke="#1E4D6B" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M140 250 Q 200 260 230 210" stroke="#1E4D6B" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M360 250 Q 300 260 270 210" stroke="#1E4D6B" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M150 280 Q 250 300 350 280" stroke="#1E4D6B" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+</svg>

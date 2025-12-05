@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aulas do Programa de Inclusão Digital da UEMG Frutal" />
+    <meta name="theme-color" content="#1E4D6B" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Aulas - Inclusão Digital UEMG</title>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="/images/logo-uemg.png" alt="UEMG" class="sidebar-logo" />
+        <span class="sidebar-title">Inclusão Digital</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="/" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Início</span>
+        </a>
+        <a href="/aulas.html" class="sidebar-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <span>Aulas</span>
+        </a>
+        <a href="/pratique.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Pratique</span>
+        </a>
+        <a href="/comunidade.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Comunidade</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <p>UEMG Frutal</p>
+        <p>Desde 2009</p>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobileHeader">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <span class="mobile-title">Aulas</span>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="page-header">
+        <h1 class="page-title">Nossas Aulas</h1>
+        <p class="page-subtitle">Clique em cada aula para ver os detalhes e baixar o PDF</p>
+      </section>
+
+      <section class="accordion-section">
+        <!-- Aula 01 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">01</span>
+            <span class="accordion-title">Sua Jornada Começa Aqui</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Conhecendo o computador, ligando e desligando corretamente, e criando seu primeiro email.</p>
+            <ul class="accordion-topics">
+              <li>Partes do computador (monitor, teclado, mouse)</li>
+              <li>Como ligar e desligar com segurança</li>
+              <li>Criando uma conta de email no Gmail</li>
+            </ul>
+            <a href="/aulas/aula_01.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 02 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">02</span>
+            <span class="accordion-title">Navegando pela Internet</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Navegadores, buscas no Google e como identificar sites seguros.</p>
+            <ul class="accordion-topics">
+              <li>O que é um navegador (Chrome, Firefox)</li>
+              <li>Como fazer buscas no Google</li>
+              <li>Identificando sites seguros (cadeado verde)</li>
+            </ul>
+            <a href="/aulas/aula_02.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 03 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">03</span>
+            <span class="accordion-title">WhatsApp Web</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Conectando famílias - mensagens, fotos, áudio e videochamadas pelo computador.</p>
+            <ul class="accordion-topics">
+              <li>Conectando o WhatsApp ao computador</li>
+              <li>Enviando mensagens e fotos</li>
+              <li>Fazendo videochamadas</li>
+            </ul>
+            <a href="/aulas/aula_03.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 04 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">04</span>
+            <span class="accordion-title">E-mail e Redes Sociais</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Gmail, Facebook, Instagram e YouTube básico.</p>
+            <ul class="accordion-topics">
+              <li>Enviando e recebendo emails</li>
+              <li>Criando perfil no Facebook</li>
+              <li>Assistindo vídeos no YouTube</li>
+            </ul>
+            <a href="/aulas/aula_04.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 05 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">05</span>
+            <span class="accordion-title">Google Fotos</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Baú digital de memórias - organização, álbuns e compartilhamento de fotos.</p>
+            <ul class="accordion-topics">
+              <li>Acessando o Google Fotos</li>
+              <li>Organizando fotos em álbuns</li>
+              <li>Compartilhando com a família</li>
+            </ul>
+            <a href="/aulas/aula_05.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 06 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">06</span>
+            <span class="accordion-title">Google Docs e Sheets</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Escritório digital - documentos de texto e planilhas.</p>
+            <ul class="accordion-topics">
+              <li>Criando documentos de texto</li>
+              <li>Fazendo listas e tabelas simples</li>
+              <li>Salvando na nuvem</li>
+            </ul>
+            <a href="/aulas/aula_06.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 07 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">07</span>
+            <span class="accordion-title">Google Slides</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Apresentações bonitas - criar, editar e apresentar slides.</p>
+            <ul class="accordion-topics">
+              <li>Criando uma apresentação</li>
+              <li>Adicionando imagens e textos</li>
+              <li>Apresentando para a turma</li>
+            </ul>
+            <a href="/aulas/aula_07.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 08 -->
+        <div class="accordion-item new">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">08</span>
+            <span class="accordion-title">Gov.br e PIX</span>
+            <span class="accordion-badge">NOVA</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Serviços governamentais e transferências digitais seguras.</p>
+            <ul class="accordion-topics">
+              <li>O que é o Gov.br e para que serve</li>
+              <li>Níveis de conta (Bronze, Prata, Ouro)</li>
+              <li>PIX: chaves, pagamentos e segurança</li>
+              <li>Como se proteger de golpes</li>
+            </ul>
+            <a href="/aulas/aula_08.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Aula 09 -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-number">09</span>
+            <span class="accordion-title">Revisão e Encerramento</span>
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <p>Revisão geral e celebração da jornada de aprendizado.</p>
+            <ul class="accordion-topics">
+              <li>Revisão dos principais tópicos</li>
+              <li>Tirando dúvidas finais</li>
+              <li>Apresentação do Portal do Aluno</li>
+              <li>Encerramento e próximos passos</li>
+            </ul>
+            <a href="/aulas/aula_09.pdf" class="btn btn-primary" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-info">
+            <p><strong>Programa de Inclusão Digital</strong></p>
+            <p>UEMG Frutal - Desde 2009</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 - Inclusão Digital UEMG Frutal</p>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

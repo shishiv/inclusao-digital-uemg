@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pratique seus conhecimentos - Inclusão Digital UEMG Frutal" />
+    <meta name="theme-color" content="#1E4D6B" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pratique - Inclusão Digital UEMG</title>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="/images/logo-uemg.png" alt="UEMG" class="sidebar-logo" />
+        <span class="sidebar-title">Inclusão Digital</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="/" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Início</span>
+        </a>
+        <a href="/aulas.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <span>Aulas</span>
+        </a>
+        <a href="/pratique.html" class="sidebar-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Pratique</span>
+        </a>
+        <a href="/comunidade.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Comunidade</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <p>UEMG Frutal</p>
+        <p>Desde 2009</p>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobileHeader">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <span class="mobile-title">Pratique</span>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="page-header">
+        <h1 class="page-title">Pratique Seus Conhecimentos</h1>
+        <p class="page-subtitle">Teste o que aprendeu e continue evoluindo!</p>
+      </section>
+
+      <!-- Mini Quizzes -->
+      <section class="quizzes-section">
+        <h2 class="section-title">Mini Quizzes</h2>
+        <p class="section-subtitle">Responda as perguntas e veja se acertou</p>
+
+        <div class="quiz-grid">
+          <!-- Quiz 1 -->
+          <div class="quiz-card" data-quiz="1">
+            <h4 class="quiz-question">Para desligar o computador corretamente, devemos:</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Apertar o botão de energia diretamente</button>
+              <button class="quiz-option" data-correct="true">Clicar em Iniciar e depois em Desligar</button>
+              <button class="quiz-option" data-correct="false">Tirar da tomada</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Quiz 2 -->
+          <div class="quiz-card" data-quiz="2">
+            <h4 class="quiz-question">O PIX é seguro porque:</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Qualquer pessoa pode ver suas transações</button>
+              <button class="quiz-option" data-correct="true">É regulado pelo Banco Central e usa criptografia</button>
+              <button class="quiz-option" data-correct="false">Não precisa de senha</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Quiz 3 -->
+          <div class="quiz-card" data-quiz="3">
+            <h4 class="quiz-question">Para acessar serviços do governo, usamos:</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Facebook</button>
+              <button class="quiz-option" data-correct="false">WhatsApp</button>
+              <button class="quiz-option" data-correct="true">Gov.br</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Quiz 4 -->
+          <div class="quiz-card" data-quiz="4">
+            <h4 class="quiz-question">Se o computador não liga, o primeiro passo é:</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">Verificar se está na tomada</button>
+              <button class="quiz-option" data-correct="false">Comprar um novo</button>
+              <button class="quiz-option" data-correct="false">Chamar um técnico imediatamente</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Quiz 5 -->
+          <div class="quiz-card" data-quiz="5">
+            <h4 class="quiz-question">O cadeado verde no navegador significa:</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">O site é gratuito</button>
+              <button class="quiz-option" data-correct="true">A conexão é segura</button>
+              <button class="quiz-option" data-correct="false">O site é do governo</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Quiz 6 -->
+          <div class="quiz-card" data-quiz="6">
+            <h4 class="quiz-question">No Gov.br, qual nível permite acessar mais serviços?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Bronze</button>
+              <button class="quiz-option" data-correct="false">Prata</button>
+              <button class="quiz-option" data-correct="true">Ouro</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Desafios -->
+      <section class="desafios-section">
+        <h2 class="section-title">Desafios para Casa</h2>
+        <p class="section-subtitle">Pratique no dia a dia para fixar o aprendizado</p>
+
+        <div class="desafios-grid">
+          <div class="desafio-card">
+            <div class="desafio-icon">1</div>
+            <div class="desafio-content">
+              <h4>Envie um Email</h4>
+              <p>Escreva um email para um familiar contando sobre o curso</p>
+            </div>
+          </div>
+
+          <div class="desafio-card">
+            <div class="desafio-icon">2</div>
+            <div class="desafio-content">
+              <h4>Videochamada</h4>
+              <p>Faça uma videochamada pelo WhatsApp com alguém querido</p>
+            </div>
+          </div>
+
+          <div class="desafio-card">
+            <div class="desafio-icon">3</div>
+            <div class="desafio-content">
+              <h4>Organize Fotos</h4>
+              <p>Crie um álbum no Google Fotos com suas melhores memórias</p>
+            </div>
+          </div>
+
+          <div class="desafio-card">
+            <div class="desafio-icon">4</div>
+            <div class="desafio-content">
+              <h4>Acesse o Gov.br</h4>
+              <p>Entre no Gov.br e consulte algum serviço disponível</p>
+            </div>
+          </div>
+
+          <div class="desafio-card">
+            <div class="desafio-icon">5</div>
+            <div class="desafio-content">
+              <h4>Faça um PIX</h4>
+              <p>Faça um PIX de R$ 0,01 para um familiar (com permissão!)</p>
+            </div>
+          </div>
+
+          <div class="desafio-card">
+            <div class="desafio-icon">6</div>
+            <div class="desafio-content">
+              <h4>Assista um Tutorial</h4>
+              <p>Busque um tutorial no YouTube sobre algo que quer aprender</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recursos Externos -->
+      <section class="recursos-section">
+        <h2 class="section-title">Continue Aprendendo</h2>
+        <p class="section-subtitle">Vídeos e tutoriais para ir além</p>
+
+        <div class="recursos-grid">
+          <a href="https://www.youtube.com/results?search_query=como+usar+whatsapp+idosos" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon youtube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+            </div>
+            <h4>Tutoriais WhatsApp</h4>
+            <p>Vídeos no YouTube</p>
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=como+usar+pix+tutorial" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon youtube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+            </div>
+            <h4>Tutoriais PIX</h4>
+            <p>Vídeos no YouTube</p>
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=como+usar+gov.br+tutorial" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon youtube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+            </div>
+            <h4>Tutoriais Gov.br</h4>
+            <p>Vídeos no YouTube</p>
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=google+fotos+tutorial+portugues" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon youtube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+            </div>
+            <h4>Tutoriais Google Fotos</h4>
+            <p>Vídeos no YouTube</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-info">
+            <p><strong>Programa de Inclusão Digital</strong></p>
+            <p>UEMG Frutal - Desde 2009</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 - Inclusão Digital UEMG Frutal</p>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
