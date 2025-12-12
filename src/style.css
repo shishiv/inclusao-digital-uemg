@@ -549,6 +549,8 @@ h1, h2, h3, h4 {
   font-size: var(--font-size-xl);
   color: var(--verde);
   margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+  padding-bottom: 0.1em;
 }
 
 /* Classe para slogans e textos decorativos */
@@ -557,12 +559,20 @@ h1, h2, h3, h4 {
   font-size: var(--font-size-xl);
   color: var(--verde);
   font-weight: 400;
+  line-height: 1.4;
+  padding-bottom: 0.1em;
 }
 
 .hero-description {
   font-size: var(--font-size-base);
   margin-bottom: var(--spacing-lg);
   line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .hero-stats {
@@ -602,7 +612,8 @@ h1, h2, h3, h4 {
 }
 
 .hero-image img {
-  max-width: 620px;
+  max-width: 100%;
+  width: 620px;
   border-radius: var(--border-radius-lg);
   box-shadow: #555555 0 4px 20px;
   margin: 0 auto;
@@ -1316,7 +1327,8 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 480px) {
-  .hero-stats {
+  .hero-stats,
+  .hero-buttons {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
