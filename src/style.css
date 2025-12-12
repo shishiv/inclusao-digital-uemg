@@ -548,7 +548,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-accent);
   font-size: var(--font-size-xl);
   color: var(--verde);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 /* Classe para slogans e textos decorativos */
@@ -602,7 +602,9 @@ h1, h2, h3, h4 {
 }
 
 .hero-image img {
-  max-width: 420px;
+  max-width: 620px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: #555555 0 4px 20px;
   margin: 0 auto;
 }
 
