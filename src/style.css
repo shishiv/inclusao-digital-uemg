@@ -549,8 +549,7 @@ h1, h2, h3, h4 {
   font-size: var(--font-size-xl);
   color: var(--verde);
   margin-bottom: var(--spacing-sm);
-  line-height: 1.4;
-  padding-bottom: 0.1em;
+  line-height: 1.8;
 }
 
 /* Classe para slogans e textos decorativos */
@@ -1335,6 +1334,20 @@ h1, h2, h3, h4 {
 
   .stat {
     width: 100%;
+  }
+
+  .stats-bar {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.85rem;
   }
 
   .quiz-grid,
