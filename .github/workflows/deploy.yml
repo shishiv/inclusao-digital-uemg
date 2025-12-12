@@ -20,9 +20,9 @@ jobs:
 
       # 2. Setup do ambiente Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18' # Usando a versão 18 do Node.js
+          node-version: '22' # Vite 7 requer Node.js 20.19+ ou 22.12+
 
       # 3. Instala a CLI do Vercel
       - name: Install Vercel CLI
