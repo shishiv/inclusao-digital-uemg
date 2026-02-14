@@ -1,8 +1,8 @@
-# 🌐 Digital Inclusion UEMG
+# <img src="https://unpkg.com/lucide-static@latest/icons/graduation-cap.svg" width="32" height="32" alt="Digital Inclusion UEMG"> Digital Inclusion UEMG
 
 An educational portal for seniors 60+ to learn technology. Accessible, simple, empowering.
 
-## ✨ Features
+## <img src="https://unpkg.com/lucide-static@latest/icons/sparkles.svg" width="20" height="20" alt="Features"> Features
 
 *   **Accessible Design** — Large fonts, high contrast, generous button spacing.
 *   **Simplified Navigation** — Intuitive menu with clear categories.
@@ -13,7 +13,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
 *   **No Distractions** — Clean interface, no pop-ups or ads.
 *   **Offline-Ready** — Core content works without internet.
 
-## 🛠️ Tech Stack
+## <img src="https://unpkg.com/lucide-static@latest/icons/layers.svg" width="20" height="20" alt="Tech Stack"> Tech Stack
 
 | Layer       | Technology          |
 |-------------|---------------------|
@@ -33,7 +33,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
 *   How to avoid digital scams
 *   Accessibility settings (Android/iOS)
 
-## 🗺️ Roadmap
+## <img src="https://unpkg.com/lucide-static@latest/icons/map.svg" width="20" height="20" alt="Roadmap"> Roadmap
 
 *   [x] **Phase 1: Static Portal** — HTML/CSS/JS, accessibility, educational content for seniors
 *   [ ] **Phase 2: Next.js Migration**
@@ -68,7 +68,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
     *   [ ] Content CMS for easy updates
     *   [ ] Analytics (completion rates, popular topics)
 
-## 🚀 Getting Started
+## <img src="https://unpkg.com/lucide-static@latest/icons/rocket.svg" width="20" height="20" alt="Getting Started"> Getting Started
 
 ### Local Development
 
