@@ -1,72 +1,72 @@
 # 🌐 Digital Inclusion UEMG
 
-Educational portal for seniors 60+ to learn technology — accessible, simple, empowering.
+It's an educational portal designed to help seniors (60+) learn about tech. Accessible, simple, and empowering—that's the goal.
 
 ## ✨ Features
 
-- **Accessible Design** — Large fonts, high contrast, generous button spacing
-- **Simplified Navigation** — Intuitive menu with clear categories
-- **Step-by-Step Tutorials** — Detailed instructions with illustrative images
-- **Video Support** — Audiovisual content for different learning styles
-- **Responsive** — Works on desktop, tablet, and mobile
-- **WCAG 2.1 Compliant** — Contrast ratios, keyboard navigation, semantic HTML
-- **No Distractions** — Clean interface, no pop-ups or ads
-- **Offline-Ready** — Core content works without internet
+*   **Accessible Design** — Big fonts, high contrast, and plenty of space around buttons. 
+*   **Simplified Navigation** — An easy-to-understand menu with straightforward categories.
+*   **Step-by-Step Tutorials** — Detailed instructions paired with helpful pictures.
+*   **Video Support** — Videos for different learning styles.
+*   **Responsive** — Works on phones, tablets, and computers.
+*   **WCAG 2.1 Compliant** — Meets standards for contrast, keyboard navigation, and semantic HTML.
+*   **No Distractions** — A clean design with no pop-ups or ads.
+*   **Offline-Ready** — Core content can be used without an internet connection.
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| **Markup** | HTML5 (semantic, accessible) |
+| Layer       | Technology          |
+|-------------|---------------------|
+| **Markup**  | HTML5 (semantic, accessible) |
 | **Styling** | CSS3 (Flexbox/Grid) |
-| **Scripting** | Vanilla JavaScript |
-| **Deployment** | Vercel with CDN |
-| **Performance** | Optimized for slow connections |
+| **Scripting** | Vanilla JavaScript  |
+| **Deployment**| Vercel with CDN     |
+| **Performance**| Optimized for slow connections    |
 
 ## 📚 Content Highlights
 
-- Smartphone basics for beginners
-- Safe internet navigation
-- WhatsApp step-by-step guide
-- Email setup and usage
-- YouTube tutorial
-- Digital scam prevention
-- Accessibility settings (Android/iOS)
+*   Smartphone basics for beginners
+*   Safe web browsing
+*   A step-by-step guide to WhatsApp
+*   Email setup and how to use it
+*   YouTube tutorial
+*   How to avoid digital scams
+*   Accessibility settings (Android/iOS)
 
 ## 🗺️ Roadmap
 
-- [x] **Phase 1: Static Portal** — HTML/CSS/JS, accessibility, educational content for seniors
-- [ ] **Phase 2: Next.js Migration**
-  - [ ] Server-side rendering for better SEO
-  - [ ] Modern routing and component architecture
-  - [ ] Improved accessibility with React ARIA
-  - [ ] Dynamic content loading
-  - [ ] Search functionality
-- [ ] **Phase 3: PWA & Offline**
-  - [ ] Service workers for offline access
-  - [ ] Installable on mobile devices
-  - [ ] Push notifications for new content
-  - [ ] Offline video caching
-  - [ ] Background sync
-- [ ] **Phase 4: Android App**
-  - [ ] React Native or Capacitor
-  - [ ] Google Play Store distribution
-  - [ ] Extra-large fonts and buttons
-  - [ ] Voice navigation support
-  - [ ] Simplified onboarding flow
-- [ ] **Phase 5: iOS App**
-  - [ ] Apple App Store distribution
-  - [ ] Universal accessibility features
-  - [ ] Family sharing for caregivers
-  - [ ] VoiceOver optimization
-  - [ ] Simplified Settings integration
-- [ ] **Phase 6: Platform**
-  - [ ] Multi-institution support (other universities, NGOs)
-  - [ ] Progress tracking for learners
-  - [ ] Gamification (badges, achievements)
-  - [ ] Instructor dashboard for workshops
-  - [ ] Content CMS for easy updates
-  - [ ] Analytics (completion rates, popular topics)
+*   [x] **Phase 1: Static Portal** — HTML/CSS/JS, accessibility, educational content for seniors
+*   [ ] **Phase 2: Next.js Migration**
+    *   [ ] Server-side rendering for better SEO
+    *   [ ] Modern routing and component architecture
+    *   [ ] Improved accessibility with React ARIA
+    *   [ ] Dynamic content loading
+    *   [ ] Search functionality
+*   [ ] **Phase 3: PWA & Offline**
+    *   [ ] Service workers for offline access
+    *   [ ] Installable on mobile devices
+    *   [ ] Push notifications for new content
+    *   [ ] Offline video caching
+    *   [ ] Background sync
+*   [ ] **Phase 4: Android App**
+    *   [ ] React Native or Capacitor
+    *   [ ] Google Play Store distribution
+    *   [ ] Extra-large fonts and buttons
+    *   [ ] Voice navigation support
+    *   [ ] Simplified onboarding flow
+*   [ ] **Phase 5: iOS App**
+    *   [ ] Apple App Store distribution
+    *   [ ] Universal accessibility features
+    *   [ ] Family sharing for caregivers
+    *   [ ] VoiceOver optimization
+    *   [ ] Simplified Settings integration
+*   [ ] **Phase 6: Platform**
+    *   [ ] Multi-institution support (other universities, NGOs)
+    *   [ ] Progress tracking for learners
+    *   [ ] Gamification (badges, achievements)
+    *   [ ] Instructor dashboard for workshops
+    *   [ ] Content CMS for easy updates
+    *   [ ] Analytics (completion rates, popular topics)
 
 ## 🚀 Getting Started
 
@@ -84,24 +84,24 @@ python -m http.server 8000
 npx serve .
 ```
 
-Visit `http://localhost:8000` in your browser.
+Go to `http://localhost:8000` in your browser.
 
 ## 🎯 Accessibility Features
 
-- **High contrast** — 4.5:1 minimum ratio
-- **Large text** — Base 18px, easily adjustable
-- **Touch targets** — 44x44px minimum (mobile best practice)
-- **Plain language** — No technical jargon
-- **Keyboard navigation** — Clear focus states
-- **No autoplay** — User-initiated media only
+*   **High contrast** — A minimum ratio of 4.5:1
+*   **Large text** — Base is 18px, but it's easy to make it bigger
+*   **Touch targets** — At least 44x44px (good practice for mobile)
+*   **Plain language** — No complicated technical terms
+*   **Keyboard navigation** — Obvious focus states
+*   **No autoplay** — Videos only start when you click
 
 ## 🎓 Social Impact
 
 **2024 Metrics:**
-- 150+ seniors trained in workshops
-- 800+ monthly portal visits
-- 4.8/5 user satisfaction rating
-- Partnership with Senior Community Center of Frutal, Brazil
+*   150+ seniors trained in workshops
+*   800+ portal visits each month
+*   User satisfaction rating of 4.8/5
+*   Partnership with the Senior Community Center of Frutal, Brazil
 
 ## 📄 License
 
@@ -110,3 +110,4 @@ MIT
 ---
 
 **Built by Myke Matos — TriânguloTEC**
+
