@@ -1,8 +1,8 @@
-# <img src="https://unpkg.com/lucide-static@latest/icons/graduation-cap.svg" width="32" height="32" alt="Digital Inclusion UEMG"> Digital Inclusion UEMG
+# <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/dark/graduation-cap.svg"><img src="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/light/graduation-cap.svg" width="32" height="32" alt="Digital Inclusion UEMG"></picture> Digital Inclusion UEMG
 
 An educational portal for seniors 60+ to learn technology. Accessible, simple, empowering.
 
-## <img src="https://unpkg.com/lucide-static@latest/icons/sparkles.svg" width="20" height="20" alt="Features"> Features
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/dark/sparkles.svg"><img src="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/light/sparkles.svg" width="20" height="20" alt="Features"></picture> Features
 
 *   **Accessible Design** — Large fonts, high contrast, generous button spacing.
 *   **Simplified Navigation** — Intuitive menu with clear categories.
@@ -13,7 +13,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
 *   **No Distractions** — Clean interface, no pop-ups or ads.
 *   **Offline-Ready** — Core content works without internet.
 
-## <img src="https://unpkg.com/lucide-static@latest/icons/layers.svg" width="20" height="20" alt="Tech Stack"> Tech Stack
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/dark/layers.svg"><img src="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/light/layers.svg" width="20" height="20" alt="Tech Stack"></picture> Tech Stack
 
 | Layer       | Technology          |
 |-------------|---------------------|
@@ -33,7 +33,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
 *   How to avoid digital scams
 *   Accessibility settings (Android/iOS)
 
-## <img src="https://unpkg.com/lucide-static@latest/icons/map.svg" width="20" height="20" alt="Roadmap"> Roadmap
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/dark/map.svg"><img src="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/light/map.svg" width="20" height="20" alt="Roadmap"></picture> Roadmap
 
 *   [x] **Phase 1: Static Portal** — HTML/CSS/JS, accessibility, educational content for seniors
 *   [ ] **Phase 2: Next.js Migration**
@@ -68,7 +68,7 @@ An educational portal for seniors 60+ to learn technology. Accessible, simple, e
     *   [ ] Content CMS for easy updates
     *   [ ] Analytics (completion rates, popular topics)
 
-## <img src="https://unpkg.com/lucide-static@latest/icons/rocket.svg" width="20" height="20" alt="Getting Started"> Getting Started
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/dark/rocket.svg"><img src="https://raw.githubusercontent.com/shishiv/shishiv/main/assets/icons/light/rocket.svg" width="20" height="20" alt="Getting Started"></picture> Getting Started
 
 ### Local Development
 
