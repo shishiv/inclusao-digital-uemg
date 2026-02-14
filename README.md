@@ -1,17 +1,17 @@
 # 🌐 Digital Inclusion UEMG
 
-It's an educational portal designed to help seniors (60+) learn about tech. Accessible, simple, and empowering—that's the goal.
+An educational portal for seniors 60+ to learn technology. Accessible, simple, empowering.
 
 ## ✨ Features
 
-*   **Accessible Design** — Big fonts, high contrast, and plenty of space around buttons. 
-*   **Simplified Navigation** — An easy-to-understand menu with straightforward categories.
-*   **Step-by-Step Tutorials** — Detailed instructions paired with helpful pictures.
-*   **Video Support** — Videos for different learning styles.
-*   **Responsive** — Works on phones, tablets, and computers.
-*   **WCAG 2.1 Compliant** — Meets standards for contrast, keyboard navigation, and semantic HTML.
-*   **No Distractions** — A clean design with no pop-ups or ads.
-*   **Offline-Ready** — Core content can be used without an internet connection.
+*   **Accessible Design** — Large fonts, high contrast, generous button spacing.
+*   **Simplified Navigation** — Intuitive menu with clear categories.
+*   **Step-by-Step Tutorials** — Detailed instructions with illustrative images.
+*   **Video Support** — Audiovisual content for different learning styles.
+*   **Responsive** — Works on desktop, tablet, and mobile.
+*   **WCAG 2.1 Compliant** — Contrast ratios, keyboard navigation, semantic HTML.
+*   **No Distractions** — Clean interface, no pop-ups or ads.
+*   **Offline-Ready** — Core content works without internet.
 
 ## 🛠️ Tech Stack
 
