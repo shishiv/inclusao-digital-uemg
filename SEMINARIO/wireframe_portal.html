@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe | Portal UEMG - Inclusão Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN TOKENS - PORTAL UEMG INCLUSÃO DIGITAL
+           ============================================ */
+        :root {
+            /* Cores Primárias */
+            --azul-uemg: #4A6FA5;
+            --azul-escuro: #2C4A6E;
+            --azul-claro: #6B8FC5;
+            --azul-bg: #E8F1F8;
+            
+            /* Cores Secundárias */
+            --verde: #7FB069;
+            --verde-escuro: #5A8A4A;
+            --verde-claro: #9FC78F;
+            --verde-bg: #E8F5E1;
+            
+            /* Cores de Apoio */
+            --amarelo: #F3DE8A;
+            --amarelo-escuro: #D4C06A;
+            --amarelo-bg: #FFF9E6;
+            
+            --vermelho-uemg: #C8102E;
+            --vermelho-claro: #E85A6F;
+            
+            /* Neutros */
+            --branco: #FFFFFF;
+            --cinza-bg: #F5F7FA;
+            --cinza-claro: #E5E9EF;
+            --cinza-medio: #9AA5B4;
+            --cinza-texto: #555555;
+            --cinza-escuro: #333333;
+            
+            /* Tipografia */
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-accent: 'Caveat', cursive;
+            
+            /* Espaçamentos */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 40px;
+            --space-xl: 64px;
+            --space-2xl: 100px;
+            
+            /* Bordas */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--cinza-texto);
+            line-height: 1.6;
+            background: var(--cinza-bg);
+        }
+
+        /* ============================================
+           WIREFRAME CONTAINER
+           ============================================ */
+        .wireframe-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+        }
+
+        .wireframe-header {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            margin-bottom: var(--space-xl);
+            background: var(--branco);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .wireframe-header h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-sm);
+        }
+
+        .wireframe-header p {
+            font-size: 1.1rem;
+            color: var(--cinza-medio);
+        }
+
+        /* Page Section */
+        .page-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 3px solid var(--azul-uemg);
+        }
+
+        .page-number {
+            width: 50px;
+            height: 50px;
+            background: var(--azul-uemg);
+            color: var(--branco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .page-title h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--azul-escuro);
+        }
+
+        .page-title span {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--cinza-medio);
+            font-weight: 400;
+        }
+
+        /* Browser Frame */
+        .browser-frame {
+            background: var(--branco);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--cinza-claro);
+            border-bottom: 1px solid #D5D9DF;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dots span:nth-child(1) { background: #FF5F57; }
+        .browser-dots span:nth-child(2) { background: #FFBD2E; }
+        .browser-dots span:nth-child(3) { background: #28CA41; }
+
+        .browser-url {
+            flex: 1;
+            background: var(--branco);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--cinza-texto);
+            font-family: monospace;
+        }
+
+        .page-content {
+            min-height: 600px;
+        }
+
+        /* ============================================
+           SITE HEADER (COMMON)
+           ============================================ */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) var(--space-lg);
+            background: var(--branco);
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--azul-uemg);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--branco);
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--azul-escuro);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            color: var(--verde);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .main-nav a {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--cinza-texto);
+            text-decoration: none;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--azul-uemg);
+            background: var(--azul-bg);
+        }
+
+        .header-uemg {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--cinza-medio);
+            letter-spacing: 0.5px;
+        }
+
+        .header-uemg .uemg-logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: var(--cinza-claro);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: var(--cinza-medio);
+        }
+
+        /* ============================================
+           PAGE 1: HOME
+           ============================================ */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            padding: var(--space-xl) var(--space-lg);
+            background: linear-gradient(180deg, var(--branco) 0%, var(--cinza-bg) 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: var(--verde-bg);
+            color: var(--verde-escuro);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-xl);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: var(--space-md);
+            width: fit-content;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 3rem;
+            color: var(--azul-escuro);
+            line-height: 1.15;
+            margin-bottom: var(--space-sm);
+        }
+
+        .hero-content .slogan {
+            font-family: var(--font-accent);
+            font-size: 2rem;
+            color: var(--verde);
+            margin-bottom: var(--space-md);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--cinza-texto);
+            margin-bottom: var(--space-lg);
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        .btn-primary:hover {
+            background: var(--verde-escuro);
+        }
+
+        .btn-secondary {
+            background: var(--azul-bg);
+            color: var(--azul-uemg);
+        }
+
+        .btn-secondary:hover {
+            background: var(--azul-uemg);
+            color: var(--branco);
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .illustration-placeholder {
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--azul-bg) 0%, var(--verde-bg) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            border: 3px dashed var(--cinza-claro);
+        }
+
+        .illustration-placeholder svg {
+            width: 80px;
+            height: 80px;
+            fill: var(--cinza-medio);
+        }
+
+        .illustration-placeholder span {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--cinza-medio);
+            text-align: center;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            padding: var(--space-lg);
+            background: var(--branco);
+            border-top: 1px solid var(--cinza-claro);
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-md);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-uemg);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--cinza-texto);
+            margin-top: var(--space-xs);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--cinza-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-xs);
+        }
+
+        .section-header .subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.4rem;
+            color: var(--verde);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .feature-card {
+            background: var(--branco);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto var(--space-md);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .feature-card:nth-child(1) .feature-icon { background: var(--azul-bg); }
+        .feature-card:nth-child(2) .feature-icon { background: var(--verde-bg); }
+        .feature-card:nth-child(3) .feature-icon { background: var(--amarelo-bg); }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--cinza-texto);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--azul-escuro);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--branco);
+            margin-bottom: var(--space-xs);
+        }
+
+        .cta-section .cta-slogan {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            color: var(--amarelo);
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-section .btn {
+            background: var(--verde);
+            color: var(--branco);
+            font-size: 1.1rem;
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        /* Site Footer */
+        .site-footer {
+            padding: var(--space-lg);
+            background: var(--cinza-escuro);
+            color: var(--branco);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: var(--space-xs);
+        }
+
+        .footer-brand .slogan {
+            font-family: var(--font-accent);
+            color: var(--verde-claro);
+            font-size: 1.1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--cinza-medio);
+            margin-top: var(--space-sm);
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-sm);
+            color: var(--cinza-medio);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--verde-claro);
+        }
+
+        .footer-bottom {
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--cinza-medio);
+        }
+
+        .footer-logos {
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .footer-logo-placeholder {
+            width: 60px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: var(--cinza-medio);
+        }
+
+        /* ============================================
+           PAGE 2: SOBRE
+           ============================================ */
+        .about-hero {
+            padding: var(--space-xl) var(--space-lg);
+            background: linear-gradient(180deg, var(--azul-bg) 0%, var(--branco) 100%);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-xs);
+        }
+
+        .about-hero .subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.6rem;
+            color: var(--verde);
+        }
+
+        .about-content {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-md);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--cinza-texto);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: var(--verde-bg);
+            border-left: 4px solid var(--verde);
+            padding: var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .highlight-box p {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            color: var(--verde-escuro);
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--cinza-bg);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--azul-uemg);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: var(--space-lg);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--branco);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--azul-uemg);
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--azul-escuro);
+            margin: var(--space-xs) 0;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto var(--space-md);
+            border-radius: 50%;
+            background: var(--cinza-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--azul-bg);
+        }
+
+        .team-photo span {
+            font-size: 0.8rem;
+            color: var(--cinza-medio);
+        }
+
+        .team-card h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--azul-escuro);
+        }
+
+        .team-card .role {
+            font-size: 0.9rem;
+            color: var(--verde);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           PAGE 3: CRONOGRAMA
+           ============================================ */
+        .schedule-hero {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--verde-bg);
+            text-align: center;
+        }
+
+        .schedule-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+        }
+
+        .schedule-info {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            margin-top: var(--space-md);
+        }
+
+        .schedule-info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--verde-escuro);
+        }
+
+        .schedule-content {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .module-card {
+            background: var(--branco);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            background: var(--azul-bg);
+            cursor: pointer;
+        }
+
+        .module-number {
+            width: 45px;
+            height: 45px;
+            background: var(--azul-uemg);
+            color: var(--branco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .module-info h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--azul-escuro);
+        }
+
+        .module-info span {
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+        }
+
+        .module-status {
+            margin-left: auto;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-xl);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .status-complete {
+            background: var(--verde-bg);
+            color: var(--verde-escuro);
+        }
+
+        .status-current {
+            background: var(--amarelo);
+            color: var(--cinza-escuro);
+        }
+
+        .status-upcoming {
+            background: var(--cinza-claro);
+            color: var(--cinza-texto);
+        }
+
+        .module-body {
+            padding: var(--space-md) var(--space-lg);
+            border-top: 1px solid var(--cinza-claro);
+        }
+
+        .lesson-list {
+            list-style: none;
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .lesson-complete .lesson-icon {
+            background: var(--verde-bg);
+            color: var(--verde);
+        }
+
+        .lesson-current .lesson-icon {
+            background: var(--amarelo);
+        }
+
+        .lesson-upcoming .lesson-icon {
+            background: var(--cinza-claro);
+            color: var(--cinza-medio);
+        }
+
+        .lesson-info {
+            flex: 1;
+        }
+
+        .lesson-info h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--azul-escuro);
+        }
+
+        .lesson-info span {
+            font-size: 0.85rem;
+            color: var(--cinza-texto);
+        }
+
+        /* ============================================
+           PAGE 4: MATERIAIS
+           ============================================ */
+        .materials-hero {
+            padding: var(--space-xl) var(--space-lg);
+            background: var(--amarelo-bg);
+            text-align: center;
+        }
+
+        .materials-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+        }
+
+        .materials-hero p {
+            font-size: 1.1rem;
+            color: var(--cinza-texto);
+            max-width: 600px;
+            margin: var(--space-sm) auto 0;
+        }
+
+        .materials-content {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .materials-filter {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .filter-btn {
+            padding: var(--space-xs) var(--space-md);
+            border: 2px solid var(--cinza-claro);
+            background: var(--branco);
+            border-radius: var(--radius-xl);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--azul-uemg);
+            color: var(--azul-uemg);
+            background: var(--azul-bg);
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .material-card {
+            background: var(--branco);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .material-preview {
+            height: 180px;
+            background: var(--cinza-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .material-preview span {
+            font-size: 0.8rem;
+            color: var(--cinza-medio);
+        }
+
+        .material-info {
+            padding: var(--space-md);
+        }
+
+        .material-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xs);
+        }
+
+        .type-slides { background: var(--azul-bg); color: var(--azul-uemg); }
+        .type-apostila { background: var(--verde-bg); color: var(--verde-escuro); }
+        .type-video { background: var(--amarelo-bg); color: var(--amarelo-escuro); }
+
+        .material-info h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-xs);
+        }
+
+        .material-info p {
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+            margin-bottom: var(--space-sm);
+        }
+
+        .material-download {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--azul-uemg);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .material-download:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           PAGE 5: CONTATO
+           ============================================ */
+        .contact-hero {
+            padding: var(--space-xl) var(--space-lg);
+            background: linear-gradient(135deg, var(--azul-bg) 0%, var(--verde-bg) 100%);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+        }
+
+        .contact-hero .subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            color: var(--verde);
+        }
+
+        .contact-content {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+
+        .contact-form {
+            background: var(--branco);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-form h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--azul-escuro);
+            margin-bottom: var(--space-md);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+            margin-bottom: var(--space-xs);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--space-sm);
+            border: 2px solid var(--cinza-claro);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--azul-uemg);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .info-card {
+            background: var(--branco);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--azul-bg);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--azul-escuro);
+            margin-bottom: 4px;
+        }
+
+        .info-content p {
+            font-size: 0.95rem;
+            color: var(--cinza-texto);
+        }
+
+        .info-content a {
+            color: var(--azul-uemg);
+            text-decoration: none;
+        }
+
+        .info-content a:hover {
+            text-decoration: underline;
+        }
+
+        .map-placeholder {
+            flex: 1;
+            background: var(--cinza-claro);
+            border-radius: var(--radius-md);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder span {
+            font-size: 0.9rem;
+            color: var(--cinza-medio);
+        }
+
+        /* ============================================
+           ANNOTATIONS
+           ============================================ */
+        .annotation {
+            position: absolute;
+            background: var(--amarelo);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            color: var(--cinza-escuro);
+            box-shadow: var(--shadow-sm);
+            z-index: 10;
+        }
+
+        .annotation::before {
+            content: '→';
+            margin-right: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-section,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .team-grid,
+            .materials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid,
+            .team-grid,
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .main-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <header class="wireframe-header">
+            <h1>Wireframe Visual Completo</h1>
+            <p>Portal UEMG - Inclusão Digital | "Conhecimento que conecta"</p>
+        </header>
+
+        <!-- ========== PAGE 1: HOME ========== -->
+        <section class="page-section">
+            <div class="page-title">
+                <div class="page-number">1</div>
+                <div>
+                    <h2>Página Inicial</h2>
+                    <span>/home</span>
+                </div>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-url">portal-inclusao.uemg.br</div>
+                </div>
+
+                <div class="page-content">
+                    <!-- Header -->
+                    <header class="site-header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Portal UEMG - Inclusão Digital</h1>
+                                <span>Conhecimento que conecta</span>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <a href="#" class="active">Início</a>
+                            <a href="#">Sobre</a>
+                            <a href="#">Cronograma</a>
+                            <a href="#">Materiais</a>
+                            <a href="#">Contato</a>
+                        </nav>
+                        <div class="header-uemg">
+                            <div class="uemg-logo-placeholder">UEMG</div>
+                        </div>
+                    </header>
+
+                    <!-- Hero -->
+                    <section class="hero-section">
+                        <div class="hero-content">
+                            <div class="hero-badge">✨ Desde 2009 transformando vidas</div>
+                            <h1>Programa de Inclusão Digital</h1>
+                            <p class="slogan">Conhecimento que conecta</p>
+                            <p>Capacitando adultos 60+ para navegarem com segurança e autonomia no mundo digital. Tecnologia acessível, no seu ritmo.</p>
+                            <div class="hero-buttons">
+                                <a href="#" class="btn btn-primary">📅 Ver Cronograma</a>
+                                <a href="#" class="btn btn-secondary">📚 Acessar Materiais</a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <div class="illustration-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Ilustração: Pessoa idosa<br>usando tablet (estilo das aulas)</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Stats -->
+                    <section class="stats-bar">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Anos de experiência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Pessoas capacitadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">30</div>
+                            <div class="stat-label">Vagas por turma</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Gratuito</div>
+                        </div>
+                    </section>
+
+                    <!-- Features -->
+                    <section class="features-section">
+                        <div class="section-header">
+                            <h2>O que você vai aprender</h2>
+                            <p class="subtitle">Cada passo é uma conquista!</p>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">💻</div>
+                                <h3>Informática Básica</h3>
+                                <p>Computador, mouse, teclado e navegação na internet</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <h3>Comunicação Digital</h3>
+                                <p>WhatsApp, e-mail e videochamadas com a família</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔒</div>
+                                <h3>Segurança Online</h3>
+                                <p>Proteja-se de golpes e navegue com tranquilidade</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CTA -->
+                    <section class="cta-section">
+                        <h2>Pronto para começar sua jornada digital?</h2>
+                        <p class="cta-slogan">O mundo digital está esperando por você!</p>
+                        <a href="#" class="btn">Entre em Contato →</a>
+                    </section>
+
+                    <!-- Footer -->
+                    <footer class="site-footer">
+                        <div class="footer-content">
+                            <div class="footer-brand">
+                                <h3>Portal UEMG - Inclusão Digital</h3>
+                                <p class="slogan">Conhecimento que conecta</p>
+                                <p>Um projeto de extensão da UEMG Frutal que desde 2009 capacita adultos 60+ para o mundo digital.</p>
+                            </div>
+                            <div class="footer-column">
+                                <h4>Navegação</h4>
+                                <a href="#">Início</a>
+                                <a href="#">Sobre o Programa</a>
+                                <a href="#">Cronograma</a>
+                                <a href="#">Materiais</a>
+                            </div>
+                            <div class="footer-column">
+                                <h4>Contato</h4>
+                                <a href="#">Email</a>
+                                <a href="#">Telefone</a>
+                                <a href="#">Localização</a>
+                            </div>
+                            <div class="footer-column">
+                                <h4>UEMG Frutal</h4>
+                                <a href="#">Site Oficial</a>
+                                <a href="#">Outros Projetos</a>
+                            </div>
+                        </div>
+                        <div class="footer-bottom">
+                            <span>© 2025 UEMG Frutal - Programa de Inclusão Digital</span>
+                            <div class="footer-logos">
+                                <div class="footer-logo-placeholder">UEMG</div>
+                                <div class="footer-logo-placeholder">PAEx</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PAGE 2: SOBRE ========== -->
+        <section class="page-section">
+            <div class="page-title">
+                <div class="page-number">2</div>
+                <div>
+                    <h2>Sobre o Programa</h2>
+                    <span>/sobre</span>
+                </div>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-url">portal-inclusao.uemg.br/sobre</div>
+                </div>
+
+                <div class="page-content">
+                    <header class="site-header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Portal UEMG - Inclusão Digital</h1>
+                                <span>Conhecimento que conecta</span>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <a href="#">Início</a>
+                            <a href="#" class="active">Sobre</a>
+                            <a href="#">Cronograma</a>
+                            <a href="#">Materiais</a>
+                            <a href="#">Contato</a>
+                        </nav>
+                        <div class="header-uemg">
+                            <div class="uemg-logo-placeholder">UEMG</div>
+                        </div>
+                    </header>
+
+                    <section class="about-hero">
+                        <h1>Sobre o Programa</h1>
+                        <p class="subtitle">15 anos transformando vidas através da tecnologia</p>
+                    </section>
+
+                    <section class="about-content">
+                        <div class="about-grid">
+                            <div class="about-text">
+                                <h2>Nossa História</h2>
+                                <p>Desde 2009, o Programa de Inclusão Digital da UEMG Frutal tem sido uma ponte entre gerações, capacitando adultos 60+ para navegarem com segurança e autonomia no mundo digital.</p>
+                                <p>Utilizando metodologia andragógica especialmente desenvolvida para adultos, transformamos a tecnologia em ferramenta de conexão familiar e independência.</p>
+                                <div class="highlight-box">
+                                    <p>"Cada tela que se ilumina com conhecimento é uma história de superação que celebramos."</p>
+                                </div>
+                            </div>
+                            <div class="illustration-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Ilustração: Turma em aula<br>(estilo das apresentações)</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="timeline-section">
+                        <div class="section-header">
+                            <h2>Nossa Trajetória</h2>
+                            <p class="subtitle">Cada ano, uma nova conquista</p>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">2009</div>
+                                    <h3>Início do Programa</h3>
+                                    <p>Primeira turma com 20 participantes</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">2015</div>
+                                    <h3>Expansão</h3>
+                                    <p>Aumento para 30 vagas por turma</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">2024</div>
+                                    <h3>15 Anos</h3>
+                                    <p>Mais de 500 pessoas capacitadas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="team-section">
+                        <div class="section-header">
+                            <h2>Nossa Equipe</h2>
+                            <p class="subtitle">Dedicação e carinho em cada aula</p>
+                        </div>
+                        <div class="team-grid">
+                            <div class="team-card">
+                                <div class="team-photo"><span>Foto</span></div>
+                                <h3>Prof. Cícero Marcelo</h3>
+                                <p class="role">Coordenador</p>
+                            </div>
+                            <div class="team-card">
+                                <div class="team-photo"><span>Foto</span></div>
+                                <h3>Monitor(a)</h3>
+                                <p class="role">Bolsista PAEx</p>
+                            </div>
+                            <div class="team-card">
+                                <div class="team-photo"><span>Foto</span></div>
+                                <h3>Monitor(a)</h3>
+                                <p class="role">Voluntário(a)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="site-footer">
+                        <div class="footer-bottom">
+                            <span>© 2025 UEMG Frutal - Programa de Inclusão Digital</span>
+                            <div class="footer-logos">
+                                <div class="footer-logo-placeholder">UEMG</div>
+                                <div class="footer-logo-placeholder">PAEx</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PAGE 3: CRONOGRAMA ========== -->
+        <section class="page-section">
+            <div class="page-title">
+                <div class="page-number">3</div>
+                <div>
+                    <h2>Cronograma</h2>
+                    <span>/cronograma</span>
+                </div>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-url">portal-inclusao.uemg.br/cronograma</div>
+                </div>
+
+                <div class="page-content">
+                    <header class="site-header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Portal UEMG - Inclusão Digital</h1>
+                                <span>Conhecimento que conecta</span>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <a href="#">Início</a>
+                            <a href="#">Sobre</a>
+                            <a href="#" class="active">Cronograma</a>
+                            <a href="#">Materiais</a>
+                            <a href="#">Contato</a>
+                        </nav>
+                        <div class="header-uemg">
+                            <div class="uemg-logo-placeholder">UEMG</div>
+                        </div>
+                    </header>
+
+                    <section class="schedule-hero">
+                        <h1>📅 Cronograma 2025</h1>
+                        <div class="schedule-info">
+                            <div class="schedule-info-item">🕐 Quintas-feiras, 14h às 16h</div>
+                            <div class="schedule-info-item">📍 Laboratório 4 - UEMG Frutal</div>
+                        </div>
+                    </section>
+
+                    <section class="schedule-content">
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-number">1</div>
+                                <div class="module-info">
+                                    <h3>Fundamentos Digitais</h3>
+                                    <span>Aulas 01-04 | Set-Out 2025</span>
+                                </div>
+                                <span class="module-status status-complete">✓ Concluído</span>
+                            </div>
+                            <div class="module-body">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item lesson-complete">
+                                        <div class="lesson-icon">✓</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 01 - Primeiros Passos</h4>
+                                            <span>Computador, mouse e teclado</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-complete">
+                                        <div class="lesson-icon">✓</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 02 - Navegação Segura</h4>
+                                            <span>Internet e segurança básica</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-complete">
+                                        <div class="lesson-icon">✓</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 03 - WhatsApp</h4>
+                                            <span>Conectando famílias</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-complete">
+                                        <div class="lesson-icon">✓</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 04 - E-mail</h4>
+                                            <span>Comunicação digital</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-number">2</div>
+                                <div class="module-info">
+                                    <h3>Ferramentas Google</h3>
+                                    <span>Aulas 05-08 | Out-Nov 2025</span>
+                                </div>
+                                <span class="module-status status-current">📍 Em andamento</span>
+                            </div>
+                            <div class="module-body">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item lesson-complete">
+                                        <div class="lesson-icon">✓</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 05 - Redes Sociais</h4>
+                                            <span>Facebook e Instagram</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-current">
+                                        <div class="lesson-icon">●</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 06 - Google Docs & Sheets</h4>
+                                            <span>Documentos e planilhas</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-upcoming">
+                                        <div class="lesson-icon">○</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 07 - Google Slides</h4>
+                                            <span>Apresentações</span>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item lesson-upcoming">
+                                        <div class="lesson-icon">○</div>
+                                        <div class="lesson-info">
+                                            <h4>Aula 08 - Google Drive & Fotos</h4>
+                                            <span>Armazenamento na nuvem</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-number">3</div>
+                                <div class="module-info">
+                                    <h3>Serviços Digitais</h3>
+                                    <span>Aulas 09-12 | Nov-Dez 2025</span>
+                                </div>
+                                <span class="module-status status-upcoming">⏳ Em breve</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="site-footer">
+                        <div class="footer-bottom">
+                            <span>© 2025 UEMG Frutal - Programa de Inclusão Digital</span>
+                            <div class="footer-logos">
+                                <div class="footer-logo-placeholder">UEMG</div>
+                                <div class="footer-logo-placeholder">PAEx</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PAGE 4: MATERIAIS ========== -->
+        <section class="page-section">
+            <div class="page-title">
+                <div class="page-number">4</div>
+                <div>
+                    <h2>Materiais</h2>
+                    <span>/materiais</span>
+                </div>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-url">portal-inclusao.uemg.br/materiais</div>
+                </div>
+
+                <div class="page-content">
+                    <header class="site-header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Portal UEMG - Inclusão Digital</h1>
+                                <span>Conhecimento que conecta</span>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <a href="#">Início</a>
+                            <a href="#">Sobre</a>
+                            <a href="#">Cronograma</a>
+                            <a href="#" class="active">Materiais</a>
+                            <a href="#">Contato</a>
+                        </nav>
+                        <div class="header-uemg">
+                            <div class="uemg-logo-placeholder">UEMG</div>
+                        </div>
+                    </header>
+
+                    <section class="materials-hero">
+                        <h1>📚 Materiais Didáticos</h1>
+                        <p>Todos os materiais do curso disponíveis para download. Estude no seu ritmo!</p>
+                    </section>
+
+                    <section class="materials-content">
+                        <div class="materials-filter">
+                            <button class="filter-btn active">Todos</button>
+                            <button class="filter-btn">📊 Slides</button>
+                            <button class="filter-btn">📖 Apostilas</button>
+                            <button class="filter-btn">🎬 Vídeos</button>
+                        </div>
+
+                        <div class="materials-grid">
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-slides">Slides</span>
+                                    <h3>Aula 01 - Primeiros Passos</h3>
+                                    <p>Conhecendo o computador, mouse e teclado</p>
+                                    <a href="#" class="material-download">⬇ Baixar PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-slides">Slides</span>
+                                    <h3>Aula 02 - Navegação Segura</h3>
+                                    <p>Internet e segurança online</p>
+                                    <a href="#" class="material-download">⬇ Baixar PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-apostila">Apostila</span>
+                                    <h3>Guia Completo de WhatsApp</h3>
+                                    <p>Passo a passo ilustrado</p>
+                                    <a href="#" class="material-download">⬇ Baixar PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-slides">Slides</span>
+                                    <h3>Aula 03 - WhatsApp</h3>
+                                    <p>Conectando famílias</p>
+                                    <a href="#" class="material-download">⬇ Baixar PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-video">Vídeo</span>
+                                    <h3>Como Fazer Videochamada</h3>
+                                    <p>Tutorial passo a passo</p>
+                                    <a href="#" class="material-download">▶ Assistir</a>
+                                </div>
+                            </div>
+
+                            <div class="material-card">
+                                <div class="material-preview"><span>Preview do Material</span></div>
+                                <div class="material-info">
+                                    <span class="material-type type-apostila">Apostila</span>
+                                    <h3>Dicas de Segurança</h3>
+                                    <p>Guia contra golpes online</p>
+                                    <a href="#" class="material-download">⬇ Baixar PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="site-footer">
+                        <div class="footer-bottom">
+                            <span>© 2025 UEMG Frutal - Programa de Inclusão Digital</span>
+                            <div class="footer-logos">
+                                <div class="footer-logo-placeholder">UEMG</div>
+                                <div class="footer-logo-placeholder">PAEx</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PAGE 5: CONTATO ========== -->
+        <section class="page-section">
+            <div class="page-title">
+                <div class="page-number">5</div>
+                <div>
+                    <h2>Contato</h2>
+                    <span>/contato</span>
+                </div>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="browser-url">portal-inclusao.uemg.br/contato</div>
+                </div>
+
+                <div class="page-content">
+                    <header class="site-header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Portal UEMG - Inclusão Digital</h1>
+                                <span>Conhecimento que conecta</span>
+                            </div>
+                        </div>
+                        <nav class="main-nav">
+                            <a href="#">Início</a>
+                            <a href="#">Sobre</a>
+                            <a href="#">Cronograma</a>
+                            <a href="#">Materiais</a>
+                            <a href="#" class="active">Contato</a>
+                        </nav>
+                        <div class="header-uemg">
+                            <div class="uemg-logo-placeholder">UEMG</div>
+                        </div>
+                    </header>
+
+                    <section class="contact-hero">
+                        <h1>📞 Entre em Contato</h1>
+                        <p class="subtitle">Estamos aqui para ajudar!</p>
+                    </section>
+
+                    <section class="contact-content">
+                        <div class="contact-grid">
+                            <div class="contact-form">
+                                <h2>Envie sua mensagem</h2>
+                                <div class="form-group">
+                                    <label>Nome completo</label>
+                                    <input type="text" placeholder="Seu nome">
+                                </div>
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input type="email" placeholder="seu@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefone</label>
+                                    <input type="tel" placeholder="(17) 99999-9999">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mensagem</label>
+                                    <textarea placeholder="Como podemos ajudar?"></textarea>
+                                </div>
+                                <button class="btn btn-primary" style="width: 100%;">Enviar Mensagem →</button>
+                            </div>
+
+                            <div class="contact-info">
+                                <div class="info-card">
+                                    <div class="info-icon">📍</div>
+                                    <div class="info-content">
+                                        <h3>Endereço</h3>
+                                        <p>UEMG - Unidade Frutal<br>Av. Professor Mário Palmério, 1001<br>Frutal - MG, 38200-000</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-card">
+                                    <div class="info-icon">📧</div>
+                                    <div class="info-content">
+                                        <h3>E-mail</h3>
+                                        <p><a href="#">inclusaodigital@uemg.br</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="info-card">
+                                    <div class="info-icon">📱</div>
+                                    <div class="info-content">
+                                        <h3>Telefone</h3>
+                                        <p>(17) 3843-1234</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-card">
+                                    <div class="info-icon">🕐</div>
+                                    <div class="info-content">
+                                        <h3>Horário de Aulas</h3>
+                                        <p>Quintas-feiras, 14h às 16h</p>
+                                    </div>
+                                </div>
+
+                                <div class="map-placeholder">
+                                    <span>🗺️ Mapa do Google Maps</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="site-footer">
+                        <div class="footer-bottom">
+                            <span>© 2025 UEMG Frutal - Programa de Inclusão Digital</span>
+                            <div class="footer-logos">
+                                <div class="footer-logo-placeholder">UEMG</div>
+                                <div class="footer-logo-placeholder">PAEx</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

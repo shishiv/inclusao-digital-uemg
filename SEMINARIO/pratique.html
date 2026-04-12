@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratique | Inclusão Digital UEMG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-uemg: #4A6FA5;
+            --azul-escuro: #2C4A6E;
+            --azul-claro: #6B8FC5;
+            --azul-bg: #E8F1F8;
+            --verde: #7FB069;
+            --verde-escuro: #5A8A4A;
+            --verde-claro: #9FC78F;
+            --verde-bg: #E8F5E1;
+            --amarelo: #F3DE8A;
+            --amarelo-escuro: #D4C06A;
+            --amarelo-bg: #FFF9E6;
+            --vermelho-uemg: #C8102E;
+            --vermelho-bg: #FDEAEA;
+            --branco: #FFFFFF;
+            --cinza-bg: #F5F7FA;
+            --cinza-claro: #E5E9EF;
+            --cinza-medio: #9AA5B4;
+            --cinza-texto: #555555;
+            --cinza-escuro: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--cinza-texto);
+            line-height: 1.7;
+            background: var(--cinza-bg);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-uemg) 100%);
+            color: var(--branco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: var(--verde);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .header .slogan {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--verde-claro);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            font-size: 1.1rem;
+        }
+
+        .progress-score {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--verde);
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            background: var(--cinza-claro);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--verde) 0%, var(--verde-claro) 100%);
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        /* Lesson Selector */
+        .lesson-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-btn {
+            padding: 12px 20px;
+            border: 2px solid var(--cinza-claro);
+            border-radius: 12px;
+            background: var(--branco);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lesson-btn:hover {
+            border-color: var(--azul-uemg);
+            color: var(--azul-uemg);
+        }
+
+        .lesson-btn.active {
+            background: var(--azul-uemg);
+            border-color: var(--azul-uemg);
+            color: var(--branco);
+        }
+
+        .lesson-btn .emoji {
+            font-size: 1.2rem;
+        }
+
+        /* Quiz Card */
+        .quiz-card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-number {
+            background: var(--azul-uemg);
+            color: var(--branco);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--cinza-medio);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quiz-question {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--azul-escuro);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 25px;
+            border: 2px solid var(--cinza-claro);
+            border-radius: 12px;
+            background: var(--branco);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: var(--azul-uemg);
+            background: var(--azul-bg);
+        }
+
+        .option-btn.selected {
+            border-color: var(--azul-uemg);
+            background: var(--azul-bg);
+        }
+
+        .option-btn.correct {
+            border-color: var(--verde);
+            background: var(--verde-bg);
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--vermelho-uemg);
+            background: var(--vermelho-bg);
+        }
+
+        .option-btn.disabled {
+            cursor: default;
+        }
+
+        .option-letter {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--cinza-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--azul-escuro);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn.selected .option-letter {
+            background: var(--azul-uemg);
+            color: var(--branco);
+        }
+
+        .option-btn.correct .option-letter {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        .option-btn.incorrect .option-letter {
+            background: var(--vermelho-uemg);
+            color: var(--branco);
+        }
+
+        .option-text {
+            font-size: 1.05rem;
+            color: var(--cinza-escuro);
+        }
+
+        /* Feedback */
+        .feedback {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .feedback.correct {
+            background: var(--verde-bg);
+            border-left: 4px solid var(--verde);
+        }
+
+        .feedback.incorrect {
+            background: var(--amarelo-bg);
+            border-left: 4px solid var(--amarelo-escuro);
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .feedback-icon {
+            font-size: 1.5rem;
+        }
+
+        .feedback-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--verde-escuro);
+        }
+
+        .feedback.incorrect .feedback-title {
+            color: var(--amarelo-escuro);
+        }
+
+        .feedback-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Navigation Buttons */
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid var(--cinza-claro);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.primary {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--verde-escuro);
+        }
+
+        .nav-btn.secondary {
+            background: var(--azul-bg);
+            color: var(--azul-uemg);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--azul-uemg);
+            color: var(--branco);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Completion Card */
+        .completion-card {
+            background: linear-gradient(135deg, var(--verde-bg) 0%, var(--azul-bg) 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .completion-card.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .completion-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .completion-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--azul-escuro);
+            margin-bottom: 10px;
+        }
+
+        .completion-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--verde);
+            margin-bottom: 25px;
+        }
+
+        .completion-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--azul-uemg);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--cinza-medio);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--azul-uemg);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .quiz-card {
+                padding: 25px 20px;
+            }
+
+            .quiz-question {
+                font-size: 1.2rem;
+            }
+
+            .option-btn {
+                padding: 15px 18px;
+            }
+
+            .lesson-selector {
+                justify-content: center;
+            }
+
+            .completion-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🎯 Pratique</h1>
+            <p class="slogan">Teste seus conhecimentos!</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <span class="progress-title">📊 Seu progresso</span>
+                <span class="progress-score" id="score-display">0 de 0 corretas</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </section>
+
+        <!-- Lesson Selector -->
+        <div class="lesson-selector" id="lesson-selector">
+            <button class="lesson-btn active" data-lesson="1">
+                <span class="emoji">💻</span> Aula 1
+            </button>
+            <button class="lesson-btn" data-lesson="2">
+                <span class="emoji">🌐</span> Aula 2
+            </button>
+            <button class="lesson-btn" data-lesson="3">
+                <span class="emoji">📱</span> Aula 3
+            </button>
+            <button class="lesson-btn" data-lesson="4">
+                <span class="emoji">✉️</span> Aula 4
+            </button>
+            <button class="lesson-btn" data-lesson="5">
+                <span class="emoji">👥</span> Aula 5
+            </button>
+            <button class="lesson-btn" data-lesson="6">
+                <span class="emoji">📄</span> Aula 6
+            </button>
+            <button class="lesson-btn" data-lesson="7">
+                <span class="emoji">🎨</span> Aula 7
+            </button>
+            <button class="lesson-btn" data-lesson="8">
+                <span class="emoji">🏛️</span> Aula 8
+            </button>
+            <button class="lesson-btn" data-lesson="seguranca">
+                <span class="emoji">🔒</span> Segurança
+            </button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container"></div>
+
+        <!-- Completion Card -->
+        <div class="completion-card" id="completion-card">
+            <div class="completion-icon">🎉</div>
+            <h2 class="completion-title">Parabéns!</h2>
+            <p class="completion-subtitle">Você completou este quiz!</p>
+            <div class="completion-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="final-correct">0</div>
+                    <div class="stat-label">Acertos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="final-total">0</div>
+                    <div class="stat-label">Perguntas</div>
+                </div>
+            </div>
+            <button class="nav-btn primary" onclick="restartQuiz()">
+                🔄 Tentar Novamente
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Programa de Inclusão Digital 60+ • <a href="/">UEMG Frutal</a></p>
+    </footer>
+
+    <script>
+        // Quiz Data
+        const quizData = {
+            1: {
+                title: "Primeiros Passos",
+                questions: [
+                    {
+                        question: "O computador é como uma casa moderna. Qual parte funciona como o \"cérebro\" que pensa e processa tudo?",
+                        options: ["O monitor", "O teclado", "O processador (CPU)", "O mouse"],
+                        correct: 2,
+                        explanation: "O processador é o cérebro do computador. Ele processa todas as informações, assim como nosso cérebro processa nossos pensamentos!"
+                    },
+                    {
+                        question: "Qual parte do computador usamos para ver as imagens e textos, como se fosse a \"janela\" da nossa casa digital?",
+                        options: ["O mouse", "O monitor (tela)", "A caixa de som", "O teclado"],
+                        correct: 1,
+                        explanation: "O monitor é nossa janela para o mundo digital. É através dele que vemos tudo o que acontece no computador."
+                    },
+                    {
+                        question: "Qual é a forma CORRETA de desligar o computador?",
+                        options: ["Puxar o fio da tomada", "Apertar e segurar o botão de ligar", "Clicar em \"Iniciar\" e depois em \"Desligar\"", "Fechar a tampa do notebook com força"],
+                        correct: 2,
+                        explanation: "Sempre desligue pelo menu \"Iniciar\" > \"Desligar\". Isso permite que o computador salve tudo direitinho antes de dormir!"
+                    },
+                    {
+                        question: "Para abrir um programa ou arquivo, quantos cliques rápidos damos com o botão esquerdo do mouse?",
+                        options: ["Um clique", "Dois cliques rápidos (duplo clique)", "Três cliques", "Não precisa clicar"],
+                        correct: 1,
+                        explanation: "O duplo clique (dois cliques rápidos) é como bater na porta duas vezes para ela abrir!"
+                    },
+                    {
+                        question: "A \"Área de Trabalho\" do computador é como:",
+                        options: ["Uma gaveta fechada", "Uma mesa onde colocamos nossos objetos mais usados", "Um armário trancado", "Uma sala de espera"],
+                        correct: 1,
+                        explanation: "A Área de Trabalho é sua mesa digital! Nela ficam os ícones (atalhos) dos programas que você mais usa."
+                    }
+                ]
+            },
+            2: {
+                title: "Internet",
+                questions: [
+                    {
+                        question: "A internet é como:",
+                        options: ["Uma biblioteca gigante que nunca fecha", "Um livro pequeno", "Uma loja fechada", "Um telefone fixo"],
+                        correct: 0,
+                        explanation: "A internet é uma biblioteca infinita! Tem informações sobre tudo, disponível 24 horas por dia, 7 dias por semana."
+                    },
+                    {
+                        question: "O Google Chrome, Firefox e Edge são exemplos de:",
+                        options: ["Redes sociais", "Navegadores de internet", "Jogos de computador", "Programas de música"],
+                        correct: 1,
+                        explanation: "Navegadores são como carros que nos levam para passear pela internet. O Chrome é o carro mais popular!"
+                    },
+                    {
+                        question: "Para visitar um site específico, onde devemos digitar o endereço (como www.google.com)?",
+                        options: ["Na barra de pesquisa do Google", "Na barra de endereços (no topo do navegador)", "Em qualquer lugar da tela", "No teclado numérico"],
+                        correct: 1,
+                        explanation: "A barra de endereços fica no topo do navegador. É como digitar o endereço de uma casa no GPS!"
+                    },
+                    {
+                        question: "Para encontrar uma receita de bolo de chocolate, o que é melhor digitar no Google?",
+                        options: ["\"bolo\"", "\"receita bolo chocolate fácil\"", "\"comida\"", "\"doce\""],
+                        correct: 1,
+                        explanation: "Quanto mais específica a busca, melhor o resultado! É como pedir algo bem detalhado numa loja."
+                    },
+                    {
+                        question: "Como identificamos que um site é seguro para colocar nossos dados?",
+                        options: ["Tem cores bonitas", "Tem um cadeado 🔒 na barra de endereços", "Tem muitas propagandas", "Abre rápido"],
+                        correct: 1,
+                        explanation: "O cadeado significa que o site é seguro. É como uma fechadura que protege suas informações!"
+                    }
+                ]
+            },
+            3: {
+                title: "WhatsApp",
+                questions: [
+                    {
+                        question: "O WhatsApp serve principalmente para:",
+                        options: ["Fazer compras online", "Trocar mensagens, fotos e fazer ligações de graça", "Assistir filmes", "Jogar jogos"],
+                        correct: 1,
+                        explanation: "O WhatsApp é como ter um telefone mágico que envia mensagens, fotos e faz ligações sem gastar crédito!"
+                    },
+                    {
+                        question: "Para enviar uma mensagem no WhatsApp, depois de escrever o texto, qual botão apertamos?",
+                        options: ["O botão vermelho", "O botão de seta verde (enviar)", "O botão de voltar", "Qualquer botão"],
+                        correct: 1,
+                        explanation: "A setinha verde é o botão de enviar. É como colocar a carta no correio!"
+                    },
+                    {
+                        question: "Para enviar uma foto no WhatsApp, qual ícone devemos tocar?",
+                        options: ["O ícone de microfone", "O ícone de clipe 📎 ou câmera 📷", "O ícone de telefone", "O ícone de configurações"],
+                        correct: 1,
+                        explanation: "O clipe ou a câmera permitem anexar fotos. É como colocar uma foto dentro de um envelope!"
+                    },
+                    {
+                        question: "Para fazer uma chamada de vídeo (ver a pessoa enquanto conversa), qual ícone usamos?",
+                        options: ["O ícone de telefone", "O ícone de câmera de vídeo 📹", "O ícone de mensagem", "O ícone de foto"],
+                        correct: 1,
+                        explanation: "A câmera de vídeo permite ver a pessoa do outro lado. É como uma visita virtual!"
+                    },
+                    {
+                        question: "Para enviar uma mensagem de voz, o que devemos fazer com o ícone do microfone?",
+                        options: ["Dar um toque rápido", "Segurar pressionado enquanto fala", "Dar dois toques", "Não precisa tocar"],
+                        correct: 1,
+                        explanation: "Segure o microfone enquanto fala e solte quando terminar. É como um walkie-talkie!"
+                    },
+                    {
+                        question: "Um grupo de WhatsApp é:",
+                        options: ["Uma conversa com apenas uma pessoa", "Uma conversa onde várias pessoas participam juntas", "Um jogo", "Uma ligação"],
+                        correct: 1,
+                        explanation: "Grupos são como reuniões de família ou amigos, onde todos conversam juntos!"
+                    }
+                ]
+            },
+            4: {
+                title: "E-mail",
+                questions: [
+                    {
+                        question: "O e-mail funciona como:",
+                        options: ["Um telefone", "Uma carta que chega em segundos", "Um programa de televisão", "Uma loja"],
+                        correct: 1,
+                        explanation: "E-mail é uma carta digital! Você escreve, envia, e a pessoa recebe em segundos, não em dias."
+                    },
+                    {
+                        question: "Qual destes é um endereço de e-mail válido?",
+                        options: ["maria.silva", "maria.silva@gmail.com", "www.maria.com", "maria silva gmail"],
+                        correct: 1,
+                        explanation: "Todo e-mail precisa ter o @ (arroba). É como o CEP de uma carta - sem ele, não chega!"
+                    },
+                    {
+                        question: "O campo \"Assunto\" no e-mail serve para:",
+                        options: ["Escrever a mensagem completa", "Colocar um título curto sobre o que é o e-mail", "Colocar o endereço do destinatário", "Anexar fotos"],
+                        correct: 1,
+                        explanation: "O Assunto é como o título de uma carta. Ajuda a pessoa saber do que se trata antes de abrir!"
+                    },
+                    {
+                        question: "Onde ficam guardados os e-mails que as pessoas enviam para você?",
+                        options: ["Na Lixeira", "Na Caixa de Entrada", "Nos Rascunhos", "Nos Enviados"],
+                        correct: 1,
+                        explanation: "A Caixa de Entrada é como sua caixa de correio. É lá que chegam todas as suas cartas digitais!"
+                    },
+                    {
+                        question: "Você recebe um e-mail dizendo que ganhou um prêmio e pedindo seus dados bancários. O que fazer?",
+                        options: ["Responder com todos os dados", "Clicar em todos os links", "Não clicar em nada e apagar o e-mail", "Encaminhar para os amigos"],
+                        correct: 2,
+                        explanation: "Bancos e empresas sérias NUNCA pedem senhas ou dados por e-mail. Na dúvida, apague!"
+                    }
+                ]
+            },
+            5: {
+                title: "Redes Sociais",
+                questions: [
+                    {
+                        question: "As redes sociais são como:",
+                        options: ["Lojas online", "Praças virtuais onde encontramos pessoas", "Programas de televisão", "Bancos digitais"],
+                        correct: 1,
+                        explanation: "Redes sociais são praças virtuais! Lugares para encontrar amigos, família e fazer novas amizades."
+                    },
+                    {
+                        question: "No Facebook, o que significa \"Curtir\" uma publicação?",
+                        options: ["Que você não gostou", "Que você gostou e quer mostrar isso", "Que você quer apagar a publicação", "Que você quer comprar algo"],
+                        correct: 1,
+                        explanation: "Curtir é como dar um sorriso ou acenar para alguém. Mostra que você gostou!"
+                    },
+                    {
+                        question: "O YouTube é uma plataforma principalmente para:",
+                        options: ["Enviar e-mails", "Assistir e compartilhar vídeos", "Fazer compras", "Criar documentos"],
+                        correct: 1,
+                        explanation: "YouTube é como uma TV infinita onde VOCÊ escolhe o que quer assistir, na hora que quiser!"
+                    },
+                    {
+                        question: "Qual informação NÃO devemos compartilhar publicamente nas redes sociais?",
+                        options: ["Nosso nome", "Nossa cidade", "Nosso endereço completo e CPF", "Nossos hobbies"],
+                        correct: 2,
+                        explanation: "Nunca compartilhe endereço completo, CPF, senhas ou dados bancários. É como deixar a porta de casa aberta!"
+                    },
+                    {
+                        question: "O Instagram é uma rede social focada principalmente em:",
+                        options: ["Textos longos", "Fotos e vídeos curtos", "Documentos", "E-mails"],
+                        correct: 1,
+                        explanation: "Instagram é um álbum de fotos digital! Perfeito para compartilhar momentos especiais com imagens."
+                    }
+                ]
+            },
+            6: {
+                title: "Google Docs e Sheets",
+                questions: [
+                    {
+                        question: "O Google Docs é parecido com qual programa?",
+                        options: ["Calculadora", "Microsoft Word (editor de texto)", "Programa de músicas", "Jogo de cartas"],
+                        correct: 1,
+                        explanation: "Google Docs é como o Word, mas funciona na internet e salva automaticamente na nuvem!"
+                    },
+                    {
+                        question: "Qual a grande vantagem de criar documentos no Google Docs?",
+                        options: ["Só funciona no computador de casa", "Salva automaticamente e pode acessar de qualquer lugar", "Precisa de CD para salvar", "Só funciona offline"],
+                        correct: 1,
+                        explanation: "Seus documentos ficam na \"nuvem\" (internet). É como ter uma pasta mágica que você acessa de qualquer aparelho!"
+                    },
+                    {
+                        question: "O Google Sheets (Planilhas) serve principalmente para:",
+                        options: ["Escrever cartas", "Organizar dados em tabelas e fazer cálculos", "Assistir vídeos", "Enviar mensagens"],
+                        correct: 1,
+                        explanation: "Sheets é como uma caderneta de contas digital. Perfeito para organizar gastos, listas e fazer cálculos!"
+                    },
+                    {
+                        question: "Para criar um novo documento no Google Docs, clicamos em:",
+                        options: ["\"Abrir\"", "\"Novo\" ou no botão \"+\"", "\"Excluir\"", "\"Imprimir\""],
+                        correct: 1,
+                        explanation: "O botão \"Novo\" ou \"+\" cria uma folha em branco novinha para você escrever!"
+                    },
+                    {
+                        question: "No Google Docs, podemos:",
+                        options: ["Apenas ver nossos documentos", "Compartilhar documentos com outras pessoas para verem ou editarem juntos", "Apenas imprimir", "Apenas apagar"],
+                        correct: 1,
+                        explanation: "Você pode convidar pessoas para ver ou editar junto. É como escrever uma carta a quatro mãos!"
+                    }
+                ]
+            },
+            7: {
+                title: "Google Slides",
+                questions: [
+                    {
+                        question: "O Google Slides serve para criar:",
+                        options: ["Planilhas de cálculo", "Apresentações com slides (como PowerPoint)", "Músicas", "Jogos"],
+                        correct: 1,
+                        explanation: "Google Slides é para criar apresentações! Como aquelas que professores usam, mas você pode fazer também."
+                    },
+                    {
+                        question: "O Google Slides pode ser usado para criar:",
+                        options: ["Convites de aniversário digitais", "Álbuns de fotos com legendas", "Apresentações para mostrar fotos da família", "Todas as anteriores"],
+                        correct: 3,
+                        explanation: "Slides é muito versátil! Serve para convites, álbuns, apresentações e muito mais!"
+                    },
+                    {
+                        question: "Para adicionar uma nova página (slide) na apresentação, usamos:",
+                        options: ["O botão \"Excluir\"", "O botão \"+\" ou \"Novo slide\"", "O botão \"Fechar\"", "O botão \"Imprimir\""],
+                        correct: 1,
+                        explanation: "O \"+\" adiciona uma nova página em branco na sua apresentação. Como virar para uma página nova do caderno!"
+                    },
+                    {
+                        question: "Para colocar uma foto no slide, vamos no menu:",
+                        options: ["Arquivo", "Inserir > Imagem", "Ferramentas", "Ajuda"],
+                        correct: 1,
+                        explanation: "\"Inserir\" é o menu para colocar coisas no slide: fotos, textos, formas e muito mais!"
+                    },
+                    {
+                        question: "Para mostrar sua apresentação em tela cheia (modo apresentação), usamos:",
+                        options: ["O botão \"Salvar\"", "O botão \"Apresentar\" ou tecla F5", "O botão \"Fechar\"", "O botão \"Compartilhar\""],
+                        correct: 1,
+                        explanation: "O modo \"Apresentar\" mostra seus slides em tela cheia, um por um. É a hora do show!"
+                    }
+                ]
+            },
+            8: {
+                title: "Gov.br e PIX",
+                questions: [
+                    {
+                        question: "O Gov.br é:",
+                        options: ["Uma rede social", "O portal do governo para acessar serviços públicos online", "Um jogo", "Um programa de TV"],
+                        correct: 1,
+                        explanation: "Gov.br é como uma \"prefeitura digital\". De casa, você acessa serviços como INSS, CNH, e muito mais!"
+                    },
+                    {
+                        question: "A conta Gov.br serve para:",
+                        options: ["Apenas ver notícias", "Acessar serviços do governo de forma segura com uma única senha", "Jogar online", "Assistir filmes"],
+                        correct: 1,
+                        explanation: "Com uma conta só, você acessa todos os serviços do governo. É como uma chave mestra digital!"
+                    },
+                    {
+                        question: "Por que é importante ter a conta Gov.br no nível Prata ou Ouro?",
+                        options: ["Para ganhar prêmios", "Para acessar mais serviços e ter mais segurança", "Para mudar a cor do site", "Não faz diferença"],
+                        correct: 1,
+                        explanation: "Níveis mais altos liberam mais serviços e garantem mais segurança. É como ter uma credencial VIP!"
+                    },
+                    {
+                        question: "O PIX é:",
+                        options: ["Um tipo de e-mail", "Uma forma de transferir dinheiro instantaneamente, 24 horas por dia", "Uma rede social", "Um programa de TV"],
+                        correct: 1,
+                        explanation: "PIX é dinheiro digital que viaja em segundos! Funciona qualquer dia, qualquer hora, e é gratuito para pessoas físicas."
+                    },
+                    {
+                        question: "Qual destas pode ser uma chave PIX?",
+                        options: ["CPF", "E-mail", "Número de celular", "Todas as anteriores"],
+                        correct: 3,
+                        explanation: "Você pode usar CPF, e-mail, celular ou uma chave aleatória. É como ter vários \"endereços\" para receber dinheiro!"
+                    },
+                    {
+                        question: "Alguém liga pedindo sua senha do banco para \"confirmar um PIX\". O que fazer?",
+                        options: ["Dar a senha para ajudar", "Desligar imediatamente - bancos NUNCA pedem senha por telefone", "Pedir para esperar enquanto busca a senha", "Passar a senha e depois trocar"],
+                        correct: 1,
+                        explanation: "NUNCA passe senha por telefone! Bancos não ligam pedindo isso. É golpe!"
+                    },
+                    {
+                        question: "Antes de confirmar um PIX, o que devemos SEMPRE fazer?",
+                        options: ["Fechar os olhos e confirmar", "Conferir o nome e os dados de quem vai receber", "Não olhar nada", "Pedir para outra pessoa confirmar"],
+                        correct: 1,
+                        explanation: "SEMPRE confira nome e dados antes de confirmar. Uma vez enviado, o PIX não volta!"
+                    }
+                ]
+            },
+            seguranca: {
+                title: "Segurança Digital",
+                questions: [
+                    {
+                        question: "Qual destas é uma senha FORTE?",
+                        options: ["123456", "senha", "Maria@2024!Feliz", "11111"],
+                        correct: 2,
+                        explanation: "Senhas fortes misturam letras maiúsculas, minúsculas, números e símbolos. Quanto mais misturado, mais forte!"
+                    },
+                    {
+                        question: "Alguém liga dizendo ser do banco e pede para você instalar um aplicativo. O que fazer?",
+                        options: ["Instalar rapidamente", "Desligar e ligar para o número oficial do banco", "Passar todos os dados", "Pedir para a pessoa esperar"],
+                        correct: 1,
+                        explanation: "Bancos não ligam pedindo instalação de apps. Desligue e ligue VOCÊ para o número oficial do banco (que está no cartão)."
+                    },
+                    {
+                        question: "Você recebe uma mensagem: \"Você ganhou um iPhone! Clique aqui para retirar\". O que fazer?",
+                        options: ["Clicar no link imediatamente", "Compartilhar com amigos", "Ignorar e apagar - provavelmente é golpe", "Responder pedindo mais informações"],
+                        correct: 2,
+                        explanation: "Prêmios de surpresa geralmente são golpes. Na dúvida, não clique em nada!"
+                    },
+                    {
+                        question: "Quais informações NUNCA devemos compartilhar com desconhecidos?",
+                        options: ["Senhas e códigos de verificação", "Número do cartão de crédito", "CPF para pessoas não confiáveis", "Todas as anteriores"],
+                        correct: 3,
+                        explanation: "Proteja seus dados como protege as chaves de casa. Não entregue a qualquer um!"
+                    },
+                    {
+                        question: "Usar Wi-Fi público (de shopping, praça, etc.) para acessar banco é:",
+                        options: ["Muito seguro", "Arriscado - melhor usar dados móveis ou Wi-Fi de casa", "A melhor opção", "Obrigatório"],
+                        correct: 1,
+                        explanation: "Wi-Fi público pode ser espionado por golpistas. Para banco, use sua internet de casa ou dados do celular."
+                    }
+                ]
+            }
+        };
+
+        // State
+        let currentLesson = '1';
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        let answeredQuestions = [];
+
+        // DOM Elements
+        const quizContainer = document.getElementById('quiz-container');
+        const completionCard = document.getElementById('completion-card');
+        const scoreDisplay = document.getElementById('score-display');
+        const progressFill = document.getElementById('progress-fill');
+        const lessonButtons = document.querySelectorAll('.lesson-btn');
+
+        // Initialize
+        function init() {
+            lessonButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentLesson = btn.dataset.lesson;
+                    lessonButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    resetQuiz();
+                });
+            });
+            renderQuestion();
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            correctAnswers = 0;
+            answeredQuestions = [];
+            completionCard.classList.remove('show');
+            renderQuestion();
+            updateProgress();
+        }
+
+        // Render Question
+        function renderQuestion() {
+            const questions = quizData[currentLesson].questions;
+            
+            if (currentQuestion >= questions.length) {
+                showCompletion();
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            const letters = ['A', 'B', 'C', 'D'];
+
+            quizContainer.innerHTML = `
+                <div class="quiz-card">
+                    <div class="quiz-header">
+                        <div class="quiz-number">${currentQuestion + 1}</div>
+                        <span class="quiz-meta">Pergunta ${currentQuestion + 1} de ${questions.length}</span>
+                    </div>
+                    <h2 class="quiz-question">${q.question}</h2>
+                    <div class="options-list">
+                        ${q.options.map((opt, i) => `
+                            <button class="option-btn" data-index="${i}">
+                                <span class="option-letter">${letters[i]}</span>
+                                <span class="option-text">${opt}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                    <div class="quiz-nav">
+                        <button class="nav-btn secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                            ← Anterior
+                        </button>
+                        <button class="nav-btn primary" id="next-btn" onclick="nextQuestion()" style="display: none;">
+                            Próxima →
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Add click listeners to options
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => selectOption(parseInt(btn.dataset.index)));
+            });
+        }
+
+        // Select Option
+        function selectOption(index) {
+            const questions = quizData[currentLesson].questions;
+            const q = questions[currentQuestion];
+            const isCorrect = index === q.correct;
+
+            // Disable all buttons
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.add('disabled');
+                const idx = parseInt(btn.dataset.index);
+                if (idx === q.correct) {
+                    btn.classList.add('correct');
+                } else if (idx === index && !isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            // Show feedback
+            const feedback = document.getElementById('feedback');
+            feedback.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `
+                <div class="feedback-header">
+                    <span class="feedback-icon">${isCorrect ? '🎉' : '💡'}</span>
+                    <span class="feedback-title">${isCorrect ? 'Muito bem!' : 'Quase lá!'}</span>
+                </div>
+                <p class="feedback-text">${q.explanation}</p>
+            `;
+
+            // Update score
+            if (!answeredQuestions.includes(currentQuestion)) {
+                answeredQuestions.push(currentQuestion);
+                if (isCorrect) {
+                    correctAnswers++;
+                }
+                updateProgress();
+            }
+
+            // Show next button
+            document.getElementById('next-btn').style.display = 'inline-flex';
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const questions = quizData[currentLesson].questions;
+            const total = questions.length;
+            const progress = (answeredQuestions.length / total) * 100;
+            
+            progressFill.style.width = `${progress}%`;
+            scoreDisplay.textContent = `${correctAnswers} de ${answeredQuestions.length} corretas`;
+        }
+
+        // Next Question
+        function nextQuestion() {
+            currentQuestion++;
+            renderQuestion();
+        }
+
+        // Previous Question
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        // Show Completion
+        function showCompletion() {
+            quizContainer.innerHTML = '';
+            completionCard.classList.add('show');
+            document.getElementById('final-correct').textContent = correctAnswers;
+            document.getElementById('final-total').textContent = quizData[currentLesson].questions.length;
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            resetQuiz();
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+</html>

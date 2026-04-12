@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado - Inclusão Digital 60+ | UEMG Frutal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-uemg: #4A6FA5;
+            --azul-escuro: #2C4A6E;
+            --azul-claro: #6B8FC5;
+            --verde: #7FB069;
+            --verde-escuro: #5A8A4A;
+            --amarelo: #F3DE8A;
+            --amarelo-dourado: #C9A227;
+            --vermelho-uemg: #C8102E;
+            --branco: #FFFFFF;
+            --cinza-texto: #555555;
+            --cinza-claro: #888888;
+            --cinza-escuro: #333333;
+            --creme: #FFFEF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #E5E5E5;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .certificate-wrapper {
+                box-shadow: none !important;
+                margin: 0 !important;
+            }
+
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+        }
+
+        /* Controls */
+        .controls {
+            background: var(--branco);
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .control-group label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--cinza-texto);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-group input {
+            padding: 12px 16px;
+            border: 2px solid #E5E9EF;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            min-width: 280px;
+            transition: border-color 0.3s ease;
+        }
+
+        .control-group input:focus {
+            outline: none;
+            border-color: var(--azul-uemg);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--azul-uemg);
+            color: var(--branco);
+        }
+
+        .btn-primary:hover {
+            background: var(--azul-escuro);
+        }
+
+        .btn-secondary {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        .btn-secondary:hover {
+            background: var(--verde-escuro);
+        }
+
+        /* Certificate Wrapper */
+        .certificate-wrapper {
+            width: 297mm;
+            height: 210mm;
+            background: var(--creme);
+            box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Outer Border */
+        .certificate-border-outer {
+            position: absolute;
+            top: 8mm;
+            left: 8mm;
+            right: 8mm;
+            bottom: 8mm;
+            border: 3px solid var(--amarelo-dourado);
+            pointer-events: none;
+        }
+
+        /* Inner Border */
+        .certificate-border-inner {
+            position: absolute;
+            top: 12mm;
+            left: 12mm;
+            right: 12mm;
+            bottom: 12mm;
+            border: 1px solid var(--amarelo-dourado);
+            pointer-events: none;
+        }
+
+        /* Corner Decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+        }
+
+        .corner-decoration::before,
+        .corner-decoration::after {
+            content: '';
+            position: absolute;
+            background: var(--amarelo-dourado);
+        }
+
+        .corner-top-left {
+            top: 15mm;
+            left: 15mm;
+        }
+
+        .corner-top-left::before {
+            width: 40px;
+            height: 3px;
+            top: 0;
+            left: 0;
+        }
+
+        .corner-top-left::after {
+            width: 3px;
+            height: 40px;
+            top: 0;
+            left: 0;
+        }
+
+        .corner-top-right {
+            top: 15mm;
+            right: 15mm;
+        }
+
+        .corner-top-right::before {
+            width: 40px;
+            height: 3px;
+            top: 0;
+            right: 0;
+        }
+
+        .corner-top-right::after {
+            width: 3px;
+            height: 40px;
+            top: 0;
+            right: 0;
+        }
+
+        .corner-bottom-left {
+            bottom: 15mm;
+            left: 15mm;
+        }
+
+        .corner-bottom-left::before {
+            width: 40px;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+        }
+
+        .corner-bottom-left::after {
+            width: 3px;
+            height: 40px;
+            bottom: 0;
+            left: 0;
+        }
+
+        .corner-bottom-right {
+            bottom: 15mm;
+            right: 15mm;
+        }
+
+        .corner-bottom-right::before {
+            width: 40px;
+            height: 3px;
+            bottom: 0;
+            right: 0;
+        }
+
+        .corner-bottom-right::after {
+            width: 3px;
+            height: 40px;
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Certificate Content */
+        .certificate-content {
+            position: absolute;
+            top: 18mm;
+            left: 20mm;
+            right: 20mm;
+            bottom: 18mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        /* Header */
+        .certificate-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .logo {
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        .header-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--azul-escuro);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .header-text p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--cinza-texto);
+        }
+
+        /* Main Title */
+        .certificate-title {
+            margin-top: 5px;
+        }
+
+        .certificate-title h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 3.8rem;
+            color: var(--azul-escuro);
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        .certificate-title .subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: var(--verde);
+            margin-top: -5px;
+        }
+
+        /* Decorative Line */
+        .decorative-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .decorative-line .line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--amarelo-dourado), transparent);
+        }
+
+        .decorative-line .diamond {
+            width: 10px;
+            height: 10px;
+            background: var(--amarelo-dourado);
+            transform: rotate(45deg);
+        }
+
+        /* Body */
+        .certificate-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 0 40px;
+        }
+
+        .certificate-body p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--cinza-texto);
+            line-height: 1.5;
+        }
+
+        .recipient-name {
+            font-family: 'Caveat', cursive;
+            font-size: 3.2rem;
+            color: var(--azul-uemg);
+            padding: 8px 80px;
+            border-bottom: 2px solid var(--amarelo-dourado);
+            min-width: 450px;
+            margin: 8px 0;
+        }
+
+        .program-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--azul-escuro);
+            background: linear-gradient(90deg, transparent, rgba(74, 111, 165, 0.1), transparent);
+            padding: 12px 50px;
+            border-radius: 30px;
+            margin: 8px 0;
+            letter-spacing: 1px;
+        }
+
+        .description {
+            max-width: 600px;
+        }
+
+        .workload {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--cinza-claro);
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .certificate-footer {
+            width: 100%;
+        }
+
+        .date-location {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--cinza-texto);
+            margin-bottom: 20px;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding-right: 90px;
+        }
+
+        .signature {
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .signature-line {
+            border-top: 1px solid var(--cinza-escuro);
+            padding-top: 8px;
+            margin-bottom: 5px;
+        }
+
+        .signature-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--cinza-escuro);
+        }
+
+        .signature-role {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--cinza-texto);
+        }
+
+        
+
+
+
+        /* Responsive for screen */
+        @media (max-width: 1200px) {
+            .certificate-wrapper {
+                width: 100%;
+                max-width: 297mm;
+                height: auto;
+                aspect-ratio: 297 / 210;
+            }
+
+            .certificate-content {
+                top: 5%;
+                left: 6%;
+                right: 6%;
+                bottom: 5%;
+            }
+        }
+
+        /* Instructions */
+        .instructions {
+            background: #FFF9E6;
+            border: 1px solid var(--amarelo);
+            border-radius: 8px;
+            padding: 15px 20px;
+            max-width: 900px;
+            width: 100%;
+            font-size: 0.9rem;
+            color: var(--cinza-texto);
+        }
+
+        .instructions strong {
+            color: var(--cinza-escuro);
+        }
+    </style>
+</head>
+<body>
+    <!-- Controls -->
+    <div class="controls">
+        <div class="control-group">
+            <label>Nome do Formando</label>
+            <input type="text" id="nameInput" placeholder="Digite o nome completo" value="Maria da Silva Santos">
+        </div>
+        <div class="control-group">
+            <label>Data da Cerimônia</label>
+            <input type="text" id="dateInput" placeholder="Data da cerimônia" value="12 de Dezembro de 2025">
+        </div>
+        <button class="btn btn-primary" onclick="updateCertificate()">
+            Atualizar
+        </button>
+        <button class="btn btn-secondary" onclick="printCertificate()">
+            Imprimir
+        </button>
+    </div>
+
+
+    <!-- Certificate -->
+    <div class="certificate-wrapper" id="certificate">
+        <!-- Borders -->
+        <div class="certificate-border-outer"></div>
+        <div class="certificate-border-inner"></div>
+
+        <!-- Corner Decorations -->
+        <div class="corner-decoration corner-top-left"></div>
+        <div class="corner-decoration corner-top-right"></div>
+        <div class="corner-decoration corner-bottom-left"></div>
+        <div class="corner-decoration corner-bottom-right"></div>
+
+        <!-- Watermark -->
+        <div class="watermark">UEMG</div>
+
+        <!-- UEMG Red Stripe -->
+        <div class="uemg-stripe"></div>
+
+        <!-- Content -->
+        <div class="certificate-content">
+            <!-- Header -->
+            <div class="certificate-header">
+                <div class="header-text">
+                    <h3>Universidade do Estado de Minas Gerais</h3>
+                    <p>Unidade Frutal — Programa de Apoio à Extensão (PAEx)</p>
+                </div>
+                <div class="logo">
+                    <img src="DOCS/LOGOS/paex-institucional.png"
+                         alt="Logo PAEx">
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="certificate-title">
+                <h1>Certificado</h1>
+                <p class="subtitle">de Conclusão</p>
+            </div>
+
+            <!-- Decorative Line -->
+            <div class="decorative-line">
+                <div class="line"></div>
+                <div class="diamond"></div>
+                <div class="line"></div>
+            </div>
+
+            <!-- Body -->
+            <div class="certificate-body">
+                <p>Certificamos que</p>
+                
+                <div class="recipient-name" id="recipientName">Maria da Silva Santos</div>
+                
+                <p>concluiu com êxito o</p>
+                
+                <div class="program-name">
+                    Programa de Inclusão Digital 60+
+                </div>
+                
+                <p class="description">
+                    promovido pela Universidade do Estado de Minas Gerais — Unidade Frutal,<br>
+                    demonstrando dedicação e conquistando autonomia no uso de tecnologias digitais.
+                </p>
+                
+                <p class="workload">Carga horária: 20 horas</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="certificate-footer">
+                <p class="date-location">
+                    Frutal — MG, <span id="certificateDate">12 de Dezembro de 2025</span>
+                </p>
+                
+
+        <!-- Seal -->
+        <div class="seal">
+            <div class="seal-inner">
+                <span class="seal-check">✓</span>
+                <span class="seal-text">Concluído</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCertificate() {
+            const name = document.getElementById('nameInput').value || 'Nome do Formando';
+            const date = document.getElementById('dateInput').value || '12 de Dezembro de 2025';
+            
+            document.getElementById('recipientName').textContent = name;
+            document.getElementById('certificateDate').textContent = date;
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        // Update on Enter key
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                updateCertificate();
+            }
+        });
+
+        document.getElementById('dateInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                updateCertificate();
+            }
+        });
+
+        // Auto-update when typing stops
+        let timeout;
+        document.getElementById('nameInput').addEventListener('input', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(updateCertificate, 500);
+        });
+    </script>
+</body>
+</html>
