@@ -55,13 +55,16 @@
         .slide {
             width: 100%;
             height: 100%;
-            padding: 60px 80px;
+            padding: 86px 80px 92px;
             display: none;
             flex-direction: column;
             position: absolute;
             top: 0;
             left: 0;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-gutter: stable;
         }
 
         .slide.active {
@@ -185,7 +188,7 @@
         .slogan {
             font-family: 'Caveat', cursive;
             font-size: 2rem;
-            color: var(--verde-claro);
+            color: var(--verde-bg);
             margin-bottom: 30px;
         }
 
@@ -207,8 +210,8 @@
 
         .cover-meta {
             margin-top: 50px;
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 1.25rem;
+            opacity: 0.95;
         }
 
         .cover-meta span {
@@ -308,14 +311,6 @@
             border-radius: 16px;
             padding: 25px;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .topic-card:hover {
-            border-color: var(--azul-uemg);
-            background: var(--azul-bg);
-            transform: scale(1.02);
         }
 
         .topic-card .emoji {
@@ -508,7 +503,7 @@
             justify-content: center;
             font-size: 5rem;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
         }
 
         .rules-list {
@@ -541,7 +536,7 @@
         .confetti {
             position: absolute;
             font-size: 2rem;
-            animation: fall 3s linear infinite;
+            animation: fall 3s linear 3;
         }
 
         @keyframes fall {
@@ -552,12 +547,6 @@
         .trophy {
             font-size: 8rem;
             margin-bottom: 30px;
-            animation: bounce 1s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         .achievement-cards {
@@ -674,7 +663,7 @@
             left: 0;
             right: 0;
             background: rgba(0,0,0,0.8);
-            padding: 15px 30px;
+            padding: 15px 30px calc(15px + env(safe-area-inset-bottom));
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -701,7 +690,7 @@
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 160ms ease-out, transform 160ms ease-out;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -714,11 +703,29 @@
 
         .nav-btn.primary {
             background: var(--verde);
-            color: var(--branco);
+            color: var(--cinza-escuro);
         }
 
-        .nav-btn:hover {
-            transform: scale(1.05);
+        .nav-btn:active { transform: scale(0.96); }
+
+        .nav-btn:focus-visible,
+        #lesson-help-button:focus-visible,
+        .lesson-toolbar a:focus-visible {
+            outline: 3px solid var(--azul-uemg);
+            outline-offset: 3px;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .nav-btn:hover { transform: scale(1.03); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         .nav-btn:disabled {
@@ -727,6 +734,25 @@
             transform: none;
         }
 
+        .slide-scroll-hint {
+            position: fixed;
+            z-index: 110;
+            left: 50%;
+            bottom: calc(78px + env(safe-area-inset-bottom));
+            transform: translateX(-50%);
+            min-height: 44px;
+            padding: 9px 16px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 999px;
+            background: rgba(30,49,70,.96);
+            color: #FFF;
+            font: 700 1rem/1.2 'Open Sans', sans-serif;
+            box-shadow: 0 8px 24px rgba(0,0,0,.28);
+            cursor: pointer;
+        }
+        .slide-scroll-hint[hidden] { display: none; }
+        .slide-scroll-hint:focus-visible { outline: 3px solid #FFF; outline-offset: 3px; }
+
         /* Progress Bar */
         .progress-bar {
             position: fixed;
@@ -734,14 +760,44 @@
             left: 0;
             height: 5px;
             background: var(--verde);
-            transition: width 0.3s ease;
+
             z-index: 100;
         }
+
+        .lesson-toolbar {
+            position: fixed; z-index: 120;
+            top: 10px; left: 14px; right: 14px;
+            min-height: 48px;
+            display: grid; grid-template-columns: 1fr auto 1fr;
+            align-items: center; gap: 12px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255,255,255,.28);
+            border-radius: 14px;
+            background: rgba(30, 49, 70, .94);
+            box-shadow: 0 8px 24px rgba(0,0,0,.24);
+        }
+        .lesson-toolbar a, .lesson-toolbar button {
+            min-height: 40px; display: inline-flex; align-items: center;
+            border: 0; background: transparent; color: #FFF;
+            font: 700 .9rem/1.2 'Open Sans', sans-serif;
+            text-decoration: none; cursor: pointer;
+        }
+        .lesson-toolbar button { justify-self: end; }
+        .lesson-toolbar-title { color: #FFF; font: 700 .78rem/1.2 'Montserrat', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+        .lesson-help {
+            position: fixed; z-index: 121; top: 68px; right: 18px;
+            max-width: min(360px, calc(100vw - 36px));
+            padding: 12px 16px; border-radius: 12px;
+            background: #FFF; color: var(--cinza-escuro);
+            box-shadow: 0 10px 28px rgba(0,0,0,.3);
+            font-size: .95rem;
+        }
+        .lesson-help[hidden] { display: none; }
 
         /* Responsive */
         @media (max-width: 900px) {
             .slide {
-                padding: 40px 30px 100px;
+                padding: 76px 30px calc(100px + env(safe-area-inset-bottom));
             }
 
             h1 { font-size: 2.5rem; }
@@ -765,10 +821,24 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .lesson-toolbar { top: 6px; left: 8px; right: 8px; grid-template-columns: auto 1fr auto; }
+            .lesson-toolbar a, .lesson-toolbar button { font-size: 0; }
+            .lesson-toolbar a::before { content: '← Aulas'; font-size: .88rem; }
+            .lesson-toolbar button::before { content: '🙋 Ajuda'; font-size: .88rem; }
+            .lesson-toolbar-title { text-align: center; font-size: .68rem; }
         }
     </style>
 </head>
 <body>
+    <header class="lesson-toolbar">
+        <a href="/aulas.html" aria-label="Voltar para todas as aulas">← Todas as aulas</a>
+        <span class="lesson-toolbar-title">Aula 09 · Encerramento</span>
+        <button type="button" id="lesson-help-button" aria-expanded="false">🙋 Preciso de ajuda</button>
+    </header>
+    <div class="lesson-help" id="lesson-help" hidden>
+        Use <strong>Anterior</strong> e <strong>Próximo</strong> para navegar. Você também pode usar as setas do teclado. Sem pressa.
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
@@ -1087,6 +1157,8 @@
 
     </div>
 
+    <button type="button" class="slide-scroll-hint" id="slide-scroll-hint" hidden>Role para ver todo o slide ↓</button>
+
     <!-- Navigation Bar -->
     <nav class="nav-bar">
         <span class="nav-progress" id="nav-progress">Slide 1 de 14</span>
@@ -1111,15 +1183,33 @@
         const navProgress = document.getElementById('nav-progress');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
+        const scrollHint = document.getElementById('slide-scroll-hint');
+
+        function scrollBehavior() {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        }
+
+        function updateScrollHint() {
+            const slide = slides[currentSlide - 1];
+            const contentChildren = slide
+                ? Array.from(slide.children).filter(child => !child.classList.contains('confetti'))
+                : [];
+            const contentBottom = contentChildren.reduce((bottom, child) =>
+                Math.max(bottom, child.offsetTop + child.offsetHeight), 0);
+            const visibleBottom = slide ? slide.scrollTop + slide.clientHeight - 92 : 0;
+            const hasMore = contentBottom > visibleBottom + 4;
+            scrollHint.hidden = !hasMore;
+        }
 
         // Update UI
         function updateUI() {
             // Update slides
             slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index + 1 === currentSlide) {
-                    slide.classList.add('active');
-                }
+                const active = index + 1 === currentSlide;
+                slide.classList.toggle('active', active);
+                slide.hidden = !active;
+                slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+                if (active) slide.scrollTop = 0;
             });
 
             // Update progress bar
@@ -1133,13 +1223,28 @@
             prevBtn.disabled = currentSlide === 1;
             nextBtn.textContent = currentSlide === totalSlides ? 'Fim!' : 'Proximo';
             nextBtn.disabled = currentSlide === totalSlides;
+            window.requestAnimationFrame(updateScrollHint);
         }
+
+        slides.forEach(slide => slide.addEventListener('scroll', updateScrollHint));
+        window.addEventListener('resize', updateScrollHint);
+        window.addEventListener('load', updateScrollHint);
+        if (document.fonts) document.fonts.ready.then(updateScrollHint);
+        scrollHint.addEventListener('click', () => {
+            const slide = slides[currentSlide - 1];
+            slide?.scrollBy({ top: Math.max(180, slide.clientHeight * 0.7), behavior: scrollBehavior() });
+        });
 
         // Navigation Functions
         function nextSlide() {
             if (currentSlide < totalSlides) {
                 currentSlide++;
                 updateUI();
+                const title = slides[currentSlide - 1].querySelector('h1, h2');
+                if (title) {
+                    title.setAttribute('tabindex', '-1');
+                    title.focus({ preventScroll: true });
+                }
             }
         }
 
@@ -1147,11 +1252,17 @@
             if (currentSlide > 1) {
                 currentSlide--;
                 updateUI();
+                const title = slides[currentSlide - 1].querySelector('h1, h2');
+                if (title) {
+                    title.setAttribute('tabindex', '-1');
+                    title.focus({ preventScroll: true });
+                }
             }
         }
 
         // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
+            if (e.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 nextSlide();
@@ -1203,6 +1314,14 @@
 
         // Initialize
         updateUI();
+
+        const helpButton = document.getElementById('lesson-help-button');
+        const helpPanel = document.getElementById('lesson-help');
+        helpButton.addEventListener('click', () => {
+            const open = helpPanel.hidden;
+            helpPanel.hidden = !open;
+            helpButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
 
         // Add confetti on celebration slides
         function addConfetti() {

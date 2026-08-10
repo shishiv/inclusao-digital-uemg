@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa de Inclusão Digital UEMG — Proposta Institucional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-display: 'Crimson Pro', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --bg: #FFFEFA;
+    --surface: #FFFFFF;
+    --surface2: #F7F4EF;
+    --surface-elevated: #FFFFFF;
+    --border: rgba(0,0,0,0.07);
+    --border-bright: rgba(0,0,0,0.14);
+    --text: #1C2834;
+    --text-dim: #7A8691;
+    --uemg-blue: #1B4F72;
+    --uemg-blue-dim: rgba(27,79,114,0.08);
+    --accent: #2E75B6;
+    --accent-dim: rgba(46,117,182,0.08);
+    --teal: #0E7C6B;
+    --teal-dim: rgba(14,124,107,0.08);
+    --terracotta: #C2410C;
+    --terracotta-dim: rgba(194,65,12,0.07);
+    --gold: #B45309;
+    --gold-dim: rgba(180,83,9,0.08);
+    --sage: #4D7C0F;
+    --sage-dim: rgba(77,124,15,0.08);
+    --plum: #7C3AED;
+    --plum-dim: rgba(124,58,237,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 15% 0%, var(--uemg-blue-dim) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 100%, var(--teal-dim) 0%, transparent 40%);
+    color: var(--text); font-family: var(--font-body);
+    padding: 40px; min-height: 100vh; overflow-wrap: break-word;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim { animation: fadeUp 0.45s ease-out both; animation-delay: calc(var(--i, 0) * 0.06s); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
+  }
+
+  .wrap { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 180px 1fr; gap: 0 44px; }
+  .main { min-width: 0; max-width: 960px; }
+
+  /* TOC */
+  .toc { position: sticky; top: 24px; align-self: start; padding: 14px 0; grid-row: 1 / -1; max-height: calc(100dvh - 48px); overflow-y: auto; }
+  .toc::-webkit-scrollbar { width: 3px; }
+  .toc::-webkit-scrollbar-thumb { background: var(--surface-elevated); border-radius: 2px; }
+  .toc-title { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); padding: 0 0 10px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .toc a { display: block; font-size: 11px; color: var(--text-dim); text-decoration: none; padding: 5px 8px; border-radius: 5px; border-left: 2px solid transparent; transition: all 0.15s; line-height: 1.4; margin-bottom: 1px; }
+  .toc a:hover { color: var(--text); background: var(--surface2); }
+  .toc a.active { color: var(--text); border-left-color: var(--uemg-blue); font-weight: 600; }
+
+  @media (max-width: 1000px) {
+    .wrap { grid-template-columns: 1fr; padding-top: 0; }
+    body { padding-top: 0; }
+    .toc { position: sticky; top: 0; z-index: 200; max-height: none; display: flex; gap: 4px; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--bg); border-bottom: 1px solid var(--border); padding: 10px 0; margin: 0 -40px; padding-left: 40px; padding-right: 40px; grid-row: auto; }
+    .toc::-webkit-scrollbar { display: none; }
+    .toc-title { display: none; }
+    .toc a { white-space: nowrap; flex-shrink: 0; border-left: none; border-bottom: 2px solid transparent; border-radius: 4px 4px 0 0; padding: 6px 10px; font-size: 10px; }
+    .toc a.active { border-left: none; border-bottom-color: var(--uemg-blue); background: var(--surface); }
+    .main { padding-top: 20px; }
+    .sec-head { scroll-margin-top: 52px; }
+  }
+
+  h1 { font-family: var(--font-display); font-size: 44px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; color: var(--uemg-blue); text-wrap: balance; margin-bottom: 8px; }
+  .subtitle { font-family: var(--font-display); font-size: 20px; font-style: italic; color: var(--text-dim); margin-bottom: 12px; font-weight: 400; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; margin-bottom: 48px; }
+  .meta span { margin: 0 8px; opacity: 0.3; }
+
+  .sec-head { font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; padding: 10px 0; margin-top: 48px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .sec-head .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .sec-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  h2 { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px; }
+  h3 { font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+
+  p.body { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 16px; max-width: 680px; }
+  p.body strong { font-weight: 600; }
+
+  .ve-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; position: relative; min-width: 0; }
+  .ve-card--hero { background: var(--surface-elevated); border-color: color-mix(in srgb, var(--border) 50%, var(--uemg-blue) 50%); box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 28px 32px; }
+  .ve-card__label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .ve-card__label::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .kpi-card { background: var(--surface-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 22px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+  .kpi-card__value { font-family: var(--font-display); font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; }
+  .kpi-card__label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); margin-top: 6px; }
+
+  .inner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .inner-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .inner-card .title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  .inner-card .desc { color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+  @media (max-width: 768px) { .inner-grid { grid-template-columns: 1fr; } }
+
+  .flow-arrow { display: flex; justify-content: center; align-items: center; gap: 8px; color: var(--text-dim); font-family: var(--font-mono); font-size: 11px; padding: 6px 0; }
+  .flow-arrow svg { width: 22px; height: 22px; fill: none; stroke: var(--border-bright); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* TRILHAS GRID */
+  .trilhas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .trilha-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; border-top: 4px solid var(--accent); transition: box-shadow 0.2s; }
+  .trilha-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .trilha-card .trilha-tag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .trilha-card .trilha-name { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .trilha-card .trilha-audience { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; font-style: italic; }
+  .trilha-card .trilha-topics { font-size: 13px; line-height: 1.6; }
+  .trilha-anchor { border-top-color: var(--uemg-blue); background: var(--uemg-blue-dim); }
+  .trilha-anchor .trilha-tag { color: var(--uemg-blue); }
+  .trilha-ia { border-top-color: var(--plum); }
+  .trilha-ia .trilha-tag { color: var(--plum); }
+  .trilha-work { border-top-color: var(--teal); }
+  .trilha-work .trilha-tag { color: var(--teal); }
+  .trilha-guest { border-top-color: var(--gold); }
+  .trilha-guest .trilha-tag { color: var(--gold); }
+
+  @media (max-width: 768px) { .trilhas-grid { grid-template-columns: 1fr; } }
+
+  /* BOTTLENECK */
+  .bottleneck { display: flex; align-items: center; gap: 0; margin: 24px 0; overflow-x: auto; }
+  .bn-block { flex-shrink: 0; border-radius: 10px; padding: 16px 20px; text-align: center; border: 1px solid var(--border); min-width: 140px; }
+  .bn-block .bn-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+  .bn-block .bn-value { font-family: var(--font-display); font-size: 28px; font-weight: 700; }
+  .bn-wide { background: var(--surface); flex-grow: 1; }
+  .bn-narrow { background: var(--terracotta-dim); border-color: var(--terracotta); max-width: 120px; }
+  .bn-narrow .bn-value { color: var(--terracotta); }
+  .bn-arrow { font-size: 20px; color: var(--text-dim); flex-shrink: 0; padding: 0 6px; }
+  .bn-solution { background: var(--teal-dim); border-color: var(--teal); }
+  .bn-solution .bn-value { color: var(--teal); }
+
+  /* DOMAIN */
+  .domain-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin: 24px 0; }
+  .domain-box { background: var(--surface); border: 2px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; font-family: var(--font-mono); font-size: 14px; }
+  .domain-box.before { opacity: 0.6; border-style: dashed; }
+  .domain-box.after { border-color: var(--uemg-blue); background: var(--uemg-blue-dim); box-shadow: 0 4px 20px rgba(27,79,114,0.12); }
+  .domain-box .url { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .domain-box.after .url { color: var(--uemg-blue); }
+  .domain-box .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); }
+  .domain-arrow { font-size: 28px; color: var(--accent); font-weight: 700; }
+  @media (max-width: 768px) { .domain-compare { grid-template-columns: 1fr; } .domain-arrow { transform: rotate(90deg); text-align: center; } }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; margin: 20px 0; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 4px; bottom: 4px; width: 2px; background: var(--border-bright); }
+  .timeline-item { position: relative; padding-bottom: 28px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); }
+  .timeline-item.active::before { background: var(--accent); }
+  .timeline-item .t-date { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 4px; }
+  .timeline-item .t-title { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+  .timeline-item .t-desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+
+  /* IMPACT TABLE */
+  .impact-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  .impact-table th { background: var(--uemg-blue); color: #fff; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 12px 14px; text-align: left; }
+  .impact-table th:first-child { border-radius: 10px 0 0 0; }
+  .impact-table th:last-child { border-radius: 0 10px 0 0; }
+  .impact-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .impact-table tr:nth-child(even) td { background: var(--surface2); }
+  .impact-table tr.highlight td { background: var(--uemg-blue-dim); font-weight: 600; }
+  .impact-table tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+  .impact-table tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+
+  .callout { background: var(--surface2); border: 1px solid var(--border); border-radius: 0 10px 10px 0; padding: 18px 22px; font-size: 14px; line-height: 1.7; color: var(--text-dim); margin: 20px 0; }
+  .callout strong { color: var(--text); font-weight: 600; }
+  .callout.callout--blue { border-left: 4px solid var(--uemg-blue); }
+  .callout.callout--teal { border-left: 4px solid var(--teal); }
+
+  .node-list { list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2; }
+  .node-list li { padding-left: 16px; position: relative; }
+  .node-list li::before { content: '\203A'; color: var(--text-dim); font-weight: 700; position: absolute; left: 0; }
+
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  @media (max-width: 768px) { .three-col { grid-template-columns: 1fr; } .bottleneck { flex-wrap: wrap; } .bn-arrow { transform: rotate(90deg); } body { padding: 20px; } h1 { font-size: 32px; } .subtitle { font-size: 17px; } .kpi-row { grid-template-columns: 1fr 1fr; } }
+
+  .footer-sig { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .footer-sig p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .footer-sig strong { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc" id="toc">
+    <div class="toc-title">Navegar</div>
+    <a href="#s1">Resultados</a>
+    <a href="#s2">Trilhas</a>
+    <a href="#s3">O Gargalo</a>
+    <a href="#s4">Modelo em Rede</a>
+    <a href="#s5">inclusao.uemg.br</a>
+    <a href="#s6">Impacto</a>
+    <a href="#s7">Cronograma</a>
+    <a href="#s8">Próximos Passos</a>
+  </nav>
+
+  <div class="main">
+    <h1 class="anim" style="--i:0">Programa de<br>Inclusão Digital UEMG</h1>
+    <p class="subtitle anim" style="--i:1">Inclusão digital para todas as idades, em todas as unidades</p>
+    <p class="meta anim" style="--i:2">UEMG Frutal <span>|</span> PAEx 2025 <span>|</span> Março 2026 <span>|</span> Processo SEI 2350.01.0000627/2025-48</p>
+
+    <div class="callout callout--blue anim" style="--i:3">
+      <strong>Resposta da PROEX:</strong> O Pró-Reitor Moacyr Laterza considerou a proposta multiunidades "sempre desejável e interessante" e orientou que pode ser apresentada diretamente à PROEX, com fomento próprio como projeto estratégico, podendo ser registrada como programa institucional.
+    </div>
+
+    <!-- S1: RESULTADOS -->
+    <div id="s1" class="sec-head anim" style="--i:4; color: var(--uemg-blue);"><span class="dot" style="background: var(--uemg-blue)"></span> Resultados Comprovados — PAEx 2025</div>
+
+    <div class="kpi-row anim" style="--i:5">
+      <div class="kpi-card">
+        <div class="kpi-card__value" style="color: var(--uemg-blue)">16+</div>
+        <div class="kpi-card__label">Anos em execução</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value" style="color: var(--teal)">80%</div>
+        <div class="kpi-card__label">Taxa de retenção</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value" style="color: var(--accent)">9</div>
+        <div class="kpi-card__label">Aulas criadas do zero</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value" style="color: var(--sage)">16</div>
+        <div class="kpi-card__label">Concluintes (de 20)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card__value" style="color: var(--gold)">500+</div>
+        <div class="kpi-card__label">Capacitados (histórico)</div>
+      </div>
+    </div>
+
+    <p class="body anim" style="--i:6">
+      No ciclo PAEx 2025, o projeto foi modernizado com <strong>portal web funcional</strong>, 9 aulas construídas do zero, exercícios interativos e metodologia andragógica documentada. Os alunos compareciam semanalmente por iniciativa própria — sinal claro de engajamento. Os temas incluíram segurança online, redes sociais, ambiente Google, serviços governamentais (INSS, Receita Federal, Gov.br) e PIX.
+    </p>
+
+    <!-- S2: TRILHAS -->
+    <div id="s2" class="sec-head anim" style="--i:7; color: var(--accent);"><span class="dot" style="background: var(--accent)"></span> Estrutura de Trilhas</div>
+
+    <p class="body anim" style="--i:8">
+      O programa amplia o escopo: de um projeto focado no 60+ para um <strong>programa abrangente de inclusão digital para todas as idades</strong>. A trilha 60+ permanece como âncora com 16 anos de credibilidade, e novas trilhas atendem demandas emergentes.
+    </p>
+
+    <div class="trilhas-grid anim" style="--i:9">
+      <div class="trilha-card trilha-anchor">
+        <div class="trilha-tag">Trilha âncora</div>
+        <div class="trilha-name">Inclusão Digital 60+</div>
+        <div class="trilha-audience">Adultos 50+ e terceira idade</div>
+        <div class="trilha-topics">Fundamentos digitais, comunicação, redes sociais, Gov.br, INSS, Receita Federal, PIX, segurança online. <strong>16 anos de execução validada.</strong></div>
+      </div>
+      <div class="trilha-card trilha-ia">
+        <div class="trilha-tag">Nova trilha</div>
+        <div class="trilha-name">Inteligência Artificial</div>
+        <div class="trilha-audience">Comunidade em geral, todas as idades</div>
+        <div class="trilha-topics">Fundamentos de IA e uso prático de ferramentas: Claude, ChatGPT, Gemini, Copilot, Lovable (construção de apps sem código). Criação de conteúdo com IA, automações do dia a dia, implicações éticas e sociais.</div>
+      </div>
+      <div class="trilha-card trilha-work">
+        <div class="trilha-tag">Nova trilha</div>
+        <div class="trilha-name">Tecnologia e Mercado</div>
+        <div class="trilha-audience">Jovens e adultos em busca de qualificação</div>
+        <div class="trilha-topics">GitHub Student Developer Pack (acesso gratuito a Copilot, modelos frontier, créditos de cloud), portfólio online com GitHub Pages, ferramentas de produtividade, plataformas de emprego e empreendedorismo digital.</div>
+      </div>
+      <div class="trilha-card trilha-guest">
+        <div class="trilha-tag">Formato aberto</div>
+        <div class="trilha-name">Palestras com Convidados</div>
+        <div class="trilha-audience">Comunidade acadêmica e externa</div>
+        <div class="trilha-topics">Temas variados conforme expertise dos convidados: cibersegurança, programação, marketing digital, novas tecnologias.</div>
+      </div>
+    </div>
+
+    <div class="callout callout--teal anim" style="--i:10; margin-top: 20px;">
+      <strong>Oportunidade institucional — GitHub Student Developer Pack:</strong> A UEMG pode articular acesso ao GitHub Education para todos os seus alunos, garantindo acesso gratuito a GitHub Copilot, modelos frontier de IA (GPT, Claude), créditos de cloud (Azure, AWS), ferramentas de desenvolvimento profissional e domínios gratuitos. Isso posiciona os estudantes da UEMG em pé de igualdade com alunos de universidades federais e privadas de referência — e o programa de Inclusão Digital pode ser o veículo para difundir esse acesso.
+    </div>
+    <div id="s3" class="sec-head anim" style="--i:11; color: var(--terracotta);"><span class="dot" style="background: var(--terracotta)"></span> O Gargalo: Produção de Conteúdo</div>
+
+    <p class="body anim" style="--i:11">
+      A experiência de Frutal revelou que o maior desafio não é executar as aulas — é <strong>produzir materiais didáticos, programáticos e visuais de qualidade</strong> para múltiplos públicos e temas. Um único bolsista tem capacidade limitada para criar artes, roteiros, exercícios e conteúdo acessível.
+    </p>
+
+    <div class="bottleneck anim" style="--i:12">
+      <div class="bn-block bn-wide">
+        <div class="bn-label">Demanda</div>
+        <div class="bn-value" style="font-size:16px">4 trilhas, artes, vídeos, exercícios</div>
+      </div>
+      <div class="bn-arrow">→</div>
+      <div class="bn-block bn-narrow">
+        <div class="bn-label">Capacidade</div>
+        <div class="bn-value">1</div>
+      </div>
+      <div class="bn-arrow">→</div>
+      <div class="bn-block bn-wide">
+        <div class="bn-label">Resultado</div>
+        <div class="bn-value" style="font-size:16px; color: var(--text-dim);">Crescimento limitado</div>
+      </div>
+    </div>
+
+    <h2 class="anim" style="--i:13">A rede resolve isso</h2>
+    <p class="body anim" style="--i:14">
+      Com múltiplas unidades contribuindo, o acervo cresce de forma colaborativa. A multidisciplinaridade da UEMG é o motor: <strong>Design cria artes, Computação desenvolve conteúdo de IA, Administração produz módulos de produtividade</strong>. Cada unidade que adere é uma produtora de conteúdo para toda a rede.
+    </p>
+
+    <div class="bottleneck anim" style="--i:15">
+      <div class="bn-block bn-wide">
+        <div class="bn-label">Demanda</div>
+        <div class="bn-value" style="font-size:16px">4 trilhas, artes, vídeos, exercícios</div>
+      </div>
+      <div class="bn-arrow">→</div>
+      <div class="bn-block bn-solution">
+        <div class="bn-label">Capacidade em rede</div>
+        <div class="bn-value">23+</div>
+      </div>
+      <div class="bn-arrow">→</div>
+      <div class="bn-block bn-wide">
+        <div class="bn-label">Resultado</div>
+        <div class="bn-value" style="font-size:16px; color: var(--teal);">Acervo cresce exponencialmente</div>
+      </div>
+    </div>
+
+    <!-- S4: MODELO -->
+    <div id="s4" class="sec-head anim" style="--i:16; color: var(--accent);"><span class="dot" style="background: var(--accent)"></span> Modelo Híbrido em Rede</div>
+
+    <div class="ve-card ve-card--hero anim" style="--i:17">
+      <div class="ve-card__label" style="color: var(--uemg-blue)">Componente Centralizado — PROEX + Frutal</div>
+      <ul class="node-list">
+        <li>Portal institucional (<strong>inclusao.uemg.br</strong>) com todas as trilhas</li>
+        <li>Repositório colaborativo de materiais organizado por trilha</li>
+        <li>Metodologia documentada e manual de replicação</li>
+        <li>Capacitação virtual para coordenadores locais</li>
+        <li>Curadoria e controle de qualidade do acervo</li>
+      </ul>
+    </div>
+
+    <div class="flow-arrow anim" style="--i:18">
+      <svg viewBox="0 0 20 20"><path d="M10 4 L10 16 M6 12 L10 16 L14 12"/></svg>
+      materiais + metodologia
+    </div>
+
+    <div class="three-col anim" style="--i:19">
+      <div class="ve-card" style="border-left: 3px solid var(--teal);">
+        <div class="ve-card__label" style="color: var(--teal);">Unidade A</div>
+        <ul class="node-list">
+          <li>Trilhas 60+ e IA</li>
+          <li>Produz conteúdo visual</li>
+          <li>Palestras com profissionais locais</li>
+        </ul>
+      </div>
+      <div class="ve-card" style="border-left: 3px solid var(--gold);">
+        <div class="ve-card__label" style="color: var(--gold);">Unidade B</div>
+        <ul class="node-list">
+          <li>Trilhas 60+ e Mercado</li>
+          <li>Produz módulos de produtividade</li>
+          <li>Parcerias com empresas locais</li>
+        </ul>
+      </div>
+      <div class="ve-card" style="border-left: 3px solid var(--sage);">
+        <div class="ve-card__label" style="color: var(--sage);">Unidade C</div>
+        <ul class="node-list">
+          <li>Trilha de IA + Palestras</li>
+          <li>Produz conteúdo técnico</li>
+          <li>Eventos com comunidade dev</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow-arrow anim" style="--i:20">
+      <svg viewBox="0 0 20 20"><path d="M10 16 L10 4 M6 8 L10 4 L14 8"/></svg>
+      novos conteúdos sobem para a rede
+    </div>
+
+    <!-- S5: DOMÍNIO -->
+    <div id="s5" class="sec-head anim" style="--i:21; color: var(--uemg-blue);"><span class="dot" style="background: var(--uemg-blue)"></span> inclusao.uemg.br</div>
+
+    <p class="body anim" style="--i:22">
+      A migração para um subdomínio institucional é estratégica. Para todos os públicos — especialmente o 60+, sensível a questões de confiança — o selo <strong>.uemg.br</strong> transmite legitimidade imediata.
+    </p>
+
+    <div class="domain-compare anim" style="--i:23">
+      <div class="domain-box before">
+        <div class="url">inclusao-digital-uemg.vercel.app</div>
+        <div class="tag">Hospedagem externa</div>
+      </div>
+      <div class="domain-arrow">→</div>
+      <div class="domain-box after">
+        <div class="url">inclusao.uemg.br</div>
+        <div class="tag">Domínio institucional</div>
+      </div>
+    </div>
+
+    <div class="inner-grid anim" style="--i:24">
+      <div class="inner-card">
+        <div class="title">Legitimidade</div>
+        <div class="desc">Público reconhece o domínio oficial da universidade como seguro e confiável</div>
+      </div>
+      <div class="inner-card">
+        <div class="title">Visibilidade</div>
+        <div class="desc">UEMG ganha vitrine pública do seu compromisso com extensão e inclusão</div>
+      </div>
+      <div class="inner-card">
+        <div class="title">Articulação</div>
+        <div class="desc">Prefeituras, CRAS e parceiros reconhecem o domínio oficial para parcerias</div>
+      </div>
+      <div class="inner-card">
+        <div class="title">Sustentabilidade</div>
+        <div class="desc">Vinculado à infraestrutura UEMG, sem dependência de serviços externos</div>
+      </div>
+    </div>
+
+    <!-- S6: IMPACTO -->
+    <div id="s6" class="sec-head anim" style="--i:25; color: var(--teal);"><span class="dot" style="background: var(--teal)"></span> Projeção de Impacto</div>
+
+    <table class="impact-table anim" style="--i:26">
+      <thead><tr>
+        <th>Cenário</th><th>Unidades</th><th>Pessoas/Ano</th><th>Trilhas</th><th>Produtores</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Atual (Frutal)</td><td>1</td><td>60</td><td>1</td><td>1</td></tr>
+        <tr><td>Fase 1 — Regional</td><td>5</td><td>300+</td><td>2-3</td><td>5+</td></tr>
+        <tr class="highlight"><td>Fase 2 — Institucional</td><td>23</td><td>1.000+</td><td>4</td><td>23+</td></tr>
+      </tbody>
+    </table>
+
+    <p class="body anim" style="--i:27">
+      Com 4 trilhas e público ampliado para todas as idades, a projeção sobe de 690 para <strong>1.000+ pessoas/ano</strong>. E cada unidade adicional não apenas multiplica o alcance — <strong>multiplica a capacidade de produção de conteúdo</strong> para toda a rede.
+    </p>
+
+    <!-- S7: CRONOGRAMA -->
+    <div id="s7" class="sec-head anim" style="--i:28; color: var(--gold);"><span class="dot" style="background: var(--gold)"></span> Cronograma</div>
+
+    <div class="timeline anim" style="--i:29">
+      <div class="timeline-item active">
+        <div class="t-date">MAR — ABR 2026</div>
+        <div class="t-title">Reunião com PROEX</div>
+        <div class="t-desc">Apresentação do portal, alinhamento do modelo em rede e registro como programa</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">ABR — MAI 2026</div>
+        <div class="t-title">Articulação com unidades-alvo</div>
+        <div class="t-desc">Contato com 4-5 unidades regionais para adesão à Fase 1</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">JUN — JUL 2026</div>
+        <div class="t-title">Portal inclusao.uemg.br</div>
+        <div class="t-desc">Migração para domínio institucional e estruturação das trilhas no portal</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">AGO 2026</div>
+        <div class="t-title">Capacitação + lançamento trilha IA</div>
+        <div class="t-desc">Workshop virtual com coordenadores e abertura da trilha de Inteligência Artificial</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">SET — DEZ 2026</div>
+        <div class="t-title">Fase 1: Piloto regional</div>
+        <div class="t-desc">5 unidades executando trilhas 60+ e IA com autonomia local</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">JAN — FEV 2027</div>
+        <div class="t-title">Avaliação</div>
+        <div class="t-desc">Análise de resultados e planejamento da expansão completa</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date">2027/1</div>
+        <div class="t-title">Fase 2: Expansão institucional</div>
+        <div class="t-desc">Todas as 23 unidades UEMG com 4 trilhas disponíveis</div>
+      </div>
+    </div>
+
+    <!-- S8: PRÓXIMOS PASSOS -->
+    <div id="s8" class="sec-head anim" style="--i:30; color: var(--sage);"><span class="dot" style="background: var(--sage)"></span> Próximos Passos</div>
+
+    <div class="ve-card ve-card--hero anim" style="--i:31">
+      <div class="ve-card__label" style="color: var(--uemg-blue);">Ação imediata</div>
+      <p class="body" style="margin-bottom: 16px;">
+        Conforme convite do Pró-Reitor Laterza, solicitamos agendamento de reunião para apresentação do portal, demonstração dos materiais e alinhamento para formalização como programa institucional.
+      </p>
+      <div class="inner-grid">
+        <div class="inner-card">
+          <div class="title">Portal funcionando</div>
+          <div class="desc">inclusao-digital-uemg.vercel.app — pronto para demonstração ao vivo</div>
+        </div>
+        <div class="inner-card">
+          <div class="title">Materiais prontos</div>
+          <div class="desc">9 aulas completas, metodologia documentada, identidade visual, exercícios</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-sig anim" style="--i:32">
+      <p>
+        <strong>Prof. Cícero Marcelo de Oliveira</strong> — Orientador do Projeto, UEMG Frutal<br>
+        <strong>Myke Matos dos Santos</strong> — Bolsista PAEx 2025, Sistemas de Informação, UEMG Frutal<br><br>
+        <span style="font-family: var(--font-mono); font-size: 11px;">
+          Processo SEI nº 2350.01.0000627/2025-48 &nbsp;·&nbsp; Registro SIGA nº 24535/2025 &nbsp;·&nbsp; Portal: inclusao-digital-uemg.vercel.app
+        </span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  const toc = document.getElementById('toc');
+  const links = toc.querySelectorAll('a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, link });
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = sections.find(s => s.el === entry.target);
+        if (match) {
+          match.link.classList.add('active');
+          if (window.innerWidth <= 1000) match.link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  sections.forEach(s => observer.observe(s.el));
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); history.replaceState(null, '', '#' + id); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

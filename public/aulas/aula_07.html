@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="Aula 07 interativa: Google Slides para criar apresentações bonitas e acessíveis. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 07 — Google Slides: Criando Apresentações Bonitas | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* Extras específicos da aula 07 — Google Slides */
+        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
+        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
+        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
+        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
+        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .tres-colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .tres-colunas { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao p { margin: 0; font-size: var(--texto-sm); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+        .caps-recap { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--esp-md) 0; }
+        .chip-rec { background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); color: #2F522C; font-weight: 700; padding: 8px 16px; border-radius: var(--raio-pill); font-size: var(--texto-sm); }
+        .paginas-demo { display: flex; gap: 12px; margin: var(--esp-md) 0; }
+        .pagina-demo { width: 110px; aspect-ratio: 16 / 9; background: var(--chita-azul-bg); border: 2px solid var(--chita-azul); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: var(--sombra-sm); }
+        /* ===== Mockup do editor do Google Slides ===== */
+        .slides-app { background: #FFF; border-radius: 14px; border: 2px solid var(--linha-forte); box-shadow: var(--sombra-lg); overflow: hidden; margin: var(--esp-md) 0; font-size: .95rem; }
+        .slides-topo { background: #F8F9FA; border-bottom: 1px solid #DADCE0; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .slides-titulo-app { font-weight: 700; color: #3C4043; font-size: .95rem; }
+        .slides-topo-botoes { display: flex; gap: 8px; }
+        .btn-peq { background: #FFF; border: 1px solid #DADCE0; border-radius: 999px; padding: 6px 14px; font-size: .9rem; font-weight: 700; color: #3C4043; }
+        .btn-peq.azul { background: #1A73E8; border-color: #1A73E8; color: #FFF; }
+        .slides-menus { background: #F1F3F4; border-bottom: 1px solid #DADCE0; padding: 6px 14px; display: flex; gap: 16px; font-size: .9rem; color: #3C4043; flex-wrap: wrap; }
+        .slides-menus span { padding: 2px 4px; border-radius: 4px; }
+        .slides-menus .menu-destaque { background: #D2E3FC; color: #174EA6; font-weight: 700; }
+        .slides-barra { background: #FFF; border-bottom: 1px solid #DADCE0; padding: 6px 14px; display: flex; gap: 10px; align-items: center; }
+        .btn-ferr { width: 34px; height: 34px; border-radius: 8px; border: 1px solid #DADCE0; background: #FFF; display: inline-flex; align-items: center; justify-content: center; font-size: 1.05rem; cursor: pointer; }
+        .btn-ferr.destaque { background: #D2E3FC; border-color: #174EA6; }
+        .slides-corpo { display: flex; gap: 14px; padding: 14px; background: #F8F9FA; }
+        .slides-lista { display: flex; flex-direction: column; gap: 10px; width: 130px; flex-shrink: 0; }
+        .slides-mini { background: #FFF; border: 2px solid #DADCE0; border-radius: 6px; padding: 8px; cursor: pointer; font-size: .9rem; color: #5F6368; box-shadow: var(--sombra-sm); }
+        .slides-mini.ativa { border-color: #1A73E8; background: #E8F0FE; }
+        .slides-mini .mini-num { font-weight: 800; color: #3C4043; display: block; margin-bottom: 4px; }
+        .slides-mini .mini-txt { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .slides-canvas { flex: 1; aspect-ratio: 16 / 9; border-radius: 8px; box-shadow: var(--sombra-md); padding: 26px 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; transition: background var(--medio); position: relative; }
+        .slides-canvas.tema-claro { background: linear-gradient(150deg, #FFFDF7 0%, #EAF3E7 100%); }
+        .slides-canvas.tema-azul { background: linear-gradient(150deg, #F4F8FD 0%, #DCE9F7 100%); }
+        .slides-canvas.tema-escuro { background: linear-gradient(150deg, #26324A 0%, #17223A 100%); }
+        .slides-canvas.tema-escuro .slides-titulo, .slides-canvas.tema-escuro .slides-sub { color: #F4F8FD; }
+        .slides-titulo { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--bordado); line-height: 1.2; }
+        .slides-sub { font-size: 1rem; color: var(--bordado-suave); }
+        .slides-texto { border: 2px dashed var(--chita-azul); border-radius: 8px; padding: 10px 16px; background: rgba(255,255,255,.75); font-size: .95rem; color: var(--bordado); max-width: 80%; }
+        .slides-img { width: 130px; height: 90px; border: 2px dashed var(--chita-verde); border-radius: 8px; background: var(--chita-verde-bg); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .ghost { color: #9AA0A6; border-bottom: 2px dashed #9AA0A6; }
+        .sim-controles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--esp-md); }
+        @media (max-width: 768px) { .sim-controles { grid-template-columns: 1fr; } }
+        .sim-controles input { padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-sm); font-family: var(--font-body); background: #FFF; }
+        .sim-controles input:focus { outline: none; border-color: var(--chita-azul); }
+        .sim-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        /* ===== Abas do navegador ===== */
+        .abas-visual { display: flex; align-items: flex-end; gap: 6px; margin: var(--esp-md) 0; }
+        .aba-nav { background: #E8EAED; border: 2px solid var(--linha); border-bottom: none; border-radius: 10px 10px 0 0; padding: 10px 18px; font-size: .9rem; font-weight: 700; color: var(--bordado-suave); }
+        .aba-nav.nova { background: #FFF; color: var(--chita-azul-escura); border-color: var(--chita-azul); animation: pulso-aba 2s ease-in-out infinite; }
+        @keyframes pulso-aba { 0%,100% { box-shadow: 0 0 0 0 rgba(62,108,158,.35); } 50% { box-shadow: 0 0 0 10px rgba(62,108,158,0); } }
+        /* ===== Tela cheia (modo apresentação) ===== */
+        .apresentacao-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: #0F1420; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; }
+        .apresentacao-overlay.modo-tela-cheia { display: flex; }
+        .apres-slide { background: #FFF; border-radius: 12px; width: min(78vw, 900px); aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 30px; box-shadow: var(--sombra-lg); }
+        .apres-slide .slides-titulo { font-size: 3.2rem; }
+        .apres-slide .slides-sub { font-size: 1.5rem; }
+        .apres-slide .slides-img { width: 220px; height: 150px; font-size: 4rem; }
+        .apres-hint { color: #C6CBD6; font-size: .95rem; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .apres-hint .btn { min-height: 44px; padding: 10px 22px; font-size: .95rem; }
+        .apres-contador { position: absolute; top: 18px; right: 24px; color: #C6CBD6; font-weight: 700; }
+        /* ===== Compartilhar ===== */
+        .perm-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin: var(--esp-sm) 0; }
+        .perm-botao { border: 2px solid var(--linha-forte); background: #FFF; border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .perm-botao.sel { border-color: var(--chita-verde); background: var(--chita-verde-bg); color: #2F522C; }
+        .form-compartilhar { max-width: 460px; background: var(--algodao); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); }
+        .form-compartilhar label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
+        .form-compartilhar input { width: 100%; padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
+        .form-compartilhar input:focus { outline: none; border-color: var(--chita-azul); }
+        /* ===== Tema picker ===== */
+        .tema-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin: var(--esp-md) 0; }
+        .tema-botao { display: flex; align-items: center; gap: 10px; border: 2px solid var(--linha-forte); background: #FFF; border-radius: var(--raio); padding: 10px 16px; font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), transform var(--veloz); }
+        .tema-botao.sel { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
+        .tema-amostra { width: 46px; height: 26px; border-radius: 5px; border: 1px solid var(--linha); flex-shrink: 0; }
+        .tema-amostra.am-claro { background: linear-gradient(150deg, #FFFDF7, #EAF3E7); }
+        .tema-amostra.am-azul { background: linear-gradient(150deg, #F4F8FD, #DCE9F7); }
+        .tema-amostra.am-escuro { background: linear-gradient(150deg, #26324A, #17223A); }
+        .miniatura-mini { width: 100%; aspect-ratio: 16 / 9; border-radius: 5px; border: 1px solid var(--linha); display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 700; color: var(--bordado-suave); background: var(--chita-azul-bg); margin-bottom: 6px; }
+    
+        /* Impeccable layout + adapt: leitura linear e espaçamento confortável. */
+        .etapa { --p-density: 1; }
+        .etapa.ativa { justify-content: flex-start; gap: clamp(12px, 1.6vh, 24px); }
+        .etapa > h2 { margin-bottom: var(--esp-xs); }
+        .etapa > p { max-width: 75ch; }
+        .etapa > .etapa-badge { align-self: flex-start; margin-bottom: 10px; }
+        .passos, .lista-check { gap: 10px; margin: var(--esp-sm) 0; }
+        .passos-duplos, .tres-colunas { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        .mini-cartao { padding: var(--esp-md); }
+        .mini-cartao .icone-grande { font-size: 2.35rem; margin: 0 0 var(--esp-xs); }
+        .mockup-gmail, .mockup-docs, .planilha-mock, .receita-card, .slides-app,
+        .tabela-exemplo, .tabela-compara, .tema-botoes, .abas-visual, .caps-recap { margin-top: var(--esp-sm); margin-bottom: var(--esp-sm); }
+        .quiz-card { margin: var(--esp-xs) 0; padding: var(--esp-md); }
+        .quiz-pergunta { margin-bottom: var(--esp-sm); }
+        .analogia, .destaque, .atencao { flex: 0 0 auto; padding: var(--esp-sm) var(--esp-md); margin: var(--esp-xs) 0; }
+        .ilustracao-cena { margin: var(--esp-sm) auto; max-height: 56vh; object-fit: contain; }
+        @media (min-width: 901px) {
+          .etapa:has(> .ilustracao-cena) { display:none; grid-template-columns:minmax(0,1fr) minmax(280px,.72fr); align-content:center; }
+          .etapa.ativa:has(> .ilustracao-cena) { display:grid; }
+          .etapa:has(> .ilustracao-cena) > .ilustracao-cena { grid-column:2; grid-row:1 / span 8; align-self:center; }
+          .etapa:has(> .ilustracao-cena) > :not(.ilustracao-cena) { grid-column:1; }
+          .tres-colunas { grid-template-columns:repeat(3,minmax(0,1fr)); }
+          .passos-duplos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        }
+        @media (max-width: 900px) {
+          .etapa.ativa { justify-content:flex-start; }
+          .etapa > p { max-width:none; }
+          .etapa-grid { display:flex; flex-direction:column; gap:var(--esp-md); min-height:auto; }
+          .etapa-grid .etapa-texto, .etapa-grid .etapa-visual { overflow:visible; min-height:auto; }
+          .etapa-grid .etapa-visual { order:0; max-height:none; }
+          .ilustracao-cena { max-height:none; }
+          .tres-colunas, .passos-duplos { grid-template-columns:1fr 1fr; }
+        }
+        @media (max-width: 560px) {
+          .etapa { padding:var(--esp-md) var(--esp-sm); }
+          .etapa h2 { font-size:var(--texto-xl); }
+          .etapa p, .lista-check li { font-size:var(--texto-base); }
+          .tres-colunas, .passos-duplos { grid-template-columns:1fr; }
+          .slides-canvas { width:100%; max-width:100% !important; min-width:0; box-sizing:border-box; }
+          .player-nav .btn { min-height:48px; }
+        }
+        @media (pointer:coarse) {
+          .btn-ferramenta, .btn-ferr, .launcher-app, .tema-botao, .perm-botao { min-height:44px; }
+        }
+</style>
+</head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 07 · Google Slides</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 63</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+<!-- ============ FASE 2 · VAMOS JUNTOS ============ -->
+<!-- ============ FASE 3 · SUA VEZ (PRÁTICA) ============ -->
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+<!-- Navegação -->
+<section class="etapa ativa" data-etapa="1" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos à Aula 7! Hoje é um dia especial! 🎨</h2><p>Hoje vamos <strong>criar apresentações</strong>, <strong>contar histórias</strong> e
+            <strong>ser criativos</strong>. Você vai aprender a fazer trabalhos bonitos para mostrar
+            para a família — convites, álbuns de fotos, receitas ilustradas e muito mais.</p><img alt="Ilustração da aula 07: um álbum digital de apresentações colorido com slides, fotos e desenhos" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula07-slides-bg-16x9-v01.png" width="1536"/><h3>Olhem o quanto já aprendemos! ⭐</h3><div class="caps-recap">
+<span class="chip-rec">✅ Computador básico</span>
+<span class="chip-rec">✅ Navegar na internet</span>
+<span class="chip-rec">✅ WhatsApp</span>
+<span class="chip-rec">✅ E-mail (Gmail <span class="ferramenta"><img alt="" height="26" src="/assets/logos/gmail.png" width="26"/> Gmail</span>)</span>
+<span class="chip-rec">✅ Redes sociais</span>
+<span class="chip-rec">✅ Google Fotos <span class="ferramenta"><img alt="" height="26" src="/assets/logos/photos.png" width="26"/> Google Fotos</span> e Drive</span>
+</div></section><section class="etapa" data-etapa="2" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos à Aula 7! Hoje é um dia especial! 🎨 — continuação</h2><div class="destaque">
+                ✨ <strong>Vocês são INCRÍVEIS!</strong> Cada aula foi um retalho costurado na sua
+                colcha digital. Hoje vamos usar tudo isso junto para criar coisas lindas. 💪
+            </div><div class="analogia">
+                🎨 "Se você já sabe guardar fotos no Google Fotos e escrever no Google Docs <span class="ferramenta"><img alt="" height="26" src="/assets/logos/docs.png" width="26"/> Google Docs</span>,
+                já sabe 80% do que o Google Slides pede. Hoje a gente só junta as peças."
+            </div></section><section class="etapa" data-etapa="3" data-fase-origem="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>O que são slides</strong> — e por que eles são como um álbum de figurinhas</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Criar sua primeira apresentação</strong> pelo Google Drive</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Adicionar texto</strong> — título, subtítulo e caixas de texto</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Inserir fotos</strong> do computador, do Google Fotos ou do Drive</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Apresentar para todos</strong> em tela cheia — e compartilhar</p></div>
+</div></section><section class="etapa" data-etapa="4" data-fase-origem="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="destaque">
+                ⏰ <strong>Tempo:</strong> cerca de 2 horas · 😊 <strong>Ritmo:</strong> no seu tempo!
+                Aqui ninguém corre — cada passo é seu, do seu jeito.
+            </div></section><section class="etapa" data-etapa="5" data-fase-origem="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Google Slides é como... um álbum de figurinhas! 📖</h2><p>Você lembra dos álbuns de figurinhas? A gente comprava as figurinhas, escolhia
+            o lugar de cada uma e montava uma página cheia de história. O
+            <span class="termo" tabindex="0">Google Slides
+                <span class="tooltip"><strong>Google Slides</strong>
+                O programa do Google para criar apresentações. É como um álbum digital onde você conta histórias com fotos, textos e desenhos.</span>
+</span>
+            é exatamente isso: um <strong>álbum digital</strong> onde você monta páginas bonitas.</p><div class="analogia">
+                🖼️ "Um álbum de figurinhas é um caderno de páginas. Cada página tem um desenho,
+                uma foto, uma mensagem. O Google Slides é igual — só que as páginas vivem na tela
+                do computador e se chamam <strong>slides</strong>."
+            </div><p>Um
+            <span class="termo" tabindex="0">slide
+                <span class="tooltip"><strong>Slide</strong>
+                Cada página da sua apresentação. Um slide é uma página — como a página de um álbum de figurinhas, que cabe uma foto, um texto ou um desenho.</span>
+</span>
+            é uma página. E um conjunto de slides vira uma
+            <span class="termo" tabindex="0">apresentação
+                <span class="tooltip"><strong>Apresentação</strong>
+                O conjunto de slides que conta uma história — como um álbum que você folheia para alguém ver, um slide de cada vez.</span>
+</span>:</p></section><section class="etapa" data-etapa="6" data-fase-origem="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Google Slides é como... um álbum de figurinhas! 📖 — continuação</h2><div class="paginas-demo">
+<div class="pagina-demo">📄</div>
+<div class="pagina-demo">📄</div>
+<div class="pagina-demo">📄</div>
+</div><p style="text-align:center;"><strong>Cada slide = uma página!</strong> E cada página pode ter
+            fotos, textos e desenhos. Você monta quantas quiser.</p><div class="destaque">
+                💡 <strong>Boa notícia:</strong> você não precisa ser artista. O Google Slides já vem
+                com temas prontos, e você só coloca suas fotos e suas palavras. O programa faz a
+                parte bonita com você.
+            </div></section><section class="etapa" data-etapa="7" data-fase-origem="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Quando usar o Google Slides?</h2><p>O Google Slides é para <strong>MOSTRAR</strong> algo bonito para alguém.
+            Veja quantas coisas dá para fazer:</p></section><section class="etapa" data-etapa="8" data-fase-origem="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Quando usar o Google Slides? — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🎂</span>
+<h4>Convite de aniversário</h4>
+<p>Monte um convite bonito e mostre na festa — ou envie por e-mail.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">👨‍👩‍👧‍👦</span>
+<h4>Fotos da família</h4>
+<p>Reúna as fotos dos netos e conte a história da família em páginas.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🍲</span>
+<h4>Receita ilustrada</h4>
+<p>Cada passo da receita em um slide, com foto do prato.</p>
+</div>
+</div></section><section class="etapa" data-etapa="9" data-fase-origem="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Quando usar o Google Slides? — mais ideias</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">✈️</span>
+<h4>História de viagem</h4>
+<p>Conte sua aventura: cada lugar visitado vira uma página.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🎄</span>
+<h4>Cartão de Natal</h4>
+<p>Um cartão digital para enviar para quem você ama.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📸</span>
+<h4>Álbum de memórias</h4>
+<p>Reúna as recordações da vida em um álbum que nunca se estraga.</p>
+</div>
+</div></section><section class="etapa" data-etapa="10" data-fase-origem="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Quando usar o Google Slides? — continuação</h2><div class="analogia">
+                🎁 "Use o Google Slides <strong>sempre que quiser MOSTRAR algo bonito</strong>:
+                um convite, uma receita, um álbum, uma surpresa. Se é para mostrar — é a ferramenta certa."
+            </div></section><section class="etapa" data-etapa="11" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso!</h2><p>Na aula passada você conheceu o Google Docs e o Google Sheets <span class="ferramenta"><img alt="" height="26" src="/assets/logos/sheets.png" width="26"/> Google Sheets</span>. Agora chega o
+            Google Slides. Cada um tem uma missão:</p><div class="tres-colunas">
+<div class="mini-cartao" style="text-align:center;">
+<span class="icone-grande" style="text-align:center;">📝</span>
+<h4 style="text-align:center;">Google Docs</h4>
+<p style="text-align:center;">É para <strong>ESCREVER</strong>: cartas, receitas, textos longos.</p>
+</div>
+<div class="mini-cartao" style="text-align:center;">
+<span class="icone-grande" style="text-align:center;">📊</span>
+<h4 style="text-align:center;">Google Sheets</h4>
+<p style="text-align:center;">É para <strong>CALCULAR</strong>: contas, listas, controle de gastos.</p>
+</div>
+<div class="mini-cartao" style="text-align:center;">
+<span class="icone-grande" style="text-align:center;">🎨</span>
+<h4 style="text-align:center;">Google Slides</h4>
+<p style="text-align:center;">É para <strong>MOSTRAR</strong>: apresentações, álbuns, convites.</p>
+</div>
+</div></section><section class="etapa" data-etapa="12" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Cada ferramenta tem seu momento</h2><div class="analogia">
+                🧰 "É como a caixa de costura: a agulha, a linha e a tesoura servem para coisas
+                diferentes. Nenhuma é melhor que a outra — cada uma tem seu momento. A mesma coisa
+                com Docs, Sheets e Slides."
+            </div><p><strong>Agora vamos treinar! Leia cada situação e escolha a ferramenta certa:</strong></p></section><section class="etapa" data-etapa="13" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">✉️ Sua irmã pediu para você escrever uma carta longa contando as novidades da família. Qual ferramenta usar?</div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Carta é texto corrido — o Docs, a máquina de escrever digital, é o lugar certo." data-feedback-wrong="💡 Quase! Carta longa é texto corrido — o lugar certo é o Docs (a máquina de escrever digital da aula passada)."><span class="letra">A</span><span>Google Docs 📝</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Google Sheets 📊</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Google Slides 🎨</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div></section><section class="etapa" data-etapa="14" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">💰 Você quer controlar os gastos da casa e somar tudo no fim do mês. Qual ferramenta usar?</div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Google Docs 📝</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Contas e somas são do Sheets — o caderno quadriculado que calcula sozinho." data-feedback-wrong="💡 Quase! Para contas e somas o lugar certo é o Sheets — ele é o caderno quadriculado que calcula sozinho, como você viu na aula 6."><span class="letra">B</span><span>Google Sheets 📊</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Google Slides 🎨</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></section><section class="etapa" data-etapa="15" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">🎂 É o aniversário do seu neto e você quer criar um convite bonito, com foto, para mostrar na festa. Qual ferramenta usar?</div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Google Docs 📝</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Google Sheets 📊</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Convite bonito com foto, para mostrar — é o Google Slides, o tema da nossa aula de hoje!" data-feedback-wrong="💡 Quase! Convite bonito com foto e página decorada é o Google Slides — é exatamente o que vamos aprender hoje!"><span class="letra">C</span><span>Google Slides 🎨</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div></section><section class="etapa" data-etapa="16" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Criando sua apresentação pelo Drive</h2><p>Você já conhece o
+            <span class="termo" tabindex="0">Google Drive
+                <span class="tooltip"><strong>Google Drive</strong>
+                O armário na nuvem onde ficam seus arquivos — você conheceu ele na aula 5. É de dentro do Drive que criamos a apresentação.</span>
+</span>
+            (o armário da aula 5). É lá que as apresentações nascem. O caminho tem só 3 passos:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o navegador</strong> (o ônibus da internet: Chrome, Firefox ou Edge) e entre em <strong>drive.google.com</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique em "Novo"</strong> — o botão azul no canto superior esquerdo</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Google Apresentações"</strong> na lista que abrir</p></div>
+</div><p>Quando você escolher "Google Apresentações", vai acontecer algo importante:
+            <strong>uma nova aba vai abrir!</strong> Veja como fica no navegador:</p></section><section class="etapa" data-etapa="17" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Criando sua apresentação pelo Drive — continuação</h2><div class="abas-visual">
+<div class="aba-nav">📁 drive.google.com</div>
+<div class="aba-nav nova">🎨 Apresentação — Google Slides</div>
+</div><div class="termo" style="display:inline-block; margin-top: var(--esp-sm);" tabindex="0">O que é uma aba?
+                <span class="tooltip"><strong>Aba</strong>
+                Uma página separada dentro do navegador. É como uma mesa de trabalho: cada aba é uma mesa com a sua tarefa. Quando o Google Apresentações abre, ele chega numa aba nova — e a aba do Drive continua aberta, esperando você voltar.</span>
+</div><div class="analogia">
+                🗂️ "Uma <strong>aba</strong> é como uma pasta aberta na sua mesa: cada uma mostra um
+                trabalho diferente. O navegador deixa várias abas abertas ao mesmo tempo — você
+                vai de uma para outra clicando em cima delas."
+            </div></section><section class="etapa" data-etapa="18" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Criando sua apresentação pelo Drive — continuação</h2><div class="destaque">
+                🔑 <strong>Lembrete:</strong> para entrar no Drive você usa seu
+                <span class="termo" tabindex="0">login
+                    <span class="tooltip"><strong>Login / Entrar</strong>
+                    Identificar-se: dizer quem você é com o seu e-mail e a sua senha — como mostrar o crachá na portaria. Você já faz isso desde a aula 1.</span>
+</span>
+                do Gmail. Se ainda não estiver dentro da sua conta, o Google vai pedir — é só entrar
+                com o e-mail e a senha que você já conhece.
+            </div></section><section class="etapa" data-etapa="19" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Escolhendo um tema bonito 🎨</h2><p>Quando a apresentação abre, ela vem "crua", sem decoração. Para deixá-la bonita,
+            escolhemos um
+            <span class="termo" tabindex="0">tema
+                <span class="tooltip"><strong>Tema</strong>
+                Um conjunto de cores, desenhos e letras que já vem pronto para decorar a apresentação — como um papel de parede bonito que você aplica com um clique.</span>
+</span>:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Tema"</strong> — fica no lado direito da tela</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha o que você gosta</strong> — passe o mouse e veja as opções</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Clique para aplicar</strong> — pronto, a apresentação inteira muda de cara!</p></div>
+</div><p><strong>Teste aqui mesmo:</strong> clique nos temas abaixo e veja o slide mudar:</p></section><section class="etapa" data-etapa="20" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Escolhendo um tema bonito 🎨 — continuação</h2><div class="tema-botoes">
+<button class="tema-botao sel" id="tema-claro"><span class="tema-amostra am-claro"></span>🌿 Claro e limpo</button>
+<button class="tema-botao" id="tema-azul"><span class="tema-amostra am-azul"></span>💙 Azul calmo</button>
+<button class="tema-botao" id="tema-escuro"><span class="tema-amostra am-escuro"></span>🌙 Escuro</button>
+</div><div class="slides-canvas tema-claro" id="e7-canvas" style="max-width: 560px; margin: 0 auto;">
+<div class="slides-titulo" id="e7-titulo">Minha Família 💙</div>
+<div class="slides-sub" id="e7-sub">por Dona Zilda</div>
+</div></section><section class="etapa" data-etapa="21" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Escolhendo um tema bonito 🎨 — continuação</h2><div class="destaque">
+                💡 <strong>DICA:</strong> prefira <strong>fundos claros</strong> — são mais fáceis de
+                ler, principalmente para quem está assistindo de longe. E não se preocupe:
+                <strong>pode mudar depois!</strong> O tema nunca é definitivo.
+            </div><div class="analogia">
+                🏡 "Escolher um tema é como escolher o papel de parede da sala:
+                você escolhe o que te agrada, e se cansar, troca quando quiser."
+            </div></section><section class="etapa" data-etapa="22" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Seu primeiro slide: o título! ✍️</h2><p>O primeiro slide da apresentação é a <strong>porta de entrada</strong>: ele diz do que
+            se trata. Por isso ele tem um título grande e um subtítulo.</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Clique para adicionar título"</strong> — o texto cinza que fica no meio do slide</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Digite o título</strong> — por exemplo: "Minha Família 💙"</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Clique no subtítulo</strong> e digite seu nome — ex.: "por Dona Zilda"</p></div>
+</div><p><strong>Experimente aqui:</strong> digite o título e o subtítulo do seu primeiro slide:</p></section><section class="etapa" data-etapa="23" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Seu primeiro slide: o título! ✍️ — continuação</h2><div class="sim-controles">
+<input aria-label="Título do slide" autocomplete="off" id="e7-input-titulo" placeholder="Digite o título aqui..." type="text"/>
+<input aria-label="Subtítulo do slide" autocomplete="off" id="e7-input-sub" placeholder="Digite o subtítulo (seu nome)..." type="text"/>
+</div><div class="slides-canvas tema-claro" style="max-width: 560px; margin: 0 auto;">
+<div class="slides-titulo" id="e7-titulo2">Minha Família 💙</div>
+<div class="slides-sub" id="e7-sub2">por Dona Zilda</div>
+</div><h3>Sugestões de títulos para o seu primeiro slide</h3></section><section class="etapa" data-etapa="24" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Seu primeiro slide: o título! ✍️ — continuação</h2><div class="caps-recap">
+<span class="chip-rec">📖 Minha Família</span>
+<span class="chip-rec">📸 Minhas Memórias</span>
+<span class="chip-rec">📜 Minha História</span>
+</div><div class="destaque">
+                🏆 <strong>Pronto! Primeira conquista!</strong> Seu primeiro slide tem um título
+                bonito e o seu nome. Isso já é uma apresentação começada.
+            </div></section><section class="etapa" data-etapa="25" data-fase-origem="9"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Adicionando mais slides ➕</h2><p>Uma apresentação com um slide só é uma porta sem casa. Vamos <strong>adicionar mais
+            páginas</strong>! Existem duas maneiras fáceis — escolha a que você preferir:</p><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">➕</span>
+<h4>Maneira 1: o botão "+"</h4>
+<p>Clique no botão <strong>+</strong> da
+                    <span class="termo" tabindex="0">barra de ferramentas
+                        <span class="tooltip"><strong>Barra de ferramentas</strong>
+                        A faixa de botões com as ações mais usadas, logo abaixo dos menus — como a caixa de costura com agulha e linha sempre à mão.</span>
+</span>
+                    (a faixa de botões em cima da tela).</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🖱️</span>
+<h4>Maneira 2: botão direito</h4>
+<p>Clique com o <strong>botão direito do mouse</strong> na lista de slides e
+                    escolha <strong>"Novo slide"</strong>.</p>
+</div>
+</div><p><strong>Teste a Maneira 1 aqui:</strong> clique no botão ➕ quantas vezes quiser:</p></section><section class="etapa" data-etapa="26" data-fase-origem="9"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Adicionando mais slides ➕ — continuação</h2><div class="slides-app">
+<div class="slides-topo">
+<span class="slides-titulo-app">Minha apresentação</span>
+<span class="slides-topo-botoes"><span class="btn-peq">Compartilhar</span><span class="btn-peq azul">Apresentar</span></span>
+</div>
+<div class="slides-menus"><span>Arquivo</span><span>Editar</span><span>Inserir</span><span>Formatar</span><span>Slide</span><span>Ajuda</span></div>
+<div class="slides-barra">
+<span aria-label="Adicionar slide" class="btn-ferr destaque" id="e9-btn-mais" role="button" tabindex="0">➕</span>
+<span class="btn-ferr">✂️</span>
+<span class="btn-ferr">🔗</span>
+<span class="btn-ferr">🎨</span>
+<span style="margin-left:auto; font-size:.9rem; color:#5F6368;">Slides: <strong id="e9-contador">1</strong></span>
+</div>
+<div class="slides-corpo">
+<div class="slides-lista" id="e9-lista">
+<div class="slides-mini ativa"><span class="mini-num">Slide 1</span><span class="mini-txt">Título</span></div>
+</div>
+<div class="slides-canvas tema-claro">
+<div class="slides-titulo" style="font-size:1.4rem;">Minha Família 💙</div>
+<div class="slides-sub">por Dona Zilda</div>
+</div>
+</div>
+</div><div class="destaque" id="e9-sucesso" style="display:none;">
+                📄📄📄 <strong>Cada slide = uma página nova!</strong> Veja como a lista de slides
+                cresceu do lado esquerdo. Crie quantos quiser — não tem limite!
+            </div></section><section class="etapa" data-etapa="27" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Colocando fotos nos slides 🖼️</h2><p>Agora vem a parte mais gostosa: as fotos! Para colocar uma foto no slide, usamos o
+            <span class="termo" tabindex="0">menu Inserir
+                <span class="tooltip"><strong>Menu Inserir</strong>
+                A barra de menus é a faixa no topo da tela com as palavras Arquivo, Editar, Inserir, Formatar... O menu Inserir é onde você pede ao programa para colocar coisas novas no slide: imagens, caixas de texto, formas.</span>
+</span>.
+            Veja como é a barra de menus:</p></section><section class="etapa" data-etapa="28" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Colocando fotos nos slides 🖼️ — continuação</h2><div class="slides-app">
+<div class="slides-menus">
+<span>Arquivo</span><span>Editar</span>
+<span class="menu-destaque">Inserir ▾</span>
+<span>Formatar</span><span>Slide</span><span>Ajuda</span>
+</div>
+<div class="slides-corpo" style="justify-content:center; padding: 22px;">
+<div class="mini-cartao" style="max-width: 320px; width:100%;">
+<h4>📥 Menu "Inserir" aberto</h4>
+<p style="margin-bottom: 8px;"><strong>Imagem ▸</strong></p>
+<div class="caps-recap" style="margin: 0 0 8px;">
+<span class="chip-rec">💻 Do computador</span>
+<span class="chip-rec">📸 Do Google Fotos</span>
+<span class="chip-rec">☁️ Do Google Drive</span>
+</div>
+<p style="margin:0;"><strong>Caixa de texto</strong> · <strong>Formas</strong> · <strong>Vídeo</strong></p>
+</div>
+</div>
+</div></section><section class="etapa" data-etapa="29" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Colocando fotos nos slides 🖼️ — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Inserir"</strong> na barra de menus (no topo da tela)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Imagem"</strong> e diga de onde vem a foto: <strong>do computador</strong>, do
+                    <span class="termo" tabindex="0">Google Fotos
+                        <span class="tooltip"><strong>Google Fotos</strong>
+                        O álbum infinito das suas fotos na nuvem — você conheceu na aula 5. De lá você puxa as fotos para colocar nos slides.</span>
+</span> ou do <strong>Google Drive</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Selecione a foto</strong> e clique em Inserir</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Arraste e ajuste o tamanho</strong> — clique na foto e puxe as bordas para deixar do jeito que você quer</p></div>
+</div></section><section class="etapa" data-etapa="30" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Colocando fotos nos slides 🖼️ — continuação</h2><div class="analogia">
+                📸 "Inserir uma foto no slide é como colar uma figurinha no álbum:
+                você escolhe onde ela fica e ajusta para caber direitinho. E como tudo fica na
+                nuvem, a foto não se perde nem estraga com o tempo."
+            </div><div class="destaque">
+                💡 <strong>Fio da meada:</strong> as fotos que você guardou no Google Fotos e no
+                Drive nas aulas 5 e 6 são o seu "baú de figurinhas". Agora elas ganham um lugar
+                bonito para serem mostradas!
+            </div></section><section class="etapa" data-etapa="31" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Escrevendo mais texto e montando seu slide 🛠️</h2><p>Além do título, você pode escrever onde quiser no slide usando uma
+            <span class="termo" tabindex="0">caixa de texto
+                <span class="tooltip"><strong>Caixa de texto</strong>
+                Uma área do slide onde você escreve à vontade — como um quadro onde as letras ficam dentro do espaço que você escolheu. Você cria com Inserir → Caixa de texto.</span>
+</span>:</p></section><section class="etapa" data-etapa="32" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Escrevendo mais texto e montando seu slide 🛠️ — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Inserir" → "Caixa de texto"</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique no lugar do slide</strong> onde você quer escrever</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Digite seu texto</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Formate</strong>: tamanho da letra, cor e
+                    <span class="termo" tabindex="0">negrito
+                        <span class="tooltip"><strong>Formatar / Negrito</strong>
+                        Mudar a aparência do texto: letra maior ou menor, cor, e negrito (letra mais grossa, para destacar). É igualzinho ao Google Docs.</span>
+</span>
+                    — tudo igual ao Google Docs!</p></div>
+</div><p><strong>Agora é a sua vez!</strong> Monte um slide aqui embaixo: digite o título,
+            escreva na caixa de texto, adicione slides e insira uma imagem. Este é um simulador —
+            pode errar à vontade, nada quebra! 😊</p></section><section class="etapa" data-etapa="33" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Escrevendo mais texto e montando seu slide 🛠️ — continuação</h2><div class="slides-app">
+<div class="slides-topo">
+<span class="slides-titulo-app">Minha apresentação</span>
+<span class="slides-topo-botoes"><span class="btn-peq">Compartilhar</span><span class="btn-peq azul">Apresentar</span></span>
+</div>
+<div class="slides-menus"><span>Arquivo</span><span>Editar</span><span class="menu-destaque">Inserir</span><span>Formatar</span><span>Slide</span><span>Ajuda</span></div>
+<div class="slides-barra">
+<span aria-label="Adicionar slide" class="btn-ferr destaque" id="sim-btn-mais" role="button" tabindex="0">➕</span>
+<span aria-label="Inserir imagem" class="btn-ferr" id="sim-btn-img" role="button" tabindex="0">🖼️</span>
+<span class="btn-ferr">📝</span>
+<span class="btn-ferr">🎨</span>
+</div>
+<div class="slides-corpo">
+<div class="slides-lista" id="sim-lista"></div>
+<div class="slides-canvas tema-claro" id="sim-canvas">
+<div class="slides-titulo" id="sim-titulo"></div>
+<div class="slides-sub" id="sim-sub">por Dona Zilda</div>
+<div class="slides-img" id="sim-img" style="display:none;">🖼️</div>
+<div class="slides-texto" id="sim-texto"></div>
+</div>
+</div>
+</div></section><section class="etapa" data-etapa="34" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Escrevendo mais texto e montando seu slide 🛠️ — continuação</h2><div class="sim-controles">
+<input aria-label="Título do slide no simulador" autocomplete="off" id="sim-input-titulo" placeholder="1️⃣ Digite o título deste slide..." type="text"/>
+<input aria-label="Texto da caixa de texto no simulador" autocomplete="off" id="sim-input-texto" placeholder="2️⃣ Digite o texto da caixa de texto..." type="text"/>
+</div><div class="sim-botoes">
+<button class="btn btn-verde" id="sim-novo-slide" style="min-height:48px; padding:12px 22px;">➕ Adicionar slide</button>
+<button class="btn btn-secondary" id="sim-imagem" style="min-height:48px; padding:12px 22px;">🖼️ Inserir imagem</button>
+</div><div class="destaque" id="sim-sucesso" style="display:none;">
+                🎨 <strong>Que artista!</strong> Você acabou de montar um slide: título, texto e até
+                imagem! Repare que tudo isso veio do <strong>menu Inserir</strong> — e que cada slide
+                é uma página nova na lista da esquerda. É exatamente assim no Google Slides de verdade.
+            </div><div class="analogia">
+                📝 "Formatar texto no Slides é idêntico ao Docs: selecione o texto, escolha o
+                tamanho da letra, a cor, o negrito. Uma vez que você aprende num programa do
+                Google, já sabe em todos os outros."
+            </div></section><section class="etapa" data-etapa="35" data-fase-origem="12"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Mostrando sua apresentação em tela cheia 🎬</h2><p>Chegou a hora mais emocionante: <strong>apresentar!</strong> Quando você clica em
+            "Apresentar", o slide ocupa a tela inteira do computador — é o
+            <span class="termo" tabindex="0">modo tela cheia
+                <span class="tooltip"><strong>Tela cheia</strong>
+                O modo apresentação: o slide ocupa a tela inteira do computador — como quando o filme toma a tela toda da TV e desaparecem os menus. É assim que todo mundo vê sua apresentação bem grande.</span>
+</span>.</p></section><section class="etapa" data-etapa="36" data-fase-origem="12"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Mostrando sua apresentação em tela cheia 🎬 — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Apresentar"</strong> — o botão fica no canto superior direito</p></div>
+<div class="passo"><span class="passo-num">2</span><p>A apresentação abre <strong>em tela cheia</strong> — os menus somem, só o slide aparece</p></div>
+<div class="passo"><span class="passo-num">3</span><p>Para <strong>avançar</strong>: clique na tela, use a <strong>seta →</strong> do teclado ou a <strong>barra de espaço</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p>Para <strong>sair</strong>: aperte a
+                    <span class="termo" tabindex="0">tecla ESC
+                        <span class="tooltip"><strong>Tecla ESC</strong>
+                        A tecla Esc fica no canto superior esquerdo do teclado. Ela é o "fechar" da tela cheia: aperte e a apresentação volta ao normal, com os menus de volta.</span>
+</span>
+                    (a tecla Esc, no canto superior esquerdo do teclado)</p></div>
+</div></section><section class="etapa" data-etapa="37" data-fase-origem="12"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Mostrando sua apresentação em tela cheia 🎬 — continuação</h2><p><strong>Teste aqui mesmo!</strong> Clique em "▶ Apresentar" e use o clique, a seta →
+            ou a barra de espaço para avançar. Para sair, aperte ESC:</p><div class="slides-app">
+<div class="slides-topo">
+<span class="slides-titulo-app">Minha Família 💙</span>
+<span class="slides-topo-botoes"><span class="btn-peq">Compartilhar</span><button class="btn-peq azul" id="apresentar-btn" style="cursor:pointer;">▶ Apresentar</button></span>
+</div>
+<div class="slides-canvas tema-claro" style="margin:14px;">
+<div class="slides-titulo">Minha Família 💙</div>
+<div class="slides-sub">por Dona Zilda</div>
+</div>
+</div><div class="apresentacao-overlay" id="apresentacao-overlay">
+<div class="apres-contador" id="apres-contador">Slide 1 de 3</div>
+<div class="apres-slide" id="apres-slide"></div>
+<div class="apres-hint">
+<span>🖱️ Clique · ➡️ seta → · ␣ espaço — para avançar</span>
+<button class="btn btn-secondary" id="apres-sair">Sair (ESC)</button>
+</div>
+</div></section><section class="etapa" data-etapa="38" data-fase-origem="12"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Mostrando sua apresentação em tela cheia 🎬 — continuação</h2><div class="destaque" id="apres-sucesso" style="display:none;">
+                🎉 <strong>Você apresentou em tela cheia e saiu com a tecla ESC!</strong> É assim que
+                você vai mostrar sua apresentação para a família — do mesmo jeito que o professor
+                mostra os slides na televisão da sala.
+            </div><div class="analogia">
+                📺 "Apresentar é como ligar a TV para a família ver o filme:
+                a tela fica grande, a sala fica em silêncio, e você vai passando as cenas
+                (os slides) no seu ritmo. <strong>Hora de brilhar!</strong>"
+            </div></section><section class="etapa" data-etapa="39" data-fase-origem="13"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Salvar automático e compartilhar ☁️</h2><h3>Salvar? Já está salvo!</h3><p>Uma das melhores partes do Google Slides: <strong>não precisa apertar "salvar" nunca</strong>.
+            O programa salva sozinho, a cada segundo, na
+            <span class="termo" tabindex="0">nuvem
+                <span class="tooltip"><strong>Nuvem</strong>
+                Um armário que não é seu, mas só você acessa — de qualquer aparelho, em qualquer lugar. É onde moram o Drive, o Docs, o Sheets e agora o seu Slides.</span>
+</span>.
+            Igualzinho ao Drive e ao Docs!</p><p>Só tem uma coisa que vale a pena fazer: <strong>dar um nome</strong> à apresentação.
+            No começo ela se chama "Apresentação sem título". <strong>Experimente:</strong></p><div class="sim-controles" style="max-width: 460px;">
+<input aria-label="Nome da apresentação" autocomplete="off" id="e13-nome" placeholder="Dê um nome à sua apresentação..." type="text"/>
+</div><div class="slides-app" style="margin-top: var(--esp-sm);">
+<div class="slides-topo">
+<span class="slides-titulo-app" id="e13-titulo">Apresentação sem título</span>
+<span class="slides-topo-botoes"><span class="btn-peq">Compartilhar</span><span class="btn-peq azul">Apresentar</span></span>
+</div>
+</div></section><section class="etapa" data-etapa="40" data-fase-origem="13"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Salvar automático e compartilhar ☁️ — continuação</h2><h3>Compartilhando com outras pessoas</h3><p>Quer mostrar a apresentação para quem está longe? É só
+            <span class="termo" tabindex="0">compartilhar
+                <span class="tooltip"><strong>Compartilhar</strong>
+                Deixar outra pessoa ver (ou até editar) o seu arquivo — como emprestar uma receita de bolo para alguém copiar. No Google, você faz isso pelo botão "Compartilhar".</span>
+</span>:</p></section><section class="etapa" data-etapa="41" data-fase-origem="13"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Salvar automático e compartilhar ☁️ — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique no botão "Compartilhar"</strong> — fica no canto superior direito</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Pode ver" ou "Pode editar"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Digite o e-mail da pessoa</strong> — o
+                    <span class="termo" tabindex="0">e-mail
+                        <span class="tooltip"><strong>E-mail</strong>
+                        O correio digital: uma carta que chega em segundos (você criou o seu na aula 1). É o endereço para onde o Google envia o convite para ver a apresentação.</span>
+</span> dela (ex.: maria@gmail.com)</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Enviar!</strong> A pessoa recebe um convite e abre a apresentação no computador ou no celular dela</p></div>
+</div><p><strong>Simule aqui:</strong> escolha a permissão, digite um e-mail e envie:</p></section><section class="etapa" data-etapa="42" data-fase-origem="13"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Salvar automático e compartilhar ☁️ — continuação</h2><div class="form-compartilhar">
+<label>O que a pessoa pode fazer?</label>
+<div class="perm-botoes">
+<button class="perm-botao sel" id="perm-ver">👁️ Pode ver</button>
+<button class="perm-botao" id="perm-editar">✏️ Pode editar</button>
+</div>
+<label for="e13-email">E-mail da pessoa</label>
+<input autocomplete="off" id="e13-email" placeholder="ex.: filha@gmail.com" type="email"/>
+<button class="btn btn-verde" id="e13-enviar" style="width:100%;">📤 Enviar convite</button>
+</div><div class="destaque" id="e13-sucesso" style="display:none;"></div><div class="atencao">
+                ⚠️ <strong>Dica de segurança:</strong> cuidado ao compartilhar! Não coloque dados
+                pessoais sensíveis — como senhas ou documentos — em apresentações compartilhadas.
+                <strong>Antes de compartilhar, verifique o que tem nos seus slides.</strong>
+</div></section><section class="etapa" data-etapa="43" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Dicas de design: deixe tudo mais bonito 🎨</h2><p>Uma apresentação bonita não precisa de talento artístico — precisa de algumas
+            dicas simples. Veja o que <strong>fazer</strong> e o que <strong>evitar</strong>:</p></section><section class="etapa" data-etapa="44" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Dicas de design: deixe tudo mais bonito 🎨 — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">✅</span>
+<h4>FAÇA</h4>
+<ul class="lista-check" style="margin: 8px 0 0;">
+<li><span><strong>Letras grandes e legíveis</strong> — quem está longe também quer ler</span></li>
+<li><span><strong>Fotos de boa qualidade</strong> — nítidas, sem tremer</span></li>
+<li><span><strong>Cores contrastantes</strong> — texto escuro em fundo claro</span></li>
+<li><span><strong>Poucas palavras por slide</strong> — o essencial, com calma</span></li>
+</ul>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">❌</span>
+<h4>EVITE</h4>
+<ul class="lista-check" style="margin: 8px 0 0;">
+<li><span><strong>Letras muito pequenas</strong> — ninguém consegue ler</span></li>
+<li><span><strong>Muitas cores misturadas</strong> — cansa os olhos</span></li>
+<li><span><strong>Texto demais no slide</strong> — vira parede de letras</span></li>
+<li><span><strong>Fotos borradas</strong> — perdem a graça</span></li>
+</ul>
+</div>
+</div></section><section class="etapa" data-etapa="45" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Dicas de design: deixe tudo mais bonito 🎨 — continuação</h2><p><strong>Hora do teste! Escolha a resposta certa em cada situação:</strong></p><div class="quiz-card">
+<div class="quiz-pergunta">🖼️ Você está montando um slide sobre as férias. Qual é a melhor escolha de design?</div>
+<div class="quiz-opcoes" data-quiz="4">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Encher o slide de texto para aproveitar o espaço</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Poucas palavras + letras grandes + uma foto boa = slide que todo mundo entende." data-feedback-wrong="💡 Quase! O segredo é o oposto: poucas palavras, letras grandes e uma foto boa. Quem lê pouco, entende muito."><span class="letra">B</span><span>Poucas palavras, letras grandes e uma foto bonita</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Letras bem pequenas para caber tudo o que eu quero dizer</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="4"></div>
+</div></section><section class="etapa" data-etapa="46" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Dicas de design: deixe tudo mais bonito 🎨 — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">🎨 Sobre as cores da apresentação, o que é recomendado?</div>
+<div class="quiz-opcoes" data-quiz="5">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Misturar muitas cores diferentes no mesmo slide</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Cores contrastantes (texto escuro em fundo claro) deixam tudo fácil de ler." data-feedback-wrong="💡 Quase! O ideal são cores contrastantes — texto escuro em fundo claro. Muitas cores misturadas cansam os olhos de quem assiste."><span class="letra">B</span><span>Usar cores contrastantes — texto escuro em fundo claro</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Texto branco em fundo branco, para ficar elegante</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="5"></div>
+</div></section><section class="etapa" data-etapa="47" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Dicas de design: deixe tudo mais bonito 🎨 — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">🌿 Na hora de escolher o tema da apresentação, o ideal é:</div>
+<div class="quiz-opcoes" data-quiz="6">
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Fundos claros são mais fáceis de ler — principalmente para quem assiste de longe." data-feedback-wrong="💡 Quase! A dica de ouro é preferir fundos claros: a leitura fica muito mais fácil, para você e para quem assiste."><span class="letra">A</span><span>Preferir fundos claros, mais fáceis de ler</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Sempre escolher o fundo mais escuro</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Qualquer tema, tanto faz</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="6"></div>
+</div></section><section class="etapa" data-etapa="48" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Atividade prática: Apresentação sobre Você! 👨‍💻</h2><p>Chegou a sua vez de mostrar o que aprendeu. Vamos criar uma apresentação de
+            <strong>3 slides</strong> — cada um é uma página sobre você:</p><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🧑</span>
+<h4>Slide 1: Quem é você</h4>
+<p>Seu nome e uma foto sua. Escolha um tema de fundo claro e capriche no título!</p>
+</div>
+</div></section><section class="etapa" data-etapa="49" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Apresentação sobre você — slides 2 e 3</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🏡</span>
+<h4>Slide 2: Onde você mora</h4>
+<p>Onde fica sua casa, seu bairro, sua cidade. Pode colocar uma foto do lugar.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🧶</span>
+<h4>Slide 3: Seu hobby favorito</h4>
+<p>O que você ama fazer: artesanato, jardinagem, cozinhar, pescar... Conte com fotos!</p>
+</div>
+</div></section><section class="etapa" data-etapa="50" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Atividade prática: Apresentação sobre Você! 👨‍💻 — continuação</h2><div class="destaque">
+                ⏰ <strong>Tempo: 20 minutos</strong> · 😊 Sem pressa! Lembre-se do passo a passo:
+                criar pelo Drive → escolher o tema → título e subtítulo → ➕ mais slides →
+                Inserir → Imagem e Caixa de texto. <strong>Vamos praticar!</strong>
+</div></section><section class="etapa" data-etapa="51" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Atividade prática: Apresentação sobre Você! 👨‍💻 — continuação</h2><div class="analogia">
+                ☕ "Antes de começar, que tal uma pausa para o cafezinho? Relaxar um pouquinho
+                ajuda a criar com a cabeça fresca — e o Google Slides espera por você, tudo fica
+                salvo."
+            </div><h3>Compartilhando as criações 👏</h3><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>2 ou 3 voluntários</strong> mostram sua apresentação para a turma</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Cada um apresenta</strong> seus 3 slides em tela cheia</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>A turma aplaude</strong> e comenta o que gostou — junto aprendemos!</p></div>
+</div></section><section class="etapa" data-etapa="52" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Atividade prática: Apresentação sobre Você! 👨‍💻 — continuação</h2><div class="destaque">
+                💛 <strong>Não precisa ser perfeito!</strong> Cada apresentação é uma obra única —
+                como cada retalho da colcha. Todos são artistas digitais!
+            </div></section><section class="etapa" data-etapa="53" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆</h2><div class="missao">
+<h3>🎯 Desafio final: crie uma apresentação com 5 slides!</h3>
+<p style="margin-bottom: var(--esp-sm);">Escolha um tema que fale do seu coração:</p>
+<div class="caps-recap">
+<span class="chip-rec">🍲 Receita favorita</span>
+<span class="chip-rec">📸 Álbum de família</span>
+<span class="chip-rec">✈️ Lugares que visitou</span>
+<span class="chip-rec">🎨 Seus hobbies</span>
+</div>
+<p style="margin-bottom: var(--esp-sm);"><strong>⏰ Tempo: 30 minutos</strong> · Use tudo o que aprendeu:
+                tema claro, título, ➕ slides, fotos, caixas de texto e... apresente para alguém!</p>
+<p><strong>Você consegue!</strong> 💪</p>
+</div><h3>📚 Dever de casa (opcional — sem pressão!)</h3><p>Se quiser ir além, crie uma apresentação especial com <strong>5 a 7 slides</strong>.
+            Sugestões de temas:</p></section><section class="etapa" data-etapa="54" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><ul class="lista-check">
+<li><span><strong>História da sua vida</strong> — cada década vira um slide</span></li>
+<li><span><strong>Receitas da família</strong> — os pratos que passam de geração em geração</span></li>
+<li><span><strong>Álbum de viagens</strong> — os lugares que marcaram você</span></li>
+<li><span><strong>Seus sonhos e planos</strong> — o que você ainda quer fazer</span></li>
+</ul><p>💙 <strong>Sem pressa!</strong> Pratique quando quiser, no seu tempo. No seu ritmo, tudo fica mais gostoso.</p><h3>💡 Ideias criativas para usar em casa</h3></section><section class="etapa" data-etapa="55" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao"><span class="icone-grande">🎂</span><h4>Convite de aniversário</h4><p>Para a festa da família — mostre na TV ou envie por e-mail.</p></div>
+<div class="mini-cartao"><span class="icone-grande">🎄</span><h4>Cartão de Natal</h4><p>Um cartão digital para enviar para quem você ama.</p></div>
+<div class="mini-cartao"><span class="icone-grande">📸</span><h4>Álbum de fotos</h4><p>Das últimas férias, com as fotos do Google Fotos.</p></div>
+</div></section><section class="etapa" data-etapa="56" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — mais ideias</h2><div class="passos-duplos">
+<div class="mini-cartao"><span class="icone-grande">🍲</span><h4>Receita ilustrada</h4><p>Com fotos do prato, passo a passo.</p></div>
+<div class="mini-cartao"><span class="icone-grande">✈️</span><h4>Diário de viagem</h4><p>Conte sua aventura, lugar por lugar.</p></div>
+<div class="mini-cartao"><span class="icone-grande">🎁</span><h4>Cartão de agradecimento</h4><p>Para alguém especial — com fotos e carinho.</p></div>
+</div></section><section class="etapa" data-etapa="57" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><h3>✨ Recursos extras para explorar</h3><ul class="lista-check">
+<li><span><strong>🎬 Inserir vídeos</strong> — do YouTube <span class="ferramenta"><img alt="" height="26" src="/assets/logos/youtube.svg" width="26"/> YouTube</span> ou do seu computador</span></li>
+<li><span><strong>📊 Adicionar gráficos</strong> — para mostrar números bonitos</span></li>
+<li><span><strong>🔗 Criar links clicáveis</strong> — para sites ou e-mails</span></li>
+<li><span><strong>✨ Transições entre slides</strong> — efeitos suaves ao avançar</span></li>
+<li><span><strong>👥 Trabalhar junto</strong> — várias pessoas editando ao mesmo tempo</span></li>
+</ul><p style="text-align:center;"><em>Infinitas possibilidades — explore no seu ritmo!</em></p><h3>🧵 Conexão com as aulas anteriores</h3></section><section class="etapa" data-etapa="58" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao"><span class="icone-grande">☁️</span><h4>Drive</h4><p>Salva automaticamente e guarda sua apresentação na nuvem.</p></div>
+<div class="mini-cartao"><span class="icone-grande">📸</span><h4>Google Fotos</h4><p>Fornece as imagens que você insere nos slides.</p></div>
+<div class="mini-cartao"><span class="icone-grande">📧</span><h4>Gmail</h4><p>Compartilha por e-mail os convites para ver a apresentação.</p></div>
+<div class="mini-cartao"><span class="icone-grande">📝</span><h4>Docs</h4><p>Mesma interface: menus, formatar texto, tudo igual.</p></div>
+</div></section><section class="etapa" data-etapa="59" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Praticar deixa o aprendizado mais firme</h2><div class="destaque">
+                🧵 <strong>Por que isso importa:</strong> a missão é como os pontos da costura —
+                cada apresentação praticada em casa deixa o aprendizado mais firme.
+                Na próxima aula, contamos como foi!
+            </div></section><section class="etapa" data-etapa="60" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
+<span class="trofeu">🎨</span>
+<h2>Você costurou mais um retalho!</h2>
+<p>Hoje você criou apresentações, escolheu temas, colocou fotos e textos e
+                apresentou em tela cheia. Você é um artista digital! Cada clique, cada foto
+                inserida, cada slide criado é uma conquista.</p>
+</div></section><section class="etapa" data-etapa="61" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h3 style="margin-top: var(--esp-lg);">Revisão: o que aprendemos hoje</h3><ul class="lista-conquistas">
+<li>✅ Acessar o Google Slides pelo Drive</li>
+<li>✅ Escolher um tema bonito (fundos claros)</li>
+<li>✅ Adicionar título e subtítulo</li>
+<li>✅ Criar novos slides com o ➕</li>
+<li>✅ Inserir fotos pelo menu Inserir</li>
+<li>✅ Escrever com caixas de texto</li>
+<li>✅ Apresentar em tela cheia (e sair com ESC)</li>
+<li>✅ Salvar automaticamente</li>
+<li>✅ Compartilhar com outras pessoas</li>
+</ul></section><section class="etapa" data-etapa="62" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="analogia" style="margin-top: var(--esp-lg);">
+                💌 "Vocês tiveram coragem de aprender algo novo, exploraram ferramentas digitais
+                com criatividade e criaram apresentações lindas. Vocês são inspiração!
+                Parabéns — você domina o Google Slides! 🌟"
+            </div><div style="text-align:center; margin-top: var(--esp-lg);">
+<div class="retalho-costurado">Aula 07 · costurada! 🎉</div>
+</div></section><section class="etapa" data-etapa="63" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="destaque" style="margin-top: var(--esp-lg);">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos aprender sobre o
+                <strong>Gov.br e o PIX</strong> — seus documentos e suas transferências digitais,
+                com o mesmo jeito de aprender: um passo de cada vez, no seu ritmo.
+            </div><div style="text-align:center; margin-top: var(--esp-md);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div></section><nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ============================================================
+            // Etapa 7 — Seletor de tema (visual) e título/subtítulo
+            // ============================================================
+            var temaClaro = document.getElementById('tema-claro');
+            var temaAzul = document.getElementById('tema-azul');
+            var temaEscuro = document.getElementById('tema-escuro');
+            var canvasTema = document.getElementById('e7-canvas');
+
+            function aplicarTema(classe, botao) {
+                canvasTema.className = 'slides-canvas ' + classe;
+                [temaClaro, temaAzul, temaEscuro].forEach(function (b) { b.classList.remove('sel'); });
+                botao.classList.add('sel');
+            }
+            if (temaClaro) temaClaro.addEventListener('click', function () { aplicarTema('tema-claro', temaClaro); });
+            if (temaAzul) temaAzul.addEventListener('click', function () { aplicarTema('tema-azul', temaAzul); });
+            if (temaEscuro) temaEscuro.addEventListener('click', function () { aplicarTema('tema-escuro', temaEscuro); });
+
+            var e7InputTitulo = document.getElementById('e7-input-titulo');
+            var e7InputSub = document.getElementById('e7-input-sub');
+            var e7Titulo2 = document.getElementById('e7-titulo2');
+            var e7Sub2 = document.getElementById('e7-sub2');
+            if (e7InputTitulo) e7InputTitulo.addEventListener('input', function () {
+                e7Titulo2.textContent = e7InputTitulo.value.trim() || 'Minha Família 💙';
+            });
+            if (e7InputSub) e7InputSub.addEventListener('input', function () {
+                e7Sub2.textContent = e7InputSub.value.trim() || 'por Dona Zilda';
+            });
+
+            // ============================================================
+            // Etapa 9 — Adicionar slides (demo do botão +)
+            // ============================================================
+            var e9BtnMais = document.getElementById('e9-btn-mais');
+            var e9Lista = document.getElementById('e9-lista');
+            var e9Contador = document.getElementById('e9-contador');
+            var e9Sucesso = document.getElementById('e9-sucesso');
+            var e9Total = 1;
+
+            function e9Adicionar() {
+                e9Total += 1;
+                var mini = document.createElement('div');
+                mini.className = 'slides-mini';
+                mini.innerHTML = '<span class="mini-num">Slide ' + e9Total + '</span><span class="mini-txt">Página nova</span>';
+                e9Lista.appendChild(mini);
+                e9Contador.textContent = e9Total;
+                if (e9Total >= 2) e9Sucesso.style.display = 'block';
+            }
+            if (e9BtnMais) {
+                e9BtnMais.addEventListener('click', e9Adicionar);
+                e9BtnMais.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e9Adicionar(); } });
+            }
+
+            // ============================================================
+            // Etapa 11 — Simulador: montar um slide
+            // ============================================================
+            var slidesData = [
+                { titulo: 'Minha Família 💙', texto: 'Escreva aqui um recado sobre este slide.', img: false }
+            ];
+            var slideAtual = 0;
+
+            var simLista = document.getElementById('sim-lista');
+            var simCanvas = document.getElementById('sim-canvas');
+            var simTitulo = document.getElementById('sim-titulo');
+            var simTexto = document.getElementById('sim-texto');
+            var simImg = document.getElementById('sim-img');
+            var simInputTitulo = document.getElementById('sim-input-titulo');
+            var simInputTexto = document.getElementById('sim-input-texto');
+            var simNovoSlide = document.getElementById('sim-novo-slide');
+            var simImagem = document.getElementById('sim-imagem');
+            var simSucesso = document.getElementById('sim-sucesso');
+
+            function simRender() {
+                // Miniaturas
+                simLista.innerHTML = '';
+                slidesData.forEach(function (s, i) {
+                    var mini = document.createElement('div');
+                    mini.className = 'slides-mini' + (i === slideAtual ? ' ativa' : '');
+                    mini.setAttribute('role', 'button');
+                    mini.setAttribute('tabindex', '0');
+                    mini.innerHTML = '<span class="mini-num">Slide ' + (i + 1) + '</span><span class="mini-txt">' + (s.titulo || 'Sem título') + '</span>';
+                    mini.addEventListener('click', function () { slideAtual = i; simRender(); });
+                    mini.addEventListener('keydown', function (e) { if (e.key === 'Enter') { slideAtual = i; simRender(); } });
+                    simLista.appendChild(mini);
+                });
+                // Slide atual
+                var s = slidesData[slideAtual];
+                simTitulo.innerHTML = s.titulo ? s.titulo.replace(/</g, '&lt;') : '<span class="ghost">Clique para adicionar título</span>';
+                simTexto.innerHTML = s.texto ? s.texto.replace(/</g, '&lt;') : '<span class="ghost">Clique para adicionar texto</span>';
+                simImg.style.display = s.img ? 'flex' : 'none';
+                simInputTitulo.value = s.titulo && s.titulo !== 'Minha Família 💙' ? s.titulo : '';
+                simInputTexto.value = s.texto && s.texto !== 'Escreva aqui um recado sobre este slide.' ? s.texto : '';
+            }
+            simRender();
+
+            if (simInputTitulo) simInputTitulo.addEventListener('input', function () {
+                slidesData[slideAtual].titulo = simInputTitulo.value;
+                simRender();
+            });
+            if (simInputTexto) simInputTexto.addEventListener('input', function () {
+                slidesData[slideAtual].texto = simInputTexto.value;
+                simRender();
+            });
+            if (simNovoSlide) simNovoSlide.addEventListener('click', function () {
+                slidesData.push({ titulo: '', texto: '', img: false });
+                slideAtual = slidesData.length - 1;
+                simRender();
+                simSucesso.style.display = 'block';
+                simSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+            if (simImagem) simImagem.addEventListener('click', function () {
+                slidesData[slideAtual].img = !slidesData[slideAtual].img;
+                simRender();
+                simSucesso.style.display = 'block';
+                simSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ============================================================
+            // Etapa 12 — Tela cheia (apresentação simulada)
+            // ============================================================
+            var slidesApresentacao = [
+                '<div class="slides-titulo">Minha Família 💙</div><div class="slides-sub">por Dona Zilda</div>',
+                '<div class="slides-titulo" style="font-size:2.4rem;">Festa de aniversário 🎂</div><div class="slides-img" style="display:flex;">🖼️</div><div class="slides-sub">A foto do bolo vai aqui</div>',
+                '<div class="slides-titulo">Obrigado! 🙏</div><div class="slides-sub">Vocês são incríveis</div>'
+            ];
+            var apresIdx = 0;
+            var telaCheiaAtiva = false;
+            var overlay = document.getElementById('apresentacao-overlay');
+            var apresSlide = document.getElementById('apres-slide');
+            var apresContador = document.getElementById('apres-contador');
+            var btnApresentar = document.getElementById('apresentar-btn');
+            var btnSair = document.getElementById('apres-sair');
+            var apresSucesso = document.getElementById('apres-sucesso');
+
+            function apresMostrar() {
+                apresSlide.innerHTML = slidesApresentacao[apresIdx];
+                apresContador.textContent = 'Slide ' + (apresIdx + 1) + ' de ' + slidesApresentacao.length;
+            }
+
+            function apresAbrir() {
+                apresIdx = 0;
+                apresMostrar();
+                overlay.classList.add('modo-tela-cheia');
+                telaCheiaAtiva = true;
+            }
+
+            function apresFechar() {
+                overlay.classList.remove('modo-tela-cheia');
+                telaCheiaAtiva = false;
+                apresSucesso.style.display = 'block';
+                apresSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function apresAvancar() {
+                apresIdx = (apresIdx + 1) % slidesApresentacao.length;
+                apresMostrar();
+            }
+
+            if (btnApresentar) btnApresentar.addEventListener('click', apresAbrir);
+            if (btnSair) btnSair.addEventListener('click', function (e) { e.stopPropagation(); apresFechar(); });
+            if (overlay) overlay.addEventListener('click', function (e) {
+                if (e.target === overlay || e.target === apresSlide) apresAvancar();
+            });
+
+            // Em tela cheia: seta →, espaço e Enter avançam; ESC sai.
+            // Usamos a fase de captura para impedir que o player-base navegue de etapa.
+            document.addEventListener('keydown', function (e) {
+                if (!telaCheiaAtiva) return;
+                if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    apresAvancar();
+                }
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    apresFechar();
+                }
+            }, true);
+
+            // ============================================================
+            // Etapa 13 — Nomear e compartilhar (simulador)
+            // ============================================================
+            var e13Nome = document.getElementById('e13-nome');
+            var e13Titulo = document.getElementById('e13-titulo');
+            var e13Email = document.getElementById('e13-email');
+            var e13Enviar = document.getElementById('e13-enviar');
+            var e13Sucesso = document.getElementById('e13-sucesso');
+            var permVer = document.getElementById('perm-ver');
+            var permEditar = document.getElementById('perm-editar');
+            var permissaoEscolhida = 'Pode ver';
+
+            if (e13Nome) e13Nome.addEventListener('input', function () {
+                e13Titulo.textContent = e13Nome.value.trim() || 'Apresentação sem título';
+            });
+            if (permVer) permVer.addEventListener('click', function () {
+                permVer.classList.add('sel');
+                permEditar.classList.remove('sel');
+                permissaoEscolhida = 'Pode ver';
+            });
+            if (permEditar) permEditar.addEventListener('click', function () {
+                permEditar.classList.add('sel');
+                permVer.classList.remove('sel');
+                permissaoEscolhida = 'Pode editar';
+            });
+            if (e13Enviar) e13Enviar.addEventListener('click', function () {
+                var email = e13Email.value.trim();
+                var nome = e13Nome.value.trim() || 'Apresentação sem título';
+                if (!email) {
+                    e13Email.focus();
+                    e13Email.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                e13Email.style.borderColor = '';
+                var verOuEditar = permissaoEscolhida === 'Pode ver'
+                    ? 'A pessoa <strong>só vai enxergar</strong> a apresentação — não consegue mudar nada.'
+                    : 'A pessoa <strong>também poderá editar</strong> — use com pessoas de confiança.';
+                e13Sucesso.style.display = 'block';
+                e13Sucesso.innerHTML = '📤 <strong>Convite enviado para ' + email.replace(/</g, '&lt;') + '!</strong> "' + nome.replace(/</g, '&lt;') + '" foi compartilhada com permissão "' + permissaoEscolhida + '". ' + verOuEditar + ' Para a maioria dos casos, "Pode ver" é o suficiente.';
+                e13Sucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        })();
+    </script>
+</body>
+</html>

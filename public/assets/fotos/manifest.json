@@ -1,0 +1,53 @@
+{
+  "aula_01": {
+    "7": {
+      "src": "/assets/fotos/aula_01/computador-mesa-16x9-v01.png",
+      "alt": "Computador de mesa completo com monitor, gabinete, teclado e mouse",
+      "caption": "As quatro partes externas que vamos conhecer"
+    },
+    "9": {
+      "src": "/assets/fotos/aula_01/gabinete-frente-1x1-v02.png",
+      "alt": "Gabinete de computador visto de frente, com botão de energia e portas USB",
+      "caption": "Gabinete: a caixa onde ficam as peças que fazem o computador funcionar"
+    },
+    "11": {
+      "src": "/assets/fotos/aula_01/porta-usb-1x1-v01.png",
+      "alt": "Conector USB-A apontado corretamente para uma porta USB-A do gabinete",
+      "caption": "O plugue USB só entra na posição correta; nunca force"
+    },
+    "14": {
+      "src": "/assets/fotos/aula_01/botao-energia-1x1-v01.png",
+      "alt": "Dedo de uma pessoa idosa próximo ao botão de energia do gabinete",
+      "caption": "Procure o símbolo de energia no botão de ligar"
+    },
+    "17": {
+      "src": "/assets/fotos/aula_01/pessoa-idosa-computador-16x9-v01.png",
+      "alt": "Pessoa idosa usando computador de mesa em casa com autonomia",
+      "caption": "Você conduz o computador: o navegador é uma das ferramentas"
+    },
+    "15": {
+      "src": "/assets/fotos/aula_01/desligar-computador-16x9-v01.png",
+      "alt": "Pessoa idosa usando o mouse diante do computador",
+      "caption": "A foto mostra o contexto; o caminho correto aparece em texto na aula"
+    }
+  },
+  "aula_02": {
+    "22": {
+      "src": "/assets/fotos/aula_02/celular-maos-9x16-v01.png",
+      "alt": "Mãos de uma pessoa idosa segurando um smartphone com segurança",
+      "caption": "Segure o celular com apoio e toque a tela com leveza"
+    },
+    "29": {
+      "src": "/assets/fotos/aula_02/roteador-wifi-1x1-v01.png",
+      "alt": "Roteador Wi-Fi doméstico com duas antenas e luzes indicadoras",
+      "caption": "Roteador: o aparelho que distribui o Wi-Fi pela casa"
+    }
+  },
+  "aula_05": {
+    "1": {
+      "src": "/assets/fotos/aula_05/documentos-memorias-16x9-v01.png",
+      "alt": "Documentos genéricos, fotografias antigas de família e um pen drive sobre a mesa",
+      "caption": "Documentos e memórias importantes merecem uma cópia de segurança"
+    }
+  }
+}

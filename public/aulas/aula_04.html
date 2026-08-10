@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Aula 04 interativa: mídias sociais, Facebook, Instagram, YouTube, segurança e privacidade. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 04 — Mídias Sociais: Seu Álbum de Família Digital | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* Extras específicos da aula 04 */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
+        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
+        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
+        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
+        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+
+        /* ===== Simuladores das redes sociais ===== */
+        .feed-card { background: #FFF; border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
+        .feed-topo { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+        .feed-topo .feed-nome { font-weight: 700; font-size: .95rem; color: #1c1e21; }
+        .feed-topo .feed-tempo { font-size: .75rem; color: #65676b; }
+        .feed-texto { padding: 0 14px 10px; font-size: .98rem; color: #1c1e21; }
+        .feed-foto { margin: 0 14px 12px; border-radius: 10px; min-height: 170px; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; background: linear-gradient(135deg, #FBF0D6, #E3ECF5, #E9F0E4); border: 1px solid var(--linha); }
+        .feed-acoes { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #e4e6eb; }
+        .btn-reacao { flex: 1; border: 1px solid var(--linha); background: var(--algodao); border-radius: var(--raio-pill); padding: 9px 12px; font-size: .9rem; font-weight: 700; font-family: var(--font-body); color: var(--bordado); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .btn-reacao:hover { background: var(--chita-azul-bg); border-color: var(--chita-azul); }
+        .btn-reacao.ativo-curtir { background: var(--chita-azul-bg); border-color: var(--chita-azul); color: var(--chita-azul); }
+        .btn-reacao.ativo-amei { background: var(--chita-vermelha); border-color: var(--chita-vermelha); color: #FFF; }
+        .feed-reacoes { padding: 0 14px 12px; font-size: .85rem; color: #65676b; min-height: 1.4em; }
+        .btn-seguir { display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--chita-verde); background: var(--chita-verde); color: #FFF; border-radius: var(--raio-pill); padding: 8px 18px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .btn-seguir.ativo { background: var(--chita-verde-bg); color: var(--chita-verde); }
+        .perfil-cartao { display: flex; align-items: center; gap: 14px; background: var(--retalho); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); max-width: 420px; margin: var(--esp-md) auto; }
+        .perfil-info .perfil-nome { font-weight: 800; color: var(--bordado); }
+        .perfil-info .perfil-desc { font-size: .9rem; color: var(--bordado-suave); }
+        .perfil-info .perfil-handle { font-size: .8rem; color: var(--chita-azul); font-weight: 700; }
+        .insta-frase { width: 100%; border: 1px solid var(--linha); border-radius: 10px; padding: 10px 12px; font-size: .92rem; font-family: var(--font-body); color: #1c1e21; margin-bottom: 8px; background: #FFF; }
+        .btn-publicar { width: 100%; border: none; background: var(--chita-azul); color: #FFF; border-radius: 10px; padding: 10px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background var(--veloz); }
+        .btn-publicar:hover { background: var(--chita-azul-escura); }
+        .post-publicado { background: #FFF; border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
+        .senha-chip { display: inline-block; background: var(--chita-verde-bg); border: 1px solid var(--chita-verde); color: var(--chita-verde); border-radius: var(--raio-pill); padding: 4px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
+        .sinal-falso { display: inline-flex; align-items: center; gap: 6px; background: var(--chita-amarela-bg); border: 1px dashed var(--chita-amarela); color: var(--bordado); border-radius: var(--raio-pill); padding: 6px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
+    
+
+        /* Impeccable layout + adapt: preserve a leitura; etapas densas rolam por dentro. */
+        .etapa-grid .etapa-visual { height: auto; }
+        .etapa-grid .etapa-visual > .ilustracao-cena { width: 100%; height: auto; margin: 0 auto; }
+        .etapa-grid .etapa-visual > .feed-card,
+        .etapa-grid .etapa-visual > .mockup-drive,
+        .etapa-grid .etapa-visual > .mockup-fotos { margin: 0 auto; width: 100%; }
+
+        /* Impeccable layout + adapt: ritmo legível e rolagem interna honesta. */
+        .lista-check { gap: var(--esp-sm); }
+        .mini-cartao p { font-size: var(--texto-base) !important; line-height: 1.55; }
+        @media (max-width: 900px) {
+            .etapa-grid .etapa-visual { order: 0; max-height: none; }
+            .etapa p, .lista-check li, .mini-cartao p { font-size: var(--texto-base); }
+            .passos-duplos { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        }
+        @media (pointer: coarse) {
+            .url-chip, .btn-reacao, .btn-seguir, .btn-publicar,
+            .botao-instalar, .botao-rota, .lugar-chip, .app-botao { min-height: 44px; }
+        }
+    </style>
+</head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 04 · Mídias Sociais</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 62</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+
+
+
+<!-- ============ FASE 2 · VAMOS JUNTOS (PRÉ-REQUISITOS) ============ -->
+
+
+
+<!-- ============ FASE 3 · SUA VEZ (PRÁTICA) ============ -->
+
+
+
+
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+
+
+
+
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+
+
+<!-- Navegação -->
+<section class="etapa ativa" data-etapa="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos!</h2><div class="ferramentas-linha"><span class="ferramenta"><img alt="" height="26" src="/assets/logos/facebook.svg" width="26"/> Facebook</span><span class="ferramenta"><img alt="" height="26" src="/assets/logos/instagram.svg" width="26"/> Instagram</span><span class="ferramenta"><img alt="" height="26" src="/assets/logos/youtube.svg" width="26"/> YouTube</span></div><p>Que alegria ter vocês aqui novamente! Hoje vamos dar mais um passo importante
+            na nossa jornada digital. Vocês se lembram de quando achávamos que o computador
+            era um bicho de sete cabeças? <strong>Olhem só onde chegamos!</strong>
+            Vocês já são verdadeiros <strong>navegadores digitais</strong>.</p></section>
+
+<section class="etapa" data-etapa="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como foi nossa semana com o WhatsApp ?</h3><span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span></div><div class="etapa-visual"><img alt="Avó sorridente olhando o celular em frente a um mural com corações, curtidas e símbolos de redes sociais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula04-midias-sociais-bg-16x9-v01.png" width="1536"/></div></div></section>
+
+<section class="etapa" data-etapa="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p>Na semana passada, vocês aprenderam a usar o WhatsApp e se conectaram com
+            suas famílias de uma forma totalmente nova. Alguns de vocês já estão:</p></div><div class="etapa-visual"><ul class="lista-check">
+<li><span><strong>Enviando "bom dia"</strong> para os filhos e netos</span></li>
+<li><span><strong>Participando dos grupos da família</strong> — a reunião sem data marcada</span></li>
+<li><span><strong>Compartilhando fotos</strong> e recebendo fotos dos netinhos</span></li>
+</ul></div></div></section>
+
+<section class="etapa" data-etapa="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="analogia">
+                📱 "O WhatsApp é como aquela conversa gostosa no portão de casa —
+                mas agora vocês podem 'conversar no portão' com quem está em qualquer lugar do mundo!
+                Ele existe para facilitar você falar com quem você ama."
+            </div></section>
+
+<section class="etapa" data-etapa="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Mas afinal, o que são as mídias sociais?</h2><div class="etapa-grid"><div class="etapa-texto"><p>Imaginem um <strong>grande clube</strong>, uma <strong>praça da cidade</strong>,
+            onde vocês podem:</p></div><div class="etapa-visual"><ul class="lista-check">
+<li><span><strong>Ver fotos da família</strong> de todo o mundo</span></li>
+<li><span><strong>Compartilhar suas próprias fotos e histórias</strong></span></li>
+<li><span><strong>Reencontrar amigos de décadas atrás</strong></span></li>
+<li><span><strong>Aprender coisas novas</strong> — receitas, artesanato, jardinagem</span></li>
+<li><span><strong>Assistir programas interessantes</strong></span></li>
+<li><span><strong>Acompanhar as novidades dos netos</strong> de pertinho</span></li>
+</ul></div></div></section>
+
+<section class="etapa" data-etapa="6"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Mas afinal, o que são as mídias sociais? — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div class="analogia">
+                🏛️ "É exatamente isso que as <strong>redes sociais</strong> fazem: são praças,
+                clubes e salas de visita — só que em vez de funcionarem na rua,
+                funcionam <strong>através da tela do computador ou do celular</strong>."
+            </div></div><div class="etapa-visual"><div class="destaque">
+                💡 <strong>Boa notícia:</strong> vocês já sabem o que fazer numa praça ou num clube —
+                conversar, ver quem está por perto, mostrar fotos, trocar receitas.
+                As mídias sociais fazem isso pela tela. Só muda o "lugar".
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="7"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><div class="etapa-grid"><div class="etapa-texto"><p>Nossa jornada pelas mídias sociais tem quatro paradas. Vamos visitar cada uma:</p></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Facebook</strong> — o álbum de família que nunca acaba</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Instagram</strong> — a vitrine das suas memórias</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>YouTube</strong> — sua TV personalizada</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Segurança e privacidade</strong> — como se proteger e usar tudo com tranquilidade</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="8"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="destaque">
+                🌉 <strong>Fio da meada de hoje:</strong> antes de entrar em qualquer rede,
+                vamos aprender o vocabulário (perfil, postar, seguir, curtir),
+                visitar cada rede com calma e terminar protegendo nossas contas.
+                Vamos transformar essas "redes sociais" em <strong>pontes para a felicidade</strong>!
+            </div></section>
+
+<section class="etapa" data-etapa="9"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é um perfil?</h2><div class="etapa-grid"><div class="etapa-texto"><p>Em todas as redes sociais você vai ouvir a palavra
+            <span class="termo" tabindex="0">perfil
+                <span class="tooltip"><strong>Perfil</strong>
+                Seu cartão de visita digital: a foto, o nome e as informações que mostram quem é você na rede social.</span>
+</span>.
+            Antes de qualquer coisa, vamos entender o que ela significa — porque é a base de tudo.</p><h3>Veja um exemplo de perfil:</h3></div><div class="etapa-visual"><div class="analogia">
+                📇 "Perfil é o seu <strong>cartão de visita digital</strong>.
+                Assim como você se apresenta dizendo seu nome e mostrando seu rosto,
+                o perfil é a sua apresentação dentro da rede social:
+                <strong>foto, nome e informações</strong> sobre você."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="10"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é um perfil? — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p>Repare: o perfil mostra <strong>quem você é</strong> para os outros —
+            e também é onde os amigos <strong>reconhecem você</strong>.
+            Por isso a <strong>foto de perfil</strong> é tão importante:
+            ela é o seu rosto na rede, é o que faz os amigos te acharem e te reconhecerem.</p></div><div class="etapa-visual"><div class="perfil-cartao">
+<img alt="Foto de perfil da Dona Zilda" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" style="border-radius:50%;" width="64"/>
+<div class="perfil-info">
+<div class="perfil-nome">Dona Zilda</div>
+<div class="perfil-handle">@dona_zilda</div>
+<div class="perfil-desc">Aposentada, adora bolo de fubá, jardim e os netos 🌼</div>
+</div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="11"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é um perfil? — continuação</h2><div class="destaque">
+                🧭 <strong>Fio da meada:</strong> perfil → conta → postar/seguir/curtir.
+                Guarde essa sequência: ela explica 90% das dúvidas nas redes sociais.
+            </div></section>
+
+<section class="etapa" data-etapa="12"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Para ter um perfil, primeiro você cria sua conta</h2><div class="etapa-grid"><div class="etapa-texto"><p>Você já conhece isso lá da Aula 01! Sua
+            <span class="termo" tabindex="0">conta
+                <span class="tooltip"><strong>Conta</strong>
+                O cadastro que diz ao serviço quem você é — como a sua assinatura. É com ela que você entra na rede social.</span>
+</span>
+            é como a assinatura que diz ao serviço quem você é, e a
+            <span class="termo" tabindex="0">senha
+                <span class="tooltip"><strong>Senha</strong>
+                A chave da sua casa digital — só você tem. É ela que protege sua conta de estranhos.</span>
+</span>
+            é a chave que protege essa assinatura.</p><h3>Passo a passo para criar sua conta no Facebook</h3></div><div class="etapa-visual"><div class="analogia">
+                📝 "Criar sua conta é <strong>como criar um cartão de visita digital</strong>:
+                você diz seu nome, escolhe uma senha — e pronto, ganha um lugar seu dentro da rede social.
+                É como fazer o cadastro na farmácia ou no banco, só que para conversar com a família."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="13"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Para ter um perfil, primeiro você cria sua conta — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o navegador</strong> — aquele ícone que já conhecemos (Chrome, Firefox ou Edge)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Digite:</strong> www.facebook.com</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Crie sua conta</strong> — nome, e-mail e uma senha só sua</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Adicione uma foto sua</strong> — para os amigos te reconhecerem</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Comece a procurar amigos e familiares</strong> e mande pedidos de amizade</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="14"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Para ter um perfil, primeiro você cria sua conta — continuação</h2><div class="atencao">
+                🆘 <strong>Não tenha medo de pedir ajuda!</strong>
+                Estamos aqui para te ajudar. Monitores e familiares adoram ajudar nesse primeiro acesso.
+            </div></section>
+
+<section class="etapa" data-etapa="15"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O vocabulário das redes: postar, seguir e curtir</h2><p>Três palavras aparecem o tempo todo nas redes sociais.
+            Vamos aprender cada uma com uma analogia simples — e depois treinar:</p></section>
+
+<section class="etapa" data-etapa="16"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O vocabulário das redes: postar, seguir e curtir — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Sua vez: vamos treinar o "seguir" agora mesmo</h3></div><div class="etapa-visual"><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🖼️</span>
+<h4>Postar</h4>
+<p style="font-size: var(--texto-sm);">É <strong>colocar algo para todos verem</strong> —
+                    uma foto, um recado, um vídeo. Como pendurar uma foto nova na parede da sala
+                    para a família toda ver.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📰</span>
+<h4>Seguir</h4>
+<p style="font-size: var(--texto-sm);">É <strong>assinar o mural de alguém</strong>
+                    para ver as novidades dela aparecerem para você. Como assinar o jornal da cidade:
+                    toda vez que sai edição nova, chega até você.</p>
+</div>
+
+
+</div></div></div></section>
+
+<section class="etapa" data-etapa="17"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O vocabulário das redes: postar, seguir e curtir — continuação</h2><div class="passos-duplos">
+
+
+<div class="mini-cartao">
+<span class="icone-grande">❤️</span>
+<h4>Curtir</h4>
+<p style="font-size: var(--texto-sm);">É <strong>dar um abraço à distância</strong>.
+                    Quando você gosta de uma foto ou de um recado, toca no "curtir" e a pessoa
+                    sabe que você viu e gostou.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🗂️</span>
+<h4>Amizade (nas redes)</h4>
+<p style="font-size: var(--texto-sm);">É o <strong>convite de porta</strong>:
+                    você aceita quem você conhece, como deixar alguém entrar na sua sala.
+                    Vamos falar mais sobre isso na parte de segurança!</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="18"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O vocabulário das redes: postar, seguir e curtir — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p>Este é um <strong>simulador</strong> — é igualzinho ao de verdade, mas aqui
+            você pode errar à vontade. Toque no botão e veja o que acontece:</p><div style="text-align:center;">
+<button class="btn-seguir" id="btn-seguir">➕ Seguir</button>
+</div></div><div class="etapa-visual"><div class="perfil-cartao">
+<img alt="Perfil do Seu José" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" style="border-radius:50%;" width="64"/>
+<div class="perfil-info" style="flex:1;">
+<div class="perfil-nome">Seu José</div>
+<div class="perfil-handle">@seu_jose</div>
+<div class="perfil-desc">Adora fotografar o jardim e contar histórias da cidade</div>
+</div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="19"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O vocabulário das redes: postar, seguir e curtir — continuação</h2><div class="destaque" id="seguir-sucesso" style="display:none;">
+                ✅ <strong>Você agora segue o Seu José!</strong>
+                As novidades dele (fotos do jardim, histórias da cidade) vão aparecer para você.
+                Seguir é assim: uma assinatura grátis do mural de alguém. <strong>E se quiser parar, é só tocar de novo no botão.</strong>
+</div></section>
+
+<section class="etapa" data-etapa="20"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Facebook: o álbum de família que nunca acaba</h2><div class="etapa-grid"><div class="etapa-texto"><h3>O que vocês podem fazer no Facebook?</h3></div><div class="etapa-visual"><div class="analogia">
+                📖 "O Facebook é como aquele <strong>álbum de fotografias</strong> que vocês têm em casa —
+                mas que <strong>nunca fica cheio</strong> e onde toda a família pode colocar
+                fotos novas todos os dias!"
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="21"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Facebook: o álbum de família que nunca acaba — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">📸</span>
+<h4>Ver fotos da família</h4>
+<p style="font-size: var(--texto-sm);">Todos os dias aparecem fotos novas dos netos, filhos e sobrinhos.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🍰</span>
+<h4>Compartilhar suas próprias fotos</h4>
+<p style="font-size: var(--texto-sm);">Aquela foto do bolo que fizeram, do jardim, da família reunida.</p>
+</div>
+
+</div></section>
+
+<section class="etapa" data-etapa="22"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Facebook: o álbum de família que nunca acaba — continuação</h2><div class="passos-duplos">
+
+
+<div class="mini-cartao">
+<span class="icone-grande">💬</span>
+<h4>Escrever mensagens</h4>
+<p style="font-size: var(--texto-sm);">Contar como foi o dia, desejar feliz aniversário.</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="23"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Facebook: o álbum de família que nunca acaba — continuação</h2><div class="passos-duplos">
+
+
+
+<div class="mini-cartao">
+<span class="icone-grande">🤝</span>
+<h4>Reencontrar amigos</h4>
+<p style="font-size: var(--texto-sm);">Aquele colega de escola de 40 anos atrás!</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">👨‍👩‍👧‍👦</span>
+<h4>Participar de grupos</h4>
+<p style="font-size: var(--texto-sm);">Receitas, artesanato, plantas, histórias da cidade. No grupo, todo mundo vê e participa.</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="24"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Facebook: o álbum de família que nunca acaba — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div class="destaque">
+                🧭 <strong>Lembrando o passo a passo:</strong> abra o navegador → digite
+                www.facebook.com → entre com sua conta → e pronto, o álbum da família
+                está aberto na sua frente, com fotos novas todo dia.
+            </div></div><div class="etapa-visual"><div class="atencao">
+                ⚠️ <strong>Já deixa anotado:</strong> no Facebook, todo conteúdo aparece num
+                <span class="termo" tabindex="0">mural
+                    <span class="tooltip"><strong>Mural (ou feed)</strong>
+                    A página onde aparecem as publicações de quem você segue — como o quadro de recados da praça, que se renova o tempo todo.</span>
+</span>
+                — é a página onde aparecem as publicações de quem você segue e dos seus amigos.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="25"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Curtir: o abraço à distância</h2><p>Vocês podem <strong>curtir</strong> as fotos da família para mostrar que gostaram —
+            é como dar um <strong>abraço à distância</strong>. Vamos treinar agora
+            com uma publicação da Dona Zilda:</p></section>
+
+<section class="etapa" data-etapa="26"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Curtir: o abraço à distância — continuação</h2><div class="feed-card">
+<div class="feed-topo">
+<img alt="Dona Zilda" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" width="40"/>
+<div>
+<div class="feed-nome">Dona Zilda</div>
+<div class="feed-tempo">Hoje · 2 h</div>
+</div>
+</div>
+<div class="feed-texto">Que alegria! Hoje o bolo de fubá da vovó ficou perfeito! 🎂</div>
+<div class="feed-foto">🎂 Bolo de fubá quentinho</div>
+<div class="feed-acoes">
+<button aria-label="Curtir a publicação" class="btn-reacao" id="btn-curtir">👍 Curtir</button>
+<button aria-label="Reagir com amei" class="btn-reacao" id="btn-amei">❤️ Amei</button>
+</div>
+<div class="feed-reacoes" id="feed-reacoes">Toque em "Curtir" ou "Amei" para mostrar que gostou!</div>
+</div></section>
+
+<section class="etapa" data-etapa="27"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Curtir: o abraço à distância — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div class="destaque" id="curtir-sucesso" style="display:none;">
+                ❤️ <strong>Você curtiu!</strong> A Dona Zilda vai ver que você gostou da foto —
+                é como dar um abraço à distância. Na vida real, o botão fica no mesmo lugar,
+                embaixo de cada publicação, junto com o
+                <span class="termo" tabindex="0">menu ⋮
+                    <span class="tooltip"><strong>Menu (⋮)</strong>
+                    A gaveta de opções: três pontinhos que guardam mais ações — salvar, denunciar, configurar. Toque e veja o que tem dentro.</span>
+</span>
+                (os três pontinhos que guardam outras opções).
+            </div></div><div class="etapa-visual"><div class="analogia">
+                🤗 "Curtir é um gesto de carinho: você não precisa escrever nada,
+                um toque já diz 'vi, gostei e estou com você'. E o melhor:
+                a pessoa recebe esse carinho na hora, mesmo estando longe."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="28"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Primeiros passos no Instagram</h3></div><div class="etapa-visual"><div class="analogia">
+                🪟 "O Instagram é como uma <strong>vitrine bonita</strong> onde vocês expõem
+                suas melhores fotos — igual àquelas vitrines das lojas mais elegantes da rua!
+                Nele, as fotos são as estrelas."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="29"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Baixe o aplicativo no celular</strong> — na loja de aplicativos, como instalar um programa novo</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Crie sua conta</strong> — e escolha um <strong>@ bonito</strong> (o seu nome de usuário, ex.: @dona_zilda)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Coloque uma foto de perfil</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Comece a seguir familiares e amigos</strong></p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Poste sua primeira foto com uma frase bonita</strong></p></div>
+</div></section>
+
+<section class="etapa" data-etapa="30"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Por que o Instagram é especial?</h3></div><div class="etapa-visual"><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🧵</span>
+<h4>Mostrar suas habilidades</h4>
+<p style="font-size: var(--texto-sm);">Aquele bordado lindo, o jardim florido, o prato que cozinharam.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">👶</span>
+<h4>Acompanhar os netos</h4>
+<p style="font-size: var(--texto-sm);">Eles adoram postar fotos no Instagram!</p>
+</div>
+
+
+</div></div></div></section>
+
+<section class="etapa" data-etapa="31"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="passos-duplos">
+
+
+<div class="mini-cartao">
+<span class="icone-grande">📚</span>
+<h4>Guardar memórias</h4>
+<p style="font-size: var(--texto-sm);">Como um álbum de fotos organizado e bonito.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">✨</span>
+<h4>Se inspirar</h4>
+<p style="font-size: var(--texto-sm);">Receitas, decoração, artesanato, plantas.</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="32"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><h3>Sua vez: poste sua primeira foto</h3><p>Escreva uma frase bonita e toque em <strong>Publicar</strong> — veja como
+            um post nasce no Instagram:</p></section>
+
+<section class="etapa" data-etapa="33"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="feed-card">
+<div class="feed-topo">
+<img alt="Meu perfil" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" width="40"/>
+<div>
+<div class="feed-nome">Meu perfil</div>
+<div class="feed-tempo">Agora mesmo</div>
+</div>
+</div>
+<div class="feed-foto">🌼 Minha primeira foto</div>
+<div style="padding: 0 14px 12px;">
+<input aria-label="Frase da publicação" autocomplete="off" class="insta-frase" id="insta-frase" placeholder="Escreva uma frase bonita... (ex.: 'A vida é feita de pequenas alegrias')"/>
+<button class="btn-publicar" id="btn-publicar">📤 Publicar</button>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="34"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div class="destaque" id="insta-sucesso" style="display:none;">
+                🎉 <strong>Publicado!</strong> Sua foto com a frase bonita está no ar.
+                Quando alguém curtir, você vai ver o ❤️. É assim que as memórias circulam no Instagram.
+            </div></div><div class="etapa-visual"><div class="analogia">
+                ⏳ "No Instagram vocês também podem criar <strong>Stories</strong> —
+                fotos que ficam <strong>só 24 horas</strong> no ar. É como contar uma
+                novidade rápida para os amigos: aparece, todo mundo vê, e depois some sozinha."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="35"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como usar o YouTube</h3></div><div class="etapa-visual"><div class="analogia">
+                📺 "O YouTube é como ter uma <strong>televisão gigante com milhões de canais</strong>,
+                onde vocês escolhem exatamente o que querem assistir — e quando querem assistir!"
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="36"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o navegador</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Digite:</strong> www.youtube.com</p></div>
+<div class="passo"><span class="passo-num">3</span><p>Na <strong>barra de pesquisa</strong>, escreva o que querem assistir — por exemplo: "receita de pão caseiro"</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique no vídeo que mais gostaram</strong></p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Aperte o play ▶️ e aproveite!</strong></p></div>
+</div></section>
+
+<section class="etapa" data-etapa="37"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Funcionalidades especiais</h3></div><div class="etapa-visual"><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">⏸️</span>
+<h4>Pausar</h4>
+<p style="font-size: var(--texto-sm);">Podem pausar o vídeo quando quiserem — para atender o telefone ou descansar os olhos.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">⏪</span>
+<h4>Voltar</h4>
+<p style="font-size: var(--texto-sm);">Repetir a parte que não entenderam, quantas vezes quiserem.</p>
+</div>
+
+
+</div></div></div></section>
+
+<section class="etapa" data-etapa="38"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada — continuação</h2><div class="passos-duplos">
+
+
+<div class="mini-cartao">
+<span class="icone-grande">💬</span>
+<h4>Legendas</h4>
+<p style="font-size: var(--texto-sm);">Muitos vídeos têm legendas para facilitar — é só tocar no botão "CC".</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🔖</span>
+<h4>Salvar</h4>
+<p style="font-size: var(--texto-sm);">Guardar vídeos numa lista para assistir depois — como marcar uma página do livro.</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="39"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>O que tem no YouTube para vocês?</h3></div><div class="etapa-visual"><ul class="lista-check">
+<li><span><strong>Receitas deliciosas</strong> — "Como fazer bolo de fubá da vovó"</span></li>
+<li><span><strong>Artesanato</strong> — "Crochê para iniciantes", "Bordado passo a passo"</span></li>
+<li><span><strong>Jardinagem</strong> — "Como cuidar de orquídeas", "Horta em casa"</span></li>
+<li><span><strong>Música</strong> — aquelas canções que tocavam no rádio quando vocês eram jovens</span></li>
+<li><span><strong>Documentários</strong> — história, natureza, viagens</span></li>
+<li><span><strong>Ginástica</strong> — "Exercícios para terceira idade"</span></li>
+</ul></div></div></section>
+
+<section class="etapa" data-etapa="40"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>YouTube: sua TV personalizada — continuação</h2><div class="destaque">
+                🌟 <strong>Você pode aprender o que você quiser no YouTube.</strong>
+                É uma TV que obedece você: sem horário marcado, sem esperar o programa começar.
+            </div></section>
+
+<section class="etapa" data-etapa="41"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança: trancando a porta da sua conta</h2><div class="etapa-grid"><div class="etapa-texto"><p>Assim como trancamos a porta de casa, precisamos também
+            <strong>trancar nossas contas nas redes sociais</strong>.
+            Mas não se preocupem — é mais simples do que parece!</p><h3>Informações pessoais: o que NÃO compartilhar</h3></div><div class="etapa-visual"><div class="analogia">
+                🔐 "A sua conta é como a sua casa: você não deixa a porta aberta
+                para qualquer pessoa entrar. Nas redes sociais, a regra é a mesma:
+                só deixamos entrar (e só mostramos nossas coisas) para quem conhecemos."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="42"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança: trancando a porta da sua conta — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Vamos testar com situações reais. Leia com atenção e escolha:</strong></p></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Não compartilhe</strong> endereço completo de casa, telefone ou CPF</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Cuidado com fotos que mostrem onde vocês moram</strong> — a fachada da casa, a placa da rua</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Não digam quando vão viajar</strong> — contem só depois que voltarem</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="43"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança: trancando a porta da sua conta — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    🏠 Você quer postar uma foto linda da sua casa nova. O que é mais seguro fazer?
+                </div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Posto a foto com o portão aberto e a placa com o nome da rua aparecendo</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Posto a foto e escrevo o endereço completo na legenda, para os amigos visitarem</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Muito bem! Foto da casa sem mostrar o número nem a rua é seguro — você mostra a alegria sem entregar o endereço." data-feedback-wrong="💡 Quase! O cuidado certo é postar a foto sem mostrar a placa da rua nem o número da casa — e nunca escrever o endereço completo. Assim você compartilha a alegria sem abrir a porta para estranhos."><span class="letra">C</span><span>Posto a foto sem mostrar a placa da rua nem o número da casa</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div></section>
+
+<section class="etapa" data-etapa="44"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança: trancando a porta da sua conta — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    ✈️ Você vai viajar para a casa da sua filha no fim de semana. O que fazer?
+                </div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Posto hoje: "Na sexta estarei fora, casa vazia até domingo!"</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Anunciar a viagem só depois de voltar é a regra de ouro — ninguém fica sabendo que a casa está vazia." data-feedback-wrong="💡 Cuidado! Anunciar a viagem antes de ir avisa a cidade inteira (inclusive quem não deveria) que a casa vai ficar vazia. O seguro é contar depois que voltar, com as fotos lindas da viagem."><span class="letra">B</span><span>Conto da viagem só depois que voltar, com as fotos</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Posto a data e o horário exato do embarque para todo mundo ver</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></section>
+
+<section class="etapa" data-etapa="45"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança: trancando a porta da sua conta — continuação</h2><div class="destaque">
+                👶 <strong>Sobre fotos dos netos:</strong> cuidado ao postar fotos deles —
+                <strong>perguntem aos pais primeiro</strong>. Cada família tem suas regras,
+                e respeitar a decisão dos pais é uma prova de amor.
+            </div></section>
+
+<section class="etapa" data-etapa="46"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Como identificar contas falsas</h2><p>Nem todo perfil que aparece para vocês é de verdade. Existem
+            <span class="termo" tabindex="0">contas falsas
+                <span class="tooltip"><strong>Conta falsa</strong>
+                Um perfil criado por outra pessoa fingindo ser alguém que não é — geralmente para enganar, pedir dinheiro ou aplicar golpes.</span>
+</span>
+            — perfis criados por pessoas que fingem ser quem não são.
+            Veja os sinais de alerta:</p></section>
+
+<section class="etapa" data-etapa="47"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Como identificar contas falsas — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Poucos amigos:</strong> conta nova com menos de 10 amigos</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Poucas fotos:</strong> só uma ou duas fotos, muito bonitas demais</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Nome estranho:</strong> nome que não parece real</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Mensagens suspeitas:</strong> pedindo dinheiro, prometendo prêmios</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="48"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Como identificar contas falsas — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Teste seus olhos de detetive:</strong></p></div><div class="etapa-visual"><div class="analogia">
+                🚪 "Aceitar um estranho na rede social é como <strong>abrir a porta de casa
+                para quem você não conhece</strong>. Se não reconhecem a pessoa,
+                podem recusar sem problema nenhum — você não precisa de desculpa."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="49"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Como identificar contas falsas — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    🤔 Você recebe um pedido de amizade de "Maria Souza" — só que o perfil tem
+                    3 amigos, 1 foto muito bonita, e já manda mensagem dizendo:
+                    "Você ganhou um prêmio de R$ 5.000! Clique aqui para receber." O que fazer?
+                </div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Aceito na hora e clico no link — é dinheiro de graça!</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Aceito a amizade e pergunto para ela como recebo o prêmio</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Excelente! Perfil com poucos amigos, foto bonita demais e prêmio em dinheiro = conta falsa. Recusar e não clicar em nada é a atitude certa." data-feedback-wrong="💡 Cuidado! Isso tem todos os sinais de uma conta falsa: poucos amigos, foto bonita demais e 'prêmio' pedindo clique. Recuse o pedido, não clique em nada e, se quiser, avise um monitor ou familiar. Se algo parece bom demais para ser verdade, provavelmente é mentira!"><span class="letra">C</span><span>Recuso o pedido, não clico em nada e conto para um familiar ou monitor</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div></section>
+
+<section class="etapa" data-etapa="50"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Como identificar contas falsas — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div class="atencao">
+                ❓ <strong>Na dúvida, perguntem!</strong> É melhor perguntar mil vezes
+                do que se arrepender depois. Estamos aqui para ajudar sempre.
+            </div></div><div class="etapa-visual"><div class="destaque">
+                🧵 <strong>Regra que salva:</strong> se algo parece bom demais para ser verdade,
+                <strong>provavelmente é mentira!</strong>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="51"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Cuidado com amizades e senhas fortes</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Cuidado com amizades</h3><h3>Senhas fortes</h3></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Só aceitem pedidos de amizade de pessoas que conhecem</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Se não reconhecem a pessoa, podem recusar sem problema</strong> — não é falta de educação, é cuidado</p></div>
+<div class="passo"><span class="passo-num">3</span><p>É como <strong>não abrir a porta para estranhos</strong>: a gente não deixa entrar quem não conhece</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="52"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Cuidado com amizades e senhas fortes — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p>Sua senha é a chave da sua casa digital. Para deixar essa chave difícil de copiar:</p></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Use senhas diferentes para cada rede social</strong> — se uma vazar, as outras continuam seguras</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Misture letras, números e símbolos</strong> na mesma senha</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Exemplo:</strong> MinhaVida123! — mas criem a sua própria, que só vocês saibam!</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="53"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Cuidado com amizades e senhas fortes — continuação</h2><p>Veja como uma senha boa mistura ingredientes:</p><div style="margin: var(--esp-sm) 0;">
+<span class="senha-chip">Letras: MinhaVida</span>
+<span class="senha-chip">Números: 123</span>
+<span class="senha-chip">Símbolo: !</span>
+</div><p><strong>Teste seu conhecimento:</strong></p></section>
+
+<section class="etapa" data-etapa="54"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Cuidado com amizades e senhas fortes — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    🔑 Qual destas é a senha <strong>mais forte</strong> para usar nas redes sociais?
+                </div>
+<div class="quiz-opcoes" data-quiz="4">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>123456</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>minha vida</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Minh@Vida2026! mistura letras, números e símbolos — e ainda é fácil de lembrar. Uma senha forte é como uma chave com várias travas." data-feedback-wrong="💡 Quase! Senha fraca é aquela fácil de adivinhar: só números (123456) ou só palavras simples. A senha forte mistura letras, números e símbolos, como Minh@Vida2026! — e é diferente em cada rede social."><span class="letra">C</span><span>Minh@Vida2026!</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="4"></div>
+</div></section>
+
+<section class="etapa" data-etapa="55"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Cuidado com amizades e senhas fortes — continuação</h2><div class="atencao">
+                🚨 <strong>Regra de ouro:</strong> nunca conte sua senha para ninguém —
+                nem para "funcionários da rede social", nem para quem liga "do banco".
+                Ninguém honesto pede sua senha. Sua senha é <strong>só sua</strong>.
+            </div></section>
+
+<section class="etapa" data-etapa="56"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana</h2><div class="missao">
+<h3>🏠 Para fazer em casa até a próxima aula</h3>
+<p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> <strong>Facebook:</strong> entre 3 vezes esta semana para <strong>curtir fotos da família</strong> — lembre-se: cada curtida é um abraço à distância.</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> <strong>YouTube:</strong> assista a um vídeo sobre algo que você gosta (receita, música, artesanato, jardinagem...) e <strong>treine fazer pesquisas</strong> na barra de busca.</p>
+<p><strong>3.</strong> <strong>Instagram:</strong> se tiver, <strong>poste uma foto com uma frase bonita</strong> — e mostre para a família!</p>
+</div></section>
+
+<section class="etapa" data-etapa="57"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — continuação</h2><div class="destaque">
+                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                cada uma praticada em casa deixa o aprendizado mais firme.
+                <strong>Mal podemos esperar para saber como foi!</strong>
+</div></section>
+
+<section class="etapa" data-etapa="58"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje</h2><p>Hoje vocês deram mais um passo gigante no mundo digital! Agora já sabem:</p></section>
+
+<section class="etapa" data-etapa="59"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — continuação</h2><ul class="lista-conquistas">
+<li>✅ O que são as redes sociais — o clube e a praça virtuais</li>
+<li>✅ O que é um perfil, e como criar sua conta</li>
+<li>✅ O que significa postar, seguir e curtir</li>
+<li>✅ Como se conectar com a família pelo Facebook e Instagram</li>
+<li>✅ Como assistir vídeos interessantes no YouTube</li>
+<li>✅ Como identificar contas falsas e se proteger</li>
+<li>✅ Como criar senhas fortes e cuidar da privacidade</li>
+</ul></section>
+
+<section class="etapa" data-etapa="60"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — continuação</h2><div class="destaque">
+                🎓 <strong>Vocês são verdadeiros estudantes digitais!</strong>
+                Continue praticando e na próxima semana vamos aprender ainda mais.
+            </div></section>
+
+<section class="etapa" data-etapa="61"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração</h2><div class="momento">
+<span class="trofeu">🧵</span>
+<h2>Você costurou mais um retalho!</h2>
+<p>Hoje você aprendeu o que são as mídias sociais, criou (ou relembrou) seu perfil,
+                visitou o Facebook, o Instagram e o YouTube, e aprendeu a se proteger —
+                contas falsas, amizades, senhas fortes e fotos dos netos.
+                Isso é muito mais do que "usar a internet" — é <strong>autonomia</strong>.</p>
+</div><div style="text-align:center; margin-top: var(--esp-lg);">
+<div class="retalho-costurado">Aula 04 · costurada! 🎉</div>
+</div></section>
+
+<section class="etapa" data-etapa="62"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div style="text-align:center; margin-top: var(--esp-md);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div></div><div class="etapa-visual"><div class="destaque" style="margin-top: var(--esp-lg);">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos abrir o nosso
+                <strong>Baú Digital de Memórias</strong> — Google Drive <span class="ferramenta"><img alt="" height="26" src="/assets/logos/drive.png" width="26"/> Google Drive</span> e Google Fotos <span class="ferramenta"><img alt="" height="26" src="/assets/logos/photos.png" width="26"/> Google Fotos</span> —
+                para guardar todas essas fotos com segurança, organizadas em pastinhas.
+                Mesmo jeito de aprender: um passo de cada vez, no seu ritmo.
+            </div></div></div></section><nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ===== Estado específico da aula 04 =====
+            var seguindo = false;
+            var curtiu = false;
+            var amei = false;
+            var postPublicado = false;
+
+            // ===== Simulador: seguir =====
+            var btnSeguir = document.getElementById('btn-seguir');
+            var seguirSucesso = document.getElementById('seguir-sucesso');
+
+            btnSeguir.addEventListener('click', function () {
+                seguindo = !seguindo;
+                btnSeguir.classList.toggle('ativo', seguindo);
+                btnSeguir.textContent = seguindo ? '✓ Seguindo' : '➕ Seguir';
+                if (seguindo) {
+                    seguirSucesso.style.display = 'block';
+                    seguirSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    seguirSucesso.style.display = 'none';
+                }
+            });
+
+            // ===== Simulador: curtir / amei (Facebook) =====
+            var btnCurtir = document.getElementById('btn-curtir');
+            var btnAmei = document.getElementById('btn-amei');
+            var feedReacoes = document.getElementById('feed-reacoes');
+            var curtirSucesso = document.getElementById('curtir-sucesso');
+
+            function atualizarReacoes() {
+                var partes = [];
+                if (curtiu) partes.push('Você curtiu 👍');
+                if (amei) partes.push('Você reagiu com ❤️');
+                if (partes.length === 0) {
+                    feedReacoes.textContent = 'Toque em "Curtir" ou "Amei" para mostrar que gostou!';
+                    curtirSucesso.style.display = 'none';
+                } else {
+                    var total = 12 + (curtiu ? 1 : 0) + (amei ? 1 : 0);
+                    feedReacoes.textContent = partes.join(' · ') + ' — ' + total + ' reações no total.';
+                    curtirSucesso.style.display = 'block';
+                }
+            }
+
+            btnCurtir.addEventListener('click', function () {
+                curtiu = !curtiu;
+                btnCurtir.classList.toggle('ativo-curtir', curtiu);
+                if (curtiu && amei) { amei = false; btnAmei.classList.remove('ativo-amei'); }
+                atualizarReacoes();
+            });
+
+            btnAmei.addEventListener('click', function () {
+                amei = !amei;
+                btnAmei.classList.toggle('ativo-amei', amei);
+                if (amei && curtiu) { curtiu = false; btnCurtir.classList.remove('ativo-curtir'); }
+                atualizarReacoes();
+            });
+
+            // ===== Simulador: postar no Instagram =====
+            var instaFrase = document.getElementById('insta-frase');
+            var btnPublicar = document.getElementById('btn-publicar');
+            var instaSucesso = document.getElementById('insta-sucesso');
+
+            btnPublicar.addEventListener('click', function () {
+                var frase = instaFrase.value.trim();
+                if (!frase) {
+                    instaFrase.focus();
+                    instaFrase.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                if (postPublicado) return;
+                postPublicado = true;
+                instaFrase.style.borderColor = '';
+                instaFrase.disabled = true;
+                btnPublicar.disabled = true;
+                btnPublicar.textContent = '✓ Publicado!';
+
+                var post = document.createElement('div');
+                post.className = 'post-publicado';
+                post.innerHTML = '<div style="font-weight:700; font-size:.9rem; color:#1c1e21; margin-bottom:6px;">@meu_perfil</div>' +
+                    '<div style="font-size:.95rem; color:#1c1e21;">' + frase.replace(/</g, '&lt;') + '</div>' +
+                    '<div style="margin-top:8px; font-size:.85rem; color:#65676b;">❤️ 1 curtida · 🌼 Minha primeira foto</div>';
+                btnPublicar.closest('.feed-card').appendChild(post);
+
+                instaSucesso.style.display = 'block';
+                instaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+            instaFrase.addEventListener('keydown', function (e) { if (e.key === 'Enter') btnPublicar.click(); });
+        })();
+    </script>
+</body>
+</html>

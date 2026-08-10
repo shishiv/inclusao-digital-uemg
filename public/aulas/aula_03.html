@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aula 03 interativa: WhatsApp — Conectando Famílias. Programa de Inclusão Digital UEMG Frutal.">
+    <meta name="theme-color" content="#1E4466">
+    <title>Aula 03 — WhatsApp: Conectando Famílias | Inclusão Digital UEMG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/player.css">
+    <style>
+        /* Extras específicos da aula 03 */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+
+        /* ===== Visuais de reconhecimento da aula 03 ===== */
+        .pilha-visual { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-height: 100%; }
+        .pilha-visual > * { max-height: 100%; }
+
+        .cartao-app { background: #FFF; border-radius: 22px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-lg); width: 100%; max-width: 300px; overflow: hidden; margin: 0 auto; }
+        .cartao-app .app-linha { display: flex; align-items: center; gap: 14px; padding: 18px; }
+        .cartao-app .app-icone { width: 64px; height: 64px; border-radius: 16px; background: #FFF; border: 2px solid var(--linha); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .cartao-app .app-icone img { width: 46px; height: 46px; object-fit: contain; }
+        .cartao-app .app-nome { font-weight: 800; color: #111B21; font-size: 1.05rem; }
+        .cartao-app .app-dev { font-size: .8rem; color: #667781; }
+        .cartao-app .app-botao { display: block; width: calc(100% - 36px); margin: 0 18px 18px; padding: 14px; border: none; border-radius: 12px; background: #0B8F4C; color: #FFF; font-weight: 800; font-size: 1rem; font-family: var(--font-body); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.16); }
+        .cartao-app .loja-tag { display: flex; align-items: center; gap: 8px; justify-content: center; padding: 12px; border-top: 1px solid #F0F2F5; font-size: .8rem; font-weight: 700; color: var(--bordado-suave); }
+
+        .cartao-sms { background: #FFF; border-radius: 22px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); width: 100%; max-width: 290px; overflow: hidden; margin: 0 auto; }
+        .cartao-sms .sms-topo { background: #075E54; color: #FFF; padding: 12px 14px; font-weight: 700; font-size: .95rem; display: flex; align-items: center; gap: 10px; }
+        .cartao-sms .sms-corpo { padding: 18px; text-align: center; }
+        .cartao-sms .sms-titulo { font-size: .85rem; color: #667781; margin-bottom: 10px; }
+        .cartao-sms .sms-codigo { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #111B21; letter-spacing: 8px; background: var(--algodao); border: 2px dashed var(--linha-forte); border-radius: 12px; padding: 10px; }
+        .cartao-sms .sms-aviso { margin-top: 12px; font-size: .78rem; color: #B5372C; font-weight: 700; }
+
+        .cadeia { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; }
+        .cadeia .elo { display: inline-flex; align-items: center; gap: 10px; background: var(--branco); border: 2px solid var(--linha); border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 800; font-size: 1.05rem; color: var(--bordado); box-shadow: var(--sombra-sm); }
+        .cadeia .seta { font-size: 1.4rem; line-height: 1; color: var(--chita-vermelha); }
+
+        .cartao-chat { background: #ECE5DD; border-radius: 24px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); width: 100%; max-width: 300px; overflow: hidden; margin: 0 auto; }
+        .cartao-chat .chat-topo { background: #075E54; color: #FFF; padding: 12px 14px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .9rem; }
+        .cartao-chat .chat-corpo { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+        .cartao-chat .chat-corpo .mockup-bolha { max-width: 88%; }
+        .cartao-chat .chat-nome { font-size: .68rem; font-weight: 700; color: #075E54; display: block; margin-bottom: 2px; }
+        .cartao-chat .chat-nome.outro { color: #4A3B2A; }
+
+        .cartao-reacao { background: #FFF; border-radius: 18px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); width: 100%; max-width: 320px; padding: 16px; display: flex; flex-direction: column; gap: 12px; margin: 0 auto; }
+        .cartao-reacao .reacao-linha { display: flex; gap: 10px; justify-content: center; }
+        .cartao-reacao .reacao { font-size: 2rem; background: var(--algodao); border: 2px solid var(--linha); border-radius: 14px; width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; }
+        .cartao-reacao .reacao-legenda { text-align: center; font-size: .8rem; font-weight: 700; color: var(--bordado-suave); }
+
+        .cartao-web { background: #FFF; border-radius: 14px; border: 1px solid #D9DEE3; box-shadow: var(--sombra-lg); width: 100%; max-width: 360px; overflow: hidden; margin: 0 auto; }
+        .cartao-web .web-bar { background: #F0F2F5; padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #E4E8EC; }
+        .cartao-web .web-ponto { width: 11px; height: 11px; border-radius: 50%; }
+        .cartao-web .web-url { flex: 1; background: #FFF; border-radius: 8px; padding: 5px 10px; font-size: .75rem; color: #667781; border: 1px solid #E4E8EC; text-align: center; }
+        .cartao-web .web-corpo { display: grid; grid-template-columns: 120px 1fr; min-height: 190px; }
+        .cartao-web .web-lista { background: #F8FAFB; border-right: 1px solid #E4E8EC; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .cartao-web .web-item { display: flex; align-items: center; gap: 8px; background: #FFF; border-radius: 10px; padding: 6px 8px; border: 1px solid #E4E8EC; }
+        .cartao-web .web-item .nome { font-size: .68rem; font-weight: 700; color: #111B21; line-height: 1.25; }
+        .cartao-web .web-chat { padding: 12px; display: flex; flex-direction: column; gap: 8px; justify-content: flex-end; }
+        .cartao-web .web-chat .mockup-bolha { max-width: 92%; font-size: .8rem; padding: 7px 11px; }
+
+        /* O simulador mantém área útil no celular sem cortar a coluna visual. */
+        @media (max-width: 768px) {
+            .mockup-tela { min-height: 220px; }
+        }
+
+        /* Impeccable layout + adapt: preserve a leitura; etapas densas rolam por dentro. */
+        .etapa-grid .etapa-visual { height: auto; }
+
+        /* Impeccable layout + adapt: ritmo legível e rolagem interna honesta. */
+        .lista-check { gap: var(--esp-sm); }
+        .mini-cartao p { font-size: var(--texto-base) !important; line-height: 1.55; }
+        @media (max-width: 900px) {
+            .etapa-grid .etapa-visual { order: 0; max-height: none; }
+            .etapa p, .lista-check li, .mini-cartao p { font-size: var(--texto-base); }
+            .passos-duplos { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        }
+        @media (pointer: coarse) {
+            .url-chip, .btn-reacao, .btn-seguir, .btn-publicar,
+            .botao-instalar, .botao-rota, .lugar-chip, .app-botao { min-height: 44px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="player-topo">
+        <a href="/aulas.html" class="player-trilha-link">← Todas as aulas</a>
+        <h1 class="player-etiqueta">Aula 03 · WhatsApp</h1>
+    </div>
+
+    <div class="player-progresso">
+        <div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 38</span></div>
+        <div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+    </div>
+
+    <main class="player" id="player">
+
+        <!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+        <section class="etapa ativa" data-etapa="1">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Falar com quem você ama, de graça, na hora que quiser</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Imagine: <strong>sua filha mora em outra cidade</strong>, ou seu neto está longe.
+                    Antigamente, para falar com eles era preciso ligar, gastar crédito, marcar horário.
+                    Hoje existe um jeito mais simples — e você vai aprender hoje.</p>
+                    <div class="analogia">
+                        🏡 "O WhatsApp é como aquela conversa gostosa no portão de casa —
+                        mas você pode conversar com quem está em qualquer lugar do mundo, sem pagar nada."
+                    </div>
+                    <div class="ferramentas-linha">
+                        <span class="ferramenta ferramenta-lg"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <img
+                      src="/assets/ilustracoes/aula-avo-videochamada-subject-9x16-v01.png"
+                      alt="Avó sorridente falando por videochamada com a família no celular"
+                      class="ilustracao-cena"
+                      width="864" height="1536"
+                      style="margin: 0 auto;"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="2">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Por que usar o WhatsApp?</h2>
+            <ul class="lista-check">
+                <li><span><strong>Falar de graça</strong> com a família, sem gastar crédito do celular</span></li>
+                <li><span><strong>Receber fotos e vídeos dos netinhos</strong> em tempo real</span></li>
+                <li><span><strong>Conectar com quem está longe</strong> — e se aproximar de quem está perto</span></li>
+                <li><span><strong>Fazer a distância virar só um detalhe</strong></span></li>
+            </ul>
+        </section>
+
+        <section class="etapa" data-etapa="3">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>O que vamos aprender hoje</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>O que é um contato</strong> — e onde eles ficam no celular</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Como adicionar um contato</strong> novo na sua agenda</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Como instalar e configurar</strong> o WhatsApp (se ainda não tiver)</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Enviar mensagens, fotos e áudios</strong></p></div>
+                <div class="passo"><span class="passo-num">5</span><p><strong>Receber mensagens e reagir</strong> com emojis</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="4">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>O que vamos aprender hoje (2 de 2)</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">6</span><p><strong>Grupos de família</strong> — a reunião sem data marcada</p></div>
+                <div class="passo"><span class="passo-num">7</span><p><strong>Chamadas de voz e videochamadas</strong></p></div>
+                <div class="passo"><span class="passo-num">8</span><p><strong>WhatsApp Web</strong> — conversar pelo computador</p></div>
+                <div class="passo"><span class="passo-num">9</span><p><strong>Segurança</strong> — como se proteger de golpes</p></div>
+            </div>
+            <div class="destaque">
+                💡 <strong>Boa notícia:</strong> você já sabe a parte mais difícil —
+                se comunica com as pessoas há uma vida inteira. O WhatsApp só muda o "portão".
+                Vamos juntos, um passo de cada vez?
+            </div>
+        </section>
+
+        <!-- ============ FASE 2 · VAMOS JUNTOS (PRÉ-REQUISITOS) ============ -->
+        <section class="etapa" data-etapa="5">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é um contato</span>
+            <h2>Primeiro: o que é um contato?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Na aula de hoje, você vai ouvir muito a palavra
+                    <span class="termo" tabindex="0">contato
+                        <span class="tooltip"><strong>Contato</strong>
+                        É uma pessoa guardada na sua agenda do celular — com nome e número.
+                        Como o caderninho de telefones que você tinha em casa.</span>
+                    </span>.
+                    Antes de tudo, vamos entender o que ela significa — porque é a base de tudo no WhatsApp.</p>
+                    <div class="analogia">
+                        📖 "Contato é como escrever o nome e o telefone de alguém no seu caderninho de endereços.
+                        Só que o caderninho mora dentro do celular — e se chama <strong>agenda</strong>."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mockup-agenda" style="max-width: 340px; width: 100%; margin: 0 auto;">
+                        <div class="agenda-topo">📇 Minha agenda</div>
+                        <div class="contato-linha">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                            <div><div class="contato-nome">Dona Zilda</div><div class="contato-tel">(34) 98888-0000</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="6">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O fio da meada</span>
+            <h2>Por que isso é tão importante?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>O WhatsApp <strong>não inventa ninguém</strong>: ele só conversa com pessoas que já estão
+                    na sua agenda. É por isso que, antes de conversar, precisamos entender onde os contatos
+                    ficam e como adicionar alguém novo. Sem isso, nenhuma mensagem acontece.</p>
+                    <div class="destaque">
+                        🧭 <strong>O fio da meada:</strong> agenda → contato → conversa.
+                        Guarde essa sequência: ela explica 90% das dúvidas no WhatsApp.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cadeia">
+                        <div class="elo">📇 Agenda</div>
+                        <div class="seta">⬇️</div>
+                        <div class="elo">👤 Contato</div>
+                        <div class="seta">⬇️</div>
+                        <div class="elo">💬 Conversa</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="7">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">Onde ficam os contatos</span>
+            <h2>Onde ficam os contatos?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Todo celular tem uma
+                    <span class="termo" tabindex="0">agenda
+                        <span class="tooltip"><strong>Agenda</strong>
+                        O caderninho de endereços que fica dentro do celular. Guarda nome, número e foto de cada pessoa que você conhece.</span>
+                    </span>.
+                    É nela que o WhatsApp busca as pessoas para você conversar.</p>
+                    <p>Para encontrar a agenda no seu celular:</p>
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p>Procure um <strong>ícone de agenda</strong> — normalmente é um caderninho ou um bonequinho com um símbolo de pessoa 👤</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p>Pode se chamar <strong>"Contatos"</strong>, <strong>"Agenda"</strong> ou <strong>"Pessoas"</strong></p></div>
+                        <div class="passo"><span class="passo-num">3</span><p>Ao abrir, você vê a <strong>lista de pessoas</strong> salvas — é a sua agenda</p></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mockup-agenda" style="max-width: 340px; width: 100%; margin: 0 auto;">
+                        <div class="agenda-topo">📇 Minha agenda</div>
+                        <div class="contato-linha">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                            <div><div class="contato-nome">Dona Zilda</div><div class="contato-tel">(34) 98888-0000</div></div>
+                        </div>
+                        <div class="contato-linha">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Seu José" width="42" height="42">
+                            <div><div class="contato-nome">Seu José</div><div class="contato-tel">(34) 97777-0000</div></div>
+                        </div>
+                        <div class="contato-linha">
+                            <span class="contato-avatar">👩</span>
+                            <div><div class="contato-nome">Maria (filha)</div><div class="contato-tel">(34) 96666-0000</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="8">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>E se a agenda estiver vazia?</h2>
+            <div class="analogia">
+                📇 "A agenda do celular é o caderninho de endereços de casa que nunca se perde:
+                está sempre dentro do bolso, com todos os telefones da família."
+            </div>
+            <div class="destaque">
+                💡 <strong>Dica:</strong> se o celular for novo ou você nunca salvou ninguém,
+                a agenda pode estar vazia. Não se preocupe — o próximo passo ensina
+                a adicionar sua primeira pessoa!
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="9">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Vamos adicionar um contato juntos</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Toque nos campos abaixo e preencha com um familiar seu.
+                    Este é um <strong>simulador</strong> — é igualzinho ao celular, mas aqui você pode errar à vontade!</p>
+                    <div class="form-contato" id="form-contato">
+                        <label for="campo-nome">Nome completo</label>
+                        <input type="text" id="campo-nome" placeholder="Ex.: Maria Aparecida da Silva" autocomplete="off">
+                        <label for="campo-tel">Número com DDD</label>
+                        <input type="tel" id="campo-tel" placeholder="Ex.: (34) 99999-0000" autocomplete="off">
+                        <button class="btn btn-verde" id="btn-adicionar" style="width:100%;">➕ Adicionar à minha agenda</button>
+                    </div>
+                    <div id="agenda-sucesso" class="destaque" style="display:none;">
+                        ✅ <strong>Parabéns!</strong> Você acabou de adicionar seu primeiro contato.
+                        Repare que o WhatsApp vai buscar as conversas exatamente nesta agenda.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mockup-agenda" style="max-width: 340px; width: 100%; margin: 0 auto;">
+                        <div class="agenda-topo">📇 Minha agenda</div>
+                        <div id="agenda-lista">
+                            <div class="contato-linha">
+                                <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                                <div><div class="contato-nome">Dona Zilda (exemplo)</div><div class="contato-tel">(34) 98888-0000</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="10">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>No celular de verdade, o caminho é:</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p>Abra a <strong>agenda</strong> (ícone de caderninho)</p></div>
+                <div class="passo"><span class="passo-num">2</span><p>Toque no <strong>sinal de +</strong> ou no botão "Novo contato"</p></div>
+                <div class="passo"><span class="passo-num">3</span><p>Digite o <strong>nome</strong> e o <strong>telefone com DDD</strong></p></div>
+                <div class="passo"><span class="passo-num">4</span><p>Toque em <strong>Salvar</strong> — pronto, a pessoa está na sua agenda!</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="11">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é o WhatsApp</span>
+            <h2>E o WhatsApp, o que é? (e como instalar)</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>O WhatsApp é um
+                    <span class="termo" tabindex="0">aplicativo
+                        <span class="tooltip"><strong>Aplicativo (app)</strong>
+                        Um programa feito para o celular. Como uma ferramenta nova na sua caixa: o WhatsApp é a ferramenta de conversas.</span>
+                    </span>
+                    que precisa ser
+                    <span class="termo" tabindex="0">instalado
+                        <span class="tooltip"><strong>Instalar</strong>
+                        Colocar um aplicativo novo no celular. Faz uma vez e fica para sempre — como pendurar um quadro novo na parede.</span>
+                    </span>
+                    antes do primeiro uso. A instalação acontece na
+                    <span class="termo" tabindex="0">loja de aplicativos
+                        <span class="tooltip"><strong>Loja de aplicativos</strong>
+                        O shopping dos apps: Play Store <span class="ferramenta"><img src="/assets/logos/playstore.svg" alt="" width="26" height="26"> Play Store</span> (no celular Android, com o símbolo ▶️ colorido) ou App Store (no iPhone, com o símbolo da maçã 🍎). É de lá que os aplicativos são baixados.</span>
+                    </span>.</p>
+                    <div class="ferramentas-linha">
+                        <span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span>
+                        <span class="ferramenta"><img src="/assets/logos/playstore.svg" alt="" width="26" height="26"> Play Store</span>
+                    </div>
+                    <div class="analogia">
+                        📺 "Instalar um aplicativo é como instalar uma TV nova:
+                        só precisa fazer uma vez, e depois fica disponível para sempre."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-app">
+                        <div class="app-linha">
+                            <div class="app-icone"><img src="/assets/logos/whatsapp.svg" alt="WhatsApp"></div>
+                            <div>
+                                <div class="app-nome">WhatsApp</div>
+                                <div class="app-dev">WhatsApp LLC</div>
+                            </div>
+                        </div>
+                        <button class="app-botao" type="button">⬇️ Instalar</button>
+                        <div class="loja-tag">Disponível na <img src="/assets/logos/playstore.svg" alt="Play Store" width="20" height="20" style="object-fit:contain; border-radius:4px;"> Google Play Store</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="12">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Se o WhatsApp ainda não está no seu celular</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Abra a loja de aplicativos</strong> — Play Store (Android) ou App Store (iPhone)</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Digite "WhatsApp"</strong> na barra de busca</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Toque em "Instalar"</strong> (botão azul ou verde)</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Aguarde o download</strong> — aparece um círculo carregando</p></div>
+                <div class="passo"><span class="passo-num">5</span><p>Quando terminar, o <strong>ícone do WhatsApp</strong> aparece na tela do celular</p></div>
+            </div>
+            <div class="atencao">
+                🆘 <strong>Peça ajuda se for o primeiro acesso!</strong>
+                Não tenha medo de pedir ajuda — estamos aqui para te ajudar.
+                Monitores e familiares adoram ajudar nesse passo.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="13">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Configurando o WhatsApp pela primeira vez</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Com o WhatsApp instalado, a primeira abertura pede alguns dados.
+                    É rápido e acontece <strong>uma única vez</strong>:</p>
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Toque no ícone do WhatsApp</strong> para abrir</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Informe seu número de telefone</strong> com o DDD (ex.: 34 99999-0000)</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Receba um código por SMS</strong> e digite os 6 números</p></div>
+                        <div class="passo"><span class="passo-num">4</span><p><strong>Coloque seu nome</strong> (ex.: "Maria da Silva") e, se quiser, uma foto</p></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-sms">
+                        <div class="sms-topo">📲 Mensagem de texto (SMS)</div>
+                        <div class="sms-corpo">
+                            <div class="sms-titulo">Seu código do WhatsApp:</div>
+                            <div class="sms-codigo">1 2 3 4 5 6</div>
+                            <div class="sms-aviso">⚠️ Digite os 6 números no WhatsApp — e nunca compartilhe com ninguém.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="14">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Dicas para esse momento</h2>
+            <div class="analogia">
+                📝 "É como fazer o cadastro na farmácia ou no banco:
+                eles precisam saber seu nome e seu número para te identificar.
+                Depois disso, nunca mais pedem de novo."
+            </div>
+            <div class="destaque">
+                💡 <strong>Dicas para esse momento:</strong>
+                anote seu número com DDD antes de começar · tenha paciência, é só uma vez ·
+                o código por SMS chega em segundos · peça ajuda a um familiar se precisar.
+            </div>
+        </section>
+
+        <!-- ============ FASE 3 · SUA VEZ (PRÁTICA) ============ -->
+        <section class="etapa" data-etapa="15">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Hora de conversar: sua primeira mensagem</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Este é um <strong>simulador do WhatsApp</strong>. É igualzinho ao de verdade —
+                    toque nos lugares certos e veja o que acontece. Sem medo: aqui nada quebra!</p>
+                    <div id="msg-sucesso" class="destaque" style="display:none;">
+                        ✅ <strong>Funcionou!</strong> Sua mensagem apareceu como uma "bolha" verde.
+                        Quando a pessoa responde, a bolha dela é branca. É assim que uma conversa acontece.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mockup" style="margin: 0 auto;">
+                        <div class="mockup-tela" id="mockup-tela">
+                            <div class="mockup-topo">
+                                <img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="36" height="36">
+                                <div class="mockup-titulo" id="mockup-titulo">Dona Zilda (exemplo)</div>
+                                <div style="font-size:1.2rem;">📞</div>
+                                <div style="font-size:1.2rem;">📷</div>
+                            </div>
+                            <div class="mockup-corpo" id="mockup-corpo">
+                                <div class="mockup-bolha recebida">Oi, meu querido(a)! Que bom te ver por aqui! 🥰<span class="hora">14:02</span></div>
+                            </div>
+                            <div class="mockup-rodape">
+                                <input class="mockup-campo" id="mockup-input" placeholder="Mensagem" aria-label="Digite sua mensagem">
+                                <button class="mockup-botao" id="mockup-enviar" aria-label="Enviar mensagem">➤</button>
+                            </div>
+                        </div>
+                        <button class="hotspot" id="hotspot-1" style="right: 30px; bottom: 62px;" aria-label="O que é este campo?">?</button>
+                        <div class="mockup-nota" id="nota-1" style="right: 80px; bottom: 108px; display:none;">
+                            <strong>Campo de mensagem.</strong> É aqui que você escreve o recado. Depois toca na setinha verde para enviar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="16">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>No celular de verdade, o caminho é:</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Toque no botão de nova conversa</strong> — geralmente um lápis ✏️ ou sinal de + no canto inferior direito</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Escolha um contato da lista</strong> (filho, neto, amigo — quem você adicionou na agenda!)</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Digite sua mensagem</strong> na barra inferior</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Toque na setinha verde</strong> para enviar</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="17">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <span class="etapa-rotulo">O que é uma conversa</span>
+            <h2>O que é uma conversa?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="analogia">
+                        💬 "Cada troca de mensagens é uma
+                        <span class="termo" tabindex="0">conversa
+                            <span class="tooltip"><strong>Conversa</strong>
+                            O bate-papo entre você e uma pessoa (ou um grupo). Fica guardado no WhatsApp para você reler quando quiser.</span>
+                        </span>.
+                        É como uma mesa na praça: cada pessoa tem a sua, e as conversas ficam lá esperando."
+                    </div>
+                    <div class="destaque">
+                        ✍️ <strong>Sugestão de primeira mensagem:</strong>
+                        "Oi, [nome]! Sou eu, [seu nome]. Aprendi a usar o WhatsApp hoje! 😊"
+                        Sem timidez: todo mundo dá seus primeiros passos desse jeito.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-chat">
+                        <div class="chat-topo"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="36" height="36"> Conversa com Dona Zilda</div>
+                        <div class="chat-corpo">
+                            <div class="mockup-bolha recebida">Oi, netinha! Tudo bem? 😊<span class="hora">09:12</span></div>
+                            <div class="mockup-bolha enviada">Tô ótima, vovó! Saudades! 🥰<span class="hora">09:13</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="18">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Enviando fotos com facilidade</h2>
+            <div class="mini-cartao">
+                <span class="icone-grande">📎</span>
+                <h4>Para enviar fotos</h4>
+                <div class="passos" style="margin:0;">
+                    <div class="passo"><span class="passo-num">1</span><p><strong>Toque no clipe de papel 📎</strong> ao lado do campo de mensagem</p></div>
+                    <div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Galeria"</strong> para pegar uma foto já salva, ou <strong>"Câmera"</strong> para tirar uma agora</p></div>
+                    <div class="passo"><span class="passo-num">3</span><p><strong>Toque em Enviar</strong> (a setinha verde)</p></div>
+                </div>
+            </div>
+            <div class="destaque">
+                📸 <strong>Dica de ouro:</strong> fotos no WhatsApp são como mostrar o
+                álbum de família — só que cada foto chega na hora, para quem você escolher.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="19">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Enviando áudios com facilidade</h2>
+            <div class="mini-cartao">
+                <span class="icone-grande">🎤</span>
+                <h4>Para enviar áudios</h4>
+                <div class="passos" style="margin:0;">
+                    <div class="passo"><span class="passo-num">1</span><p><strong>Toque e segure o microfone 🎤</strong></p></div>
+                    <div class="passo"><span class="passo-num">2</span><p><strong>Fale sua mensagem</strong> enquanto segura</p></div>
+                    <div class="passo"><span class="passo-num">3</span><p><strong>Solte o botão</strong> para enviar automaticamente</p></div>
+                </div>
+            </div>
+            <div class="analogia">
+                🎙️ "Áudio é como um recado na secretária eletrônica:
+                você fala no seu ritmo, e a pessoa ouve quando puder.
+                Não gostou? Arraste para o lado enquanto grava para cancelar!"
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="20">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Recebendo mensagens</h2>
+            <h3>Como saber que chegou mensagem nova?</h3>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p>O WhatsApp mostra um <strong>balãozinho com o número</strong> de mensagens não lidas</p></div>
+                <div class="passo"><span class="passo-num">2</span><p>Também pode <strong>tocar um som</strong> ou vibrar — é o aviso de "tem recado novo"</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Toque na conversa</strong> para ver fotos, vídeos e áudios recebidos</p></div>
+            </div>
+            <div class="analogia">
+                💌 "Receber mensagem no WhatsApp é como achar uma carta na porta:
+                você pode abrir na hora ou guardar para ler com calma.
+                As mensagens esperam por você — sem pressa!"
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="21">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Respondendo e reagindo com carinho</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Toque e segure</strong> sobre qualquer mensagem para abrir as opções</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Reaja com emoji</strong> ❤️ 😂 👍 — é como dar um sorriso ou um abraço à distância</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Responda com áudio</strong> (segure o microfone) ou <strong>envie uma foto</strong> na resposta (toque no clipe)</p></div>
+                    </div>
+                    <div class="destaque">
+                        💡 <strong>Não se preocupe:</strong> se você não responder na hora,
+                        a conversa continua lá. Ninguém fica "de castigo" por demorar.
+                        O WhatsApp não cobra resposta!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-reacao">
+                        <div class="reacao-linha">
+                            <div class="reacao">❤️</div>
+                            <div class="reacao">😂</div>
+                            <div class="reacao">👍</div>
+                        </div>
+                        <div class="reacao-legenda">Toque e segure na mensagem para reagir — um carinho à distância.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FASE 4 · NA VIDA REAL ============ -->
+        <section class="etapa" data-etapa="22">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <span class="etapa-rotulo">O que é um grupo</span>
+            <h2>Grupos: a reunião de família sem data marcada</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Um
+                    <span class="termo" tabindex="0">grupo
+                        <span class="tooltip"><strong>Grupo</strong>
+                        Uma conversa com várias pessoas ao mesmo tempo. Como a mesa da família reunida: todos falam, todos veem.</span>
+                    </span>
+                    no WhatsApp é uma conversa com várias pessoas ao mesmo tempo. É onde a família
+                    combina o almoço de domingo, manda fotos do neto e dá "bom dia" para todo mundo de uma vez.</p>
+                    <div class="analogia">
+                        🍽️ "Grupo no WhatsApp é como a mesa do almoço de domingo:
+                        todo mundo sentado junto, cada um fala quando quer, e as novidades circulam na hora."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-chat">
+                        <div class="chat-topo">👨‍👩‍👧‍👦 Família Silva</div>
+                        <div class="chat-corpo">
+                            <div class="mockup-bolha recebida"><span class="chat-nome">Maria</span>Bom dia pra todo mundo! ☀️<span class="hora">07:30</span></div>
+                            <div class="mockup-bolha recebida"><span class="chat-nome">João</span>Almoço domingo na casa da vó? 🍝<span class="hora">08:02</span></div>
+                            <div class="mockup-bolha enviada"><span class="chat-nome outro">Você</span>Pode contar comigo! 🥰<span class="hora">08:15</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="23">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Como participar de um grupo</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Peça para alguém da família te adicionar</strong> — é só pedir para um filho ou neto</p></div>
+                <div class="passo"><span class="passo-num">2</span><p>Quando você for adicionado, o <strong>grupo aparece na sua lista de conversas</strong></p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Toque no grupo</strong> e mande sua primeira mensagem de boas-vindas!</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="24">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Como criar um grupo do zero</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p>Toque no <strong>menu ⋮</strong> (os três pontinhos) → <strong>"Novo grupo"</strong></p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Adicione os membros</strong> — filhos, netos, amigos (todos da sua agenda!)</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Dê um nome ao grupo</strong> — ex.: "Família Silva"</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Confirme e envie</strong> sua primeira mensagem de boas-vindas</p></div>
+            </div>
+            <div class="destaque">
+                🎉 <strong>Momento especial:</strong> criar um grupo de família é um dos
+                momentos mais emocionantes da aula — porque aproxima todo mundo.
+                Celebre as datas especiais, compartilhe fotos e carinhos!
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="25">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Chamadas de voz e videochamadas</h2>
+            <div class="passos-duplos">
+                <div class="mini-cartao">
+                    <span class="icone-grande">📞</span>
+                    <h4>Chamada de voz — falar de graça</h4>
+                    <div class="passos" style="margin:0;">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Abra a conversa</strong> com a pessoa</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Toque no ícone de telefone</strong> 📞 no canto superior</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Aguarde a pessoa atender</strong> e fale à vontade</p></div>
+                    </div>
+                </div>
+                <div class="mini-cartao">
+                    <span class="icone-grande">📷</span>
+                    <h4>Videochamada — ver o sorriso</h4>
+                    <div class="passos" style="margin:0;">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Abra a conversa</strong> com seu familiar</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Toque no ícone de câmera</strong> 📷 no canto superior</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Aguarde atender</strong> e comece a conversar vendo a pessoa</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="26">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Vantagens das chamadas</h2>
+            <ul class="lista-check">
+                <li><span><strong>Grátis sempre:</strong> sem gastar crédito, mesmo para outros estados ou países</span></li>
+                <li><span><strong>Use o Wi-Fi de casa</strong> para melhor qualidade e economizar seu pacote de dados</span></li>
+                <li><span><strong>Matar a saudade</strong> sem sair de casa — e participar de momentos especiais mesmo longe</span></li>
+            </ul>
+            <div class="analogia">
+                🏠 "Chamada de voz é como telefonar de graça para qualquer lugar do mundo.
+                Videochamada é como estar na sala de casa com a família —
+                você vê o sorriso dos netos mesmo à distância."
+            </div>
+            <div class="destaque">
+                💡 <strong>Dica:</strong> na primeira vez, teste uma chamada com um monitor
+                ou familiar — para pegar confiança antes de ligar para quem está longe.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="27">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <span class="etapa-rotulo">O que é o WhatsApp Web</span>
+            <h2>WhatsApp Web: seu WhatsApp na tela grande</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>O WhatsApp também funciona <strong>no computador</strong> — é o
+                    <span class="termo" tabindex="0">WhatsApp Web
+                        <span class="tooltip"><strong>WhatsApp Web</strong>
+                        O WhatsApp aberto no navegador do computador. Mesmas conversas, mesma segurança — só muda o tamanho da tela e o conforto para digitar.</span>
+                    </span>.
+                    Como se fosse o WhatsApp do celular, mas mais fácil de digitar e visualizar.</p>
+                    <div class="analogia">
+                        🖥️ "WhatsApp Web é como sentar numa mesa grande em vez de numa banqueta:
+                        a conversa é a mesma, mas você vê tudo maior e digita com mais conforto."
+                    </div>
+                    <div class="ferramentas-linha">
+                        <span class="ferramenta"><img src="/assets/logos/chrome.png" alt="" width="26" height="26"> Chrome</span>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="cartao-web">
+                        <div class="web-bar">
+                            <span class="web-ponto" style="background:#E4573D;"></span>
+                            <span class="web-ponto" style="background:#E9B44C;"></span>
+                            <span class="web-ponto" style="background:#4E7D4A;"></span>
+                            <span class="web-url">web.whatsapp.com</span>
+                        </div>
+                        <div class="web-corpo">
+                            <div class="web-lista">
+                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="28" height="28"><span class="nome">Dona Zilda</span></div>
+                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Seu José" width="28" height="28"><span class="nome">Seu José</span></div>
+                                <div class="web-item"><span class="contato-avatar" style="width:28px;height:28px;font-size:.9rem;">👨‍👩‍👧‍👦</span><span class="nome">Família Silva</span></div>
+                            </div>
+                            <div class="web-chat">
+                                <div class="mockup-bolha recebida">Oi! Viu as fotos do passeio? 📸</div>
+                                <div class="mockup-bolha enviada">Vi sim, que beleza! 😍</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="28">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Vantagens do WhatsApp Web</h2>
+            <ul class="lista-check">
+                <li><span><strong>Teclado do computador</strong> para digitar mensagens mais rapidamente</span></li>
+                <li><span><strong>Fotos maiores e letras mais nítidas</strong> na tela grande</span></li>
+                <li><span><strong>Veja, responda e envie</strong> mensagens direto do computador</span></li>
+            </ul>
+            <div class="destaque">
+                🧵 <strong>Fio da meada:</strong> mesmas conversas, mesmos contatos, mesma segurança.
+                A tecnologia deve facilitar a vida, não complicar. WhatsApp Web é praticidade!
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="29">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Como acessar o WhatsApp Web</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Abra o navegador</strong> no computador (Chrome, Firefox ou Edge)</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Digite web.whatsapp.com</strong> na barra de endereços</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Aponte a câmera do celular</strong> para o QR Code que aparece na tela e confirme</p></div>
+            </div>
+            <div class="atencao">
+                ⚠️ <strong>Importante:</strong> seu celular precisa estar <strong>ligado e conectado à internet</strong>
+                enquanto você usa o WhatsApp Web. Ele é um "espelho" do celular.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="30">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <span class="etapa-rotulo">Segurança</span>
+            <h2>Segurança: a parte mais importante</h2>
+            <div class="atencao">
+                🚨 <strong>Nunca compartilhe seu código de verificação</strong> — nem com "familiares",
+                nem com "suporte técnico". Nenhuma empresa ou pessoa honesta pede esse código.
+                Quem pede está tentando roubar sua conta.
+            </div>
+            <h3>Golpes mais comuns no WhatsApp</h3>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>"Estou com problema, preciso de dinheiro urgente"</strong> — mesmo que pareça ser de um familiar</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>"Me mande seu código de 6 dígitos para confirmar"</strong> — é golpe, sempre</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Pedidos de senha, documentos ou dados bancários</strong> — ninguém honesto pede isso por mensagem</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="31">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>A chave da sua casa</h2>
+            <div class="analogia">
+                🔑 "Seu código de verificação é como a chave da sua casa.
+                Você não entrega a chave para um estranho no portão — por mais educado que ele pareça."
+            </div>
+            <div class="ferramentas-linha">
+                <span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span>
+                <span class="ferramenta"><img src="/assets/logos/pix.png" alt="" width="26" height="26"> PIX</span>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="32">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Vamos testar com situações reais</h2>
+            <p><strong>Leia com atenção e escolha a atitude mais segura.</strong> Depois da resposta, veja a explicação.</p>
+            <div class="quiz-card">
+                <div class="quiz-pergunta">
+                    📱 Você recebe uma mensagem de um número desconhecido:
+                    "Mãe, troquei de número! Me manda um PIX <span class="ferramenta"><img src="/assets/logos/pix.png" alt="" width="26" height="26"> PIX</span> de R$ 300 urgente, estou em apuros!"
+                    O que você faz?
+                </div>
+                <div class="quiz-opcoes" data-quiz="1">
+                    <button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Mando o PIX correndo, é meu filho em apuros</span></button>
+                    <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Muito bem! Essa é exatamente a atitude certa — confirmar antes de agir." data-feedback-wrong="💡 Quase! A atitude segura é confirmar com a pessoa (ligando para o número antigo) antes de qualquer PIX. Nenhuma pressa vale seu dinheiro."><span class="letra">B</span><span>Ligo para o número antigo que já tenho salvo e confirmo antes de qualquer coisa</span></button>
+                    <button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Respondo pedindo mais detalhes e espero</span></button>
+                </div>
+                <div class="quiz-feedback" data-feedback="1"></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="33">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Mais uma situação: o "técnico" no telefone</h2>
+            <p><strong>Leia com atenção e escolha.</strong></p>
+            <div class="quiz-card">
+                <div class="quiz-pergunta">
+                    🔢 Um "técnico" liga dizendo que sua conta foi bloqueada e pede o
+                    <strong>código de 6 dígitos</strong> que chegou por SMS "para confirmar". O que fazer?
+                </div>
+                <div class="quiz-opcoes" data-quiz="2">
+                    <button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Leio o código para ele resolver logo</span></button>
+                    <button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Pergunto qual empresa é e anoto o nome</span></button>
+                    <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Código é só seu, para sempre. Nenhuma empresa séria pede isso." data-feedback-wrong="💡 Cuidado! Seu código de verificação é a chave da sua conta. Ninguém — nem banco, nem 'técnico' — pode pedir isso. Desligue e não informe nada."><span class="letra">C</span><span>Desligo e não informo nada — código é só seu, para sempre</span></button>
+                </div>
+                <div class="quiz-feedback" data-feedback="2"></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="34">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Regra de ouro da segurança</h2>
+            <div class="atencao">
+                🚨 <strong>Regra de ouro:</strong> se alguém pedir dinheiro ou código pelo WhatsApp,
+                <strong>LIGUE para a pessoa</strong> (no número que você já tem salvo) antes de fazer qualquer coisa.
+                Golpistas usam a pressa — a calma é sua maior proteção.
+            </div>
+            <div class="ferramentas-linha">
+                <span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span>
+                <span class="ferramenta"><img src="/assets/logos/pix.png" alt="" width="26" height="26"> PIX</span>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="35">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Sua missão da semana</h2>
+            <div class="missao">
+                <h3>🏠 Para fazer em casa até a próxima aula</h3>
+                <p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> Mande um "bom dia" com uma foto para alguém da família pelo WhatsApp.</p>
+                <p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> Peça para alguém te adicionar ao grupo da família — e mande uma mensagem de boas-vindas.</p>
+                <p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> Grave um áudio de até 30 segundos contando uma novidade (e envie!).</p>
+                <p><strong>4.</strong> Se alguém te pedir dinheiro ou código pelo WhatsApp, <strong>ligue para a pessoa</strong> antes de fazer qualquer coisa.</p>
+            </div>
+            <div class="destaque">
+                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                cada uma praticada em casa deixa o aprendizado mais firme.
+                Na próxima aula, contamos como foi!
+            </div>
+        </section>
+
+        <!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+        <section class="etapa" data-etapa="36">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+
+            <div class="momento">
+                <span class="trofeu">🧵</span>
+                <h2>Você costurou mais um retalho!</h2>
+                <p>Hoje você aprendeu o que é um contato, como adicionar na agenda,
+                como conversar, mandar fotos e áudios, participar de grupos, fazer chamadas
+                e se proteger de golpes. Isso é muito mais do que "usar o celular" —
+                é <strong>autonomia</strong>.</p>
+            </div>
+
+            <div style="text-align:center; margin-top: var(--esp-lg);">
+                <div class="retalho-costurado">Aula 03 · costurada! 🎉</div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="37">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+            <h2>Suas conquistas de hoje</h2>
+            <ul class="lista-conquistas">
+                <li>✅ Entendi o que é um contato</li>
+                <li>✅ Adicionei um contato na agenda</li>
+                <li>✅ Enviei minha primeira mensagem</li>
+                <li>✅ Sei mandar fotos e áudios</li>
+                <li>✅ Entendi como funcionam grupos</li>
+                <li>✅ Sei fazer chamadas e videochamadas</li>
+                <li>✅ Sei o que fazer em caso de golpe</li>
+            </ul>
+        </section>
+
+        <section class="etapa" data-etapa="38">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+            <h2>Continue praticando</h2>
+            <div class="destaque">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos visitar as redes
+                sociais — Facebook <span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span>, Instagram <span class="ferramenta"><img src="/assets/logos/instagram.svg" alt="" width="26" height="26"> Instagram</span> e YouTube <span class="ferramenta"><img src="/assets/logos/youtube.svg" alt="" width="26" height="26"> YouTube</span> — com o mesmo jeito de aprender:
+                um passo de cada vez, no seu ritmo.
+            </div>
+
+            <div style="text-align:center; margin-top: var(--esp-md);">
+                <a href="/pratique.html" class="btn btn-secondary">Revisar com quizzes</a>
+                <a href="/aulas.html" class="btn btn-primary">Voltar para as aulas</a>
+            </div>
+        </section>
+
+        <!-- Navegação -->
+        <nav class="player-nav">
+            <button class="btn btn-secondary" id="btn-anterior" disabled>← Anterior</button>
+            <button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+        </nav>
+    </main>
+
+    <script src="/assets/player-base.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            // ===== Estado específico da aula 03 =====
+            var contatoAdicionado = false;
+            var mensagemEnviada = false;
+
+            // ===== Formulário: adicionar contato =====
+            var btnAdicionar = document.getElementById('btn-adicionar');
+            var campoNome = document.getElementById('campo-nome');
+            var campoTel = document.getElementById('campo-tel');
+            var agendaLista = document.getElementById('agenda-lista');
+            var agendaSucesso = document.getElementById('agenda-sucesso');
+
+            btnAdicionar.addEventListener('click', function () {
+                var nome = campoNome.value.trim();
+                var tel = campoTel.value.trim();
+                if (!nome) {
+                    campoNome.focus();
+                    campoNome.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                var linha = document.createElement('div');
+                linha.className = 'contato-linha';
+                linha.innerHTML = '<img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Novo contato" width="42" height="42">' +
+                    '<div><div class="contato-nome"></div><div class="contato-tel"></div></div>';
+                linha.querySelector('.contato-nome').textContent = nome;
+                linha.querySelector('.contato-tel').textContent = tel || '(número salvo depois)';
+                agendaLista.appendChild(linha);
+                campoNome.value = '';
+                campoTel.value = '';
+                campoNome.style.borderColor = '';
+                contatoAdicionado = true;
+                agendaSucesso.style.display = 'block';
+                agendaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== Simulador de conversa =====
+            var mockupInput = document.getElementById('mockup-input');
+            var mockupEnviar = document.getElementById('mockup-enviar');
+            var mockupCorpo = document.getElementById('mockup-corpo');
+            var msgSucesso = document.getElementById('msg-sucesso');
+            var hotspot1 = document.getElementById('hotspot-1');
+            var nota1 = document.getElementById('nota-1');
+
+            hotspot1.addEventListener('click', function () {
+                nota1.style.display = nota1.style.display === 'block' ? 'none' : 'block';
+            });
+
+            function enviarMensagem() {
+                var textoMsg = mockupInput.value.trim();
+                if (!textoMsg) return;
+                var bolha = document.createElement('div');
+                bolha.className = 'mockup-bolha enviada';
+                var agora = new Date();
+                var hh = String(agora.getHours()).padStart(2, '0');
+                var mm = String(agora.getMinutes()).padStart(2, '0');
+                bolha.innerHTML = '' + textoMsg.replace(/</g, '&lt;') + '<span class="hora">' + hh + ':' + mm + '</span>';
+                mockupCorpo.appendChild(bolha);
+                mockupInput.value = '';
+                mensagemEnviada = true;
+                msgSucesso.style.display = 'block';
+                mockupCorpo.scrollTop = mockupCorpo.scrollHeight;
+                setTimeout(function () {
+                    var resposta = document.createElement('div');
+                    resposta.className = 'mockup-bolha recebida';
+                    resposta.innerHTML = 'Que alegria! Recebi sua mensagem! 🥰<span class="hora">' + hh + ':' + (mm === '59' ? '59' : String(Number(mm) + 1).padStart(2, '0')) + '</span>';
+                    mockupCorpo.appendChild(resposta);
+                }, 900);
+            }
+            mockupEnviar.addEventListener('click', enviarMensagem);
+            mockupInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') enviarMensagem(); });
+        })();
+    </script>
+</body>
+</html>

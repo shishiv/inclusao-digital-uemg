@@ -4,428 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Pratique seus conhecimentos - Inclusão Digital UEMG Frutal" />
-    <meta name="theme-color" content="#1E4D6B" />
+    <meta name="description" content="Pratique seus conhecimentos — Inclusão Digital UEMG Frutal" />
+    <meta name="theme-color" content="#1E4466" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>Pratique - Inclusão Digital UEMG</title>
-    <style>
-      /* Estilos específicos para o Quiz Interativo */
-      .quiz-interactive-section {
-        padding: var(--spacing-xl) var(--spacing-lg);
-        background: var(--branco);
-      }
-
-      .progress-section {
-        background: var(--cinza-bg);
-        border-radius: var(--border-radius-lg);
-        padding: 25px 30px;
-        margin-bottom: 30px;
-        box-shadow: var(--shadow-sm);
-      }
-
-      .progress-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-      }
-
-      .progress-title {
-        font-family: var(--font-display);
-        font-weight: 700;
-        color: var(--azul-escuro);
-        font-size: 1.1rem;
-      }
-
-      .progress-score {
-        font-family: var(--font-display);
-        font-weight: 700;
-        color: var(--verde);
-        font-size: 1.2rem;
-      }
-
-      .progress-bar {
-        background: var(--cinza-claro);
-        height: 12px;
-        border-radius: 6px;
-        overflow: hidden;
-      }
-
-      .progress-fill {
-        background: linear-gradient(90deg, var(--verde) 0%, var(--verde-claro) 100%);
-        height: 100%;
-        border-radius: 6px;
-        transition: width 0.5s ease;
-      }
-
-      .lesson-selector {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-
-      .lesson-btn {
-        padding: 12px 20px;
-        border: 2px solid var(--cinza-claro);
-        border-radius: var(--border-radius);
-        background: var(--branco);
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--cinza-texto);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .lesson-btn:hover {
-        border-color: var(--azul-uemg);
-        color: var(--azul-uemg);
-      }
-
-      .lesson-btn.active {
-        background: var(--azul-uemg);
-        border-color: var(--azul-uemg);
-        color: var(--branco);
-      }
-
-      .lesson-btn .emoji {
-        font-size: 1.2rem;
-      }
-
-      .quiz-card-interactive {
-        background: var(--branco);
-        border-radius: var(--border-radius-lg);
-        padding: 40px;
-        margin-bottom: 25px;
-        box-shadow: var(--shadow-md);
-        border: 1px solid var(--cinza-claro);
-      }
-
-      .quiz-header-interactive {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-      }
-
-      .quiz-number-interactive {
-        background: var(--azul-uemg);
-        color: var(--branco);
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 1rem;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .quiz-meta {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: var(--cinza-medio);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .quiz-question-interactive {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.4rem;
-        color: var(--azul-escuro);
-        margin-bottom: 30px;
-        line-height: 1.5;
-      }
-
-      .options-list {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .option-btn {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 18px 25px;
-        border: 2px solid var(--cinza-claro);
-        border-radius: var(--border-radius);
-        background: var(--branco);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: left;
-        font-family: var(--font-body);
-        width: 100%;
-      }
-
-      .option-btn:hover:not(.disabled) {
-        border-color: var(--azul-uemg);
-        background: var(--azul-bg);
-      }
-
-      .option-btn.selected {
-        border-color: var(--azul-uemg);
-        background: var(--azul-bg);
-      }
-
-      .option-btn.correct {
-        border-color: var(--verde);
-        background: var(--verde-bg);
-      }
-
-      .option-btn.incorrect {
-        border-color: var(--vermelho-uemg);
-        background: #FDEAEA;
-      }
-
-      .option-btn.disabled {
-        cursor: default;
-      }
-
-      .option-letter {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--cinza-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1rem;
-        color: var(--azul-escuro);
-        flex-shrink: 0;
-        transition: all 0.3s ease;
-      }
-
-      .option-btn.selected .option-letter {
-        background: var(--azul-uemg);
-        color: var(--branco);
-      }
-
-      .option-btn.correct .option-letter {
-        background: var(--verde);
-        color: var(--branco);
-      }
-
-      .option-btn.incorrect .option-letter {
-        background: var(--vermelho-uemg);
-        color: var(--branco);
-      }
-
-      .option-text {
-        font-size: 1.05rem;
-        color: var(--cinza-escuro);
-      }
-
-      .feedback-interactive {
-        margin-top: 25px;
-        padding: 20px 25px;
-        border-radius: var(--border-radius);
-        display: none;
-      }
-
-      .feedback-interactive.show {
-        display: block;
-        animation: fadeIn 0.4s ease;
-      }
-
-      .feedback-interactive.correct {
-        background: var(--verde-bg);
-        border-left: 4px solid var(--verde);
-      }
-
-      .feedback-interactive.incorrect {
-        background: var(--amarelo-bg);
-        border-left: 4px solid var(--amarelo-escuro);
-      }
-
-      .feedback-header-interactive {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-
-      .feedback-icon {
-        font-size: 1.5rem;
-      }
-
-      .feedback-title-interactive {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: var(--verde-escuro);
-      }
-
-      .feedback-interactive.incorrect .feedback-title-interactive {
-        color: var(--amarelo-escuro);
-      }
-
-      .feedback-text-interactive {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      .quiz-nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 30px;
-        padding-top: 25px;
-        border-top: 2px solid var(--cinza-claro);
-      }
-
-      .nav-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 28px;
-        border-radius: var(--border-radius);
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1rem;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .nav-btn.primary {
-        background: var(--verde);
-        color: var(--branco);
-      }
-
-      .nav-btn.primary:hover {
-        background: var(--verde-escuro);
-      }
-
-      .nav-btn.secondary {
-        background: var(--azul-bg);
-        color: var(--azul-uemg);
-      }
-
-      .nav-btn.secondary:hover {
-        background: var(--azul-uemg);
-        color: var(--branco);
-      }
-
-      .nav-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      .completion-card {
-        background: linear-gradient(135deg, var(--verde-bg) 0%, var(--azul-bg) 100%);
-        border-radius: var(--border-radius-lg);
-        padding: 50px 40px;
-        text-align: center;
-        display: none;
-      }
-
-      .completion-card.show {
-        display: block;
-        animation: fadeIn 0.5s ease;
-      }
-
-      .completion-icon {
-        font-size: 4rem;
-        margin-bottom: 20px;
-      }
-
-      .completion-title {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 2rem;
-        color: var(--azul-escuro);
-        margin-bottom: 10px;
-      }
-
-      .completion-subtitle {
-        font-family: var(--font-accent);
-        font-size: 1.5rem;
-        color: var(--verde);
-        margin-bottom: 25px;
-      }
-
-      .completion-stats {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin-bottom: 30px;
-      }
-
-      .stat-item-completion {
-        text-align: center;
-      }
-
-      .stat-value {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 2.5rem;
-        color: var(--azul-uemg);
-      }
-
-      .stat-label-completion {
-        font-size: 0.9rem;
-        color: var(--cinza-texto);
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @media (max-width: 600px) {
-        .quiz-card-interactive {
-          padding: 25px 20px;
-        }
-
-        .quiz-question-interactive {
-          font-size: 1.2rem;
-        }
-
-        .option-btn {
-          padding: 15px 18px;
-        }
-
-        .lesson-selector {
-          justify-content: center;
-        }
-
-        .completion-stats {
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .quiz-nav {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .nav-btn {
-          width: 100%;
-          justify-content: center;
-        }
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Pratique — Inclusão Digital UEMG</title>
   </head>
   <body>
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <img src="/images/logo.png" alt="UEMG" class="sidebar-logo" />
-        </div>
-      <nav class="sidebar-nav">
+        <img src="/images/logo.png" alt="Inclusão Digital UEMG" class="sidebar-logo" />
+        <div class="sidebar-titulo">Inclusão Digital<small>UEMG Frutal · desde 2009</small></div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Navegação principal">
         <a href="/" class="sidebar-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Início</span>
@@ -444,195 +37,67 @@
         </a>
       </nav>
       <div class="sidebar-footer">
-        <p>UEMG Frutal</p>
-        <p>Desde 2009</p>
+        <strong>Trilha 60+</strong> — ativa<br>
+        IA · Mercado · Palestras — <em>em breve</em>
       </div>
     </aside>
 
     <!-- Mobile Header -->
     <header class="mobile-header" id="mobileHeader">
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+        <span></span><span></span><span></span>
       </button>
       <span class="mobile-title">Pratique</span>
     </header>
 
     <!-- Overlay for mobile menu -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
     <main class="main-content">
-      <section class="page-header amarelo">
-        <h1 class="page-title">Pratique Seus Conhecimentos</h1>
-        <p class="page-subtitle slogan">Teste o que aprendeu e continue evoluindo!</p>
+      <section class="page-header">
+        <h1 class="page-title">Pratique</h1>
+        <p class="page-subtitle">Quizzes e desafios para reforçar o que você aprendeu nas aulas. Sem nota, sem pressão — é treino!</p>
       </section>
 
-      <!-- Quiz Interativo -->
-      <section class="quiz-interactive-section">
-        <h2 class="section-title">Quiz Interativo</h2>
-        <p class="section-subtitle">Selecione uma aula e teste seus conhecimentos</p>
-
-        <!-- Progress Section -->
-        <div class="progress-section">
-          <div class="progress-header">
-            <span class="progress-title">Seu progresso</span>
-            <span class="progress-score" id="score-display">0 de 0 corretas</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <!-- Lesson Selector -->
-        <div class="lesson-selector" id="lesson-selector">
-          <button class="lesson-btn active" data-lesson="1">
-            <span class="emoji">💻</span> Aula 1
-          </button>
-          <button class="lesson-btn" data-lesson="2">
-            <span class="emoji">🌐</span> Aula 2
-          </button>
-          <button class="lesson-btn" data-lesson="3">
-            <span class="emoji">📱</span> Aula 3
-          </button>
-          <button class="lesson-btn" data-lesson="4">
-            <span class="emoji">✉️</span> Aula 4
-          </button>
-          <button class="lesson-btn" data-lesson="5">
-            <span class="emoji">👥</span> Aula 5
-          </button>
-          <button class="lesson-btn" data-lesson="6">
-            <span class="emoji">📄</span> Aula 6
-          </button>
-          <button class="lesson-btn" data-lesson="7">
-            <span class="emoji">🎨</span> Aula 7
-          </button>
-          <button class="lesson-btn" data-lesson="8">
-            <span class="emoji">🏛️</span> Aula 8
-          </button>
-          <button class="lesson-btn" data-lesson="seguranca">
-            <span class="emoji">🔒</span> Segurança
-          </button>
-        </div>
-
-        <!-- Quiz Container -->
-        <div id="quiz-container"></div>
-
-        <!-- Completion Card -->
-        <div class="completion-card" id="completion-card">
-          <div class="completion-icon">🎉</div>
-          <h2 class="completion-title">Parabéns!</h2>
-          <p class="completion-subtitle">Você completou este quiz!</p>
-          <div class="completion-stats">
-            <div class="stat-item-completion">
-              <div class="stat-value" id="final-correct">0</div>
-              <div class="stat-label-completion">Acertos</div>
-            </div>
-            <div class="stat-item-completion">
-              <div class="stat-value" id="final-total">0</div>
-              <div class="stat-label-completion">Perguntas</div>
-            </div>
-          </div>
-          <button class="nav-btn primary" onclick="restartQuiz()">
-            Tentar Novamente
-          </button>
-        </div>
-      </section>
-
-      <!-- Desafios -->
-      <section class="desafios-section">
-        <h2 class="section-title">Desafios para Casa</h2>
-        <p class="section-subtitle">Pratique no dia a dia para fixar o aprendizado</p>
-
-        <div class="desafios-grid">
-          <div class="desafio-card">
-            <div class="desafio-icon">1</div>
-            <div class="desafio-content">
-              <h4>Envie um Email</h4>
-              <p>Escreva um email para um familiar contando sobre o curso</p>
-            </div>
+      <section class="section">
+        <div class="pratique-shell">
+          <div class="pratique-dica">
+            💡 <strong>Dica:</strong> os quizzes também estão dentro de cada aula interativa, no momento certo da prática.
+            Aqui você revisa tudo junto, quando quiser.
           </div>
 
-          <div class="desafio-card">
-            <div class="desafio-icon">2</div>
-            <div class="desafio-content">
-              <h4>Videochamada</h4>
-              <p>Faça uma videochamada pelo WhatsApp com alguém querido</p>
-            </div>
+          <h2 class="pratique-titulo">Escolha um tema</h2>
+          <div class="lesson-selector" id="lesson-selector">
+            <button class="btn btn-secondary btn-sm lesson-btn active" data-lesson="1">1 · Primeiros Passos</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="2">2 · Internet</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="3">3 · WhatsApp</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="4">4 · E-mail</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="5">5 · Redes Sociais</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="6">6 · Docs e Sheets</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="7">7 · Slides</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="8">8 · Gov.br e PIX</button>
+            <button class="btn btn-secondary btn-sm lesson-btn" data-lesson="seguranca">🔒 Segurança</button>
           </div>
 
-          <div class="desafio-card">
-            <div class="desafio-icon">3</div>
-            <div class="desafio-content">
-              <h4>Organize Fotos</h4>
-              <p>Crie um álbum no Google Fotos com suas melhores memórias</p>
+          <div class="progress-section">
+            <div class="progress-header">
+              <span style="font-weight: 700; color: var(--chita-azul-escura);">Progresso</span>
+              <span style="font-weight: 700; color: var(--chita-verde);" id="score-display" role="status" aria-live="polite" aria-atomic="true">0 de 0 corretas</span>
             </div>
+            <div class="progresso-trilho"><div class="progresso-preenchido" id="progress-fill"></div></div>
           </div>
 
-          <div class="desafio-card">
-            <div class="desafio-icon">4</div>
-            <div class="desafio-content">
-              <h4>Acesse o Gov.br</h4>
-              <p>Entre no Gov.br e consulte algum serviço disponível</p>
-            </div>
+          <div id="quiz-container"></div>
+
+          <div id="completion-card" style="display:none; text-align:center; background: linear-gradient(140deg, var(--chita-verde) 0%, #5C9456 60%, var(--chita-amarela) 160%); border-radius: var(--raio-lg); padding: var(--esp-xl); color: #FFF;">
+            <div style="font-size: 3.4rem; margin-bottom: var(--esp-sm);">🧵</div>
+            <h2 style="color: #FFF;">Quiz concluído!</h2>
+            <p style="font-size: var(--texto-lg); margin-bottom: var(--esp-md);">Você acertou <strong id="final-correct">0</strong> de <strong id="final-total">0</strong>.</p>
+            <p style="margin-bottom: var(--esp-lg);">Cada acerto é um retalho a mais na sua colcha!</p>
+            <button class="btn btn-amarelo" onclick="restartQuiz()">Refazer quiz</button>
+            <a href="/aulas.html" class="btn btn-secondary" style="margin-left: 10px;">Ver aulas</a>
           </div>
-
-          <div class="desafio-card">
-            <div class="desafio-icon">5</div>
-            <div class="desafio-content">
-              <h4>Faça um PIX</h4>
-              <p>Faça um PIX de R$ 0,01 para um familiar (com permissão!)</p>
-            </div>
-          </div>
-
-          <div class="desafio-card">
-            <div class="desafio-icon">6</div>
-            <div class="desafio-content">
-              <h4>Assista um Tutorial</h4>
-              <p>Busque um tutorial no YouTube sobre algo que quer aprender</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Recursos Externos -->
-      <section class="recursos-section">
-        <h2 class="section-title">Continue Aprendendo</h2>
-        <p class="section-subtitle">Vídeos e tutoriais para ir além</p>
-
-        <div class="recursos-grid">
-          <a href="https://www.youtube.com/results?search_query=como+usar+whatsapp+idosos" target="_blank" rel="noopener" class="recurso-card">
-            <div class="recurso-icon youtube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-            </div>
-            <h4>Tutoriais WhatsApp</h4>
-            <p>Vídeos no YouTube</p>
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=como+usar+pix+tutorial" target="_blank" rel="noopener" class="recurso-card">
-            <div class="recurso-icon youtube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-            </div>
-            <h4>Tutoriais PIX</h4>
-            <p>Vídeos no YouTube</p>
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=como+usar+gov.br+tutorial" target="_blank" rel="noopener" class="recurso-card">
-            <div class="recurso-icon youtube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-            </div>
-            <h4>Tutoriais Gov.br</h4>
-            <p>Vídeos no YouTube</p>
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=google+fotos+tutorial+portugues" target="_blank" rel="noopener" class="recurso-card">
-            <div class="recurso-icon youtube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-            </div>
-            <h4>Tutoriais Google Fotos</h4>
-            <p>Vídeos no YouTube</p>
-          </a>
         </div>
       </section>
 
@@ -640,13 +105,13 @@
       <footer class="site-footer">
         <div class="footer-content">
           <div class="footer-brand">
-            <h3>Portal UEMG - Inclusao Digital</h3>
+            <h3>Portal UEMG — Inclusão Digital</h3>
             <p class="slogan">Conhecimento que conecta</p>
-            <p>Um projeto de extensao da UEMG Frutal que desde 2009 capacita adultos 60+ para o mundo digital.</p>
+            <p>Um projeto de extensão da UEMG Frutal que desde 2009 capacita adultos 60+ para o mundo digital, com metodologia andragógica e aulas interativas.</p>
           </div>
           <div class="footer-column">
-            <h4>Navegacao</h4>
-            <a href="/">Inicio</a>
+            <h4>Navegação</h4>
+            <a href="/">Início</a>
             <a href="/aulas.html">Aulas</a>
             <a href="/pratique.html">Pratique</a>
             <a href="/comunidade.html">Comunidade</a>
@@ -654,19 +119,17 @@
           <div class="footer-column">
             <h4>Contato</h4>
             <p>Myke Matos dos Santos</p>
-            <p>Prof. Cicero Marcelo de Oliveira</p>
+            <p>Prof. Cícero Marcelo de Oliveira</p>
           </div>
           <div class="footer-column">
             <h4>UEMG Frutal</h4>
-            <a href="https://uemg.br" target="_blank">Site Oficial</a>
-            <p>Apoio: PAEx - UEMG</p>
+            <a href="https://uemg.br" target="_blank" rel="noopener">Site Oficial</a>
+            <p>Apoio: PAEx — UEMG</p>
           </div>
         </div>
         <div class="footer-bottom">
-          <span>&copy; 2025 UEMG Frutal - Programa de Inclusao Digital</span>
-          <div class="footer-logos">
-            <img src="/logos/uemg_small.png" alt="UEMG" class="footer-logo">
-          </div>
+          <span>&copy; 2025 UEMG Frutal — Programa de Inclusão Digital</span>
+          <img src="/logos/uemg_small.png" alt="UEMG" class="footer-logo">
         </div>
       </footer>
     </main>
@@ -1028,25 +491,26 @@
         lessonButtons.forEach(btn => {
           btn.addEventListener('click', () => {
             currentLesson = btn.dataset.lesson;
-            lessonButtons.forEach(b => b.classList.remove('active'));
+            lessonButtons.forEach(b => { b.classList.remove('active'); b.style.background = ''; b.style.color = ''; });
             btn.classList.add('active');
+            btn.style.background = 'var(--chita-azul)';
+            btn.style.color = '#FFF';
             resetQuiz();
           });
         });
         renderQuestion();
+        updateProgress();
       }
 
-      // Reset Quiz
       function resetQuiz() {
         currentQuestion = 0;
         correctAnswers = 0;
         answeredQuestions = [];
-        completionCard.classList.remove('show');
+        completionCard.style.display = 'none';
         renderQuestion();
         updateProgress();
       }
 
-      // Render Question
       function renderQuestion() {
         const questions = quizData[currentLesson].questions;
 
@@ -1059,47 +523,40 @@
         const letters = ['A', 'B', 'C', 'D'];
 
         quizContainer.innerHTML = `
-          <div class="quiz-card-interactive">
-            <div class="quiz-header-interactive">
-              <div class="quiz-number-interactive">${currentQuestion + 1}</div>
-              <span class="quiz-meta">Pergunta ${currentQuestion + 1} de ${questions.length}</span>
+          <div class="quiz-card">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: var(--esp-md);">
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--chita-azul); color: #FFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">${currentQuestion + 1}</div>
+              <span style="color: var(--bordado-suave); font-weight: 600;">Pergunta ${currentQuestion + 1} de ${questions.length} · ${quizData[currentLesson].title}</span>
             </div>
-            <h2 class="quiz-question-interactive">${q.question}</h2>
-            <div class="options-list">
+            <h3 class="quiz-pergunta">${q.question}</h3>
+            <div class="quiz-opcoes">
               ${q.options.map((opt, i) => `
-                <button class="option-btn" data-index="${i}">
-                  <span class="option-letter">${letters[i]}</span>
-                  <span class="option-text">${opt}</span>
+                <button class="quiz-option" data-index="${i}">
+                  <span class="letra">${letters[i]}</span>
+                  <span>${opt}</span>
                 </button>
               `).join('')}
             </div>
-            <div class="feedback-interactive" id="feedback"></div>
-            <div class="quiz-nav">
-              <button class="nav-btn secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
-                Anterior
-              </button>
-              <button class="nav-btn primary" id="next-btn" onclick="nextQuestion()" style="display: none;">
-                Próxima
-              </button>
+            <div class="quiz-feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+            <div style="display: flex; justify-content: space-between; margin-top: var(--esp-md); gap: 10px;">
+              <button class="btn btn-secondary btn-sm" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>← Anterior</button>
+              <button class="btn btn-primary btn-sm" id="next-btn" onclick="nextQuestion()" style="display: none;">Próxima →</button>
             </div>
           </div>
         `;
 
-        // Add click listeners to options
-        document.querySelectorAll('.option-btn').forEach(btn => {
+        document.querySelectorAll('.quiz-option').forEach(btn => {
           btn.addEventListener('click', () => selectOption(parseInt(btn.dataset.index)));
         });
       }
 
-      // Select Option
       function selectOption(index) {
         const questions = quizData[currentLesson].questions;
         const q = questions[currentQuestion];
         const isCorrect = index === q.correct;
 
-        // Disable all buttons
-        document.querySelectorAll('.option-btn').forEach(btn => {
-          btn.classList.add('disabled');
+        document.querySelectorAll('.quiz-option').forEach(btn => {
+          btn.disabled = true;
           const idx = parseInt(btn.dataset.index);
           if (idx === q.correct) {
             btn.classList.add('correct');
@@ -1108,47 +565,33 @@
           }
         });
 
-        // Show feedback
         const feedback = document.getElementById('feedback');
-        feedback.className = `feedback-interactive show ${isCorrect ? 'correct' : 'incorrect'}`;
-        feedback.innerHTML = `
-          <div class="feedback-header-interactive">
-            <span class="feedback-icon">${isCorrect ? '🎉' : '💡'}</span>
-            <span class="feedback-title-interactive">${isCorrect ? 'Muito bem!' : 'Quase lá!'}</span>
-          </div>
-          <p class="feedback-text-interactive">${q.explanation}</p>
-        `;
+        feedback.className = `quiz-feedback show ${isCorrect ? 'success' : 'error'}`;
+        feedback.textContent = (isCorrect ? '🎉 Muito bem! ' : '💡 Quase lá! ') + q.explanation;
 
-        // Update score
         if (!answeredQuestions.includes(currentQuestion)) {
           answeredQuestions.push(currentQuestion);
-          if (isCorrect) {
-            correctAnswers++;
-          }
+          if (isCorrect) correctAnswers++;
           updateProgress();
         }
 
-        // Show next button
         document.getElementById('next-btn').style.display = 'inline-flex';
       }
 
-      // Update Progress
       function updateProgress() {
         const questions = quizData[currentLesson].questions;
         const total = questions.length;
         const progress = (answeredQuestions.length / total) * 100;
-
-        progressFill.style.width = `${progress}%`;
-        scoreDisplay.textContent = `${correctAnswers} de ${answeredQuestions.length} corretas`;
+        progressFill.style.width = progress + '%';
+        scoreDisplay.textContent = answeredQuestions.length + ' de ' + total + ' perguntas respondidas · ' +
+          correctAnswers + (correctAnswers === 1 ? ' correta' : ' corretas');
       }
 
-      // Next Question
       function nextQuestion() {
         currentQuestion++;
         renderQuestion();
       }
 
-      // Previous Question
       function previousQuestion() {
         if (currentQuestion > 0) {
           currentQuestion--;
@@ -1156,20 +599,17 @@
         }
       }
 
-      // Show Completion
       function showCompletion() {
         quizContainer.innerHTML = '';
-        completionCard.classList.add('show');
+        completionCard.style.display = 'block';
         document.getElementById('final-correct').textContent = correctAnswers;
         document.getElementById('final-total').textContent = quizData[currentLesson].questions.length;
       }
 
-      // Restart Quiz
       function restartQuiz() {
         resetQuiz();
       }
 
-      // Start
       init();
     </script>
   </body>

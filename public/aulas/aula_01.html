@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aula 01 interativa: Sua Jornada Começa Aqui — computador, navegador e seu primeiro e-mail. Programa de Inclusão Digital UEMG Frutal.">
+    <meta name="theme-color" content="#1E4466">
+    <title>Aula 01 — Sua Jornada Começa Aqui | Inclusão Digital UEMG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/player.css">
+    <style>
+        /* Extras específicos da aula 01 */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .passos-duplos { margin: var(--esp-xs) 0; gap: var(--esp-sm); }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .mini-cartao { padding: var(--esp-sm); }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .icone-grande { font-size: 2rem; margin-bottom: 0; }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .mini-cartao h4 { margin-bottom: 4px; }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .passos { gap: 5px; }
+        .etapa:is([data-etapa="17"], [data-etapa="18"]) .passo { padding: 7px 12px; }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+        .grade-pecas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .grade-pecas { grid-template-columns: 1fr; } }
+        .peca-casa { background: var(--retalho); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); display: flex; gap: var(--esp-sm); align-items: flex-start; }
+        .peca-casa .peca-emoji { font-size: 2rem; flex-shrink: 0; }
+        .peca-casa h4 { font-family: var(--font-body); font-weight: 800; color: var(--chita-azul-escura); margin-bottom: 4px; font-size: 1.05rem; }
+        .peca-casa p { margin: 0; font-size: var(--texto-sm); }
+        .mockup-caixa { background: #FFF; border-radius: 16px; border: 1px solid #E9EDEF; overflow: hidden; box-shadow: var(--sombra-md); margin: var(--esp-md) 0; }
+        .caixa-topo { background: #EA4335; color: #FFF; padding: 12px 16px; font-weight: 700; font-size: .95rem; }
+        .caixa-linha { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #F0F2F5; font-size: .9rem; }
+        .caixa-linha:last-child { border-bottom: none; }
+        .caixa-linha strong { color: var(--chita-azul-escura); }
+        .senha-dica { display: inline-block; background: var(--chita-amarela-bg); border: 1px dashed var(--chita-amarela); border-radius: var(--raio-pill); padding: 4px 14px; font-weight: 700; color: var(--bordado); }
+
+        /* ===== Mini-mockups de reconhecimento (aula 01) ===== */
+        .mm { background: #FFF; border: 1px solid #E9EDEF; border-radius: 16px; box-shadow: var(--sombra-md); overflow: hidden; width: 100%; max-width: clamp(300px, 30vw, 520px); }
+        .mm-bar { display: flex; align-items: center; gap: 8px; background: #EA4335; color: #FFF; padding: 10px 14px; font-weight: 700; font-size: .88rem; }
+        .mm-bar.azul { background: #1E4466; }
+        .mm-bar.verde { background: #075E54; }
+        .mm-bar.cinza { background: #4A5568; }
+        .mm-bar.vermelho { background: #B5372C; }
+        .mm-corpo { padding: 12px 14px; }
+        .mm-rotulo { font-size: .62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bordado-suave); display: block; }
+        .mm-nota { font-size: .82rem; color: var(--bordado-suave); margin-top: 8px; line-height: 1.5; }
+        .mm-campo { border: 2px solid var(--linha-forte); border-radius: 8px; padding: 8px 10px; background: #FFF; font-size: .85rem; color: var(--bordado-suave); margin-bottom: 8px; }
+        .mm-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #F0F2F5; font-size: .88rem; }
+        .mm-linha:last-child { border-bottom: none; }
+        /* Roadmap da jornada */
+        .mm-parada { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: .9rem; }
+        .mm-num { width: 24px; height: 24px; border-radius: 50%; background: var(--chita-azul); color: #FFF; display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 800; flex-shrink: 0; }
+        /* Computador (casa digital) */
+        .pc-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 12px; background: linear-gradient(160deg, #E3ECF5 0%, #F1EADA 100%); }
+        .pc-monitor { width: 190px; background: #2F3E4E; border-radius: 10px; padding: 10px 10px 4px; }
+        .pc-tela { background: linear-gradient(180deg, #FFF, #EAF1F8); border-radius: 4px; padding: 16px 8px; text-align: center; }
+        .pc-base { width: 44px; height: 8px; background: #2F3E4E; margin: 2px auto 0; border-radius: 0 0 6px 6px; }
+        .pc-gabinete { display: flex; flex-direction: column; align-items: center; gap: 4px; background: #5B6B7C; border-radius: 8px; padding: 10px 18px; }
+        .pc-luz { width: 10px; height: 10px; border-radius: 50%; background: #4CD964; border: 2px solid #2F7D3E; box-shadow: inset 0 1px 2px rgba(255,255,255,.55); }
+        .pc-perifericos { display: flex; gap: 16px; align-items: center; font-size: 1.6rem; }
+        /* Monitor (a TV) */
+        .monitor-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; }
+        .monitor-tela { width: 200px; background: linear-gradient(180deg, #FFF, #EAF1F8); border: 10px solid #2F3E4E; border-radius: 10px; padding: 22px 10px; text-align: center; font-size: 2rem; }
+        /* Cabos */
+        .cabo-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #F0F2F5; font-size: .88rem; }
+        .cabo-linha:last-child { border-bottom: none; }
+        .cabo-icone { font-size: 1.3rem; width: 34px; text-align: center; }
+        .cabo-encaixe { margin-left: auto; font-size: .72rem; font-weight: 800; color: var(--chita-verde); }
+        /* Porta USB */
+        .usb-porta { display: flex; align-items: center; gap: 8px; background: #E8EAED; border: 2px solid var(--linha-forte); border-radius: 8px; padding: 10px 14px; font-weight: 800; color: var(--chita-azul-escura); font-size: .9rem; }
+        .usb-icones { font-size: 1.5rem; letter-spacing: 6px; margin-top: 8px; }
+        /* Menu Iniciar */
+        .mm-linha.power { background: var(--chita-amarela-bg); border: 2px solid var(--chita-amarela); border-radius: 10px; padding: 8px 12px; font-weight: 700; }
+        /* Navegador */
+        .nav-topo { display: flex; align-items: center; gap: 6px; background: #E8EAED; padding: 8px 12px; }
+        .nav-botao { width: 12px; height: 12px; border-radius: 50%; }
+        .nav-botao.vermelho { background: #EA4335; }
+        .nav-botao.amarelo { background: #FBBC05; }
+        .nav-botao.verde { background: #34A853; }
+        .nav-aba { background: #FFF; border-radius: 8px 8px 0 0; padding: 4px 14px; font-size: .78rem; font-weight: 600; color: var(--bordado-suave); margin-left: 6px; }
+        .nav-endereco { display: flex; align-items: center; gap: 8px; background: #FFF; border: 1px solid #DADCE0; border-radius: 999px; margin: 10px 12px; padding: 6px 14px; font-size: .85rem; color: var(--bordado-suave); }
+        .nav-pagina { padding: 4px 14px 14px; text-align: center; }
+        /* Bilhete */
+        .bilhete { background: var(--chita-amarela-bg); border: 2px dashed var(--chita-amarela); border-radius: 10px; padding: 14px; text-align: center; font-size: .95rem; }
+        /* Senha */
+        .senha-campo { display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--linha-forte); border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; letter-spacing: 3px; font-size: 1rem; color: var(--chita-azul-escura); background: #FFF; }
+        /* Turma */
+        .turma-avatares { display: flex; justify-content: center; gap: 16px; padding: 10px 0; }
+        .turma-avatares .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--algodao-escuro); display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid var(--linha); }
+        /* CPU */
+        .cpu-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; }
+        .cpu-torre { background: #5B6B7C; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        /* Cenas centrais (tomada, power, cadeado, envelope) */
+        .tomada-cena, .power-cena, .cadeado-cena, .envelope-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; text-align: center; }
+        .tomada-cena .grande { font-size: 3rem; }
+        .power-btn { width: 72px; height: 72px; border-radius: 50%; background: var(--algodao-escuro); border: 4px solid var(--linha-forte); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .cadeado-icone { font-size: 3rem; }
+        /* Ônibus (navegadores) */
+        .onibus-linha { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #F0F2F5; font-size: .9rem; }
+        .onibus-linha:last-child { border-bottom: none; }
+        .onibus-emoji { font-size: 1.4rem; width: 38px; text-align: center; flex-shrink: 0; }
+        .onibus-destino { color: var(--bordado-suave); font-size: .8rem; margin-left: auto; }
+        /* Identidade digital */
+        .identidade-linha { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #F0F2F5; font-size: .9rem; font-weight: 600; }
+        .identidade-linha:last-child { border-bottom: none; }
+        /* E-mail suspeito */
+        .fraude-linha { padding: 7px 0; font-size: .88rem; border-bottom: 1px solid #F0F2F5; }
+        .fraude-linha:last-child { border-bottom: none; }
+        .fraude-botao { display: inline-block; background: var(--chita-vermelha); color: #FFF; border-radius: 8px; padding: 8px 16px; font-weight: 700; margin: 8px 0; font-size: .85rem; }
+        .fraude-aviso { background: #FBEAEA; border: 2px dashed var(--chita-vermelha); border-radius: 10px; padding: 8px 10px; font-size: .8rem; font-weight: 700; color: #7A2620; }
+        /* Caderninho da missão */
+        .caderno-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--linha); font-size: .88rem; }
+        .caderno-linha:last-child { border-bottom: none; }
+        /* Simuladores interativos na coluna visual: não limitar altura */
+        .etapa-grid .etapa-visual.simulador { align-items: flex-start; }
+        .etapa-grid .etapa-visual.simulador > * { max-height: none; }
+        @media (max-width: 900px) { .etapa-grid .etapa-visual.simulador { order: 0; max-height: none; } }
+
+
+        /* Impeccable layout + adapt: ritmo legível e rolagem interna honesta. */
+        .lista-check { gap: var(--esp-sm); }
+        .mini-cartao p, .peca-casa p { font-size: var(--texto-base) !important; line-height: 1.55; }
+        @media (max-width: 900px) {
+            .etapa-grid .etapa-visual { order: 0; max-height: none; }
+            .etapa p, .lista-check li, .mini-cartao p, .peca-casa p { font-size: var(--texto-base); }
+            .passos-duplos { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        }
+        @media (pointer: coarse) {
+            .url-chip, .btn-reacao, .btn-seguir, .btn-publicar,
+            .botao-instalar, .botao-rota, .lugar-chip, .app-botao { min-height: 44px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="player-topo">
+        <a href="/aulas.html" class="player-trilha-link">← Todas as aulas</a>
+        <h1 class="player-etiqueta">Aula 01 · Fundamentos</h1>
+    </div>
+
+    <div class="player-progresso">
+        <div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 47</span></div>
+        <div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+    </div>
+
+    <main class="player" id="player">
+
+        <!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+        <section class="etapa ativa" data-etapa="1">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Bem-vindos à sua nova aventura digital!</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Você já deve ter ouvido alguém dizer que <strong>computador é um bicho de sete cabeças</strong>.
+                    Hoje vamos descobrir juntos que isso não é verdade — e transformar esse "bicho"
+                    em um <strong>amigo confiável</strong> que trabalha para você.</p>
+                    <div class="analogia">
+                        🏡 "Pense no computador como uma <strong>casa digital</strong>:
+                        cada peça é um cômodo com um trabalho. Você não precisa saber
+                        construir a casa — precisa apenas aprender a morar nela com conforto."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <img
+                      src="/assets/ilustracoes/aula01-fundamentos-bg-16x9-v01.png"
+                      alt="Capa da aula: senhora sorridente usando um computador com a família por perto"
+                      class="ilustracao-cena"
+                      width="1600" height="900"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="2">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Um recado importante para começar</h2>
+            <ul class="lista-check">
+                <li><span><strong>Você não está aqui porque "não sabe"</strong> — está aqui porque quer aprender algo novo</span></li>
+                <li><span><strong>Cada um tem seu ritmo</strong> — e todos compartilham o mesmo objetivo</span></li>
+                <li><span><strong>Aqui não existe pergunta boba</strong> — toda dúvida ajuda a turma inteira</span></li>
+                <li><span><strong>Ao final desta jornada, você vai falar com quem ama</strong> pela internet</span></li>
+            </ul>
+            <div class="destaque">
+                💡 <strong>O segredo de hoje:</strong> nada de decoreba. Vamos usar coisas
+                que você já conhece da vida — casa, ônibus e correio — para entender
+                o mundo digital. Se você sabe usar esses três, você já sabe quase tudo!
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="3">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Nossa jornada de hoje</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Hoje vamos dar <strong>os primeiros passos</strong> do mundo digital.
+                    Olha só o caminho que vamos percorrer juntos:</p>
+                    <div class="destaque">
+                        🧵 <strong>Fio da meada de hoje:</strong> casa (computador) → ônibus
+                        (navegador) → correio (e-mail). Guarde essas três imagens:
+                        elas explicam a aula inteira!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🗺️ O caminho de hoje</div>
+                        <div class="mm-corpo">
+                            <div class="mm-parada"><span class="mm-num">1</span>🏡 Casa — o computador</div>
+                            <div class="mm-parada"><span class="mm-num">2</span>🔌 Cabos no lugar</div>
+                            <div class="mm-parada"><span class="mm-num">3</span>🛠️ Problemas simples</div>
+                            <div class="mm-parada"><span class="mm-num">4</span>🚌 O navegador</div>
+                            <div class="mm-parada"><span class="mm-num">5</span>📮 Criar o e-mail</div>
+                            <div class="mm-parada"><span class="mm-num">6</span>💌 Enviar mensagens</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="4">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>O caminho, passo a passo</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Conhecer cada parte do computador</strong> — e para que serve cada uma</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Conectar os cabos</strong> com segurança, como um eletrodoméstico de casa</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Resolver problemas simples</strong> — sem pânico, quase tudo tem solução</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Descobrir o que é um navegador</strong> — o ônibus da cidade digital</p></div>
+                <div class="passo"><span class="passo-num">5</span><p><strong>Criar seu primeiro e-mail</strong> — seu endereço no correio digital</p></div>
+                <div class="passo"><span class="passo-num">6</span><p><strong>Enviar mensagens para os colegas</strong> — e sentir a alegria da primeira resposta</p></div>
+            </div>
+            <div class="analogia">
+                💌 "Tudo isso tem um único objetivo: <strong>facilitar para você falar
+                com quem você ama</strong>. É por isso que estamos aqui — a tecnologia
+                é só o caminho; as pessoas são o destino."
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="5">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Mas antes, é hora de nos conhecer!</h2>
+            <p>Toda boa jornada começa com uma boa conversa. Vamos nos apresentar —
+            sem pressa, cada história é importante!</p>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>De onde você vem?</strong> Seu nome, sua cidade, sua família</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>O que você espera aprender?</strong> Pode ser falar com os netos, ver fotos, fazer compras…</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Uma curiosidade sobre você</strong> — um hobby, um talento, uma história</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Um desafio que enfrenta com a tecnologia</strong> — aqui é o lugar certo para falar disso</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="6">
+            <span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+            <h2>Clique na frase que mais combina com você</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Enquanto os colegas se apresentam, vamos fazer um exercício rapidinho.
+                    <strong>Clique na frase que mais combina com você</strong> — pode escolher mais de uma:</p>
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🙋 Qual destas frases parece com você hoje?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="1">
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Que ótimo! Todo mundo que está aqui hoje sente um pouco isso — e é por isso que vamos aprender juntos, cada um no seu ritmo." data-feedback-wrong=""><span class="letra">A</span><span>"Quero aprender, mas tenho um pouco de medo de quebrar alguma coisa"</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! É exatamente para isso que este curso existe — e você já está no caminho certo." data-feedback-wrong=""><span class="letra">B</span><span>"Quero conseguir falar com minha família pela internet"</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🥰 Maravilha! Aqui ninguém fica para trás — a turma inteira se ajuda, e os monitores estão sempre por perto." data-feedback-wrong=""><span class="letra">C</span><span>"Já sei um pouquinho, mas quero aprender muito mais"</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="1"></div>
+                    </div>
+                    <div class="destaque">
+                        🌟 <strong>Não existe resposta errada aqui.</strong> Tudo o que você
+                        escolher mostra que você veio com vontade de aprender —
+                        e isso já é o mais importante. Cada história é importante!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar vermelho">🙋 Nossa turma</div>
+                        <div class="mm-corpo">
+                            <div class="turma-avatares">
+                                <div class="avatar">👵</div><div class="avatar">👴</div><div class="avatar">🧓</div>
+                            </div>
+                            <p class="mm-nota" style="text-align:center;">Cada história é importante — aqui ninguém fica para trás, e toda pergunta ajuda a turma inteira!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FASE 2 · VAMOS JUNTOS ============ -->
+        <section class="etapa" data-etapa="7">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é um computador</span>
+            <h2>O computador: nossa casa digital</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Vamos conhecer as <strong>partes do computador</strong> usando uma ideia
+                    simples: o computador é a sua <strong>casa digital</strong>. Cada peça tem um
+                    trabalho parecido com algo que você já conhece da sua casa de verdade.</p>
+                    <div class="grade-pecas">
+                        <div class="peca-casa">
+                            <span class="peca-emoji">📺</span>
+                            <div>
+                                <h4>Monitor — a TV</h4>
+                                <p>É a <strong>tela onde você vê tudo</strong>. Como a televisão da sala:
+                                sem ela, você não enxerga nada.</p>
+                            </div>
+                        </div>
+                        <div class="peca-casa">
+                            <span class="peca-emoji">🧠</span>
+                            <div>
+                                <h4>CPU / Gabinete — o cérebro</h4>
+                                <p>É a <strong>caixa que pensa</strong> e guarda tudo. Como a sua memória:
+                                sem ela, o computador não funciona.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="8">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é um computador</span>
+            <h2>Teclado e mouse: escrever, apontar e clicar</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="grade-pecas">
+                        <div class="peca-casa">
+                            <span class="peca-emoji">👆</span>
+                            <div>
+                                <h4>Teclado — o dedo</h4>
+                                <p>Serve para <strong>escrever</strong>. Como uma máquina de escrever
+                                moderna: cada tecla é uma letra ou um número.</p>
+                            </div>
+                        </div>
+                        <div class="peca-casa">
+                            <span class="peca-emoji">✍️</span>
+                            <div>
+                                <h4>Mouse — a caneta</h4>
+                                <p>Serve para <strong>apontar e clicar</strong>. Como a caneta na sua mão:
+                                com ele você escolhe onde quer "tocar" na tela.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">🖥️ A casa digital</div>
+                        <div class="mm-corpo pc-cena">
+                            <div class="pc-monitor">
+                                <div class="pc-tela"><span class="mm-rotulo">MONITOR · a TV</span></div>
+                                <div class="pc-base"></div>
+                            </div>
+                            <div class="pc-gabinete">
+                                <div class="pc-luz"></div>
+                                <span class="mm-rotulo" style="color:#E8EAED;">CPU · o cérebro</span>
+                            </div>
+                            <div class="pc-perifericos">
+                                <span title="Teclado — o dedo">⌨️</span>
+                                <span title="Mouse — a caneta">🖱️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="9">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Qual é o quê?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="analogia">
+                        🏡 "No computador, o <span class="termo" tabindex="0">monitor
+                            <span class="tooltip"><strong>Monitor</strong>
+                            A tela do computador, onde você vê tudo o que está acontecendo — como a TV da sua sala.</span>
+                        </span> é a TV da casa,
+                        a <span class="termo" tabindex="0">CPU
+                            <span class="tooltip"><strong>CPU / Gabinete</strong>
+                            A caixa que é o cérebro do computador. Ela pensa, calcula e guarda tudo — como a sua memória.</span>
+                        </span> é o cérebro,
+                        o <span class="termo" tabindex="0">teclado
+                            <span class="tooltip"><strong>Teclado</strong>
+                            A fileira de letras e números usada para escrever — como uma máquina de escrever.</span>
+                        </span> é o seu dedo
+                        e o <span class="termo" tabindex="0">mouse
+                            <span class="tooltip"><strong>Mouse</strong>
+                            A peça que você desliza na mesa para apontar e clicar na tela — como uma caneta.</span>
+                        </span> é a sua caneta."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="10">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Vamos testar: qual é o quê?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p><strong>Vamos testar se ficou claro. Qual é o quê?</strong></p>
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🖥️ "A tela onde você vê tudo" — qual parte do computador é essa?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="2">
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! O monitor é a tela — a TV da sua casa digital." data-feedback-wrong="💡 Quase! O monitor é a tela, onde você vê tudo — como a TV da sala. As outras peças trabalham escondidas, mas o monitor é o que aparece para você."><span class="letra">A</span><span>O monitor</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Olha só: o teclado serve para escrever. A tela onde você vê tudo é o monitor — como a TV da sala."><span class="letra">B</span><span>O teclado</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! O mouse serve para apontar e clicar. A tela onde você vê tudo é o monitor — a TV da sua casa digital."><span class="letra">C</span><span>O mouse</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="2"></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">📺 O monitor</div>
+                        <div class="mm-corpo monitor-cena">
+                            <div class="monitor-tela">🖥️<span class="mm-rotulo">A TV da casa digital</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="11">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>E a caixa que pensa?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🧠 "A caixa que pensa e guarda tudo" — qual parte é essa?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="3">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 O teclado é para escrever. A caixa que pensa e guarda tudo é a CPU/gabinete — o cérebro do computador."><span class="letra">A</span><span>O teclado</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! A CPU/gabinete é o cérebro do computador — é ela que pensa e guarda tudo." data-feedback-wrong=""><span class="letra">B</span><span>A CPU / gabinete</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! O monitor é a tela onde você vê tudo. A caixa que pensa é a CPU/gabinete — o cérebro."><span class="letra">C</span><span>O monitor</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="3"></div>
+                    </div>
+                    <div class="destaque">
+                        🧠 <strong>Guarde assim:</strong> monitor = tela (TV) · CPU = cérebro ·
+                        teclado = escrever · mouse = clicar. É só pensar na casa digital!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">🧠 A caixa que pensa</div>
+                        <div class="mm-corpo cpu-cena">
+                            <div class="cpu-torre">
+                                <div class="pc-luz"></div>
+                                <span class="mm-rotulo" style="color:#E8EAED;">CPU · GABINETE</span>
+                            </div>
+                            <p class="mm-nota">Ela pensa, calcula e guarda tudo — como a sua memória.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="12">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Ligando as peças</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Agora que conhecemos as peças, vamos <strong>conectá-las</strong>.
+                    Respire fundo: isso é mais simples do que parece. O segredo é que
+                    <strong>cada cabo só encaixa no seu lugar</strong> — e muitos têm desenho.</p>
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🔌</span>
+                            <h4>Cabo de energia → Tomada</h4>
+                            <p>O computador se liga na tomada <strong>como qualquer eletrodoméstico</strong>
+                            da sua casa — geladeira, TV, liquidificador.</p>
+                        </div>
+                        <div class="mini-cartao">
+                            <span class="icone-grande">📺</span>
+                            <h4>Cabo do monitor → Computador</h4>
+                            <p>É <strong>como a antena da TV</strong>:
+                            sem ele, a imagem não chega na tela.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="13">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Ligando mouse e teclado</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🖱️</span>
+                            <h4>Mouse → Porta USB</h4>
+                            <p>O mouse entra em uma <strong>porta USB</strong> — geralmente na parte de trás
+                            do gabinete. É só encaixar.</p>
+                        </div>
+                        <div class="mini-cartao">
+                            <span class="icone-grande">⌨️</span>
+                            <h4>Teclado → Porta USB</h4>
+                            <p>Também entra em uma <strong>porta USB</strong>. Repare nos
+                            <strong>desenhos ao lado das portas</strong>!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">🔌 O quebra-cabeça dos cabos</div>
+                        <div class="mm-corpo">
+                            <div class="cabo-linha"><span class="cabo-icone">⚡</span><span><strong>Tomada → energia</strong></span><span class="cabo-encaixe">encaixa ✔</span></div>
+                            <div class="cabo-linha"><span class="cabo-icone">📺</span><span><strong>Monitor → gabinete</strong></span><span class="cabo-encaixe">encaixa ✔</span></div>
+                            <div class="cabo-linha"><span class="cabo-icone">🖱️</span><span><strong>Mouse → USB</strong></span><span class="cabo-encaixe">encaixa ✔</span></div>
+                            <div class="cabo-linha"><span class="cabo-icone">⌨️</span><span><strong>Teclado → USB</strong></span><span class="cabo-encaixe">encaixa ✔</span></div>
+                            <p class="mm-nota">🔎 Os desenhos ao lado das portas mostram exatamente onde cada cabo vai — como um quebra-cabeça!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="14">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Cada cabo só encaixa no seu lugar</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="analogia">
+                        🔌 "Ligar os cabos do computador é como <strong>ligar os eletrodomésticos da cozinha</strong>:
+                        cada um tem seu lugar na tomada. E as portas USB têm desenhos
+                        que mostram exatamente onde cada cabo vai — como os quebra-cabeças de criança!"
+                    </div>
+                    <div class="destaque">
+                        💡 <strong>Dica de ouro:</strong> a porta onde o mouse e o teclado entram
+                        se chama <span class="termo" tabindex="0">USB
+                            <span class="tooltip"><strong>Porta USB</strong>
+                            A "tomada" do computador para mouse, teclado, pendrive e outros acessórios. É onde os cabos encaixam.</span>
+                        </span>.
+                        É a "tomada" dos acessórios — e quase todo computador tem várias.
+                        Se não encaixar de um jeito, <strong>vire o cabo</strong>: ele só entra do jeito certo.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🔌 A "tomada" dos acessórios</div>
+                        <div class="mm-corpo">
+                            <div class="usb-porta">🔲 Porta USB</div>
+                            <div class="usb-icones">🖱️ ⌨️ 💾</div>
+                            <p class="mm-nota">Mouse, teclado, pendrive — tudo entra aqui. Se não encaixar, vire o cabo: ele só entra do jeito certo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="15">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Se algo der errado, não se preocupe!</h2>
+            <p>Computador tem dessas coisas: às vezes parece que algo quebrou,
+            mas <strong>na maioria das vezes é um probleminha simples</strong>.
+            Olha o que a experiência já ensinou:</p>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>"Não liga"</strong> → Verifique se está <strong>na tomada</strong> e se o cabo de energia está bem encaixado</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>"Tela preta"</strong> → O cabo do monitor pode estar <strong>solto</strong> — confira as duas pontas</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>"Mouse não funciona"</strong> → Verifique a <strong>conexão USB</strong> — às vezes soltou sem perceber</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>"Teclas não respondem"</strong> → O <strong>teclado pode estar desconectado</strong> — encaixe de novo</p></div>
+            </div>
+            <div class="atencao">
+                📌 <strong>O segredo dos técnicos:</strong> <strong>90% dos problemas são cabos soltos!</strong>
+                Antes de qualquer coisa, verifique as conexões — você resolve sozinho(a) na maioria das vezes.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="16">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Vamos praticar com uma situação real</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🔌 Seu computador não liga de jeito nenhum. Qual é o primeiro passo?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="4">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Calma! Antes de chamar alguém, confira a tomada — 90% dos problemas são cabos soltos. Você consegue resolver sozinho(a)!" data-feedback-correct=""><span class="letra">A</span><span>Entrar em pânico e chamar um técnico</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Verificar o cabo de energia na tomada é sempre o primeiro passo — e resolve a maioria dos casos." data-feedback-wrong=""><span class="letra">B</span><span>Verificar se o cabo de energia está bem encaixado na tomada</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! Mexer nos cabos sem verificar a tomada primeiro pode até piorar. Vá por partes: primeiro a energia, depois as conexões." data-feedback-correct=""><span class="letra">C</span><span>Desligar tudo e mexer em todos os cabos ao mesmo tempo</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="4"></div>
+                    </div>
+                    <div class="destaque">
+                        🛠️ <strong>Método do bombeiro hidráulico:</strong> resolva <strong>um problema por vez</strong>.
+                        Tomada → cabo do monitor → USB do mouse → USB do teclado. Sempre nessa ordem,
+                        sempre com calma. Você vai se surpreender com quantas vezes resolve sozinho(a)!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">🔌 Primeiro passo: a tomada</div>
+                        <div class="mm-corpo tomada-cena">
+                            <div class="grande">⚡</div>
+                            <p class="mm-nota">90% dos problemas são cabos soltos. Verifique as conexões antes de qualquer coisa!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="17">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Para ligar e desligar com segurança</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Ligar e desligar é fácil — mas existe um <strong>jeito certo</strong>
+                    que protege suas coisas:</p>
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🔘</span>
+                            <h4>Para LIGAR</h4>
+                            <div class="passos" style="margin:0;">
+                                <div class="passo"><span class="passo-num">1</span><p><strong>Encontre o botão de ligar no gabinete</strong> — o símbolo de círculo com um traço</p></div>
+                                <div class="passo"><span class="passo-num">2</span><p><strong>Aperte uma vez</strong> — o computador inicia</p></div>
+                                <div class="passo"><span class="passo-num">3</span><p><strong>Aguarde a tela inicial</strong> ficar pronta para uso</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="18">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Para desligar com segurança</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🛑</span>
+                            <h4>Para DESLIGAR</h4>
+                            <div class="passos" style="margin:0;">
+                                <div class="passo"><span class="passo-num">1</span><p><strong>Procure "Desligar" no menu Iniciar</strong> — no canto da tela</p></div>
+                                <div class="passo"><span class="passo-num">2</span><p><strong>Clique nele</strong> — o computador <strong>salva tudo antes</strong> de desligar</p></div>
+                                <div class="passo"><span class="passo-num">3</span><p><strong>Espere a tela apagar</strong> — desligado do jeito certo</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">🪟 Menu Iniciar</div>
+                        <div class="mm-corpo">
+                            <div class="mm-linha">🖥️ Suspender</div>
+                            <div class="mm-linha">🔄 Reiniciar</div>
+                            <div class="mm-linha power">⏻ <strong>Desligar</strong> <span style="margin-left:auto; font-size:.75rem;">salva tudo antes</span></div>
+                            <p class="mm-nota">O botão de energia é só para LIGAR. Para desligar, use o menu Iniciar!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="19">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>O jeito certo de desligar</h2>
+            <div class="atencao">
+                ⚠️ <strong>Evite apertar o botão de energia diretamente para desligar.</strong>
+                Isso é como arrancar o carro da tomada no meio da carga: pode
+                <strong>danificar o computador</strong> e afetar seu funcionamento.
+                O botão de energia é só para LIGAR.
+            </div>
+            <div class="analogia">
+                🚗 "Desligar pelo menu Iniciar é como <strong>estacionar o carro e tirar a chave</strong>:
+                tudo se ajeita, o que estava aberto é salvo, e na próxima vez o carro liga
+                redondo. Apertar o botão de energia direto é como desligar o carro em movimento."
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="20">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Agora é com você. O que fazer?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🖥️ Terminou de usar o computador. Qual é a forma mais segura de desligar?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="5">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Apertar o botão de energia direto pode danificar o computador. O jeito certo é usar o menu Iniciar → Desligar, que salva tudo antes." data-feedback-correct=""><span class="letra">A</span><span>Apertar o botão de energia e pronto</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Clicar em Iniciar → Desligar permite que o computador salve tudo antes, protegendo seus arquivos e o próprio aparelho." data-feedback-wrong=""><span class="letra">B</span><span>Clicar em Iniciar → Desligar, e esperar a tela apagar</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! Tirar o computador da tomada sem desligar direito é como arrancar o carro da tomada no meio da carga. Use sempre o menu Iniciar → Desligar." data-feedback-correct=""><span class="letra">C</span><span>Puxar o cabo da tomada direto</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="5"></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">⏻ Botão de energia</div>
+                        <div class="mm-corpo power-cena">
+                            <div class="power-btn">⏻</div>
+                            <p class="mm-nota">Só para LIGAR. Para desligar: Iniciar → Desligar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="21">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é um navegador</span>
+            <h2>O navegador: sua janela para o mundo</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Você já deve ter ouvido falar em Chrome <span class="ferramenta"><img src="/assets/logos/chrome.png" alt="" width="26" height="26"> Chrome</span>, Firefox ou Edge.
+                    Esses são os <strong>navegadores</strong> — e hoje você vai entender
+                    de uma vez por todas o que eles fazem.</p>
+                    <div class="analogia">
+                        🏙️ "Pense na internet como uma <strong>cidade gigante</strong>, cheia de lugares para visitar.
+                        O <span class="termo" tabindex="0">navegador
+                            <span class="tooltip"><strong>Navegador</strong>
+                            O ônibus que leva você aos lugares da internet (Chrome, Firefox, Edge). Sem ele, você não visita nenhum site.</span>
+                        </span> é o <strong>ônibus</strong>
+                        que leva você aonde quiser. E os
+                        <span class="termo" tabindex="0">sites
+                            <span class="tooltip"><strong>Site</strong>
+                            Uma loja ou lugar dentro da cidade da internet, com endereço próprio. Exemplo: o site do banco, o site da prefeitura.</span>
+                        </span> são as <strong>lojas e lugares</strong> para visitar."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="nav-topo">
+                            <span class="nav-botao vermelho"></span><span class="nav-botao amarelo"></span><span class="nav-botao verde"></span>
+                            <span class="nav-aba">Nova aba</span>
+                        </div>
+                        <div class="nav-endereco">🔒 <span>gmail.com</span> <span style="margin-left:auto;">⭐</span></div>
+                        <div class="nav-pagina">
+                            <span class="mm-rotulo">A janela para o mundo</span>
+                            <span class="ferramenta"><img src="/assets/logos/chrome.png" alt="" width="26" height="26"> Chrome</span>
+                            <p class="mm-nota">O navegador é o ônibus da cidade digital — e o cadeado 🔒 mostra que o lugar é seguro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="22">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Conheça os navegadores</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Hoje vamos aprender a <strong>"pegar o ônibus"</strong>: abrir o navegador,
+                    digitar o endereço de um lugar e visitá-lo. E a boa notícia é que
+                    <strong>todos os navegadores fazem a mesma coisa</strong> —
+                    escolha o que você preferir!</p>
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p>Google Chrome — o <strong>círculo colorido</strong> (vermelho, verde, amarelo e azul)</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p>Firefox — a <strong>raposa laranja</strong> enrolada no globo</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p>Edge — a <strong>letra E azul</strong>, um pouco inclinada</p></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🚌 Os ônibus da cidade digital</div>
+                        <div class="mm-corpo">
+                            <div class="onibus-linha"><span class="ferramenta"><img src="/assets/logos/chrome.png" alt="" width="26" height="26"> Chrome</span><span class="onibus-destino">o círculo colorido</span></div>
+                            <div class="onibus-linha"><span class="onibus-emoji">🦊</span><span><strong>Firefox</strong></span><span class="onibus-destino">a raposa laranja</span></div>
+                            <div class="onibus-linha"><span class="onibus-emoji">🅴</span><span><strong>Edge</strong></span><span class="onibus-destino">a letra E azul</span></div>
+                            <p class="mm-nota">Todos levam aos mesmos lugares da cidade — escolha o que você preferir!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="23">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Primeiro bilhete de ônibus</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            🚌 Se a internet é uma cidade gigante, o que é o navegador?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="6">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 O monitor é a tela — a TV. O que leva você aos lugares da internet é o navegador: o ônibus da cidade digital." data-feedback-correct=""><span class="letra">A</span><span>A tela (monitor)</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! O navegador é o ônibus que leva você aos lugares da internet. Chrome, Firefox e Edge são ônibus diferentes para a mesma cidade!" data-feedback-wrong=""><span class="letra">B</span><span>O ônibus que leva você aos lugares</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! O teclado é para escrever. Quem leva você aos lugares da internet é o navegador — o ônibus da cidade digital." data-feedback-correct=""><span class="letra">C</span><span>O teclado</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="6"></div>
+                    </div>
+                    <div class="destaque">
+                        🎫 <strong>Primeiro "bilhete de ônibus" da aula:</strong> abrir o navegador e
+                        visitar um lugar. Na próxima etapa vamos viajar até o correio digital!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar vermelho">🎫 Bilhete de ônibus digital</div>
+                        <div class="mm-corpo">
+                            <div class="bilhete">🚌 Destino: <strong>gmail.com</strong><br>
+                            <span class="mm-rotulo">VÁLIDO PARA A AULA DE HOJE</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="24">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é um e-mail</span>
+            <h2>Gmail: nosso correio digital de hoje</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Você conhece o <strong>correio de verdade</strong>: carta, envelope, selo,
+                    e o carteiro levando até a casa das pessoas. Agora imagine tudo isso
+                    <strong>sem papel, sem fila e em segundos</strong>. É para isso que serve o
+                    <span class="termo" tabindex="0">e-mail
+                        <span class="tooltip"><strong>E-mail</strong>
+                        Correio digital: uma carta que chega em segundos, de qualquer lugar do mundo. É o seu endereço na internet.</span>
+                    </span>.</p>
+                    <div class="ferramentas-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span></div>
+                    <h3>O que é o Gmail?</h3>
+                    <ul class="lista-check">
+                        <li><span>É o <strong>serviço de e-mail do Google</strong></span></li>
+                        <li><span>É o <strong>mais usado no mundo todo</strong></span></li>
+                        <li><span>É <strong>seguro e confiável</strong> — funciona no computador e no celular</span></li>
+                        <li><span>Em <strong>10 minutos</strong> você pode ter o seu próprio</span></li>
+                    </ul>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">💌 O correio digital</div>
+                        <div class="mm-corpo envelope-cena">
+                            <div class="grande">📨</div>
+                            <p class="mm-nota">Carta, envelope, selo — sem papel, sem fila e em segundos!</p>
+                            <span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="25">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Como chegar até o Gmail</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="analogia">
+                        💌 "Se o e-mail é o correio digital, o <span class="termo" tabindex="0">Gmail
+                            <span class="tooltip"><strong>Gmail</strong>
+                            O serviço de e-mail do Google — a agência de correio digital mais usada do mundo. É lá que sua conta de e-mail mora.</span>
+                        </span> é a agência
+                        de correio onde a sua caixinha de cartas fica guardada."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="26">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>O caminho do ônibus até o Gmail</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <h3>O caminho do ônibus até lá</h3>
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Abrir o navegador</strong> — o ônibus da cidade digital (Chrome, Firefox ou Edge)</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Digitar gmail.com</strong> na barra de endereços — como dizer ao motorista para onde você quer ir</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Clicar em "Criar conta"</strong> — é o balcão de atendimento da agência</p></div>
+                        <div class="passo"><span class="passo-num">4</span><p><strong>Preencher suas informações</strong> — nome, data de nascimento e escolher seu endereço</p></div>
+                        <div class="passo"><span class="passo-num">5</span><p><strong>Pronto!</strong> Você tem um e-mail — seu endereço no correio digital</p></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="nav-topo">
+                            <span class="nav-botao vermelho"></span><span class="nav-botao amarelo"></span><span class="nav-botao verde"></span>
+                            <span class="nav-aba">Nova aba</span>
+                        </div>
+                        <div class="nav-endereco">🔒 gmail.com</div>
+                        <div class="nav-pagina">
+                            <span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span>
+                            <div style="margin-top:10px; background:#1A73E8; color:#FFF; border-radius:8px; padding:8px 16px; font-weight:700; font-size:.85rem; display:inline-block;">➕ Criar conta</div>
+                            <p class="mm-nota">O botão "Criar conta" é o balcão de atendimento da agência.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="27">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é uma conta</span>
+            <h2>O que é uma conta?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Quando o Gmail pede para você <strong>"criar uma conta"</strong>, ele está
+                    pedindo algo muito parecido com o que você já faz na vida:
+                    <strong>se cadastrar</strong>. Vamos entender isso de uma vez por todas.</p>
+                    <div class="analogia">
+                        ✍️ "Uma <span class="termo" tabindex="0">conta
+                            <span class="tooltip"><strong>Conta</strong>
+                            Cadastro que diz ao serviço quem você é — como a sua assinatura. É com ela que o Gmail sabe que o e-mail é seu.</span>
+                        </span> é um <strong>cadastro que diz ao serviço quem você é</strong> —
+                        como a sua assinatura. Quando você cria uma conta no Gmail,
+                        o Google passa a te conhecer: sabe seu nome, sua data de nascimento
+                        e que aquele endereço de e-mail é <strong>seu</strong>."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="28">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é uma conta</span>
+            <h2>Contas que você já conhece</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p><strong>Você já faz isso a vida inteira</strong>, só que em outros lugares:</p>
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Na farmácia:</strong> quando pedem seu nome e CPF para o cadastro de pontos</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>No banco:</strong> quando você abre uma conta e eles anotam seus dados</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>No posto de saúde:</strong> quando você faz a ficha com seu nome e endereço</p></div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">✍️ Cadastro — como na farmácia</div>
+                        <div class="mm-corpo">
+                            <div class="mm-rotulo">Nome completo</div>
+                            <div class="mm-campo">Maria Aparecida da Silva</div>
+                            <div class="mm-rotulo">Data de nascimento</div>
+                            <div class="mm-campo">12/05/1958</div>
+                            <div class="mm-rotulo">Assinatura</div>
+                            <div class="mm-campo">✍️</div>
+                            <p class="mm-nota">A conta é a sua "assinatura" digital — ela diz ao serviço quem você é.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="29">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Por que a conta é tão importante?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <ul class="lista-check">
+                        <li><span>É ela que <strong>garante que seu e-mail é seu</strong> — ninguém mais usa</span></li>
+                        <li><span>É com ela que você <strong>entra depois</strong> ("fazer login") e reencontra suas mensagens</span></li>
+                        <li><span>É ela que <strong>protege suas informações</strong> — só você acessa</span></li>
+                        <li><span>Ela será <strong>sua em todas as aulas</strong>: a mesma conta serve para o WhatsApp <span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span> Web, Facebook <span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span>, fotos <span class="ferramenta"><img src="/assets/logos/photos.png" alt="" width="26" height="26"> Fotos</span> e muito mais</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="30">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Vamos conferir: o que é uma conta?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            📇 O que é uma "conta" no Gmail, usando as palavras da nossa aula?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="7">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 O navegador é o ônibus que leva você aos lugares. A conta é outra coisa: é o cadastro que diz ao serviço quem você é." data-feedback-correct=""><span class="letra">A</span><span>É o navegador que abre o Gmail</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! A conta é o cadastro que diz ao serviço quem você é — como a sua assinatura, ou o cadastro que você faz na farmácia." data-feedback-wrong=""><span class="letra">B</span><span>É o cadastro que diz ao serviço quem você é — como a sua assinatura</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! O monitor é a tela onde você vê tudo. A conta é o cadastro que identifica você — como a sua assinatura." data-feedback-correct=""><span class="letra">C</span><span>É a tela do computador</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="7"></div>
+                    </div>
+                    <div class="destaque">
+                        🗝️ <strong>Guarde essa imagem:</strong> conta = assinatura.
+                        Toda vez que você ouvir "crie sua conta", pense: "estou assinando
+                        meu cadastro aqui". Você já sabe fazer isso — só está aprendendo
+                        a fazer num lugar novo!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🗝️ Uma conta abre muitas portas</div>
+                        <div class="mm-corpo">
+                            <div class="ferramentas-linha" style="margin:0 0 8px;">
+                                <span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span>
+                                <span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span>
+                                <span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span>
+                                <span class="ferramenta"><img src="/assets/logos/photos.png" alt="" width="26" height="26"> Fotos</span>
+                            </div>
+                            <p class="mm-nota">A mesma conta, com sua senha, serve para entrar em tudo isso — nas próximas aulas e na vida real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="31">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <span class="etapa-rotulo">O que é uma senha</span>
+            <h2>A senha: a chave da sua casa digital</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Sua conta tem um nome — e tem uma <strong>chave</strong>.
+                    Essa chave é a <span class="termo" tabindex="0">senha
+                        <span class="tooltip"><strong>Senha</strong>
+                        A chave da sua casa digital — só você tem. É o segredo que prova que a conta é sua, como a chave da porta da sua casa.</span>
+                    </span>.</p>
+                    <div class="analogia">
+                        🔑 "A senha é a <strong>chave da sua casa digital</strong> — só você tem.
+                        Assim como você não entrega a chave da sua casa para qualquer pessoa,
+                        você também não entrega sua senha. Quem tem a senha, tem a conta."
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🔑 Criando sua chave</div>
+                        <div class="mm-corpo">
+                            <div class="mm-rotulo">Sua senha</div>
+                            <div class="senha-campo">●●●●●●●● <span style="letter-spacing:0;">👁️</span></div>
+                            <div class="senha-campo">●●●●●●●● <span style="letter-spacing:0;">👁️</span></div>
+                            <p class="mm-nota">O Gmail pede duas vezes e mostra pontinhos ●●● — ninguém vê sua chave de longe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="32">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Três regras de ouro para sua senha</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Ela é só sua.</strong> Não compartilhe com ninguém — nem com "funcionário do Google", nem com "parente". Ninguém honesto pede sua senha</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Escolha algo que só você saiba</strong> — e misture letras e números. Ex.: o nome do seu primeiro animal + um ano especial</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Anote em um lugar seguro</strong> (um caderninho seu, guardado) — e não deixe o papel colado no computador</p></div>
+            </div>
+            <p>Na hora de criar, o Gmail pede a senha <strong>duas vezes</strong> —
+            para garantir que você não errou ao digitar. E mostra pontinhos ●●●●●
+            no lugar das letras, para que ninguém olhando de longe veja a sua chave.</p>
+            <div class="destaque">
+                💡 <strong>Dica prática:</strong> se você esquecer a senha, não é o fim do mundo!
+                O Gmail tem um caminho de <strong>"Esqueci minha senha"</strong> que ajuda a recuperar.
+                Por isso é importante preencher um <strong>celular de recuperação</strong> quando o Gmail pedir.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="33">
+            <span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+            <h2>Alguém pede sua senha. O que fazer?</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="quiz-card">
+                        <div class="quiz-pergunta">
+                            📞 Alguém liga dizendo ser "do suporte do Google" e pede sua senha "para confirmar sua conta". O que fazer?
+                        </div>
+                        <div class="quiz-opcoes" data-quiz="8">
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Senha é a chave da sua casa digital — ninguém honesto pede sua senha. Desligue e não informe nada." data-feedback-correct=""><span class="letra">A</span><span>Informo a senha para confirmar logo</span></button>
+                            <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeitamente! Sua senha é a chave da sua casa digital — só você tem. Nenhuma empresa séria pede sua senha por telefone." data-feedback-wrong=""><span class="letra">B</span><span>Não informo nada — senha é só minha, e desligo</span></button>
+                            <button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! Passar a senha por telefone também é perigoso. Sua senha é só sua — desligue e, se quiser, confirme direto no site oficial do Google." data-feedback-correct=""><span class="letra">C</span><span>Leio a senha em voz alta para ele anotar</span></button>
+                        </div>
+                        <div class="quiz-feedback" data-feedback="8"></div>
+                    </div>
+                    <div class="atencao">
+                        🚨 <strong>Regra de ouro da aula:</strong> sua senha é a chave da sua casa digital.
+                        <strong>Ninguém</strong> — nem banco, nem Google, nem parente —
+                        tem o direito de pedir sua senha. Quem pede, não é de confiança.
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🔒 A chave é só sua</div>
+                        <div class="mm-corpo cadeado-cena">
+                            <div class="cadeado-icone">🔒</div>
+                            <p class="mm-nota">Quem tem a senha, tem a conta. Ninguém honesto pede sua senha — nem banco, nem Google, nem parente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FASE 3 · SUA VEZ ============ -->
+        <section class="etapa" data-etapa="34">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Agora é sua vez: vamos criar o seu e-mail!</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Chegou o grande momento! Vamos praticar a criação da conta aqui,
+                    <strong>no nosso simulador</strong> — é igualzinho ao Gmail, mas aqui
+                    você pode errar à vontade, sem medo!</p>
+                    <div id="conta-erro" class="atencao" style="display:none;"></div>
+                    <div id="conta-sucesso" class="destaque" style="display:none;">
+                        🎉 <strong>Parabéns! Sua conta foi criada!</strong> Repare: você fez o cadastro
+                        (a assinatura) e escolheu sua chave (a senha). A partir de agora, esse
+                        endereço é <strong>seu</strong> — e é com ele que você vai entrar sempre.
+                    </div>
+                    <div id="mockup-minha-caixa" class="mockup-caixa" style="display:none;">
+                        <div class="caixa-topo">📬 Minha caixa de entrada (Gmail)</div>
+                        <div class="caixa-linha"><strong>Bem-vindo(a) ao Gmail!</strong> — equipe do Google · agora mesmo</div>
+                        <div class="caixa-linha"><strong>Olá, seja bem-vindo(a)!</strong> — Programa de Inclusão Digital · agora mesmo</div>
+                    </div>
+                </div>
+                <div class="etapa-visual simulador">
+                    <div class="form-contato" id="form-criar-conta" style="max-width:480px; margin:0;">
+                        <label for="campo-nome">Seu nome completo</label>
+                        <input type="text" id="campo-nome" placeholder="Ex.: Maria Aparecida da Silva" autocomplete="off">
+                        <label for="campo-email">E-mail que você quer ter</label>
+                        <input type="text" id="campo-email" placeholder="Ex.: maria.aparecida@gmail.com" autocomplete="off">
+                        <label for="campo-senha">Escolha sua senha (a chave da sua casa digital!)</label>
+                        <input type="password" id="campo-senha" placeholder="Misture letras e números" autocomplete="off">
+                        <label for="campo-senha2">Confirme sua senha</label>
+                        <input type="password" id="campo-senha2" placeholder="Digite a mesma senha de novo" autocomplete="off">
+                        <button class="btn btn-verde" id="btn-criar-conta" style="width:100%;">📮 Criar minha conta</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="35">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <div class="ferramentas-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span></div>
+            <h2>No Gmail de verdade, o caminho é o mesmo:</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Abrir o navegador</strong> e digitar <strong>gmail.com</strong></p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Clicar em "Criar conta"</strong> → "Para mim mesmo"</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Preencher nome, data de nascimento e gênero</strong> (para o Google saber que você é uma pessoa de verdade)</p></div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="36">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <div class="ferramentas-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span></div>
+            <h2>No Gmail de verdade: endereço, senha e recuperação</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">4</span><p><strong>Escolher seu endereço de e-mail</strong> (pode ser seu nome + um número)</p></div>
+                <div class="passo"><span class="passo-num">5</span><p><strong>Criar a senha e digitá-la duas vezes</strong> — e anotá-la em lugar seguro</p></div>
+                <div class="passo"><span class="passo-num">6</span><p><strong>Adicionar um celular de recuperação</strong> — para recuperar a conta se esquecer a senha</p></div>
+            </div>
+            <div class="atencao">
+                🆘 <strong>Sem pressa, com toda a ajuda que precisar.</strong>
+                Esse é um momento importante — levante a mão, chame o monitor ou um colega.
+                Cada um no seu ritmo: quem termina primeiro, ajuda quem ainda está caminhando.
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="37">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>Enviar sua primeira mensagem!</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Com o e-mail criado, chegou a parte mais gostosa: <strong>enviar sua primeira mensagem</strong>!
+                    Vamos praticar no nosso simulador de caixa de entrada.</p>
+                    <div id="email-sucesso" class="destaque" style="display:none;">
+                        ✅ <strong>Mensagem enviada!</strong> Assim como uma carta no correio,
+                        seu e-mail saiu da sua caixa e está a caminho. Quando o colega abrir o
+                        e-mail dele, vai encontrar seu recado — em segundos!
+                    </div>
+                    <div id="mockup-enviados" class="mockup-caixa" style="display:none;">
+                        <div class="caixa-topo">📤 Mensagens enviadas</div>
+                        <div id="lista-enviados"></div>
+                    </div>
+                </div>
+                <div class="etapa-visual simulador">
+                    <div class="mockup-caixa" style="max-width:520px; margin:0;">
+                        <div class="caixa-topo">📬 Simulador — escrever novo e-mail</div>
+                        <div style="padding: var(--esp-md);">
+                            <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-para">Para (o endereço do colega)</label>
+                            <input type="text" id="campo-para" placeholder="Ex.: colegas.digital@gmail.com" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
+                            <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-assunto">Assunto</label>
+                            <input type="text" id="campo-assunto" placeholder="Ex.: Minha primeira mensagem!" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
+                            <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-mensagem">Sua mensagem</label>
+                            <textarea id="campo-mensagem" rows="4" placeholder="Escreva aqui seu recado... Ex.: Oi, colega! Hoje aprendi a criar meu e-mail. Que alegria! 😊" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF; resize:vertical;"></textarea>
+                            <button class="btn btn-verde" id="btn-enviar-email" style="width:100%;">➤ Enviar mensagem</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="38">
+            <span class="etapa-badge f3">Fase 3 · Sua vez</span>
+            <h2>O caminho real no Gmail</h2>
+            <div class="passos">
+                <div class="passo"><span class="passo-num">1</span><p><strong>Clicar em "Escrever"</strong> — o botão grande, geralmente vermelho, no canto superior</p></div>
+                <div class="passo"><span class="passo-num">2</span><p><strong>Escolher para quem enviar</strong> — digitar o endereço do colega no campo "Para"</p></div>
+                <div class="passo"><span class="passo-num">3</span><p><strong>Escrever o assunto</strong> — uma frase curta sobre o que é a mensagem</p></div>
+                <div class="passo"><span class="passo-num">4</span><p><strong>Escrever a mensagem</strong> — seu recado, do seu jeito</p></div>
+                <div class="passo"><span class="passo-num">5</span><p><strong>Clicar em "Enviar"</strong> — e pronto, o correio digital faz o resto!</p></div>
+            </div>
+            <div class="analogia">
+                📮 "Enviar um e-mail é como <strong>entregar uma carta no correio</strong>:
+                você escreve, coloca o endereço de quem vai receber e entrega.
+                Só que, em vez de dias, a carta chega <strong>em segundos</strong>."
+            </div>
+            <div class="destaque">
+                ✍️ <strong>Sugestão de primeira mensagem:</strong>
+                "Oi! Sou eu, [seu nome]. Acabei de criar meu e-mail na aula de hoje. Que bom te encontrar por aqui! 😊"
+                — mande para um colega da turma ou para um familiar.
+            </div>
+        </section>
+
+        <!-- ============ FASE 4 · NA VIDA REAL ============ -->
+        <section class="etapa" data-etapa="39">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Seu e-mail na vida real</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <p>Agora que você tem um e-mail, vamos ver <strong>onde ele vai te ajudar na vida</strong>.
+                    O e-mail é como a "identidade digital": muitos lugares pedem ele para falar com você.</p>
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🏦</span>
+                            <h4>No banco</h4>
+                            <p>Extratos, comprovantes e avisos chegam por e-mail. Em muitas agências, é ele que você usa para entrar no aplicativo.</p>
+                        </div>
+                        <div class="mini-cartao">
+                            <span class="icone-grande">🛒</span>
+                            <h4>Nas compras</h4>
+                            <p>Nota fiscal, rastreio da entrega e confirmação de pedido chegam por e-mail. É o "comprovante" da compra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="40">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Seu e-mail na saúde e com a família</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="passos-duplos">
+                        <div class="mini-cartao">
+                            <span class="icone-grande">👨‍⚕️</span>
+                            <h4>Na saúde</h4>
+                            <p>Confirmações de consulta e resultados de exames podem chegar por e-mail — sem precisar ir até o posto.</p>
+                        </div>
+                        <div class="mini-cartao">
+                            <span class="icone-grande">👨‍👩‍👧</span>
+                            <h4>Com a família</h4>
+                            <p>Fotos, cartinhas e recados para quem mora longe — de graça e na hora. O correio digital aproxima quem o correio comum afastou.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar azul">🪪 Sua identidade digital</div>
+                        <div class="mm-corpo">
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">seu endereço</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">conversas</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">família</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/photos.png" alt="" width="26" height="26"> Fotos</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">memórias</span></div>
+                            <p class="mm-nota">O e-mail é o seu endereço no mundo digital — muitos lugares o pedem para falar com você.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="41">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Três cuidados para levar para casa</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="passos">
+                        <div class="passo"><span class="passo-num">1</span><p><strong>Sua senha é sua chave:</strong> nunca a compartilhe, nem em e-mail, nem por telefone, nem com "parente"</p></div>
+                        <div class="passo"><span class="passo-num">2</span><p><strong>Cuidado com e-mails suspeitos:</strong> se um e-mail prometer prêmio, pedir dinheiro ou dados, <strong>não clique em nada</strong> — fale com o monitor ou com alguém de confiança</p></div>
+                        <div class="passo"><span class="passo-num">3</span><p><strong>Confira sempre o remetente:</strong> antes de confiar, veja de quem realmente veio a mensagem — como você faria com uma carta estranha no portão</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="42">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Na dúvida, pare e peça ajuda</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="atencao">
+                        ⚠️ <strong>Se algo parecer bom demais para ser verdade, é bom desconfiar.</strong>
+                        "Você ganhou um prêmio, clique aqui" — o correio de verdade não entrega
+                        prêmios. Na dúvida, <strong>PARE, não clique</strong> e pergunte a alguém de confiança.
+                    </div>
+                    <div class="destaque">
+                        💡 <strong>Para lembrar sempre:</strong> seu e-mail é seu endereço no mundo digital.
+                        A mesma <span class="termo" tabindex="0">conta
+                            <span class="tooltip"><strong>Conta</strong>
+                            Cadastro que diz ao serviço quem você é — como a sua assinatura. Vale para Gmail, Facebook, banco e quase tudo na internet.</span>
+                        </span> com sua
+                        <span class="termo" tabindex="0">senha
+                            <span class="tooltip"><strong>Senha</strong>
+                            A chave da sua casa digital — só você tem. Nunca compartilhe, nem por telefone, nem por e-mail.</span>
+                        </span> vai servir para entrar em muitos outros lugares
+                        nas próximas aulas. Você acabou de criar a base de tudo!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar vermelho">⚠️ E-mail suspeito</div>
+                        <div class="mm-corpo">
+                            <div class="fraude-linha">🎁 <strong>PARABÉNS! Você ganhou R$ 5.000!</strong></div>
+                            <div class="fraude-linha">Clique aqui para receber seu prêmio agora mesmo →</div>
+                            <div class="fraude-botao">Clique aqui</div>
+                            <div class="fraude-aviso">🚫 NÃO clique em nada! Conte para o monitor ou para alguém de confiança.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="43">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Sua missão da semana</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="missao">
+                        <h3>🏠 Para fazer em casa até a próxima aula</h3>
+                        <p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> Ligue e desligue o computador <strong>pelo menos uma vez</strong> usando o jeito seguro (menu Iniciar → Desligar).</p>
+                        <p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> Abra o navegador, digite <strong>gmail.com</strong> e entre na sua conta nova — pratique sozinho(a).</p>
+                        <p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> Envie um e-mail <strong>para um familiar ou colega</strong> contando que você criou seu e-mail hoje.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="44">
+            <span class="etapa-badge f4">Fase 4 · Na vida real</span>
+            <h2>Sua missão da semana: segurança</h2>
+            <div class="etapa-grid">
+                <div class="etapa-texto">
+                    <div class="missao">
+                        <h3>🏠 Para fazer em casa até a próxima aula</h3>
+                        <p style="margin-bottom: var(--esp-sm);"><strong>4.</strong> Guarde sua senha <strong>anotada em um lugar seguro</strong> — e não conte para ninguém.</p>
+                        <p><strong>5.</strong> Observe: <strong>não clique</strong> em nenhum e-mail que prometa prêmios ou peça dados. Se aparecer algum, guarde para contar na próxima aula!</p>
+                    </div>
+                    <div class="destaque">
+                        🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                        cada uma praticada em casa deixa o aprendizado mais firme.
+                        Na próxima aula, contamos como foi!
+                    </div>
+                </div>
+                <div class="etapa-visual">
+                    <div class="mm">
+                        <div class="mm-bar cinza">📓 Minha missão da semana</div>
+                        <div class="mm-corpo">
+                            <div class="caderno-linha">✅ Ligar/desligar do jeito seguro</div>
+                            <div class="caderno-linha">✅ Entrar no gmail.com sozinho(a)</div>
+                            <div class="caderno-linha">✅ Enviar um e-mail para alguém</div>
+                            <div class="caderno-linha">✅ Guardar a senha em lugar seguro</div>
+                            <div class="caderno-linha">🔍 Observar e-mails suspeitos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+        <section class="etapa" data-etapa="45">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+
+            <div class="momento">
+                <span class="trofeu">🧵</span>
+                <h2>Você começou a costurar a colcha!</h2>
+                <p>Hoje você conheceu o computador como se fosse a sua casa,
+                aprendeu a ligar e desligar com segurança, descobriu o navegador —
+                o ônibus da cidade digital — e criou o seu próprio e-mail.
+                Você entendeu o que é uma <strong>conta</strong> e o que é uma
+                <strong>senha</strong>. Isso é autonomia — você está no comando!</p>
+            </div>
+        </section>
+
+        <section class="etapa" data-etapa="46">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+            <h2>Suas conquistas de hoje</h2>
+            <ul class="lista-conquistas">
+                <li>✅ Conheci as partes do computador (monitor, CPU, teclado, mouse)</li>
+                <li>✅ Sei conectar os cabos com segurança</li>
+                <li>✅ Sei resolver problemas simples (cabos soltos!)</li>
+                <li>✅ Ligo e desligo o computador do jeito certo</li>
+                <li>✅ Sei o que é um navegador — o ônibus da internet</li>
+                <li>✅ Criei meu primeiro e-mail</li>
+                <li>✅ Entendi o que é conta e senha</li>
+                <li>✅ Enviei minha primeira mensagem</li>
+            </ul>
+
+        </section>
+
+        <section class="etapa" data-etapa="47">
+            <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+            <h2>Aula 01 costurada!</h2>
+            <div style="text-align:center; margin-top: var(--esp-md);">
+                <div class="retalho-costurado">Aula 01 · costurada! 🎉</div>
+            </div>
+
+            <div class="destaque" style="margin-top: var(--esp-md);">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos aprender
+                a navegar com segurança — conhecer melhor os lugares da cidade digital,
+                reconhecer sites seguros e se proteger. Com o que você aprendeu hoje,
+                você já tem as chaves para essa viagem.
+            </div>
+
+            <div style="text-align:center; margin-top: var(--esp-md);">
+                <a href="/pratique.html" class="btn btn-secondary">Revisar com quizzes</a>
+                <a href="/aulas.html" class="btn btn-primary">Voltar para as aulas</a>
+            </div>
+        </section>
+
+        <!-- Navegação -->
+        <nav class="player-nav">
+            <button class="btn btn-secondary" id="btn-anterior" disabled>← Anterior</button>
+            <button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+        </nav>
+    </main>
+
+    <script src="/assets/player-base.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            // ===== Estado específico da aula 01 =====
+            var contaCriada = false;
+            var emailEnviado = false;
+
+            // ===== Formulário: criar conta (simulador Gmail) =====
+            var btnCriarConta = document.getElementById('btn-criar-conta');
+            var campoNome = document.getElementById('campo-nome');
+            var campoEmail = document.getElementById('campo-email');
+            var campoSenha = document.getElementById('campo-senha');
+            var campoSenha2 = document.getElementById('campo-senha2');
+            var contaErro = document.getElementById('conta-erro');
+            var contaSucesso = document.getElementById('conta-sucesso');
+            var mockupCaixa = document.getElementById('mockup-minha-caixa');
+
+            function mostrarErroConta(msg) {
+                contaErro.textContent = msg;
+                contaErro.style.display = 'block';
+                contaSucesso.style.display = 'none';
+                mockupCaixa.style.display = 'none';
+            }
+
+            btnCriarConta.addEventListener('click', function () {
+                var nome = campoNome.value.trim();
+                var email = campoEmail.value.trim();
+                var senha = campoSenha.value;
+                var senha2 = campoSenha2.value;
+
+                if (!nome) {
+                    mostrarErroConta('💡 Falta só o seu nome — é ele que o Gmail usa para te chamar pelo nome certo.');
+                    campoNome.focus();
+                    return;
+                }
+                if (!email) {
+                    mostrarErroConta('💡 Escolha o endereço do seu e-mail — por exemplo, seu nome + um número (maria.silva2025).');
+                    campoEmail.focus();
+                    return;
+                }
+                if (email.indexOf('@') === -1) {
+                    mostrarErroConta('💡 Quase lá! Um e-mail tem o símbolo @ — como "maria@gmail.com". Veja o exemplo e tente de novo.');
+                    campoEmail.focus();
+                    return;
+                }
+                if (senha.length < 6) {
+                    mostrarErroConta('💡 Sua senha precisa ter pelo menos 6 caracteres — misture letras e números para ficar bem segura.');
+                    campoSenha.focus();
+                    return;
+                }
+                if (senha !== senha2) {
+                    mostrarErroConta('💡 As duas senhas não estão iguais — confira se digitou a mesma coisa nos dois campos. Acontece com todo mundo!');
+                    campoSenha2.focus();
+                    return;
+                }
+
+                contaErro.style.display = 'none';
+                contaCriada = true;
+                contaSucesso.style.display = 'block';
+                mockupCaixa.style.display = 'block';
+
+                // Personaliza a caixa de entrada com o nome e o e-mail escolhidos
+                var linhas = mockupCaixa.querySelectorAll('.caixa-linha strong');
+                if (linhas.length > 0) {
+                    linhas[0].textContent = 'Bem-vindo(a), ' + nome + '! Sua conta ' + email + ' está pronta.';
+                }
+
+                campoNome.value = '';
+                campoEmail.value = '';
+                campoSenha.value = '';
+                campoSenha2.value = '';
+                contaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== Simulador: enviar e-mail =====
+            var btnEnviarEmail = document.getElementById('btn-enviar-email');
+            var campoPara = document.getElementById('campo-para');
+            var campoAssunto = document.getElementById('campo-assunto');
+            var campoMensagem = document.getElementById('campo-mensagem');
+            var emailSucesso = document.getElementById('email-sucesso');
+            var mockupEnviados = document.getElementById('mockup-enviados');
+            var listaEnviados = document.getElementById('lista-enviados');
+
+            btnEnviarEmail.addEventListener('click', function () {
+                var para = campoPara.value.trim();
+                var assunto = campoAssunto.value.trim();
+                var mensagem = campoMensagem.value.trim();
+
+                if (!para) {
+                    campoPara.focus();
+                    campoPara.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                if (!mensagem) {
+                    campoMensagem.focus();
+                    campoMensagem.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+
+                campoPara.style.borderColor = '';
+                campoMensagem.style.borderColor = '';
+                emailEnviado = true;
+                emailSucesso.style.display = 'block';
+                mockupEnviados.style.display = 'block';
+
+                var linha = document.createElement('div');
+                linha.className = 'caixa-linha';
+                linha.innerHTML = '<div><strong>Para: </strong>' + para.replace(/</g, '&lt;') +
+                    (assunto ? ' — <strong>Assunto: </strong>' + assunto.replace(/</g, '&lt;') : '') +
+                    '<br><span style="color:var(--bordado-suave); font-size:.85rem;">' + mensagem.replace(/</g, '&lt;') + '</span></div>';
+                listaEnviados.appendChild(linha);
+
+                campoPara.value = '';
+                campoAssunto.value = '';
+                campoMensagem.value = '';
+                emailSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        })();
+    </script>
+</body>
+</html>

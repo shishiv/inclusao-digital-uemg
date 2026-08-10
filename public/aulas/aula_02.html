@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Aula 02 interativa: Navegando com Segurança — URL, cadeado, sites suspeitos, links patrocinados, fake news, golpes, compras online, Google Maps e o celular. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 02 — Navegando com Segurança | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* ===== Extras específicos da aula 02 ===== */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+
+        /* Mockup navegador */
+        .mockup-navegador { position: relative; max-width: 560px; margin: var(--esp-md) auto; background: #FFF; border-radius: 14px; border: 1px solid var(--linha); box-shadow: var(--sombra-md); overflow: hidden; }
+        .navegador-tab { background: #F1F3F4; padding: 8px 14px; font-size: .8rem; color: var(--bordado-suave); border-bottom: 1px solid #E3E6E8; font-weight: 600; }
+        .barra-endereco { display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+        .cadeado { font-size: 1.15rem; }
+        .endereco-texto { flex: 1; background: #F1F3F4; border-radius: 20px; padding: 10px 14px; font-size: .9rem; color: var(--bordado); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        /* Chips de URL clicáveis */
+        .url-chips { display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .url-chip { display: flex; align-items: center; gap: 10px; background: var(--algodao); border: 2px solid var(--linha); border-radius: var(--raio); padding: 12px 16px; cursor: pointer; font-family: monospace; font-size: .92rem; text-align: left; transition: border-color var(--veloz), background var(--veloz); }
+        .url-chip:hover { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
+        .url-chip.boa { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+        .url-chip.ruim { border-color: var(--chita-vermelha); background: #FBEAEA; }
+        .veredito { display: none; margin-top: var(--esp-md); padding: var(--esp-md); border-radius: var(--raio); font-weight: 600; }
+        .veredito.show { display: block; }
+        .veredito.ok { background: var(--chita-verde-bg); color: #2F522C; border: 2px dashed var(--chita-verde); }
+        .veredito.cuidado { background: #FBEAEA; color: #7A2620; border: 2px dashed var(--chita-vermelha); }
+
+        /* Mockup Google */
+        .mockup-google { max-width: 520px; margin: var(--esp-md) auto; background: #FFF; border-radius: 16px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); overflow: hidden; }
+        .google-barra { padding: 12px 16px; border-bottom: 1px solid #F0F2F5; display: flex; align-items: center; gap: 10px; }
+        .google-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--chita-azul-escura); }
+        .google-campo { flex: 1; background: #F1F3F4; border-radius: 24px; padding: 8px 14px; font-size: .88rem; color: var(--bordado-suave); }
+        .resultado { padding: 12px 16px; border-bottom: 1px solid #F0F2F5; }
+        .resultado.anuncio { background: #FFF8E7; }
+        .tag-anuncio { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .66rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 4px; }
+        .resultado .url-linha { font-size: .78rem; color: #5F6368; }
+        .resultado .titulo { font-weight: 700; color: #1A0DAB; font-size: .95rem; }
+        .resultado .descricao { font-size: .82rem; color: #4D5156; }
+
+        /* Mockup celular + tela inicial */
+        .mockup-celular { max-width: 300px; margin: var(--esp-md) auto; background: #111B21; border-radius: 34px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); overflow: hidden; }
+        .celular-tela { background: linear-gradient(160deg, #E8F1F8, #F6F1E3); min-height: 400px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+        .status-celular { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 700; color: var(--bordado-suave); padding: 0 4px; }
+        .tela-inicial { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; }
+        .app-icone { background: #FFF; border: 2px solid var(--linha); border-radius: 16px; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: transform var(--veloz), border-color var(--veloz); }
+        .app-icone:hover { transform: translateY(-2px); border-color: var(--chita-azul); }
+        .app-icone .emoji { font-size: 1.55rem; }
+        .app-icone .rotulo { font-size: .62rem; font-weight: 700; color: var(--bordado); text-align: center; line-height: 1.1; }
+        .nota-celular { display: none; background: var(--chita-azul-escura); color: #FFF; border-radius: 12px; padding: 12px 14px; font-size: .85rem; line-height: 1.5; }
+        .nota-celular.show { display: block; }
+
+        /* Loja de aplicativos */
+        .loja-mock { max-width: 360px; margin: var(--esp-md) auto; background: #FFF; border-radius: 20px; overflow: hidden; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); }
+        .loja-topo { background: #0F766E; color: #FFF; padding: 12px 16px; font-weight: 800; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+        .loja-topo img { border-radius: 5px; flex-shrink: 0; }
+        .loja-busca { background: #F1F3F4; margin: 12px 12px 4px; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--bordado-suave); }
+        .loja-lista { padding: 8px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+        .loja-card { display: flex; align-items: center; gap: 12px; background: var(--algodao); border: 2px solid var(--linha); border-radius: 14px; padding: 10px 12px; }
+        .loja-card .app-emoji { width: 46px; height: 46px; border-radius: 12px; background: #FFF; border: 1px solid var(--linha); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; flex-shrink: 0; }
+        .loja-card .infos { flex: 1; min-width: 0; }
+        .loja-card .nome-app { font-weight: 800; font-size: .9rem; color: #111B21; }
+        .loja-card .editor { font-size: .72rem; color: #5F6368; }
+        .botao-instalar { background: var(--chita-verde); color: #FFF; border: none; border-radius: 999px; padding: 7px 16px; font-weight: 800; font-size: .8rem; cursor: pointer; flex-shrink: 0; }
+        .botao-instalar:hover { background: #3E6B3B; }
+        .botao-instalar.instalado { background: var(--chita-azul); cursor: default; }
+        .loja-aviso { display: none; margin-top: var(--esp-sm); padding: 12px 14px; border-radius: var(--raio); font-weight: 600; font-size: .9rem; }
+        .loja-aviso.show { display: block; }
+        .loja-aviso.ok { background: var(--chita-verde-bg); color: #2F522C; }
+        .loja-aviso.erro { background: #FBEAEA; color: #7A2620; }
+
+        /* Painel Wi-Fi / dados móveis */
+        .painel-rede { max-width: 420px; margin: var(--esp-md) auto; background: var(--algodao); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); }
+        .chip-rede { display: flex; align-items: center; gap: 12px; width: 100%; background: #FFF; border: 2px solid var(--linha); border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; cursor: pointer; font-weight: 700; text-align: left; font-size: .95rem; transition: border-color var(--veloz), background var(--veloz); }
+        .chip-rede:hover { border-color: var(--chita-azul); }
+        .chip-rede.ativo { border-color: var(--chita-verde); background: var(--chita-verde-bg); color: #2F522C; }
+        .status-rede { display: none; margin-top: var(--esp-sm); padding: var(--esp-sm) var(--esp-md); border-radius: var(--raio); font-weight: 600; background: var(--chita-azul-bg); color: var(--chita-azul-escura); }
+        .status-rede.show { display: block; }
+
+        /* Produto + avaliações */
+        .produto-card { max-width: 420px; margin: var(--esp-md) auto; background: #FFF; border: 1px solid #E9EDEF; border-radius: 18px; overflow: hidden; box-shadow: var(--sombra-md); }
+        .produto-foto { height: 150px; background: linear-gradient(135deg, #E3ECF5, #F1EADA); display: flex; align-items: center; justify-content: center; font-size: 3.4rem; }
+        .produto-info { padding: 14px 16px; }
+        .produto-info .nome-produto { font-weight: 700; font-size: .95rem; }
+        .estrelas { color: var(--chita-amarela); font-size: 1.05rem; letter-spacing: 2px; }
+        .avaliacao-linha { font-size: .78rem; color: #5F6368; }
+
+        /* Mockup Google Maps */
+        .maps-mock { position: relative; max-width: 420px; margin: var(--esp-md) auto; border-radius: 20px; overflow: hidden; border: 6px solid #E8EAED; box-shadow: var(--sombra-lg); background: #FFF; }
+        .maps-barra { padding: 10px; background: #FFF; }
+        .maps-busca { background: #F1F3F4; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--bordado-suave); border: none; width: 100%; }
+        .maps-tela { height: 210px; position: relative; background: linear-gradient(160deg, #E8F0E4 0%, #E3ECF5 60%, #F6F1E3 100%); overflow: hidden; }
+        .maps-rua { position: absolute; background: #FFF; border: 2px solid #E3DCCB; }
+        .maps-rua.h { left: 0; right: 0; top: 55px; height: 26px; }
+        .maps-rua.v { top: 0; bottom: 0; left: 70px; width: 26px; }
+        .maps-rua.d { top: 118px; left: 110px; width: 140px; height: 22px; transform: rotate(-24deg); }
+        .maps-pin { position: absolute; top: 30px; left: 178px; font-size: 2rem; filter: drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
+        .maps-resultado { display: none; padding: 12px 16px; align-items: center; gap: 10px; border-top: 1px solid #F0F2F5; }
+        .maps-resultado.show { display: flex; }
+        .maps-resultado .nome-lugar { font-weight: 800; font-size: .95rem; flex: 1; }
+        .maps-resultado .tempo { font-size: .78rem; color: #5F6368; }
+        .botao-rota { background: #4285F4; color: #FFF; border: none; border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .8rem; cursor: pointer; flex-shrink: 0; }
+        .lugares { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--esp-md) 0; }
+        .lugar-chip { background: #FFF; border: 2px solid var(--linha); border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .88rem; cursor: pointer; transition: border-color var(--veloz), background var(--veloz); }
+        .lugar-chip:hover { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
+        .lugar-chip.ativo { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+
+        /* ===== Adaptações tela cheia (aula 02) ===== */
+        .etapa-visual .mockup,
+        .etapa-visual .mockup-celular,
+        .etapa-visual .mockup-navegador,
+        .etapa-visual .mockup-google,
+        .etapa-visual .loja-mock,
+        .etapa-visual .painel-rede,
+        .etapa-visual .produto-card,
+        .etapa-visual .maps-mock,
+        .etapa-visual .url-chips { margin: 0; }
+        .etapa-visual .mockup-tela { min-height: 300px; }
+        .etapa-visual .lugares { margin: 0 0 var(--esp-sm); justify-content: center; }
+        .etapa-visual .ferramentas-linha { margin: var(--esp-sm) 0 0; justify-content: center; }
+
+        /* Cartão visual genérico (reconhecimento rápido) */
+        .cartao-visual { max-width: 380px; margin: 0 auto; background: var(--algodao); border: 2px dashed var(--linha-forte); border-radius: var(--raio-lg); padding: var(--esp-lg) var(--esp-md); text-align: center; box-shadow: var(--sombra-md); }
+        .cartao-visual .cv-icone { font-size: 3rem; display: block; margin-bottom: var(--esp-sm); }
+        .cartao-visual h4 { font-family: var(--font-display); font-size: var(--texto-lg); color: var(--chita-azul-escura); margin-bottom: 6px; }
+        .cartao-visual p { font-size: var(--texto-sm); color: var(--bordado-suave); margin: 0; }
+
+        /* Navegador com site SUSPEITO (sem cadeado) */
+        .mockup-navegador.ruim .navegador-tab { background: #FBEAEA; color: #7A2620; }
+        .mockup-navegador.ruim .endereco-texto { border: 2px solid var(--chita-vermelha); color: #7A2620; }
+        .aviso-nao-seguro { display: flex; align-items: center; gap: 10px; background: #FBEAEA; border: 2px solid var(--chita-vermelha); color: #7A2620; border-radius: 10px; padding: 10px 14px; margin: 0 14px 14px; font-weight: 700; font-size: .85rem; }
+
+        /* Etiqueta de mensagem encaminhada (WhatsApp) */
+        .mockup-encaminhada { display: block; font-size: .66rem; color: #8696A0; font-style: italic; margin-bottom: 4px; }
+
+        /* Fontes confiáveis (checagem de notícias) */
+        .fonte-linha { display: flex; flex-direction: column; gap: 8px; margin-top: var(--esp-sm); text-align: left; }
+        .fonte-linha span { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--texto-sm); background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); border-radius: var(--raio); padding: 8px 14px; color: #2F522C; }
+
+        /* Logo real dentro dos ícones da tela inicial */
+        .app-icone .emoji-img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; }
+
+        /* Cartão da loja de aplicativos (reconhecimento) */
+        .cartao-loja { max-width: 320px; margin: 0 auto; background: #FFF; border: 1px solid #E9EDEF; border-radius: 20px; box-shadow: var(--sombra-md); overflow: hidden; text-align: center; }
+        .cartao-loja .loja-hero { background: linear-gradient(140deg, #0F766E, #14B8A6); padding: var(--esp-lg); }
+        .cartao-loja .loja-hero img { width: 72px; height: 72px; margin: 0 auto; border-radius: 14px; }
+        .cartao-loja .loja-hero p { color: #FFF; font-weight: 800; font-size: 1.05rem; margin-top: 8px; }
+        .cartao-loja .loja-rodape { padding: var(--esp-sm); font-size: .8rem; color: var(--bordado-suave); font-weight: 600; }
+
+        /* Mini tela inicial (app recém-instalado) */
+        .mini-tela { max-width: 300px; margin: 0 auto; background: linear-gradient(160deg, #E8F1F8, #F6F1E3); border-radius: 26px; border: 6px solid #1F2C34; box-shadow: var(--sombra-lg); padding: 14px; }
+        .mini-tela .mini-grelha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .mini-app { background: #FFF; border: 2px solid var(--linha); border-radius: 14px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
+        .mini-app img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; }
+        .mini-app .rotulo { font-size: .6rem; font-weight: 700; color: var(--bordado); text-align: center; line-height: 1.1; }
+        .mini-app.novo { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+        .mini-app.novo::after { content: 'novo!'; position: absolute; top: -8px; right: -6px; background: var(--chita-vermelha); color: #FFF; font-size: .55rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; }
+
+        /* Mini mapa estático */
+        .mini-mapa { max-width: 340px; margin: 0 auto; border-radius: 18px; overflow: hidden; border: 6px solid #E8EAED; box-shadow: var(--sombra-lg); background: #FFF; }
+        .mini-mapa .maps-tela { height: 160px; position: relative; background: linear-gradient(160deg, #E8F0E4 0%, #E3ECF5 60%, #F6F1E3 100%); }
+        .mini-mapa .maps-pin { position: absolute; top: 14px; left: 150px; font-size: 1.7rem; filter: drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
+
+        /* Status seguro x não seguro */
+        .mini-status { display: flex; gap: 10px; justify-content: center; margin-top: var(--esp-sm); }
+        .mini-status .st { flex: 1; max-width: 150px; border-radius: var(--raio); padding: var(--esp-sm); text-align: center; font-weight: 800; font-size: .8rem; line-height: 1.4; }
+        .mini-status .st.ok { background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); color: #2F522C; }
+        .mini-status .st.ruim { background: #FBEAEA; border: 2px solid var(--chita-vermelha); color: #7A2620; }
+
+        /* Impeccable layout + adapt: ritmo legível e rolagem interna honesta. */
+        .lista-check { gap: var(--esp-sm); }
+        .mini-cartao p { font-size: var(--texto-base) !important; line-height: 1.55; }
+        @media (max-width: 900px) {
+            .etapa-grid .etapa-visual { order: 0; max-height: none; }
+            .etapa p, .lista-check li, .mini-cartao p { font-size: var(--texto-base); }
+            .passos-duplos { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        }
+        @media (pointer: coarse) {
+            .url-chip, .btn-reacao, .btn-seguir, .btn-publicar,
+            .botao-instalar, .botao-rota, .lugar-chip, .app-botao { min-height: 44px; }
+        }
+    </style>
+</head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 02 · Navegação</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 48</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+<section class="etapa ativa" data-etapa="1">
+<span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+<h2>Navegando com segurança e descobrindo ferramentas úteis</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p><strong>Parabéns pelo seu progresso!</strong> Você já domina o computador básico,
+                    já sabe criar e acessar seus e-mails <span class="ferramenta"><img alt="" height="26" src="/assets/logos/gmail.png" width="26"/> Gmail</span>
+                    e já consegue navegar na internet.
+                    Hoje vamos avançar mais um pouco — sempre no seu ritmo.</p>
+<div style="text-align:center; margin: var(--esp-md) 0;">
+<button class="btn btn-verde" id="btn-boas-vindas">Eu já naveguei na internet! 🚀</button>
+</div>
+<div class="destaque" id="boas-vindas-msg" style="display:none;">
+                        ✅ <strong>E então você está pronto para hoje!</strong>
+                        Sua experiência de vida é a base de tudo o que vamos aprender. Vamos juntos, um passo de cada vez.
+                    </div>
+</div>
+<div class="etapa-visual">
+<img alt="Ilustração da aula 02: uma senhora navegando na internet com segurança, ao lado de um computador com cadeado e ferramentas digitais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula02-navegacao-bg-16x9-v01.png" width="1536"/>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="2">
+<span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+<h2>Por que isso importa?</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<div class="analogia">
+                        🏠 "Sua sabedoria é proteção! Assim como você tranca a porta de casa para
+                        proteger seus pertences, vamos aprender a proteger nossas informações na internet."
+                    </div>
+<ul class="lista-check">
+<li><span><strong>Internet segura não é questão de medo</strong> — é questão de conhecimento</span></li>
+<li><span>Assim como você identifica uma oferta boa demais na vida real, pode fazer o mesmo na internet</span></li>
+<li><span>Você já protege seus documentos e senhas em casa — hoje aprende a proteger no mundo digital</span></li>
+</ul>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🏠🔒</span>
+<h4>Você já sabe proteger</h4>
+<p>Assim como tranca a porta de casa, você aprende a proteger suas informações na internet.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="3">
+<span class="etapa-badge f1">Fase 1 · Por que isso importa</span>
+<span class="etapa-rotulo">Nosso caminho de hoje</span>
+<h2>Parte 1 — Navegar com segurança</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Vamos dividir a aula em duas partes para facilitar o aprendizado.
+                    Na primeira parte, a segurança na internet:</p>
+<div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>O que é URL</strong> — o endereço da sua casa na internet, com cadeado de segurança</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Como identificar sites suspeitos</strong> — os sinais de alerta na feira digital</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Links patrocinados x resultados verdadeiros</strong> — anúncio não é resultado</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Fake news</strong> — como se proteger da fofoca digital</p></div>
+</div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">📖</span>
+<h4>Parte 1 — Segurança</h4>
+<p>URL, cadeado, sites suspeitos, anúncios, fake news e golpes.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><span class="etapa-rotulo">Nosso caminho de hoje</span><h2>Parte 2 — Conhecer o celular</h2><div class="etapa-grid"><div class="etapa-texto"><p>Na segunda parte, as ferramentas úteis do dia a dia:</p><div class="passos">
+<div class="passo"><span class="passo-num">5</span><p><strong>Regras de ouro</strong> para não cair em golpes</p></div>
+<div class="passo"><span class="passo-num">6</span><p><strong>Compras online com segurança</strong> — o shopping sem sair de casa</p></div>
+<div class="passo"><span class="passo-num">7</span><p><strong>Google Maps</strong> — seu guia digital para não se perder</p></div>
+<div class="passo"><span class="passo-num">8</span><p><strong>Conhecer o celular</strong> — aplicativos, loja, ícones, Wi-Fi e dados móveis (preparando a próxima aula!)</p></div>
+</div></div><div class="etapa-visual"><div class="cartao-visual">
+<span class="cv-icone">📱</span>
+<h4>Parte 2 — O celular</h4>
+<p>Compras online, Google Maps, aplicativos, loja, Wi-Fi e dados móveis.</p>
+</div></div></div></section><section class="etapa" data-etapa="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><span class="etapa-rotulo">Nosso caminho de hoje</span><h2>Sua experiência já é uma proteção</h2><div class="etapa-grid"><div class="etapa-texto"><div class="destaque">
+                        💡 <strong>Boa notícia:</strong> você já sabe a parte mais difícil —
+                        proteger sua casa e sua família há uma vida inteira.
+                        Hoje é só aplicar essa sabedoria no mundo digital. Tudo no seu ritmo!
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">💡</span><h4>Você já sabe a parte mais difícil</h4><p>Proteger sua casa e sua família há uma vida inteira. Agora é aplicar essa sabedoria no mundo digital.</p></div></div></div></section>
+<!-- ============ FASE 2 · VAMOS JUNTOS (PRÉ-REQUISITOS) ============ -->
+<section class="etapa" data-etapa="6">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<span class="etapa-rotulo">O que é uma URL</span>
+<h2>O endereço da sua casa na internet</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Você lembra do
+                    <span class="termo" tabindex="0">navegador
+                        <span class="tooltip"><strong>Navegador</strong>
+                        O ônibus da cidade digital — o programa que leva você aos sites (Chrome, Firefox, Edge). Você o conheceu na aula 1.</span>
+</span>
+<span class="ferramenta"><img alt="" height="26" src="/assets/logos/chrome.png" width="26"/> Chrome</span>
+                    — o ônibus que leva você aos lugares da internet? Hoje vamos aprender a <strong>ler o endereço</strong>
+                    para saber aonde ele está te levando. Esse endereço tem um nome:</p>
+<div class="analogia">
+                        🏡 "Assim como sua casa tem um endereço único — com rua, número e CEP —
+                        cada site tem um endereço único na internet. Esse endereço é a
+                        <strong>URL</strong>."
+                    </div>
+<p>Sites seguros têm endereço claro, geralmente começam com
+                    <span class="termo" tabindex="0">https
+                        <span class="tooltip"><strong>https</strong>
+                        O "envelope lacrado" do site: indica que a conversa entre você e o site é protegida. A maioria dos sites seguros começa com ele.</span>
+</span>
+                    e mostram um
+                    <span class="termo" tabindex="0">cadeado
+                        <span class="tooltip"><strong>Cadeado 🔒</strong>
+                        O sinal de proteção ao lado do endereço. Assim como você tranca a porta de casa, o cadeado indica que o site protege suas informações.</span>
+</span>
+                    ao lado. É como a tranca da sua porta: <strong>proteção!</strong></p>
+</div>
+<div class="etapa-visual">
+<div class="mockup-navegador">
+<div class="navegador-tab">🌐 Site do banco — guia 1</div>
+<div class="barra-endereco">
+<span class="cadeado">🔒</span>
+<div class="endereco-texto">https://www.bancodobrasil.com.br</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="7">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<span class="etapa-rotulo">Vamos treinar</span>
+<h2>Endereços seguros e suspeitos</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Assim como você não daria seu endereço para estranhos, cuidado ao acessar links desconhecidos.
+                    Toque nos endereços abaixo:</p>
+<div class="destaque">
+                        💡 <strong>Dica de ouro:</strong> procure sempre <strong>digitar você mesmo o endereço completo</strong>
+                        ou usar seus
+                        <span class="termo" tabindex="0">favoritos
+                            <span class="tooltip"><strong>Favoritos</strong>
+                            Os endereços que você salva no navegador — como os telefones anotados na agenda. Um toque e o site abre, sem digitar.</span>
+</span>
+                        para acessar sites importantes, como o do seu banco.
+                    </div>
+<p style="font-size: var(--texto-sm); margin-top: var(--esp-sm);">Sites oficiais do governo terminam em <strong>.gov.br</strong> — como o site da Caixa:</p>
+<span class="ferramenta"><img alt="" height="26" src="/assets/logos/govbr.webp" width="26"/> gov.br</span>
+</div>
+<div class="etapa-visual">
+<div class="url-chips" id="url-chips">
+<button class="url-chip" data-mensagem="✅ Endereço completo, com https e cadeado — é o site oficial do Banco do Brasil. Seguro!" data-tipo="boa">https://www.bancodobrasil.com.br</button>
+<button class="url-chip" data-mensagem="✅ Endereço oficial do governo, com https e cadeado — seguro. É assim que se acessa a Caixa!" data-tipo="boa">https://www.caixa.gov.br</button>
+<button class="url-chip" data-mensagem="⚠️ Cuidado! Sem https, sem cadeado e com 'promocao' no nome — não é o site oficial do banco. É um site falso!" data-tipo="ruim">http://bancodobrasil-promocao.com</button>
+</div>
+<div class="veredito" id="veredito-url"></div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Sinais de alerta</span><h2>Como identificar sites suspeitos</h2><div class="etapa-grid"><div class="etapa-texto"><p>O mundo digital é como uma <strong>feira</strong>: existem barracas confiáveis
+                    e outras que precisamos olhar com cuidado. Veja os sinais de que um site pode não ser confiável:</p><div class="passos">
+<div class="passo"><span class="passo-num">⚠️</span><p><strong>Endereços cheios de números ou palavras estranhas</strong> — ex.: www.bancobrasil-promo293471.com</p></div>
+<div class="passo"><span class="passo-num">⚠️</span><p><strong>Falta do cadeado ou do "https"</strong> no início do endereço</p></div>
+<div class="passo"><span class="passo-num">⚠️</span><p><strong>Promoções boas demais para ser verdade</strong> — desconfie sempre</p></div>
+<div class="passo"><span class="passo-num">⚠️</span><p><strong>Erros de português e imagens de baixa qualidade</strong> — sites sérios capricham na apresentação</p></div>
+</div></div><div class="etapa-visual"><div class="mockup-navegador ruim">
+<div class="navegador-tab">⚠️ Site suspeito — guia 1</div>
+<div class="barra-endereco">
+<span class="cadeado">🔓</span>
+<div class="endereco-texto">http://bancobrasil-promo293471.com</div>
+</div>
+<div class="aviso-nao-seguro">⚠️ Sem https e sem cadeado — não confie seus dados!</div>
+</div></div></div></section><section class="etapa" data-etapa="9"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Sinais de alerta</span><h2>Use seu olhar de experiência</h2><div class="etapa-grid"><div class="etapa-texto"><div class="analogia">
+                        ✋ "Assim como você não entraria em uma loja com aparência estranha e vendedor suspeito,
+                        da mesma forma você deve evitar sites que parecem 'estranhos' ou 'mal cuidados'."
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">✋</span><h4>Se algo parece estranho, pare</h4><p>Evite sites mal cuidados, endereços estranhos e ofertas boas demais para ser verdade.</p></div></div></div></section>
+<section class="etapa" data-etapa="10">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<h2>Teste: qual endereço é o mais seguro?</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p><strong>Vamos testar o que você aprendeu. Leia e escolha:</strong></p>
+<div class="quiz-card">
+<div class="quiz-pergunta">
+                            🏦 Você precisa acessar seu banco. Qual destes endereços é o <strong>mais seguro</strong>?
+                        </div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Endereços cheios de números e palavras estranhas são um sinal de alerta. O site oficial do banco tem um endereço simples e conhecido."><span class="letra">A</span><span>www.bancobrasil-promo293471.com</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Muito bem! 'https' + cadeado + endereço oficial do banco = site seguro. É assim que você confirma que está no lugar certo." data-feedback-wrong="💡 Quase!"><span class="letra">B</span><span>https://www.bb.com.br — com cadeado 🔒</span></button>
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! 'Verifique' e 'xyz' no endereço não existem em sites oficiais. Sempre digite você mesmo o endereço do banco, em vez de clicar em links recebidos."><span class="letra">C</span><span>https://banco-brasil-verifique.xyz (link que chegou por mensagem)</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div>
+<div class="atencao">
+                        🚨 <strong>Quando em dúvida, é melhor sair do site e procurar ajuda.</strong>
+                        Sua segurança vale mais! Ninguém vai te julgar por pedir uma opinião antes de clicar.
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🔎</span>
+<h4>Confie no cadeado</h4>
+<p>Antes de digitar dados, olhe o início do endereço:</p>
+<div class="mini-status">
+<div class="st ok">🔒 Seguro<br/>https + cadeado</div>
+<div class="st ruim">🔓 Suspeito<br/>sem cadeado</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="11">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<span class="etapa-rotulo">Anúncio não é resultado</span>
+<h2>Links patrocinados x resultados verdadeiros</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Quando você pesquisa no Google, os primeiros resultados nem sempre são os melhores!
+                    No Google, os
+                    <span class="termo" tabindex="0">links patrocinados
+                        <span class="tooltip"><strong>Links patrocinados (Anúncios)</strong>
+                        Propagandas pagas que aparecem primeiro na busca, marcadas com a palavra "Anúncio" ou "Patrocinado". Como propaganda de jornal: pagaram para aparecer.</span>
+</span>
+                    são como propagandas de jornal: <strong>pagaram para aparecer primeiro</strong> e estão marcados com a palavra "Anúncio".</p>
+<div class="destaque">
+                        🧵 <strong>Assim como você diferencia propagandas de notícias no jornal,</strong>
+                        aprenda a identificar anúncios nos resultados de pesquisa.
+                        Aprender a diferenciar resultados pagos dos naturais é uma habilidade importante para navegar com segurança!
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="mockup-google">
+<div class="google-barra">
+<span class="google-logo">Google</span>
+<div class="google-campo">conserto de fogão perto de mim</div>
+</div>
+<div class="resultado anuncio">
+<div class="tag-anuncio">Anúncio</div>
+<div class="titulo">Conserto de Fogão — 24 horas — R$ 49</div>
+<div class="url-linha">conserto-fogao-urgente-promo.com</div>
+<div class="descricao">Oferta imperdível! Atendimento imediato.</div>
+</div>
+<div class="resultado natural">
+<div class="titulo">Assistência Técnica do Bairro — Conserto de Fogões</div>
+<div class="url-linha">assistenciadobairro.com.br</div>
+<div class="descricao">Há 20 anos consertando fogões na sua região. Avaliação 4,8 estrelas.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="12"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Anúncio não é resultado</span><h2>Como reconhecer um anúncio</h2><div class="etapa-grid"><div class="etapa-texto"><p>Veja primeiro como reconhecer uma propaganda paga nos resultados da busca.</p><div class="mini-cartao">
+<span class="icone-grande">📢</span>
+<h4>Links patrocinados (Anúncios)</h4>
+<ul class="lista-check" style="margin:0;">
+<li><span>Aparecem sempre <strong>no topo</strong> da página</span></li>
+<li><span>Marcados com "Anúncio" ou "Patrocinado"</span></li>
+<li><span>São <strong>propagandas pagas</strong></span></li>
+<li><span>Às vezes têm fundo colorido diferente</span></li>
+<li><span><strong>Podem não ser o que você procura</strong></span></li>
+</ul>
+</div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">📢</span><h4>Propaganda paga</h4><p>Procure a marca “Anúncio” ou “Patrocinado” antes de clicar.</p></div></div></div></section><section class="etapa" data-etapa="13"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Anúncio não é resultado</span><h2>Como reconhecer um resultado natural</h2><div class="etapa-grid"><div class="etapa-texto"><p>Agora veja como reconhecer um resultado natural, que não tem marcação de anúncio.</p><div class="mini-cartao">
+<span class="icone-grande">📰</span>
+<h4>Resultados verdadeiros (naturais)</h4>
+<ul class="lista-check" style="margin:0;">
+<li><span>Aparecem <strong>abaixo dos anúncios</strong></span></li>
+<li><span><strong>Não têm marcação</strong> especial</span></li>
+<li><span>São os resultados naturais da busca</span></li>
+<li><span>Geralmente <strong>mais relevantes</strong> ao que você procura</span></li>
+<li><span>O Google os ordena por importância</span></li>
+</ul>
+</div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">📰</span><h4>Resultado natural</h4><p>Aparece sem marcação especial e é ordenado pela relevância da busca.</p></div></div></div></section><section class="etapa" data-etapa="14"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Hora de decidir: anúncio ou resultado?</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Hora de decidir:</strong></p><div class="quiz-card">
+<div class="quiz-pergunta">
+                            🔍 Você pesquisou "conserto de fogão". Qual resultado você escolhe?
+                        </div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Atenção: o primeiro resultado costuma ser um anúncio pago — marcado com a palavra 'Anúncio'. Ele não é necessariamente o melhor para você. Prefira os resultados naturais abaixo."><span class="letra">A</span><span>O primeiro, que está marcado como "Anúncio"</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Os resultados naturais ficam abaixo dos anúncios e são escolhidos pela relevância — geralmente são o que você realmente procura." data-feedback-wrong="💡 Quase!"><span class="letra">B</span><span>O resultado natural que aparece logo abaixo dos anúncios</span></button>
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Anúncios são propagandas pagas — como as do jornal. Prefira os resultados naturais, que aparecem abaixo e não têm a marcação 'Anúncio'."><span class="letra">C</span><span>Clico nos dois, não faz diferença</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🔍</span><h4>Leia antes de clicar</h4><p>Procure a palavra “Anúncio” ou “Patrocinado”. O resultado natural aparece sem essa marcação.</p></div></div></div></section>
+<section class="etapa" data-etapa="15"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Fake news</span><h2>Como se proteger da fofoca digital</h2><div class="etapa-grid"><div class="etapa-texto"><p>Recebeu uma notícia estranha? Faça igual na vida real:
+                    <strong>cheque a fonte antes de acreditar e compartilhar!</strong></p><div class="analogia">
+                        🗣️ "Assim como uma fofoca se espalha rapidamente, as
+                        <span class="termo" tabindex="0">fake news
+                            <span class="tooltip"><strong>Fake news</strong>
+                            Notícia falsa que circula na internet — como uma fofoca. Espalha rápido e engana muita gente. A checagem é o antídoto.</span>
+</span>
+                        circulam na internet. Mas você já sabe como lidar com isso:
+                        <strong>não repita uma fofoca sem ter certeza da verdade!</strong>"
+                    </div></div><div class="etapa-visual"><div class="etapa-visual">
+<div class="mockup">
+<div class="mockup-tela">
+<div class="mockup-topo">
+<div class="mockup-icone">👪</div>
+<div class="mockup-titulo">Grupo da Família</div>
+</div>
+<div class="mockup-corpo">
+<div class="mockup-bolha recebida">
+<span class="mockup-encaminhada">encaminhada muitas vezes</span>
+                                    📰 URGENTE: o governo vai pagar R$ 2.000 para todos os idosos! Cadastre-se já neste link!
+                                    <span class="hora">14:32</span>
+</div>
+<div class="mockup-bolha recebida" style="max-width:74%; background:#F0F2F5; font-size:.78rem; color:#667781;">
+                                    🤔 Será que é verdade? Melhor checar antes de compartilhar…
+                                    <span class="hora">14:35</span>
+</div>
+</div>
+<div class="mockup-rodape">
+<div class="mockup-campo">Mensagem</div>
+<div class="mockup-botao">➤</div>
+</div>
+</div>
+</div>
+<div class="ferramentas-linha">
+<span class="ferramenta"><img alt="" height="26" src="/assets/logos/facebook.svg" width="26"/> Facebook</span>
+<span class="ferramenta"><img alt="" height="26" src="/assets/logos/instagram.svg" width="26"/> Instagram</span>
+<span class="ferramenta"><img alt="" height="26" src="/assets/logos/youtube.svg" width="26"/> YouTube</span>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="16"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Passo a passo</span><h2>Como verificar uma notícia antes de compartilhar</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como verificar uma notícia antes de compartilhar</h3><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Confirme em mais de um site confiável</strong> — G1, UOL, Folha e outros grandes portais de notícias</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Desconfie de promessas milagrosas</strong> e de conteúdos que causam indignação imediata — é o que a fofoca faz!</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Verifique a data da notícia</strong> — muitas fake news usam fatos antigos de novo</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Observe erros de português</strong> e sites com nomes estranhos</p></div>
+</div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">✅</span><h4>Cheque antes de repassar</h4><p>Confirme a fonte, a data e a notícia em mais de um site confiável.</p></div></div></div></section>
+<section class="etapa" data-etapa="17">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<h2>Treino: a notícia dos R$ 2.000</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p><strong>Vamos treinar com um caso real:</strong></p>
+<div class="quiz-card">
+<div class="quiz-pergunta">
+                            📰 Chegou no grupo da família: "URGENTE: o governo vai pagar R$ 2.000
+                            para todos os idosos! Cadastre-se já neste link!" O que você faz?
+                        </div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Não compartilhe! Repassar sem confirmar espalha a fofoca digital. Verifique primeiro — sua família confia no que você envia."><span class="letra">A</span><span>Repasso para todos os meus contatos, para ninguém ficar de fora</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Confirmar em mais de um site de notícias confiável (G1, UOL, Folha) é o jeito certo de separar fato de fofoca." data-feedback-wrong="💡 Quase!"><span class="letra">B</span><span>Verifico em mais de um site de notícias confiável antes de acreditar</span></button>
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Mesmo em grupo de família, notícias falsas circulam. 'Promessa milagrosa de R$ 2.000' é sinal clássico de fake news. Verifique antes."><span class="letra">C</span><span>Acredito, porque veio de um grupo da família</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div>
+<div class="destaque">
+                        🧠 <strong>Você já tem sabedoria para identificar o que não parece verdadeiro.</strong>
+                        Aplique isso na internet: assim como você não repete uma fofoca sem ter certeza da verdade,
+                        não compartilhe notícias duvidosas nas redes sociais.
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">✅</span>
+<h4>Cheque a fonte</h4>
+<p style="margin-bottom: var(--esp-sm);">Notícia boa de verdade aparece em mais de um lugar:</p>
+<div class="fonte-linha">
+<span>G1</span>
+<span>UOL</span>
+<span>Folha de S.Paulo</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="18"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Regras de ouro</span><h2>Para não cair em golpes</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Se parece bom demais para ser verdade, provavelmente é um golpe!</strong>
+                    Assim como você não daria seu cartão e senha para um estranho na rua,
+                    da mesma forma proteja seus dados na internet.</p><h3>As regras de ouro</h3><ul class="lista-check"><li><span><strong>Nunca compartilhe senhas, códigos de banco ou dados pessoais</strong> por mensagens, e-mails ou telefonemas</span></li><li><span><strong>Desconfie de pedidos urgentes de</strong> <span class="ferramenta"><img alt="" height="26" src="/assets/logos/pix.png" width="26"/> Pix</span> <strong>ou doações</strong> de pessoas que você não conhece</span></li><li><span><strong>Digite você mesmo o endereço do banco</strong> — nunca clique em links enviados por mensagem</span></li></ul></div><div class="etapa-visual"><div class="etapa-visual">
+<div class="mockup">
+<div class="mockup-tela">
+<div class="mockup-topo">
+<div class="mockup-icone">👵</div>
+<div class="mockup-titulo">Vovó ❤️ <span style="font-size:.7rem; font-weight:400;">(número novo)</span></div>
+</div>
+<div class="mockup-corpo">
+<div class="mockup-bolha recebida">
+                                    Vó, troquei de número! 😥 Estou em apuros, me manda um Pix de R$ 300 urgente!
+                                    <span class="hora">09:15</span>
+</div>
+<div class="mockup-bolha recebida" style="max-width:72%; background:#F0F2F5; font-size:.75rem; color:#667781;">
+                                    ⚠️ número desconhecido — não está salvo na sua agenda
+                                    <span class="hora">09:15</span>
+</div>
+</div>
+<div class="mockup-rodape">
+<div class="mockup-campo">Mensagem</div>
+<div class="mockup-botao">➤</div>
+</div>
+</div>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="19"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Regras de ouro</span><h2>Proteja suas senhas e confirme pedidos</h2><div class="etapa-grid"><div class="etapa-texto"><ul class="lista-check"><li><span><strong>Nenhum banco ou empresa pede senha</strong>, token ou dados pessoais por telefone ou mensagem — lembre-se disso sempre!</span></li><li><span><strong>Mensagem estranha, mesmo que pareça de alguém conhecido?</strong> Confirme por outro meio antes de agir</span></li></ul><div class="analogia">
+                        🔑 "Sua
+                        <span class="termo" tabindex="0">senha
+                            <span class="tooltip"><strong>Senha</strong>
+                            A chave da sua casa digital — só você deve saber. Como a chave da sua porta, você não entrega para ninguém, nem por mensagem.</span>
+</span>
+                        é a chave da sua casa digital. Você não entrega a chave para um estranho no portão —
+                        por mais educado que ele pareça!"
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🔑</span><h4>Senha é a sua chave</h4><p>Banco ou empresa séria não pede senha, token ou código por mensagem ou telefone.</p></div></div></div></section>
+<section class="etapa" data-etapa="20">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<h2>Teste: o Pix do "neto"</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p><strong>Vamos testar com uma situação muito comum:</strong></p>
+<div class="quiz-card">
+<div class="quiz-pergunta">
+                            📱 Seu "neto" chama no WhatsApp <span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span>: "Vó, troquei de número!
+                            Estou em apuros, me manda um Pix de R$ 300 urgente!"
+                            O que você faz?
+                        </div>
+<div class="quiz-opcoes" data-quiz="4">
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 PARE! Nenhuma urgência vale seu dinheiro. Golpistas fingem ser parentes em apuros. Ligue para o número antigo e confirme antes de qualquer Pix."><span class="letra">A</span><span>Mando o Pix correndo, é meu neto em apuros</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Muito bem! Confirmar com a pessoa pelo número antigo, que já está salvo na sua agenda, é a atitude mais segura. Pressa é a ferramenta do golpista." data-feedback-wrong="💡 Quase!"><span class="letra">B</span><span>Ligo para o número antigo que já tenho salvo e confirmo antes de qualquer coisa</span></button>
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Quase! Mesmo que você 'espere', nunca envie dinheiro sem confirmar com a pessoa pelo número que você já tem salvo. Confirme primeiro, sempre."><span class="letra">C</span><span>Respondo pedindo mais detalhes e mando depois</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="4"></div>
+</div>
+<div class="atencao">
+                        🚨 <strong>A melhor proteção é a prevenção.</strong>
+                        Quando em dúvida, <strong>não clique!</strong>
+                        E lembre-se: calma e conferência são suas maiores aliadas contra os golpistas.
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🚨</span>
+<h4>PARE! Confirme antes de agir</h4>
+<p>Pressa é a ferramenta do golpista. Ligue para o número antigo e confirme com a pessoa.</p>
+<p style="margin-top: var(--esp-sm);"><span class="ferramenta"><img alt="" height="26" src="/assets/logos/pix.png" width="26"/> Pix</span> — desconfie de pedidos urgentes.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="21"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Segurança no dia a dia</span><h2>Dicas rápidas de segurança digital</h2><div class="etapa-grid"><div class="etapa-texto"><p>Com alguns cuidados simples, você navega na internet com muito mais tranquilidade!
+                    Para encerrar nosso módulo de segurança, vamos lembrar de cuidados práticos do dia a dia:</p><ul class="lista-check">
+<li><span><strong>Prefira o Wi-Fi de casa</strong> e evite fazer operações importantes (como compras ou banco) em redes públicas</span></li>
+<li><span><strong>Mantenha seu antivírus atualizado</strong> e instale as atualizações do computador</span></li>
+<li><span><strong>Se estiver em dúvida, peça opinião a alguém de confiança</strong> antes de clicar</span></li>
+<li><span><strong>Feche sites suspeitos imediatamente</strong> e evite clicar em botões ou anúncios deles</span></li>
+</ul></div><div class="etapa-visual"><div class="etapa-visual">
+<div class="mockup-navegador ruim">
+<div class="navegador-tab">⚠️ Aviso do navegador</div>
+<div style="padding: 20px; text-align: center;">
+<div style="font-size: 2.6rem;">⚠️</div>
+<div style="font-weight: 800; color: #7A2620; margin: 6px 0 4px; font-size: 1rem;">Este site não é seguro</div>
+<div style="font-size: .82rem; color: var(--bordado-suave);">A conexão não é particular — alguém pode estar vendo suas informações.</div>
+</div>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="22"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Segurança no dia a dia</span><h2>Explore com conhecimento e atenção</h2><div class="etapa-grid"><div class="etapa-texto"><div class="analogia">
+                        🛡️ "O
+                        <span class="termo" tabindex="0">antivírus
+                            <span class="tooltip"><strong>Antivírus</strong>
+                            O guarda do computador: um programa que detecta e bloqueia vírus e programas perigosos. Mantê-lo atualizado é como deixar o portão trancado.</span>
+</span>
+                        é o guarda do seu computador — ele vigia e bloqueia programas perigosos.
+                        Segurança digital funciona como segurança em casa: não tenha medo, basta tomar os cuidados certos!"
+                    </div><div class="destaque">
+                        🌟 <strong>Não tenha medo de explorar</strong> — apenas faça isso com conhecimento e atenção.
+                        Quanto mais você navega com cuidado, mais confiança ganha. E a próxima parte da aula
+                        vai deixar sua vida ainda mais prática!
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🛡️</span><h4>Cuidado traz confiança</h4><p>Segurança digital não é medo: são hábitos simples repetidos no dia a dia.</p></div></div></div></section>
+<section class="etapa" data-etapa="23">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<span class="etapa-rotulo">O que é um aplicativo</span>
+<h2>Aplicativo, ícone e tela inicial</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Na próxima aula, vamos usar o
+                    <span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span> no celular.
+                    Para isso, vamos conhecer três palavras mágicas que vão abrir as portas do seu celular:
+                    <strong>aplicativo, ícone e tela inicial</strong>.</p>
+<p>Um
+                    <span class="termo" tabindex="0">aplicativo
+                        <span class="tooltip"><strong>Aplicativo (app)</strong>
+                        Um programa feito para o celular — como uma ferramenta nova na sua caixa. Cada aplicativo faz uma coisa: conversar, tirar foto, achar caminho.</span>
+</span>
+                    (ou <em>app</em>) é um programa feito para o celular. O WhatsApp é um aplicativo;
+                    a câmera, a agenda e o mapa também são. Cada um é uma ferramenta diferente da sua caixa.</p>
+<p>Cada aplicativo tem um
+                    <span class="termo" tabindex="0">ícone
+                        <span class="tooltip"><strong>Ícone</strong>
+                        O desenhinho do aplicativo na tela — como o rótulo do pote. Tocar no ícone abre o aplicativo.</span>
+</span>
+                    — um desenhinho que o representa, como o rótulo de um pote. Todos os ícones ficam na
+                    <span class="termo" tabindex="0">tela inicial
+                        <span class="tooltip"><strong>Tela inicial</strong>
+                        A mesa do celular: onde ficam os desenhinhos (ícones) dos seus aplicativos. É a primeira coisa que você vê ao ligar o celular.</span>
+</span>,
+                    que é a primeira tela que você vê ao ligar o aparelho.</p>
+<div class="analogia">
+                        🧰 "Aplicativo é como uma ferramenta nova na sua caixa: cada um faz uma coisa.
+                        O ícone é o rótulo que diz qual ferramenta é.
+                        E a tela inicial é a sua mesa de trabalho, onde tudo fica à mão."
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🧰</span>
+<h4>A caixa de ferramentas</h4>
+<p style="text-align:left; margin-bottom:6px;">🔧 <strong>Aplicativo</strong> — a ferramenta</p>
+<p style="text-align:left; margin-bottom:6px;">🏷️ <strong>Ícone</strong> — o rótulo da ferramenta</p>
+<p style="text-align:left;">🪑 <strong>Tela inicial</strong> — a mesa de trabalho</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="24">
+<span class="etapa-badge f2">Fase 2 · Vamos juntos</span>
+<h2>Explore a tela inicial</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<h3>Toque nos desenhinhos e veja o que cada aplicativo faz:</h3>
+<p>Toque nos ícones do celular ao lado — pode tocar à vontade, você não quebra nada!</p>
+<div class="destaque">
+                        💡 <strong>Guarde esta ideia:</strong> tocar no ícone abre o aplicativo,
+                        e para fechar é só apertar o botãozinho de voltar ou tocar fora da tela.
+                        Você não consegue "quebrar" nada explorando — pode tocar à vontade!
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="mockup-celular">
+<div class="celular-tela">
+<div class="status-celular"><span>09:41</span><span>📶 🔋</span></div>
+<div class="tela-inicial">
+<button class="app-icone" data-desc="aplicativo de conversas e mensagens com a família" data-nome="WhatsApp"><img alt="" class="emoji-img" src="/assets/logos/whatsapp.svg"/><span class="rotulo">WhatsApp</span></button>
+<button class="app-icone" data-desc="onde ficam guardadas as fotos que você tira" data-nome="Fotos"><img alt="" class="emoji-img" src="/assets/logos/photos.png"/><span class="rotulo">Fotos</span></button>
+<button class="app-icone" data-desc="o caderninho de endereços e telefones" data-nome="Agenda"><span class="emoji">📇</span><span class="rotulo">Agenda</span></button>
+<button class="app-icone" data-desc="o shopping de aplicativos — Play Store ou App Store" data-nome="Loja de apps"><img alt="" class="emoji-img" src="/assets/logos/playstore.svg"/><span class="rotulo">Loja de apps</span></button>
+<button class="app-icone" data-desc="o guia digital que mostra caminhos e lugares" data-nome="Mapas"><span class="emoji">🗺️</span><span class="rotulo">Mapas</span></button>
+<button class="app-icone" data-desc="para tirar fotos e filmar" data-nome="Câmera"><span class="emoji">📷</span><span class="rotulo">Câmera</span></button>
+<button class="app-icone" data-desc="despertador e hora atual" data-nome="Relógio"><span class="emoji">⏰</span><span class="rotulo">Relógio</span></button>
+<button class="app-icone" data-desc="as configurações do celular — é aqui que se liga o Wi-Fi" data-nome="Ajustes"><span class="emoji">⚙️</span><span class="rotulo">Ajustes</span></button>
+</div>
+<div class="nota-celular" id="nota-celular">👆 Toque em um ícone para descobrir o que ele faz!</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ FASE 3 · SUA VEZ (PRÁTICA) ============ -->
+<section class="etapa" data-etapa="25">
+<span class="etapa-badge f3">Fase 3 · Sua vez</span>
+<span class="etapa-rotulo">Onde conseguir apps novos</span>
+<h2>A loja de aplicativos</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Onde você consegue um aplicativo novo? Na
+                    <span class="termo" tabindex="0">loja de aplicativos
+                        <span class="tooltip"><strong>Loja de aplicativos</strong>
+                        O shopping dos apps: Play Store (no Android, com o símbolo ▶️ colorido do robôzinho) ou App Store (no iPhone, com o símbolo da maçã 🍎). É de lá que os aplicativos são instalados.</span>
+</span>
+                    — o shopping dos aplicativos! No celular Android ela se chama
+                    <span class="ferramenta"><img alt="" height="26" src="/assets/logos/playstore.svg" width="26"/> Play Store</span>
+                    e no iPhone se chama <strong>App Store</strong> (a maçã 🍎).</p>
+<div class="analogia">
+                        🛍️ "A loja de aplicativos é como um shopping:
+                        você entra, procura o que precisa e leva para casa.
+                        Só que aqui, 'levar para casa' chama-se
+                        <span class="termo" tabindex="0">instalar
+                            <span class="tooltip"><strong>Instalar</strong>
+                            Colocar um aplicativo novo no celular. Faz uma vez e fica para sempre — como pendurar um quadro novo na parede.</span>
+</span>
+                        — e na maioria das vezes é de graça!"
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-loja">
+<div class="loja-hero">
+<img alt="Logo da Play Store" src="/assets/logos/playstore.svg"/>
+<p>Play Store</p>
+</div>
+<div class="loja-rodape">▶️ no Android · 🍎 App Store no iPhone</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="26">
+<span class="etapa-badge f3">Fase 3 · Sua vez</span>
+<h2>Sua vez: escolha o aplicativo certo!</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<h3>Vamos simular uma busca pelo WhatsApp</h3>
+<p>Cuidado: <strong>nem tudo que parece é!</strong>
+                    Toque no botão "Instalar" do aplicativo que você acha que é o oficial:</p>
+<div class="atencao">
+                        ⚠️ <strong>Atenção aos aplicativos falsos:</strong> eles usam nomes parecidos
+                        ("WhatsApp Plus", "WahtsApp") para enganar. Sempre confira o <strong>nome com calma</strong>
+                        e o <strong>criador (editor)</strong> do aplicativo. Na dúvida, pergunte a alguém de confiança!
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="loja-mock">
+<div class="loja-topo"><img alt="" height="24" src="/assets/logos/playstore.svg" width="24"/> Play Store <span style="margin-left:auto; font-size:.75rem; font-weight:600;">simulação</span></div>
+<div class="loja-busca">🔍 whatsapp</div>
+<div class="loja-lista">
+<div class="loja-card">
+<div class="app-emoji">💬</div>
+<div class="infos">
+<div class="nome-app">WhatsApp</div>
+<div class="editor">WhatsApp LLC · ⭐ 4,3 · 10 mi de avaliações</div>
+</div>
+<button class="botao-instalar" data-certo="true">Instalar</button>
+</div>
+<div class="loja-card">
+<div class="app-emoji">💬💥</div>
+<div class="infos">
+<div class="nome-app">WhatsApp Plus</div>
+<div class="editor">Studio Vip 2026 · sem avaliações</div>
+</div>
+<button class="botao-instalar" data-certo="false">Instalar</button>
+</div>
+<div class="loja-card">
+<div class="app-emoji">💬✨</div>
+<div class="infos">
+<div class="nome-app">WahtsApp</div>
+<div class="editor">Apps Grátis BR · ⭐ 1,2 · 3 avaliações</div>
+</div>
+<button class="botao-instalar" data-certo="false">Instalar</button>
+</div>
+</div>
+</div>
+<div class="loja-aviso" id="loja-aviso"></div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="27">
+<span class="etapa-badge f3">Fase 3 · Sua vez</span>
+<h2>Instalar no celular de verdade</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<h3>No celular de verdade, o caminho é:</h3>
+<div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra a loja de aplicativos</strong> — Play Store (Android) ou App Store (iPhone)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Digite o nome do aplicativo</strong> na barra de busca (ex.: "WhatsApp")</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Confira o nome e o criador</strong> do aplicativo antes de tocar em "Instalar"</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Toque em "Instalar"</strong> e aguarde o aplicativo ser copiado para o celular</p></div>
+<div class="passo"><span class="passo-num">5</span><p>Pronto! O <strong>ícone do aplicativo aparece na tela inicial</strong> — como um rótulo novo no seu pote</p></div>
+</div>
+</div>
+<div class="etapa-visual">
+<div class="mini-tela">
+<div class="mini-grelha">
+<div class="mini-app novo"><img alt="" src="/assets/logos/whatsapp.svg"/><span class="rotulo">WhatsApp</span></div>
+<div class="mini-app"><img alt="" src="/assets/logos/photos.png"/><span class="rotulo">Fotos</span></div>
+<div class="mini-app"><span style="font-size:1.3rem;">📇</span><span class="rotulo">Agenda</span></div>
+<div class="mini-app"><img alt="" src="/assets/logos/playstore.svg"/><span class="rotulo">Loja</span></div>
+<div class="mini-app"><span style="font-size:1.3rem;">🗺️</span><span class="rotulo">Mapas</span></div>
+<div class="mini-app"><span style="font-size:1.3rem;">📷</span><span class="rotulo">Câmera</span></div>
+</div>
+</div>
+<p style="text-align:center; font-size:.85rem; color:var(--bordado-suave); margin-top: var(--esp-sm);">Pronto! O ícone do WhatsApp apareceu na tela inicial 👆</p>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="28">
+<span class="etapa-badge f3">Fase 3 · Sua vez</span>
+<span class="etapa-rotulo">Como o celular se conecta</span>
+<h2>Wi-Fi e dados móveis</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>Para um aplicativo funcionar — conversar, ver fotos, achar caminhos —
+                    o celular precisa estar conectado à internet. Existem dois jeitos:</p>
+<p>
+<span class="termo" tabindex="0">Wi-Fi
+                        <span class="tooltip"><strong>Wi-Fi</strong>
+                        A internet da sua casa, sem fio — como o telefone sem fio antigo. Em casa, prefira sempre o Wi-Fi.</span>
+</span>
+                    é a internet da sua casa, e
+                    <span class="termo" tabindex="0">dados móveis
+                        <span class="tooltip"><strong>Dados móveis</strong>
+                        A internet do seu chip, para quando você está na rua. Usa o pacote de internet que você paga por mês.</span>
+</span>
+                    é a internet do chip, para quando você está fora. As duas fazem o celular funcionar —
+                    a diferença é onde você está e quanto gasta.</p>
+</div>
+<div class="etapa-visual">
+<div class="passos-duplos" style="margin:0;">
+<div class="mini-cartao">
+<span class="icone-grande">🏠</span>
+<h4>Wi-Fi</h4>
+<p style="margin:0;">A internet da sua casa, sem fio.
+                            Como o telefone sem fio antigo: funciona dentro de casa, de graça,
+                            e não gasta seu pacote.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📶</span>
+<h4>Dados móveis</h4>
+<p style="margin:0;">A internet que vem do seu chip, para usar na rua.
+                            Como o rádio do carro: funciona em qualquer lugar, mas usa o
+                            pacote que você paga por mês.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="29"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Qual conexão usar em cada momento?</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Sua vez: qual conexão usar em cada momento?</h3><p>Toque nos cartões ao lado e veja a explicação:</p></div><div class="etapa-visual"><div class="painel-rede">
+<button class="chip-rede" data-status="🏠 Ótima escolha! Em casa, o Wi-Fi é a melhor opção: é de graça, não gasta seu pacote de dados e é mais estável. Operações importantes (banco, compras) devem ser feitas no Wi-Fi de casa.">🏠 Wi-Fi da casa <span style="margin-left:auto;">📶</span></button>
+<button class="chip-rede" data-status="📶 Na rua, sem Wi-Fi por perto, o celular usa os dados móveis do seu chip. Funciona em qualquer lugar — mas fique de olho no seu pacote para não acabar no fim do mês.">📶 Dados móveis (na rua) <span style="margin-left:auto;">🚶</span></button>
+<div class="status-rede" id="status-rede"></div>
+</div></div></div></section><section class="etapa" data-etapa="30"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Como ligar o Wi-Fi — abra o painel</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como ligar o Wi-Fi no celular</h3><div class="passos"><div class="passo"><span class="passo-num">1</span><p><strong>Deslize o dedo de cima para baixo</strong> da tela — aparece um painel de botõezinhos</p></div><div class="passo"><span class="passo-num">2</span><p><strong>Toque no ícone do Wi-Fi</strong> 📶 para ligar</p></div></div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">👇</span><h4>Deslize e toque</h4><p>Deslize de cima para baixo e toque no ícone do Wi-Fi.</p></div></div></div></section><section class="etapa" data-etapa="31"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Como ligar o Wi-Fi — conecte à rede</h2><div class="etapa-grid"><div class="etapa-texto"><div class="passos"><div class="passo"><span class="passo-num">3</span><p><strong>Escolha sua rede</strong> (o nome do Wi-Fi de casa) e digite a senha do roteador</p></div><div class="passo"><span class="passo-num">4</span><p>Quando conectar, o ícone do Wi-Fi fica <strong>azul ou cheio</strong> — você está na internet!</p></div></div><div class="destaque">
+                        💡 <strong>Regra prática:</strong> em casa, use o Wi-Fi.
+                        Na rua, os dados móveis. Para coisas importantes (banco, compras),
+                        prefira sempre o Wi-Fi de casa — como você já viu nas dicas de segurança.
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">📶</span><h4>Wi-Fi conectado</h4><p>Escolha a rede da sua casa, digite a senha e espere o ícone ficar azul ou cheio.</p></div></div></div></section>
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+<section class="etapa" data-etapa="32"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Compras online com segurança</span><h2>O shopping sem sair de casa</h2><div class="etapa-grid"><div class="etapa-texto"><p>Lojas conhecidas — como <strong>Magalu, Americanas e Mercado Livre</strong> —
+                    são como os shoppings da internet: lugares confiáveis para comprar!
+                    E comprar online é prático e seguro <strong>quando sabemos onde comprar</strong>.</p><p>Escolha suas compras online com o <strong>mesmo cuidado que usa no shopping físico</strong>:</p><ul class="lista-check">
+<li><span><strong>Prefira lojas conhecidas</strong> — que você já viu na TV ou que têm lojas físicas</span></li>
+<li><span><strong>Verifique o endereço do site</strong> e a presença do cadeado de segurança 🔒</span></li>
+<li><span><strong>Leia as avaliações</strong> de outros clientes antes de comprar</span></li>
+<li><span><strong>Desconfie de preços muito abaixo do mercado</strong>, assim como faria numa loja física</span></li>
+</ul></div><div class="etapa-visual"><div class="etapa-visual">
+<div class="mockup-navegador">
+<div class="navegador-tab">🛒 Loja online — guia 1</div>
+<div class="barra-endereco">
+<span class="cadeado">🔒</span>
+<div class="endereco-texto">https://www.magazineluiza.com.br</div>
+</div>
+<button aria-label="O que é este cadeado?" class="hotspot" id="hotspot-cadeado" style="right: 16px; top: 46px;">?</button>
+<div class="mockup-nota" id="nota-cadeado" style="right: 64px; top: 94px; display:none;">
+<strong>Cadeado de segurança.</strong> Antes de comprar em qualquer loja online,
+                            confira se o endereço tem https e cadeado — como você aprendeu na aula!
+                        </div>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="33"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Compras online com segurança</span><h2>Comprar online com os cuidados certos</h2><div class="etapa-grid"><div class="etapa-texto"><div class="analogia">
+                        🛍️ "Assim como você escolhe lojas confiáveis no shopping,
+                        da mesma forma escolha sites seguros e conhecidos para comprar online.
+                        Comprar sem sair de casa é uma maravilha — com os cuidados certos!"
+                    </div><div class="destaque">
+                        🛒 <strong>Vantagem de verdade:</strong> a loja não fecha, não tem fila,
+                        e você compara preços sentado na sua poltrona. Vamos aprender isso no próximo passo!
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🛍️</span><h4>Praticidade com atenção</h4><p>Compare como no shopping físico: loja conhecida, cadeado, avaliações e preço realista.</p></div></div></div></section>
+<section class="etapa" data-etapa="34"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Antes de comprar</span><h2>Como comparar preços — pesquise</h2><div class="etapa-grid"><div class="etapa-texto"><p>Antes de comprar, busque o produto, compare preços entre lojas diferentes
+                    e veja as avaliações. Pergunte a você mesmo: <em>"eu compraria aqui?"</em>.
+                    Nunca finalize uma compra em site estranho!</p><div class="passos" style="margin:0;"><div class="passo"><span class="passo-num">1</span><p><strong>Digite o nome do produto</strong> em lojas diferentes (Magalu, Americanas etc.)</p></div><div class="passo"><span class="passo-num">2</span><p><strong>Compare o mesmo produto</strong> em várias lojas</p></div><div class="passo"><span class="passo-num">3</span><p><strong>Verifique se o preço está muito diferente</strong> do normal</p></div></div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🔍</span><h4>Mesmo produto, várias lojas</h4><p>Compare o mesmo item em lojas conhecidas e observe diferenças fora do normal.</p></div></div></div></section><section class="etapa" data-etapa="35"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Antes de comprar</span><h2>Como comparar preços — confira o total</h2><div class="etapa-grid"><div class="etapa-texto"><div class="passos" style="margin:0;"><div class="passo"><span class="passo-num">4</span><p><strong>Confira o valor do frete</strong> e o prazo de entrega</p></div><div class="passo"><span class="passo-num">5</span><p>Prefira sites <strong>conhecidos e com cadeado</strong> 🔒</p></div></div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">📦</span><h4>Preço + frete + prazo</h4><p>O menor preço só vale a pena quando frete, prazo e segurança também são bons.</p></div></div></div></section><section class="etapa" data-etapa="36"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Antes de comprar</span><h2>Confira avaliações e fotos</h2><div class="etapa-grid"><div class="etapa-texto"><div class="passos" style="margin:0;"><div class="passo"><span class="passo-num">1</span><p><strong>Leia os comentários</strong> de quem já comprou</p></div><div class="passo"><span class="passo-num">2</span><p><strong>Observe quantas estrelas</strong> o produto tem (★★★★☆)</p></div><div class="passo"><span class="passo-num">3</span><p><strong>Veja fotos postadas</strong> por compradores reais</p></div></div></div><div class="etapa-visual"><div class="produto-card">
+<div class="produto-foto">📺</div>
+<div class="produto-info">
+<div class="nome-produto">Televisor 50" Smart TV</div>
+<div class="estrelas">★★★★☆ <span class="avaliacao-linha">4,2 · 1.847 avaliações</span></div>
+<div style="font-size:.8rem; color:#5F6368; margin-top:4px;">"Chegou rápido e bem embalado." · "Ótima imagem!" · "Entrega atrasou 2 dias"</div>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="37"><span class="etapa-badge f4">Fase 4 · Na vida real</span><span class="etapa-rotulo">Antes de comprar</span><h2>Confira reclamações e peça referências</h2><div class="etapa-grid"><div class="etapa-texto"><div class="passos" style="margin:0;"><div class="passo"><span class="passo-num">4</span><p><strong>Confira reclamações comuns</strong> sobre o produto</p></div><div class="passo"><span class="passo-num">5</span><p>Pergunte a amigos: <strong>"você já comprou neste site?"</strong></p></div></div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">⭐</span><h4>Opiniões ajudam a decidir</h4><p>Leia padrões nos comentários e pergunte a alguém que já comprou naquele site.</p></div></div></div></section>
+<section class="etapa" data-etapa="38">
+<span class="etapa-badge f4">Fase 4 · Na vida real</span>
+<h2>Hora de decidir: a TV barata demais</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>As
+                    <span class="termo" tabindex="0">avaliações
+                        <span class="tooltip"><strong>Avaliações</strong>
+                        As opiniões de quem já comprou: estrelas e comentários sobre o produto e a loja. Como perguntar para vizinhos antes de comprar algo novo.</span>
+</span>
+                    são como a opinião dos vizinhos: valem ouro na hora de decidir!</p>
+<p><strong>Hora de decidir:</strong></p>
+<div class="quiz-card">
+<div class="quiz-pergunta">
+                            🛒 Um site desconhecido vende uma TV de R$ 2.500 por apenas <strong>R$ 350</strong>,
+                            "só hoje". O que você faz?
+                        </div>
+<div class="quiz-opcoes" data-quiz="5">
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Cuidado! Uma TV de R$ 2.500 por R$ 350 em site desconhecido é cilada. Desconfie de preços muito abaixo do mercado e saia do site."><span class="letra">A</span><span>Compro logo, antes que acabe!</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Se parece bom demais para ser verdade, provavelmente é um golpe. Preço muito abaixo do mercado é o maior sinal de alerta." data-feedback-wrong="💡 Quase!"><span class="letra">B</span><span>Saio do site — preço bom demais para ser verdade é sinal de golpe</span></button>
+<button class="quiz-option" data-correct="false" data-feedback-wrong="💡 Não repasse! Compartilhar link de site suspeito pode enganar quem você ama. Saia do site e avise sua família para desconfiar também."><span class="letra">C</span><span>Mando o link para a família comprar também</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="5"></div>
+</div>
+<div class="atencao">
+                        ⚠️ <strong>LEMBRE-SE:</strong> nunca finalize uma compra em sites desconhecidos
+                        ou com preços muito abaixo do mercado. Se parece bom demais para ser verdade,
+                        provavelmente é um golpe!
+                    </div>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🛒</span>
+<h4>Bom demais para ser verdade?</h4>
+<p>Preço muito abaixo do mercado é o maior sinal de alerta. Saia do site e procure uma loja conhecida.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="39">
+<span class="etapa-badge f4">Fase 4 · Na vida real</span>
+<span class="etapa-rotulo">Seu guia digital</span>
+<h2>Google Maps</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<p>O Google Maps é como um <strong>guia turístico e GPS no seu bolso</strong>:
+                    mostra caminhos, lugares e até como eles são antes de você chegar lá!
+                    É o antigo mapa de papel + bússola — muito mais simples, sempre atualizado e na palma da sua mão.</p>
+<div class="analogia">
+                        🗺️ "Antigo mapa de papel + bússola = Google Maps.
+                        Procure endereços, trace rotas e veja lugares antes mesmo de sair de casa.
+                        Nunca mais se perca: você sabe exatamente onde está e para onde vai!"
+                    </div>
+<h3>Sua vez: o que você quer encontrar?</h3>
+<p>Toque em um tipo de lugar e veja como o Google Maps responde:</p>
+</div>
+<div class="etapa-visual">
+<div class="lugares">
+<button class="lugar-chip ativo" data-busca="farmácia perto de mim" data-nome="Farmácia Saúde" data-tempo="⏱️ 12 min a pé">🏪 Farmácia</button>
+<button class="lugar-chip" data-busca="hospital perto de mim" data-nome="Hospital Municipal" data-tempo="⏱️ 8 min de carro">🏥 Hospital</button>
+<button class="lugar-chip" data-busca="banco perto de mim" data-nome="Banco do Brasil" data-tempo="⏱️ 5 min a pé">🏦 Banco</button>
+<button class="lugar-chip" data-busca="restaurante perto de mim" data-nome="Restaurante Sabor de Casa" data-tempo="⏱️ 15 min a pé">🍽️ Restaurante</button>
+</div>
+<div class="maps-mock">
+<div class="maps-barra">
+<div class="maps-busca" id="maps-busca">farmácia perto de mim</div>
+</div>
+<div class="maps-tela">
+<div class="maps-rua h"></div>
+<div class="maps-rua v"></div>
+<div class="maps-rua d"></div>
+<div class="maps-pin">📍</div>
+<button aria-label="O que é o Street View?" class="hotspot" id="hotspot-street" style="right: 12px; bottom: 12px;">🚶</button>
+<div class="mockup-nota" id="nota-street" style="right: 64px; bottom: 16px; display:none;">
+<strong>Street View.</strong> O "passeio virtual" do Google Maps:
+                                você vê as ruas em fotos, como se estivesse andando por elas —
+                                dá para conhecer o lugar antes de ir!
+                            </div>
+</div>
+<div class="maps-resultado show" id="maps-resultado">
+<div class="nome-lugar" id="maps-nome">Farmácia Saúde</div>
+<div class="tempo" id="maps-tempo">⏱️ 12 min a pé</div>
+<button class="botao-rota" id="botao-rota">Traçar rota</button>
+</div>
+<div class="mockup-nota" id="nota-rota" style="left: 12px; bottom: 62px; display:none;">
+                            🧭 <strong>Rota traçada!</strong> O Maps mostra o caminho a pé, de carro
+                            ou de ônibus — e quanto tempo demora para chegar. É como o motorista
+                            particular que nunca se perde!
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="40"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>O que o Google Maps faz por você</h2><div class="etapa-grid"><div class="etapa-texto"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Busque endereços</strong> digitando o nome do lugar, como "farmácia perto de mim" ou um endereço completo</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Trace rotas</strong> a pé, de carro ou de transporte público — e veja quanto tempo demora</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Passeie virtualmente</strong> pelas ruas com o
+                        <span class="termo" tabindex="0">Street View
+                            <span class="tooltip"><strong>Street View</strong>
+                            A função do Google Maps que mostra as ruas em fotos — como se você estivesse passeando por elas, sem sair de casa.</span>
+</span></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Encontre serviços próximos</strong> — farmácias, hospitais, bancos, restaurantes e muito mais</p></div>
+</div></div><div class="etapa-visual"><div class="mini-mapa">
+<div class="maps-barra"><div class="maps-busca">farmácia perto de mim</div></div>
+<div class="maps-tela">
+<div class="maps-rua h"></div>
+<div class="maps-rua v"></div>
+<div class="maps-rua d"></div>
+<div class="maps-pin">📍</div>
+</div>
+</div></div></div></section><section class="etapa" data-etapa="41"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Um guia digital em qualquer cidade</h2><div class="etapa-grid"><div class="etapa-texto"><div class="destaque">
+                        🧭 <strong>Nunca mais se perca!</strong> Com o Google Maps, você sabe exatamente
+                        onde está e para onde vai — mesmo numa cidade que você nunca visitou.
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">🧭</span><h4>Nunca mais se perca</h4><p>Busque um lugar, escolha a rota e veja quanto tempo o caminho leva.</p></div></div></div></section>
+<section class="etapa" data-etapa="42">
+<span class="etapa-badge f4">Fase 4 · Na vida real</span>
+<h2>Resumo: o que aprendemos hoje</h2>
+<div class="etapa-grid">
+<div class="etapa-texto">
+<ul class="lista-check">
+<li><span><strong>Identificar sites seguros</strong> — URL, https e o cadeado 🔒</span></li>
+<li><span><strong>Reconhecer sites suspeitos</strong> e links patrocinados</span></li>
+<li><span><strong>Verificar notícias</strong> antes de acreditar e compartilhar (fake news)</span></li>
+<li><span><strong>Regras de ouro</strong> para não cair em golpes</span></li>
+<li><span><strong>Comprar online com segurança</strong> — lojas conhecidas, cadeado e avaliações</span></li>
+<li><span><strong>Usar o Google Maps</strong> — seu guia digital</span></li>
+<li><span><strong>Conhecer o celular</strong> — aplicativos, ícones, tela inicial, loja, Wi-Fi e dados móveis</span></li>
+</ul>
+</div>
+<div class="etapa-visual">
+<div class="cartao-visual">
+<span class="cv-icone">🎓</span>
+<h4>Hoje você aprendeu</h4>
+<p>URL, sites seguros, anúncios, fake news, golpes, compras online, Google Maps e o celular.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="etapa" data-etapa="43"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — parte 1</h2><div class="etapa-grid"><div class="etapa-texto"><div class="missao"><h3>🏠 Para fazer em casa até a próxima aula</h3><p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> Abra o navegador, digite o endereço do seu banco e <strong>repare no cadeado</strong> 🔒 ao lado do endereço.</p><p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> Pesquise algo no Google e <strong>procure um resultado marcado como "Anúncio"</strong> — veja como ele aparece antes dos resultados naturais.</p><p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> Mostre a um familiar a <strong>tela inicial do seu celular</strong> e identifiquem juntos os ícones dos aplicativos (e onde fica a loja de aplicativos).</p></div></div><div class="etapa-visual"><div class="cartao-visual">
+<span class="cv-icone">🧵</span>
+<h4>Costura em casa</h4>
+<p>Cada missão praticada em casa deixa o aprendizado mais firme — como os pontos da costura.</p>
+</div></div></div></section><section class="etapa" data-etapa="44"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — parte 2</h2><div class="etapa-grid"><div class="etapa-texto"><div class="missao"><h3>🏠 Continue a missão</h3><p style="margin-bottom: var(--esp-sm);"><strong>4.</strong> Abra o Google Maps e procure <strong>"farmácia perto de mim"</strong> — veja quantos minutos o Maps indica para chegar.</p><p><strong>5.</strong> Antes de acreditar numa notícia da internet, <strong>confira em mais de um site confiável</strong> — e compartilhe só o que for verdade.</p></div><div class="destaque">
+                        🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                        cada uma praticada em casa deixa o aprendizado mais firme.
+                        Na próxima aula, contamos como foi! E anote suas dúvidas para levarmos juntos.
+                    </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">✅</span><h4>Pratique no seu ritmo</h4><p>Faça uma missão de cada vez e anote suas dúvidas para a próxima aula.</p></div></div></div></section>
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+<section class="etapa" data-etapa="45"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
+<span class="trofeu">🧵</span>
+<h2>Você costurou mais um retalho!</h2>
+<p>Hoje você aprendeu a ler os endereços da internet, a reconhecer sites
+                suspeitos, a separar anúncios de resultados, a desconfiar de fake news e golpes,
+                a comprar online com segurança e a se guiar com o Google Maps.
+                E ainda deu os primeiros passos no celular — aplicativos, ícones e conexão.
+                Isso é muito mais do que "usar a internet": é <strong>autonomia</strong>.</p>
+</div></section><section class="etapa" data-etapa="46"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — segurança</h2><ul class="lista-conquistas"><li>✅ Entendi o que é URL e o cadeado 🔒</li><li>✅ Sei identificar sites suspeitos</li><li>✅ Reconheço links patrocinados</li><li>✅ Verifico notícias antes de compartilhar</li><li>✅ Conheço as regras de ouro contra golpes</li></ul></section><section class="etapa" data-etapa="47"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — autonomia</h2><ul class="lista-conquistas"><li>✅ Compro online com segurança</li><li>✅ Sei usar o Google Maps</li><li>✅ Sei o que é app, ícone e tela inicial</li><li>✅ Aprendi sobre a loja de aplicativos e instalação</li><li>✅ Sei a diferença entre Wi-Fi e dados móveis</li></ul><div style="text-align:center; margin-top: var(--esp-md);">
+<div class="retalho-costurado">Aula 02 · costurada! 🎉</div>
+</div></section>
+<section class="etapa" data-etapa="48">
+<span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
+<h2>Continue praticando</h2>
+<div class="destaque" style="margin-top: var(--esp-md);">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos ao
+                <strong>WhatsApp</strong> — e você já sabe instalar aplicativos,
+                conhece a tela inicial e sabe a diferença entre Wi-Fi e dados móveis.
+                Vai ser ainda mais fácil conversar com quem você ama!
+            </div>
+<div style="text-align:center; margin-top: var(--esp-lg);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div>
+</section>
+<!-- Navegação -->
+<nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ===== Botão de boas-vindas (Fase 1) =====
+            var btnBoasVindas = document.getElementById('btn-boas-vindas');
+            var boasVindasMsg = document.getElementById('boas-vindas-msg');
+            btnBoasVindas.addEventListener('click', function () {
+                boasVindasMsg.style.display = 'block';
+                boasVindasMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== Veredito dos endereços (URL) =====
+            var chipsUrl = document.querySelectorAll('.url-chip');
+            var veredito = document.getElementById('veredito-url');
+            chipsUrl.forEach(function (ch) {
+                ch.addEventListener('click', function () {
+                    var boa = ch.dataset.tipo === 'boa';
+                    chipsUrl.forEach(function (c) { c.classList.remove('boa', 'ruim'); });
+                    ch.classList.add(boa ? 'boa' : 'ruim');
+                    veredito.className = 'veredito show ' + (boa ? 'ok' : 'cuidado');
+                    veredito.textContent = ch.dataset.mensagem;
+                    veredito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+
+            // ===== Explorar a tela inicial do celular =====
+            var appIcones = document.querySelectorAll('.app-icone');
+            var notaCelular = document.getElementById('nota-celular');
+            appIcones.forEach(function (ic) {
+                ic.addEventListener('click', function () {
+                    notaCelular.innerHTML = '📲 <strong>' + ic.dataset.nome + ':</strong> ' + ic.dataset.desc + '.';
+                    notaCelular.classList.add('show');
+                });
+            });
+
+            // ===== Simulação: escolher o app certo na loja =====
+            var lojaCards = document.querySelectorAll('.loja-card');
+            var lojaAviso = document.getElementById('loja-aviso');
+            lojaCards.forEach(function (card) {
+                var btn = card.querySelector('.botao-instalar');
+                btn.addEventListener('click', function () {
+                    var certo = btn.dataset.certo === 'true';
+                    if (certo) {
+                        btn.textContent = '✓ Instalado';
+                        btn.classList.add('instalado');
+                        lojaCards.forEach(function (c) { c.querySelector('.botao-instalar').disabled = true; });
+                        lojaAviso.className = 'loja-aviso show ok';
+                        lojaAviso.textContent = '🎉 Perfeito! O WhatsApp oficial foi instalado. O ícone dele vai aparecer na sua tela inicial — pronto para a próxima aula!';
+                    } else {
+                        lojaAviso.className = 'loja-aviso show erro';
+                        lojaAviso.textContent = '💡 Atenção: este não é o aplicativo oficial. Confira o nome com calma e o criador (editor) — apps falsos usam nomes parecidos. Continue tentando!';
+                    }
+                    lojaAviso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+
+            // ===== Painel Wi-Fi / dados móveis =====
+            var chipsRede = document.querySelectorAll('.chip-rede');
+            var statusRede = document.getElementById('status-rede');
+            chipsRede.forEach(function (ch) {
+                ch.addEventListener('click', function () {
+                    chipsRede.forEach(function (c) { c.classList.remove('ativo'); });
+                    ch.classList.add('ativo');
+                    statusRede.className = 'status-rede show';
+                    statusRede.textContent = ch.dataset.status;
+                });
+            });
+
+            // ===== Google Maps: lugares =====
+            var lugares = document.querySelectorAll('.lugar-chip');
+            var mapsBusca = document.getElementById('maps-busca');
+            var mapsNome = document.getElementById('maps-nome');
+            var mapsTempo = document.getElementById('maps-tempo');
+            var mapsResultado = document.getElementById('maps-resultado');
+            lugares.forEach(function (l) {
+                l.addEventListener('click', function () {
+                    lugares.forEach(function (x) { x.classList.remove('ativo'); });
+                    l.classList.add('ativo');
+                    mapsBusca.textContent = l.dataset.busca;
+                    mapsNome.textContent = l.dataset.nome;
+                    mapsTempo.textContent = l.dataset.tempo;
+                    mapsResultado.classList.add('show');
+                });
+            });
+
+            var botaoRota = document.getElementById('botao-rota');
+            var notaRota = document.getElementById('nota-rota');
+            botaoRota.addEventListener('click', function () {
+                notaRota.style.display = notaRota.style.display === 'block' ? 'none' : 'block';
+            });
+
+            var hotspotStreet = document.getElementById('hotspot-street');
+            var notaStreet = document.getElementById('nota-street');
+            hotspotStreet.addEventListener('click', function () {
+                notaStreet.style.display = notaStreet.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // ===== Hotspot do cadeado na loja online =====
+            var hotspotCadeado = document.getElementById('hotspot-cadeado');
+            var notaCadeado = document.getElementById('nota-cadeado');
+            hotspotCadeado.addEventListener('click', function () {
+                notaCadeado.style.display = notaCadeado.style.display === 'block' ? 'none' : 'block';
+            });
+        })();
+    </script>
+</body>
+</html>

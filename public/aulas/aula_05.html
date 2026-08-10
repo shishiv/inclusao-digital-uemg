@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="Aula 05 interativa: Google Drive, Google Fotos, nuvem, upload, backup e compartilhamento. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 05 — Seu Baú Digital de Memórias | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* Extras específicos da aula 05 */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
+        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
+        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
+        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
+        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+
+        /* ===== Mockup Google Drive ===== */
+        .mockup-drive { max-width: 440px; margin: var(--esp-lg) auto; background: #FFF; border: 1px solid #DADCE0; border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-md); font-size: .95rem; }
+        .drive-topo { background: #F8F9FA; border-bottom: 1px solid #DADCE0; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-weight: 700; color: #3C4043; }
+        .drive-barra { background: #F1F3F4; border-radius: 10px; padding: 8px 12px; color: #80868B; font-size: .95rem; margin: 10px 16px; }
+        .drive-menu { padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .drive-btn-novo { background: #FFF; border: 1px solid #DADCE0; border-radius: 8px; padding: 8px 18px; font-weight: 700; color: #1A73E8; cursor: pointer; font-family: var(--font-body); font-size: .95rem; transition: background var(--veloz); }
+        .drive-btn-novo:hover { background: #E8F0FE; }
+        .drive-opcoes { display: flex; flex-direction: column; gap: 6px; padding: 8px 16px; background: #F8F9FA; border-top: 1px solid #DADCE0; }
+        .drive-opcao { text-align: left; border: 1px solid #DADCE0; background: #FFF; border-radius: 8px; padding: 10px 14px; font-family: var(--font-body); font-size: .95rem; font-weight: 600; color: #3C4043; cursor: pointer; transition: background var(--veloz); }
+        .drive-opcao:hover { background: #E8F0FE; }
+        .drive-criar { padding: 12px 16px; background: #E8F0FE; border-top: 1px solid #DADCE0; }
+        .drive-criar label { display: block; font-weight: 700; font-size: .95rem; margin-bottom: 4px; color: #1A73E8; }
+        .drive-criar input { width: 100%; padding: 10px 12px; border: 2px solid #DADCE0; border-radius: 8px; font-size: .95rem; font-family: var(--font-body); margin-bottom: 8px; }
+        .drive-criar input:focus { outline: none; border-color: #1A73E8; }
+        .drive-lista { padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
+        .drive-item { display: flex; align-items: center; gap: 10px; border: 1px solid #E0E0E0; border-radius: 8px; padding: 10px 12px; background: #FFF; color: #3C4043; }
+        .drive-item.novo-item { animation: entra 420ms var(--ease); border-color: #1A73E8; background: #E8F0FE; }
+
+        /* ===== Mockup Google Fotos ===== */
+        .mockup-fotos { max-width: 440px; margin: var(--esp-lg) auto; background: #FFF; border: 1px solid #DADCE0; border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-md); }
+        .fotos-topo { background: #FFF; border-bottom: 1px solid #DADCE0; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-weight: 700; color: #3C4043; }
+        .fotos-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 12px 16px; }
+        .foto-mini { aspect-ratio: 1 / 1; border: 3px solid transparent; border-radius: 10px; background: linear-gradient(135deg, #FBF0D6, #E3ECF5, #E9F0E4); font-size: 2.4rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform var(--veloz), border-color var(--veloz); }
+        .foto-mini:hover { transform: scale(1.05); }
+        .foto-mini.selecionada { border-color: #1A73E8; background: #E8F0FE; transform: scale(1.03); }
+        .fotos-acoes { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 10px; }
+        .fotos-acoes input { width: 100%; padding: 10px 12px; border: 2px solid #DADCE0; border-radius: 8px; font-size: .95rem; font-family: var(--font-body); }
+        .fotos-acoes input:focus { outline: none; border-color: #1A73E8; }
+        .album-pronto { max-width: 440px; margin: var(--esp-md) auto; background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); border-radius: var(--raio); padding: var(--esp-md); font-weight: 700; }
+    
+        /* Impeccable layout + adapt: uma etapa por tela, sem comprimir a leitura. */
+        .etapa.ativa { justify-content: flex-start; gap: clamp(12px, 1.6vh, 24px); }
+        .etapa > h2 { margin-bottom: var(--esp-xs); }
+        .etapa > .etapa-badge { align-self: flex-start; margin-bottom: 10px; }
+        .etapa-grid .etapa-visual { height: 100%; min-height: 0; }
+        .etapa-grid .etapa-visual > .ilustracao-cena { width:100%; height:auto; margin:0 auto; }
+        .etapa-grid .etapa-visual > .feed-card,
+        .etapa-grid .etapa-visual > .mockup-drive,
+        .etapa-grid .etapa-visual > .mockup-fotos { margin:0 auto; width:100%; }
+        .passos, .lista-check { gap: 10px; margin: var(--esp-sm) 0; }
+        .passos-duplos { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        .mini-cartao { padding: var(--esp-md); }
+        .icone-grande { font-size: 2.6rem; margin-bottom: var(--esp-xs); }
+        .quiz-card { margin: var(--esp-xs) 0; padding: var(--esp-md); }
+        .analogia, .destaque, .atencao { padding: var(--esp-sm) var(--esp-md); margin: var(--esp-xs) 0; }
+        @media (max-width: 900px) {
+            .etapa-grid { display: flex; flex-direction: column; gap: var(--esp-md); min-height: auto; }
+            .etapa-grid .etapa-texto, .etapa-grid .etapa-visual { overflow: visible; min-height: auto; }
+            .etapa-grid .etapa-visual { order: 0; max-height: none; height: auto; }
+        }
+        @media (max-width: 560px) {
+            .etapa { padding: var(--esp-md) var(--esp-sm); }
+            .etapa h2 { font-size: var(--texto-xl); }
+            .etapa p, .lista-check li { font-size: var(--texto-base); }
+            .passos-duplos { grid-template-columns: 1fr; }
+            .player-nav .btn { min-height: 48px; }
+        }
+    </style>
+</head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 05 · Baú Digital de Memórias</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 76</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+
+
+<!-- ============ FASE 2 · VAMOS JUNTOS ============ -->
+
+
+
+
+
+
+
+<!-- ============ FASE 3 · SUA VEZ ============ -->
+
+
+
+
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+
+
+
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+
+<!-- Navegação -->
+<section class="etapa ativa" data-etapa="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Parabéns pelo seu progresso!</h2><div class="ferramentas-linha"><span class="ferramenta"><img alt="" height="26" src="/assets/logos/drive.png" width="26"/> Google Drive</span><span class="ferramenta"><img alt="" height="26" src="/assets/logos/photos.png" width="26"/> Google Fotos</span></div><p>Na semana passada, vocês fizeram descobertas incríveis no mundo das mídias sociais!
+            Aprenderam a usar o <strong>Facebook</strong> para reencontrar pessoas queridas,
+            descobriram o <strong>Instagram</strong> como uma vitrine de memórias bonitas e
+            exploraram o <strong>YouTube</strong> como sua TV personalizada.</p><p>Agora, imagine uma caixa de sapatos cheia de fotos antigas, documentos e recordações.
+            Ela pode se molhar, pode se perder, pode até pegar fogo. E se existisse um
+            <strong>baú mágico</strong> onde nada disso acontecesse — que coubesse tudo,
+            nunca lotasse e estivesse sempre com você?</p></section>
+
+<section class="etapa" data-etapa="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Parabéns pelo seu progresso! — continuação</h2><img alt="Ilustração de um homem idoso de cabelos brancos e óculos, sorrindo enquanto usa um tablet em uma mesa de madeira, cercado por flores, um livro e uma caixa aberta cheia de fotografias antigas, com uma estante de quadros de família ao fundo" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula05-bau-memorias-bg-16x9-v01.png" width="1536"/></section>
+
+<section class="etapa" data-etapa="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Parabéns pelo seu progresso! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Para que isso serve na sua vida?</h3></div><div class="etapa-visual"><div class="analogia">
+                🧰 "Se a sua casa tem armários para guardar documentos e álbuns para organizar fotos,
+                o Google oferece a mesma coisa, só que no mundo digital!
+                É como ter um armário e um álbum de família que <strong>nunca lotam</strong>
+                e <strong>nunca se deterioram</strong>."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="4"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Parabéns pelo seu progresso! — continuação</h2><ul class="lista-check">
+<li><span><strong>Nunca mais perder</strong> o CPF, o RG ou um comprovante importante</span></li>
+<li><span><strong>Guardar as fotos dos netos</strong> com segurança — mesmo se o celular quebrar</span></li>
+<li><span><strong>Compartilhar lembranças</strong> com a família inteira, em qualquer lugar do mundo</span></li>
+<li><span><strong>Liberar espaço no celular</strong> sem apagar nada que importa</span></li>
+</ul></section>
+
+<section class="etapa" data-etapa="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><p>Hoje vamos dar mais um passo importante: aprender a <strong>organizar e guardar
+            tudo o que é importante</strong> no mundo digital — assim como vocês fazem com
+            os documentos e as fotografias em casa!</p></section>
+
+<section class="etapa" data-etapa="6"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Google Drive</strong> — seu armário digital organizado</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Criar gavetas (pastas)</strong> para cada assunto da vida</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Guardar documentos importantes</strong> com segurança</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Compartilhar</strong> com a família</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Google Fotos</strong> — seu álbum de família infinito</p></div>
+
+
+
+
+</div></section>
+
+<section class="etapa" data-etapa="7"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="passos">
+
+
+
+
+
+<div class="passo"><span class="passo-num">6</span><p><strong>Backup automático</strong> — fotos guardadas sozinhas</p></div>
+<div class="passo"><span class="passo-num">7</span><p><strong>Organizar fotos por datas e eventos</strong> especiais</p></div>
+<div class="passo"><span class="passo-num">8</span><p><strong>Liberar espaço no celular</strong> sem perder nada</p></div>
+<div class="passo"><span class="passo-num">9</span><p><strong>Segurança</strong> — protegendo suas memórias</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="8"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="destaque">
+                💪 <strong>Tudo no seu ritmo!</strong> No final da aula,
+                vocês serão <strong>organizadores digitais</strong> — pessoas que sabem
+                onde cada coisa está e nunca mais perdem nada importante.
+            </div></section>
+
+<section class="etapa" data-etapa="9"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem?</h2><div class="etapa-grid"><div class="etapa-texto"><p>Antes de abrir o Drive e o Fotos, precisamos entender uma palavra que você vai
+            ouvir muito: a
+            <span class="termo" tabindex="0">nuvem
+                <span class="tooltip"><strong>Nuvem</strong>
+                Um armário que não é seu, mas só você acessa — de qualquer lugar, de qualquer aparelho.</span>
+</span>.</p></div><div class="etapa-visual"><div class="analogia">
+                ☁️ "A nuvem é como um <strong>armário guardado num lugar muito seguro</strong>:
+                ele não fica dentro da sua casa, mas a chave é só sua.
+                Você abre de casa, do trabalho, do celular — onde estiver,
+                suas coisas estão lá esperando."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="10"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem? — continuação</h2><p>Quando você guarda algo na nuvem, o documento ou a foto <strong>não fica preso
+            a um aparelho só</strong>. Se o celular quebrar, se o computador estragar ou se a
+            casa pegar fogo, o que está na nuvem continua salvo.</p><p><strong>Vamos testar? Toque na resposta certa:</strong></p></section>
+
+<section class="etapa" data-etapa="11"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem? — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    ☁️ Você tira uma foto no celular e ela é guardada na nuvem.
+                    Onde essa foto fica?
+                </div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Fica presa na memória da câmera, só no meu celular</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! A nuvem é um armário digital: a foto fica guardada fora do celular, e você acessa de qualquer aparelho, em qualquer lugar." data-feedback-wrong="💡 Quase! A nuvem é um armário digital: a foto fica guardada fora do celular, e você acessa de qualquer aparelho, em qualquer lugar."><span class="letra">B</span><span>Fica num armário digital que não é do meu celular — acessível de qualquer lugar</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Vai para o lixo do celular</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div></section>
+
+<section class="etapa" data-etapa="12"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem? — continuação</h2><div class="destaque">
+                🧭 <strong>Guarde essa ideia:</strong> nuvem = armário digital seguro.
+                Ela vai aparecer a aula inteira — no Drive, no Fotos e na missão da semana.
+            </div></section>
+
+<section class="etapa" data-etapa="13"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Entrar no armário: o que é fazer login?</h2><div class="etapa-grid"><div class="etapa-texto"><p>Para abrir o seu armário na nuvem, o Google precisa <strong>saber que é você</strong>.
+            É isso que significa
+            <span class="termo" tabindex="0">fazer login
+                <span class="tooltip"><strong>Login / Entrar</strong>
+                Identificar-se: dizer quem você é e provar com a senha.</span>
+</span>:
+            dizer quem você é e provar com a senha.</p></div><div class="etapa-visual"><div class="analogia">
+                🔑 "Fazer login é como chegar na portaria do prédio:
+                você diz seu nome e mostra seu documento.
+                O Google reconhece você pelo seu
+                <span class="termo" tabindex="0">e-mail
+                    <span class="tooltip"><strong>E-mail</strong>
+                    Seu correio digital: a carta que chega em segundos.</span>
+</span> e pela sua
+                <span class="termo" tabindex="0">senha
+                    <span class="tooltip"><strong>Senha</strong>
+                    A chave da sua casa digital — só você tem.</span>
+</span>."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="14"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Entrar no armário: o que é fazer login? — continuação</h2><p>Vocês já têm isso de uma aula anterior: a
+            <span class="termo" tabindex="0">conta
+                <span class="tooltip"><strong>Conta</strong>
+                Cadastro que diz ao serviço quem você é — como a sua assinatura.</span>
+</span>
+            do <strong>Gmail</strong> que vocês criaram na primeira aula! A mesma conta abre
+            o Drive, o Fotos e todos os outros serviços do Google. É uma chave só para
+            muitos armários.</p><h3>Como entrar (quando o Google pedir):</h3></section>
+
+<section class="etapa" data-etapa="15"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Entrar no armário: o que é fazer login? — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Digite seu e-mail do Gmail</strong> completo (ex.: mariasilva@gmail.com)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Toque em "Avançar"</strong> ou "Próxima"</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Digite sua senha</strong> com calma, letra por letra</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Toque em "Avançar"</strong> — pronto, você entrou no seu armário!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="16"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Entrar no armário: o que é fazer login? — continuação</h2><div class="atencao">
+                🆘 <strong>Esqueceu a senha? Sem pânico!</strong> Toque em
+                "Esqueceu seu e-mail?" ou "Esqueceu sua senha?" e siga os passos na tela —
+                ou peça ajuda a um monitor ou familiar de confiança. Isso acontece com todo mundo!
+            </div></section>
+
+<section class="etapa" data-etapa="17"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Drive: seu armário digital</h2><div class="etapa-grid"><div class="etapa-texto"><p>O <strong>Google Drive</strong> é como um armário mágico que está sempre em ordem,
+            nunca lota e pode ser acessado de qualquer lugar. É onde guardamos
+            <strong>documentos importantes, fotos especiais e tudo o que não podemos perder</strong>.</p><h3>Passo a passo simples para abrir o Drive</h3></div><div class="etapa-visual"><div class="analogia">
+                🗄️ "O Drive é o armário da sua casa digital:
+                nele você guarda papelada importante, fotos e lembranças.
+                E o melhor: nunca mais precisa procurar 'onde eu guardei isso?' — está tudo num lugar só."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="18"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Drive: seu armário digital — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Gmail</strong> — que vocês já sabem usar!</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Olhe no canto superior direito:</strong> veja os
+                    <span class="termo" tabindex="0">quadradinhos
+                        <span class="tooltip"><strong>Quadradinhos (menu do Google)</strong>
+                        São os pontinhos organizados em grade, no canto da tela. Eles abrem a prateleira com todos os serviços do Google: Gmail <span class="ferramenta"><img alt="" height="26" src="/assets/logos/gmail.png" width="26"/> Gmail</span>, Drive, Fotos e outros.</span>
+</span>
+                    ⋮⋮</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Toque nos quadradinhos</strong> e procure o <strong>Drive</strong> (o triângulo colorido 🎨)</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "Drive"</strong> — pronto, você chegou no seu armário digital!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="19"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Drive: seu armário digital — continuação</h2><div class="destaque">
+                💡 <strong>Dica:</strong> no celular, o Drive também é um
+                <span class="termo" tabindex="0">aplicativo
+                    <span class="tooltip"><strong>Aplicativo (app)</strong>
+                    Programa feito para o celular — como uma ferramenta nova na sua caixa.</span>
+</span>,
+                igual ao WhatsApp <span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span>. Ele pode ser
+                <span class="termo" tabindex="0">instalado
+                    <span class="tooltip"><strong>Instalar</strong>
+                    Colocar um aplicativo novo no celular — faz uma vez e fica para sempre.</span>
+</span>
+                pela
+                <span class="termo" tabindex="0">loja de aplicativos
+                    <span class="tooltip"><strong>Loja de aplicativos</strong>
+                    O shopping dos apps: Play Store <span class="ferramenta"><img alt="" height="26" src="/assets/logos/playstore.svg" width="26"/> Play Store</span> (robôzinho ▶️) ou App Store (maçã 🍎).</span>
+</span>.
+                Mas hoje vamos começar pelo computador, que é mais fácil de enxergar.
+            </div></section>
+
+<section class="etapa" data-etapa="20"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas</h2><div class="etapa-grid"><div class="etapa-texto"><p>Assim como vocês organizam documentos em pastas em casa, podem criar
+            <strong>"gavetas digitais"</strong> para cada assunto. No Drive, cada gaveta
+            é uma <strong>pasta</strong> — e ela pode ter o nome que você quiser:
+            <em>Receitas da Família</em>, <em>Fotos dos Netos</em>, <em>Documentos Importantes</em>.</p><h3>Sua vez: vamos criar uma pasta juntos!</h3></div><div class="etapa-visual"><div class="analogia">
+                📁 "Uma pasta no Drive é como uma gaveta do armário:
+                em vez de jogar tudo amontoado, cada assunto tem o seu lugar.
+                Na hora de procurar, você sabe exatamente onde está."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="21"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas — continuação</h2><p>Este é um <strong>simulador do Drive</strong> — igualzinho ao de verdade,
+            mas aqui você pode errar à vontade. Siga os passos:</p></section>
+
+<section class="etapa" data-etapa="22"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas — continuação</h2><div class="mockup-drive">
+<div class="drive-topo">🎨 Meu Drive</div>
+<div class="drive-barra">🔍 Pesquisar no Drive</div>
+<div class="drive-menu">
+<button class="drive-btn-novo" id="btn-drive-novo">＋ Novo</button>
+<span style="font-size:.8rem; color:#80868B;">Exemplo de tela</span>
+</div>
+<div class="drive-opcoes" id="drive-opcoes" style="display:none;">
+<button class="drive-opcao" id="btn-opcao-pasta">📁 Pasta</button>
+<button class="drive-opcao" id="btn-opcao-upload">⬆️ Fazer upload de arquivo</button>
+</div>
+<div class="drive-criar" id="drive-criar" style="display:none;">
+<label for="campo-nome-pasta">Nome da pasta</label>
+<input autocomplete="off" id="campo-nome-pasta" placeholder="Ex.: Fotos dos Netos" type="text"/>
+<button class="btn btn-verde" id="btn-criar-pasta" style="width:100%; min-height:44px;">Criar</button>
+</div>
+<div class="drive-lista" id="drive-lista">
+<div class="drive-item">📄 Exemplo: Recibo de compra</div>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="23"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>No Drive de verdade, o caminho é:</h3></div><div class="etapa-visual"><div class="destaque" id="pasta-sucesso" style="display:none;">
+                🎉 <strong>Parabéns!</strong> Sua gaveta digital foi criada!
+                Repare que ela apareceu na lista do armário — exatamente como no Drive de verdade.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="24"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique no botão + Novo</strong> (lado esquerdo, azul)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Pasta"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Dê um nome familiar</strong> — Receitas da Família, Fotos dos Netos, Documentos Importantes…</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "Criar"</strong> — sua gaveta está pronta!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="25"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Criando gavetas organizadas: suas pastas — continuação</h2><div class="destaque">
+                💡 <strong>Dica de ouro:</strong> quanto mais organizado o armário,
+                mais fácil achar o que você precisa. Uma pasta para cada assunto
+                (saúde, documentos, receitas, fotos) já muda tudo!
+            </div></section>
+
+<section class="etapa" data-etapa="26"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload</h2><div class="etapa-grid"><div class="etapa-texto"><p>Agora que as gavetas existem, vamos aprender a <strong>guardar documentos
+            importantes</strong> — como CPF, RG e comprovantes — para nunca mais perder.
+            Essa ação se chama
+            <span class="termo" tabindex="0">upload
+                <span class="tooltip"><strong>Upload / Enviar arquivo</strong>
+                Mandar um documento da sua casa (do computador ou celular) para o armário na nuvem.</span>
+</span>.</p><h3>Vamos praticar: envie um documento para o seu Drive</h3></div><div class="etapa-visual"><div class="analogia">
+                📦 "Fazer upload é como tirar um documento da gaveta de casa
+                e <strong>colocá-lo dentro do armário digital</strong>.
+                O papel continua existindo, mas agora tem uma cópia guardada
+                num lugar seguro — e você encontra de qualquer aparelho."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="27"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload — continuação</h2><p>Toque no botão <strong>＋ Novo</strong> e depois em
+            <strong>"Fazer upload de arquivo"</strong> no simulador:</p></section>
+
+<section class="etapa" data-etapa="28"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload — continuação</h2><div class="mockup-drive">
+<div class="drive-topo">🎨 Meu Drive — Documentos Importantes</div>
+<div class="drive-menu">
+<button class="drive-btn-novo" id="btn-drive-novo2">＋ Novo</button>
+<span style="font-size:.8rem; color:#80868B;">Dentro da pasta</span>
+</div>
+<div class="drive-opcoes" id="drive-opcoes2" style="display:none;">
+<button class="drive-opcao" id="btn-opcao-upload2">⬆️ Fazer upload de arquivo</button>
+<button class="drive-opcao" id="btn-opcao-pasta2">📁 Pasta</button>
+</div>
+<div class="drive-lista" id="drive-lista2">
+<div class="drive-item">📁 Pasta: Documentos Importantes</div>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="29"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>No computador de verdade, o caminho é:</h3></div><div class="etapa-visual"><div class="destaque" id="upload-sucesso" style="display:none;">
+                ✅ <strong>Pronto!</strong> O documento apareceu dentro da pasta.
+                Ele agora tem uma cópia segura na nuvem — mesmo que o original se perca,
+                você tem a reserva.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="30"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em + Novo</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Fazer upload de arquivo"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Procure o documento no computador</strong> (ex.: a foto do RG na pasta "Downloads")</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique duas vezes nele</strong> — pronto, está guardado para sempre!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="31"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Guardando documentos importantes: o upload — continuação</h2><div class="destaque">
+                🏠 <strong>Ideia para hoje:</strong> tire uma foto do CPF e do RG com o celular,
+                transfira para o computador (ou use o Drive do celular) e faça o upload.
+                Ter os documentos digitalizados é um alívio enorme em emergências.
+            </div></section>
+
+<section class="etapa" data-etapa="32"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>E se eu quiser trazer o documento de volta? O download</h2><div class="etapa-grid"><div class="etapa-texto"><p>Se você guardou um documento na nuvem e agora quer <strong>uma cópia dele
+            no seu computador ou celular</strong> — para imprimir, enviar por e-mail ou
+            mostrar no banco — você vai fazer um
+            <span class="termo" tabindex="0">download
+                <span class="tooltip"><strong>Download / Baixar</strong>
+                Trazer uma cópia do armário na nuvem para o seu aparelho.</span>
+</span>.</p><h3>Como baixar um documento do Drive</h3></div><div class="etapa-visual"><div class="analogia">
+                📥 "Se o upload é colocar o documento dentro do armário,
+                o <strong>download é tirar uma cópia do armário</strong> e trazer para a sua mão.
+                O original continua guardado na nuvem — você só fez uma cópia nova no seu aparelho."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="33"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>E se eu quiser trazer o documento de volta? O download — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Drive</strong> e encontre o arquivo</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique com o botão direito</strong> (ou toque nos três pontinhos ⋮ ao lado do nome)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Baixar"</strong> (ou "Download")</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Aguarde terminar</strong> — o arquivo chega na pasta "Downloads" do computador</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="34"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>E se eu quiser trazer o documento de volta? O download — continuação</h2><div class="destaque">
+                💡 <strong>Regrinha para nunca confundir:</strong>
+                ⬆️ <strong>upload</strong> = mandar PARA a nuvem ·
+                ⬇️ <strong>download</strong> = trazer DA nuvem.
+                "Up" sobe, "down" desce — como a escada!
+            </div></section>
+
+<section class="etapa" data-etapa="35"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família</h2><p>Um armário digital fica ainda mais bonito quando a gente divide.
+            Você pode <strong>mostrar uma pasta inteira</strong> para a sua família —
+            como passar um álbum de mão em mão, só que na tela.</p><p>Para isso, o Google usa o
+            <span class="termo" tabindex="0">link
+                <span class="tooltip"><strong>Link</strong>
+                Atalho que leva direto a um lugar — como o caminho anotado num papel. Quem recebe o link chega direto no que você compartilhou.</span>
+</span>:
+            um atalho que leva direto ao que você quer mostrar.</p></section>
+
+<section class="etapa" data-etapa="36"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como compartilhar uma pasta no Drive</h3></div><div class="etapa-visual"><div class="analogia">
+                🔗 "Um link é como anotar o endereço da casa num papel e entregar a alguém:
+                a pessoa sabe exatamente onde chegar. Só que o endereço é do seu armário digital."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="37"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique com o botão direito</strong> na pasta</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Compartilhar"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Digite o e-mail do familiar</strong> — ou toque em "Copiar link" para mandar pelo WhatsApp</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "Enviar"</strong> — agora vocês podem ver juntos!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="38"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Vamos pensar numa situação real. O que é mais seguro?</strong></p></div><div class="etapa-visual"><div class="destaque">
+                🎚️ <strong>Você escolhe o que a pessoa pode fazer:</strong> ao compartilhar,
+                o Google pergunta se a pessoa pode <strong>só ver</strong> (como olhar o álbum)
+                ou também <strong>editar</strong> (como escrever no mesmo caderno).
+                Para começar, prefira <strong>"pode ver"</strong> — é o mais seguro.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="39"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    👨‍👩‍👧 Você guardou a pasta "Receitas da Família" no Drive e quer
+                    mostrar para a sua filha. Qual é o jeito certo?
+                </div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Copio o link e mando para o grupo de desconhecidos no WhatsApp, para todo mundo ver</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Muito bem! Compartilhar pelo e-mail dela (ou enviar o link só para ela) é o jeito seguro: só quem você escolher vai ver." data-feedback-wrong="💡 Quase! O jeito seguro é compartilhar diretamente com ela, pelo e-mail (ou mandar o link só para ela). Quanto menos gente receber o link, mais protegidas ficam suas coisas."><span class="letra">B</span><span>Compartilho pelo e-mail dela, ou mando o link só para ela pelo WhatsApp</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Deixo a pasta aberta para qualquer pessoa da internet achar</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></section>
+
+<section class="etapa" data-etapa="40"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="atencao">
+                ⚠️ <strong>Lembrete:</strong> compartilhar é mostrar para quem você escolheu.
+                Se a pasta tiver documentos pessoais (CPF, RG), compartilhe apenas com
+                <strong>família de confiança</strong> — e prefira "pode ver".
+            </div></section>
+
+<section class="etapa" data-etapa="41"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Fotos: seu álbum de família infinito</h2><div class="etapa-grid"><div class="etapa-texto"><p>O <strong>Google Fotos</strong> é como ter um álbum de fotografias que
+            <strong>nunca acaba, nunca amarela</strong> e onde você encontra qualquer foto
+            em segundos. É o álbum dos sonhos de qualquer família!</p><h3>Como chegar no seu álbum infinito</h3></div><div class="etapa-visual"><div class="analogia">
+                📖 "O Google Fotos é o álbum de retratos da casa da vó:
+                só que em vez de páginas grudadas, ele tem espaço infinito —
+                e nunca fica amarelado pelo tempo."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="42"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Fotos: seu álbum de família infinito — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>O que dá para fazer lá dentro</h3></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>No Gmail</strong>, toque nos quadradinhos ⋮⋮ do canto superior direito</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Procure por "Fotos"</strong> (o cata-vento colorido 🎡)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Clique em "Fotos"</strong> — pronto, você chegou no seu álbum infinito!</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="43"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Fotos: seu álbum de família infinito — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><ul class="lista-check">
+<li><span><strong>Ver todas as fotos</strong> em um lugar só, em ordem de data</span></li>
+<li><span><strong>Buscar qualquer foto</strong> digitando uma palavra (vamos ver isso na aula!)</span></li>
+<li><span><strong>Criar álbuns</strong> para cada momento especial</span></li>
+<li><span><strong>Compartilhar</strong> com a família</span></li>
+</ul></div><div class="etapa-visual"><div class="destaque">
+                📸 <strong>Você já faz isso na vida real:</strong> quem guarda foto em
+                caixinha de sapato, em envelope ou em porta-retrato já entende o espírito.
+                O Google Fotos só dá um armário infinito para essas lembranças.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="44"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica das fotos: o backup automático</h2><div class="etapa-grid"><div class="etapa-texto"><p>Já pensou tirar uma foto e ela <strong>se guardar sozinha</strong> no álbum,
+            sem você fazer nada? É isso que o <strong>backup</strong> faz:</p><p>Configurando direito, <strong>todas as fotos que você tira no celular aparecem
+            automaticamente</strong> no Google Fotos, como se o álbum se montasse sozinho.</p></div><div class="etapa-visual"><div class="analogia">
+                🛟 "Backup é uma <strong>cópia de segurança</strong>: se você perder o original,
+                você tem a reserva. É como ter dois cadernos com a mesma receita —
+                se um se molhar, o outro está guardado."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="45"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica das fotos: o backup automático — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Passo a passo: ligar a mágica</h3></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Baixe o aplicativo</strong> Google Fotos na loja de aplicativos do celular</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Faça login com o Gmail</strong> — a mesma conta de sempre!</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Deixe o backup ligado</strong> (o app pergunta na primeira abertura — toque em "Ativar backup")</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Pronto:</strong> a partir de agora, todas as fotos ficam guardadas automaticamente!</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="46"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica das fotos: o backup automático — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>Vamos ver se ficou claro. O que precisa estar ligado?</strong></p></div><div class="etapa-visual"><div class="atencao">
+                🆘 <strong>Peça ajuda!</strong> Ativar o backup na primeira vez pode pedir
+                algumas confirmações. Sempre que precisar, estamos aqui para ajudar —
+                monitores e familiares adoram dar essa mão.
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="47"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica das fotos: o backup automático — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📷 Você tirou 20 fotos do almoço de domingo.
+                    O que precisa estar ligado para elas aparecerem
+                    <strong>sozinhas</strong> no Google Fotos?
+                </div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>O modo avião do celular</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Com o backup ligado, cada foto nova é copiada sozinha para a nuvem — o álbum se monta sem você fazer nada." data-feedback-wrong="💡 Quase! É o backup ligado que copia cada foto nova para a nuvem automaticamente. Sem ele, as fotos ficam só no celular — e podem se perder se o aparelho quebrar."><span class="letra">B</span><span>O backup do Google Fotos</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>O brilho da tela no máximo</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div></section>
+
+<section class="etapa" data-etapa="48"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica das fotos: o backup automático — continuação</h2><div class="destaque">
+                🧵 <strong>Fio da meada:</strong> backup ligado = fotos seguras.
+                É a sua apólice de seguro contra celular perdido, quebrado ou roubado.
+            </div></section>
+
+<section class="etapa" data-etapa="49"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Organizando por momentos especiais: os álbuns</h2><div class="etapa-grid"><div class="etapa-texto"><p>O Google Fotos já organiza as fotos por data automaticamente.
+            Mas você pode ir além: criar <strong>álbuns especiais</strong> para as ocasiões
+            importantes — aniversário, viagem, festa, Natal.</p><h3>Sua vez: monte um álbum de momento especial!</h3></div><div class="etapa-visual"><div class="analogia">
+                🎀 "Se o Google Fotos é o álbum infinito, os álbuns são as páginas
+                <strong>separadas por assunto</strong>: uma página para o aniversário da Maria,
+                outra para o Natal de 2024. Cada momento com seu lugarzinho."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="50"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Organizando por momentos especiais: os álbuns — continuação</h2><p><strong>1.</strong> Toque nas fotos do evento (elas ficam marcadas em azul) ·
+            <strong>2.</strong> Dê um nome bonito ao álbum · <strong>3.</strong> Toque em "Criar álbum":</p></section>
+
+<section class="etapa" data-etapa="51"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Organizando por momentos especiais: os álbuns — continuação</h2><div class="mockup-fotos">
+<div class="fotos-topo">🎡 Google Fotos — Escolha as fotos</div>
+<div class="fotos-grade" id="fotos-grade">
+<button aria-label="Foto de bolo de aniversário" class="foto-mini" data-foto="1">🎂</button>
+<button aria-label="Foto de praia" class="foto-mini" data-foto="2">🏖️</button>
+<button aria-label="Foto de Natal" class="foto-mini" data-foto="3">🎄</button>
+<button aria-label="Foto de festa" class="foto-mini" data-foto="4">🎉</button>
+<button aria-label="Foto de bebê" class="foto-mini" data-foto="5">👶</button>
+<button aria-label="Foto de pôr do sol" class="foto-mini" data-foto="6">🌅</button>
+</div>
+<div class="fotos-acoes">
+<div style="font-size:.95rem; font-weight:700; color:#3C4043;">
+                        Selecionadas: <span id="fotos-contagem">0</span>
+</div>
+<label for="campo-nome-album" style="font-size:.95rem; font-weight:700; color:#3C4043;">Nome do álbum</label>
+<input autocomplete="off" id="campo-nome-album" placeholder="Ex.: Aniversário da Maria" type="text"/>
+<button class="btn btn-verde" id="btn-criar-album" style="width:100%; min-height:48px;">Criar álbum</button>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="52"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Organizando por momentos especiais: os álbuns — continuação</h2><div class="album-pronto" id="album-sucesso" style="display:none;"></div><h3>No Google Fotos de verdade, o caminho é:</h3></section>
+
+<section class="etapa" data-etapa="53"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Organizando por momentos especiais: os álbuns — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Criar"</strong> na parte superior</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Escolha "Álbum"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Selecione as fotos do evento</strong> (aniversário, viagem, festa)</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Dê um nome bonito</strong> — Aniversário da Maria, Natal 2024…</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Clique em "Concluído"</strong> — seu álbum de momento especial está pronto!</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="54"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Compartilhando álbuns com a família</h2><div class="etapa-grid"><div class="etapa-texto"><p>Compartilhar um álbum no Google Fotos <strong>é como passar um álbum de mão em mão</strong>.
+            Você pode criar álbuns que toda a família vê — e até <strong>adiciona fotos</strong>!</p><h3>Como compartilhar um álbum</h3></div><div class="etapa-visual"><div class="analogia">
+                🤲 "Imaginem um álbum do neto que <strong>cresce com fotos de todos os parentes</strong>:
+                a tia manda uma foto da escolinha, o primo manda uma do passeio,
+                e você acompanha cada pedacinho — mesmo de longe."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="55"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Compartilhando álbuns com a família — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o álbum</strong> que você criou</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Toque no ícone de compartilhar</strong> (os três pontinhos conectados 🔗)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Compartilhar álbum"</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Digite o e-mail dos familiares</strong> — ou copie o link e mande pelo WhatsApp</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Pode até deixar que eles adicionem fotos também!</strong> (a opção "Colaborar" ou "Adicionar fotos")</p></div>
+</div></section>
+
+<section class="etapa" data-etapa="56"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Compartilhando álbuns com a família — continuação</h2><p><strong>Vamos pensar: quem pode ver o quê?</strong></p></section>
+
+<section class="etapa" data-etapa="57"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Compartilhando álbuns com a família — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    🎂 Você criou o álbum "Aniversário da Maria" com fotos da festa da família.
+                    Para quem você compartilha?
+                </div>
+<div class="quiz-opcoes" data-quiz="4">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Compartilho com todo mundo que tiver o link, em qualquer lugar da internet</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Álbum de família é para a família: compartilhe com as pessoas queridas e próximas, e aproveite para deixar que elas adicionem as fotos delas também!" data-feedback-wrong="💡 Quase! Fotos de família são preciosas: compartilhe só com as pessoas próximas e queridas. Para a família inteira contribuir, use a opção de deixar que adicionem fotos."><span class="letra">B</span><span>Compartilho com a família próxima, pelo e-mail deles — e deixo que adicionem fotos</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Não compartilho com ninguém e guardo só para mim, sem nunca mostrar</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="4"></div>
+</div></section>
+
+<section class="etapa" data-etapa="58"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Compartilhando álbuns com a família — continuação</h2><div class="destaque">
+                💡 <strong>Dica:</strong> você pode <strong>revisar os compartilhamentos</strong>
+                de vez em quando — ver com quem cada álbum está dividido.
+                Se quiser, é só parar de compartilhar com alguém. O controle é seu!
+            </div></section>
+
+<section class="etapa" data-etapa="59"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Liberando espaço no celular com segurança</h2><div class="etapa-grid"><div class="etapa-texto"><p>Celular cheio é uma dor de cabeça: fica lento, não instala aplicativos novos,
+            não recebe mensagens direito. A boa notícia: agora vocês sabem a solução!</p><p>Depois que as fotos estão <strong>seguras no Google Fotos</strong> (com o backup ligado),
+            podem <strong>apagar do celular</strong> para ter mais espaço — sem perder nada,
+            porque as cópias continuam no álbum online.</p></div><div class="etapa-visual"><div class="analogia">
+                🧹 "Liberar espaço é como guardar as roupas de inverno no armário da nuvem
+                e deixar o guarda-roupa da casa só com o que usa no dia a dia.
+                As roupas continuam existindo — só não ocupam mais o lugar."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="60"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Liberando espaço no celular com segurança — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Passo a passo: liberar espaço</h3></div><div class="etapa-visual"><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Google Fotos</strong> no celular</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Toque no menu</strong>
+<span class="termo" tabindex="0">⋮ (menu)
+                        <span class="tooltip"><strong>Menu ⋮</strong>
+                        A gaveta de opções: toque nos três pontinhos e veja o que tem dentro.</span>
+</span>
+                    — geralmente os três pontinhos ou a sua
+                    <span class="termo" tabindex="0">foto de perfil
+                        <span class="tooltip"><strong>Foto de perfil</strong>
+                        A fotinha que representa você na conta — como a foto na sua carteirinha.</span>
+</span></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Liberar espaço"</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Veja quantas fotos podem ser apagadas</strong> (o app mostra a conta!)</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Toque em "Liberar"</strong> — as fotos continuam no álbum online!</p></div>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="61"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Liberando espaço no celular com segurança — continuação</h2><p><strong>Teste rápido: o que fazer quando o celular avisa que está cheio?</strong></p></section>
+
+<section class="etapa" data-etapa="62"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Liberando espaço no celular com segurança — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📱 O celular avisou: "Memória quase cheia!"
+                    Qual é o passo mais seguro?
+                </div>
+<div class="quiz-opcoes" data-quiz="5">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Apago todas as fotos da galeria na pressa, sem pensar</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Conferir se o backup está ligado e usar o recurso &quot;Liberar espaço&quot; do Google Fotos é uma escolha segura: ele apaga do celular apenas as fotos que já têm cópia na nuvem." data-feedback-wrong="💡 Quase! O caminho seguro é conferir se o backup está ligado e usar o recurso &quot;Liberar espaço&quot; do Google Fotos. Assim, só saem do celular as fotos que já estão copiadas na nuvem."><span class="letra">B</span><span>Confiro se o backup está ligado e uso o "Liberar espaço" do Google Fotos</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Compro um celular novo só por causa do espaço</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="5"></div>
+</div></section>
+
+<section class="etapa" data-etapa="63"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Liberando espaço no celular com segurança — continuação</h2><div class="destaque">
+                💰 <strong>Economia inteligente:</strong> com o backup ligado e o espaço liberado,
+                o celular fica mais rápido, cabe mais coisa — e você não precisa
+                apagar mensagens nem aplicativos para dar jeito.
+            </div></section>
+
+<section class="etapa" data-etapa="64"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias</h2><div class="etapa-grid"><div class="etapa-texto"><p>Assim como vocês <strong>trancam a porta de casa</strong> e não dão a chave para
+            qualquer um, protejam suas memórias digitais com o mesmo cuidado.
+            Vamos ver as ferramentas que o Google dá para isso — começando por uma mágica:</p></div><div class="etapa-visual"><div class="mini-cartao">
+<span class="icone-grande">🔎</span>
+<h4>Busca mágica de fotos</h4>
+<p style="margin:0;">Você pode <strong>digitar uma palavra</strong> — "aniversário", "praia" ou até "João" —
+                e o Google Fotos <strong>encontra essas fotos automaticamente</strong>!
+                É como ter um organizador pessoal que lembra de tudo.</p>
+</div></div></div></section>
+
+<section class="etapa" data-etapa="65"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Quatro cuidados que protegem suas memórias</h3></div><div class="etapa-visual"><div class="analogia">
+                🧙 "A busca de fotos é como perguntar para alguém que conhece
+                cada foto da sua casa: 'onde está a foto da praia?' — e a pessoa
+                acha na hora, mesmo que você não lembre da data."
+            </div></div></div></section>
+
+<section class="etapa" data-etapa="66"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p><strong>E agora, uma situação muito importante:</strong></p></div><div class="etapa-visual"><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🔐</span>
+<h4>Senhas fortes e diferentes</h4>
+<p style="margin:0;">Use senhas <strong>difíceis de descobrir</strong> e
+                    <strong>diferentes em cada serviço</strong>. Nunca use só o seu nome ou data de nascimento.</p>
+</div>
+
+
+
+</div></div></div></section>
+
+<section class="etapa" data-etapa="67"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="passos-duplos">
+
+<div class="mini-cartao">
+<span class="icone-grande">👨‍👩‍👧‍👦</span>
+<h4>Não compartilhe tudo</h4>
+<p style="margin:0;">Álbuns pessoais, só com a <strong>família próxima</strong>.
+                    O que é íntimo fica entre os seus.</p>
+</div>
+
+
+</div></section>
+
+<section class="etapa" data-etapa="68"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="passos-duplos">
+
+
+<div class="mini-cartao">
+<span class="icone-grande">🛡️</span>
+<h4>Verificação em duas etapas</h4>
+<p style="margin:0;">Além da senha, o Google pede uma <strong>confirmação extra</strong>
+                    (um código no celular). Ative quando possível — peça ajuda, vale muito a pena!</p>
+</div>
+
+</div></section>
+
+<section class="etapa" data-etapa="69"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="passos-duplos">
+
+
+
+<div class="mini-cartao">
+<span class="icone-grande">🗂️</span>
+<h4>Revise os compartilhamentos</h4>
+<p style="margin:0;">De vez em quando, veja <strong>com quem você está compartilhando</strong>
+                    cada pasta e álbum. Você pode parar de compartilhar quando quiser.</p>
+</div>
+</div></section>
+
+<section class="etapa" data-etapa="70"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📧 Chegou um e-mail "do Google" dizendo que sua conta foi bloqueada
+                    e pedindo para você <strong>clicar num link e confirmar sua senha</strong>.
+                    O que fazer?
+                </div>
+<div class="quiz-opcoes" data-quiz="6">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Clico no link e digito minha senha para resolver logo</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>Respondo o e-mail mandando minha senha escrita</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Excelente! O Google nunca pede sua senha por e-mail. Não clique no link, não responda — e mostre o e-mail para um familiar ou monitor de confiança." data-feedback-wrong="💡 Cuidado! Nenhuma empresa séria pede sua senha por e-mail ou mensagem. Não clique no link, não responda — e mostre o e-mail para um familiar ou monitor de confiança."><span class="letra">C</span><span>Não clico, não respondo — e mostro o e-mail para alguém de confiança</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="6"></div>
+</div></section>
+
+<section class="etapa" data-etapa="71"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e privacidade: protegendo suas memórias — continuação</h2><div class="atencao">
+                🚨 <strong>Regra de ouro:</strong> ninguém honesto pede sua senha.
+                Nem o Google, nem o banco, nem um "técnico".
+                <strong>Senha é sua, para sempre.</strong> Se alguém pedir, desconfie e peça ajuda.
+            </div></section>
+
+<section class="etapa" data-etapa="72"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana</h2><div class="missao">
+<h3>🧰 Para fazer em casa até a próxima aula</h3>
+<p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> Abra o Drive e crie a pasta <strong>"Documentos Importantes"</strong>.</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> Tire uma foto do seu CPF ou RG, transfira para o computador e faça o <strong>upload</strong> para essa pasta — nunca mais você perde esse documento.</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> No celular, confira se o <strong>backup do Google Fotos está ligado</strong> (peça ajuda se precisar).</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>4.</strong> Crie um álbum com as fotos de um momento especial e <strong>compartilhe com um filho ou neto</strong>.</p>
+<p><strong>5.</strong> Se o celular estiver cheio, use o <strong>"Liberar espaço"</strong> do Google Fotos — com o backup ligado, nada se perde.</p>
+</div></section>
+
+<section class="etapa" data-etapa="73"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — continuação</h2><div class="destaque">
+                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                cada uma praticada em casa deixa o aprendizado mais firme.
+                Na próxima aula, contamos como foi!
+            </div></section>
+
+<section class="etapa" data-etapa="74"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração</h2><div class="momento">
+<span class="trofeu">🧰</span>
+<h2>Você é um organizador digital!</h2>
+<p>Hoje você aprendeu a guardar documentos e fotos num baú digital
+                que nunca lota, a encontrar qualquer coisa em segundos e a dividir
+                memórias com quem você ama. Isso é muito mais do que "usar o computador" —
+                é <strong>cuidar do que importa</strong>.</p>
+</div><h3 style="margin-top: var(--esp-lg);">Suas conquistas de hoje</h3></section>
+
+<section class="etapa" data-etapa="75"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração — continuação</h2><ul class="lista-conquistas">
+<li>✅ Entendi o que é a nuvem</li>
+<li>✅ Sei fazer login com meu Gmail</li>
+<li>✅ Abri o Google Drive, meu armário digital</li>
+<li>✅ Criei pastas (gavetas) organizadas</li>
+<li>✅ Sei fazer upload de documentos</li>
+<li>✅ Sei o que é download e backup</li>
+<li>✅ Compartilhei com a família com segurança</li>
+<li>✅ Criei álbuns no Google Fotos</li>
+<li>✅ Sei liberar espaço no celular sem perder nada</li>
+<li>✅ Sei proteger minhas memórias</li>
+</ul></section>
+
+<section class="etapa" data-etapa="76"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div style="text-align:center; margin-top: var(--esp-lg);">
+<div class="retalho-costurado">Aula 05 · costurada! 🎉</div>
+</div><div style="text-align:center; margin-top: var(--esp-md);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div></div><div class="etapa-visual"><div class="destaque" style="margin-top: var(--esp-lg);">
+                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos visitar o
+                <strong>Google Docs e o Google Sheets</strong> — como criar documentos e
+                planilhas, igual no computador, mas que todos da família podem ver e
+                editar juntos. Cada conquista digital é uma ponte para mais autonomia e conexão!
+            </div></div></div></section><nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ===== Simulador 1: criar pasta no Drive (etapa 6) =====
+            var btnNovo = document.getElementById('btn-drive-novo');
+            var opcoes = document.getElementById('drive-opcoes');
+            var btnPasta = document.getElementById('btn-opcao-pasta');
+            var criar = document.getElementById('drive-criar');
+            var campoPasta = document.getElementById('campo-nome-pasta');
+            var btnCriarPasta = document.getElementById('btn-criar-pasta');
+            var driveLista = document.getElementById('drive-lista');
+            var pastaSucesso = document.getElementById('pasta-sucesso');
+
+            btnNovo.addEventListener('click', function () {
+                opcoes.style.display = opcoes.style.display === 'none' ? 'flex' : 'none';
+            });
+            btnPasta.addEventListener('click', function () {
+                opcoes.style.display = 'none';
+                criar.style.display = 'block';
+                campoPasta.focus();
+            });
+            btnCriarPasta.addEventListener('click', function () {
+                var nome = campoPasta.value.trim();
+                if (!nome) { campoPasta.focus(); campoPasta.style.borderColor = 'var(--chita-vermelha)'; return; }
+                var item = document.createElement('div');
+                item.className = 'drive-item novo-item';
+                item.textContent = '📁 ' + nome;
+                driveLista.appendChild(item);
+                campoPasta.value = '';
+                campoPasta.style.borderColor = '';
+                criar.style.display = 'none';
+                pastaSucesso.style.display = 'block';
+                pastaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== Simulador 2: upload de documento (etapa 7) =====
+            var btnNovo2 = document.getElementById('btn-drive-novo2');
+            var opcoes2 = document.getElementById('drive-opcoes2');
+            var btnUpload2 = document.getElementById('btn-opcao-upload2');
+            var driveLista2 = document.getElementById('drive-lista2');
+            var uploadSucesso = document.getElementById('upload-sucesso');
+            var uploadFeito = false;
+
+            btnNovo2.addEventListener('click', function () {
+                opcoes2.style.display = opcoes2.style.display === 'none' ? 'flex' : 'none';
+            });
+            btnUpload2.addEventListener('click', function () {
+                opcoes2.style.display = 'none';
+                if (uploadFeito) return;
+                uploadFeito = true;
+                var item = document.createElement('div');
+                item.className = 'drive-item novo-item';
+                item.textContent = '📄 CPF — Maria da Silva.pdf';
+                driveLista2.appendChild(item);
+                uploadSucesso.style.display = 'block';
+                uploadSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== Simulador 3: criar álbum no Google Fotos (etapa 12) =====
+            var fotosGrade = document.getElementById('fotos-grade');
+            var contagem = document.getElementById('fotos-contagem');
+            var campoAlbum = document.getElementById('campo-nome-album');
+            var btnCriarAlbum = document.getElementById('btn-criar-album');
+            var albumSucesso = document.getElementById('album-sucesso');
+            var selecionadas = 0;
+
+            fotosGrade.querySelectorAll('.foto-mini').forEach(function (foto) {
+                foto.addEventListener('click', function () {
+                    var ativa = foto.classList.toggle('selecionada');
+                    selecionadas += ativa ? 1 : -1;
+                    contagem.textContent = selecionadas;
+                });
+            });
+
+            btnCriarAlbum.addEventListener('click', function () {
+                var nome = campoAlbum.value.trim();
+                if (selecionadas === 0) {
+                    albumSucesso.style.display = 'block';
+                    albumSucesso.className = 'album-pronto';
+                    albumSucesso.style.background = '#FBEAEA';
+                    albumSucesso.style.borderColor = 'var(--chita-vermelha)';
+                    albumSucesso.innerHTML = '💡 <strong>Quase lá!</strong> Toque em pelo menos uma foto do evento para selecioná-la.';
+                    albumSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    return;
+                }
+                if (!nome) {
+                    campoAlbum.focus();
+                    campoAlbum.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                var nomeSeguro = nome.replace(/</g, '&lt;');
+                albumSucesso.style.display = 'block';
+                albumSucesso.className = 'album-pronto';
+                albumSucesso.style.background = '';
+                albumSucesso.style.borderColor = '';
+                albumSucesso.innerHTML = '🎉 <strong>Álbum "' + nomeSeguro + '" criado!</strong> Com ' +
+                    selecionadas + ' foto' + (selecionadas > 1 ? 's' : '') +
+                    ' guardada' + (selecionadas > 1 ? 's' : '') +
+                    '. No Google Fotos de verdade, é exatamente assim: escolher, nomear e concluir!';
+                campoAlbum.value = '';
+                campoAlbum.style.borderColor = '';
+                albumSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        })();
+    </script>
+</body>
+</html>

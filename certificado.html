@@ -55,6 +55,10 @@
             .certificate-wrapper {
                 box-shadow: none !important;
                 margin: 0 !important;
+                width: 297mm !important;
+                height: 210mm !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
             }
 
             @page {
@@ -76,6 +80,14 @@
             justify-content: center;
             max-width: 900px;
             width: 100%;
+        }
+
+        .controls-status {
+            flex: 1 1 100%;
+            min-height: 1.5em;
+            color: var(--cinza-texto);
+            font-size: 0.9rem;
+            text-align: center;
         }
 
         .control-group {
@@ -103,8 +115,9 @@
             transition: border-color 0.3s ease;
         }
 
-        .control-group input:focus {
-            outline: none;
+        .control-group input:focus-visible {
+            outline: 3px solid var(--azul-uemg);
+            outline-offset: 3px;
             border-color: var(--azul-uemg);
         }
 
@@ -116,7 +129,14 @@
             font-weight: 600;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 160ms ease-out, transform 160ms ease-out;
+        }
+
+        .btn:active { transform: scale(0.96); }
+
+        .btn:focus-visible {
+            outline: 3px solid var(--azul-escuro);
+            outline-offset: 3px;
         }
 
         .btn-primary {
@@ -498,19 +518,17 @@
     <!-- Controls -->
     <div class="controls">
         <div class="control-group">
-            <label>Nome do Formando</label>
+            <label for="nameInput">Nome do formando</label>
             <input type="text" id="nameInput" placeholder="Digite o nome completo" value="Maria da Silva Santos">
         </div>
         <div class="control-group">
-            <label>Data da Cerimônia</label>
+            <label for="dateInput">Data da cerimônia</label>
             <input type="text" id="dateInput" placeholder="Data da cerimônia" value="12 de Dezembro de 2025">
         </div>
-        <button class="btn btn-primary" onclick="updateCertificate()">
-            Atualizar
-        </button>
         <button class="btn btn-secondary" onclick="printCertificate()">
-            Imprimir
+            🖨️ Imprimir certificado
         </button>
+        <p class="controls-status" id="controlsStatus" role="status" aria-live="polite">A pré-visualização é atualizada enquanto você digita.</p>
     </div>
 
 
@@ -526,9 +544,6 @@
         <div class="corner-decoration corner-bottom-left"></div>
         <div class="corner-decoration corner-bottom-right"></div>
 
-        <!-- Watermark -->
-        <div class="watermark">UEMG</div>
-
         <!-- UEMG Red Stripe -->
         <div class="uemg-stripe"></div>
 
@@ -541,7 +556,7 @@
                     <p>Unidade Frutal — Programa de Apoio à Extensão (PAEx)</p>
                 </div>
                 <div class="logo">
-                    <img src="DOCS/LOGOS/paex-institucional.png"
+                    <img src="/logos/paex-institucional.png"
                          alt="Logo PAEx">
                 </div>
             </div>
@@ -599,9 +614,10 @@
         function updateCertificate() {
             const name = document.getElementById('nameInput').value || 'Nome do Formando';
             const date = document.getElementById('dateInput').value || '12 de Dezembro de 2025';
-            
+
             document.getElementById('recipientName').textContent = name;
             document.getElementById('certificateDate').textContent = date;
+            document.getElementById('controlsStatus').textContent = 'Pré-visualização atualizada.';
         }
 
         function printCertificate() {
@@ -621,11 +637,14 @@
             }
         });
 
-        // Auto-update when typing stops
+        // Atualiza automaticamente quando a digitação pausa.
         let timeout;
-        document.getElementById('nameInput').addEventListener('input', function() {
-            clearTimeout(timeout);
-            timeout = setTimeout(updateCertificate, 500);
+        [document.getElementById('nameInput'), document.getElementById('dateInput')].forEach(function(input) {
+            input.addEventListener('input', function() {
+                clearTimeout(timeout);
+                document.getElementById('controlsStatus').textContent = 'Atualizando pré-visualização…';
+                timeout = setTimeout(updateCertificate, 300);
+            });
         });
     </script>
 </body>

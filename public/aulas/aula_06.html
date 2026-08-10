@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="Aula 06 interativa: Google Docs e Google Sheets para textos, planilhas e organização. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 06 — Seu Escritório Digital Gratuito | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* ===== Extras específicos da aula 06 ===== */
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+
+        /* Tabelas de exemplo (medicamentos, gastos) */
+        .tabela-exemplo { width: 100%; border-collapse: collapse; margin: var(--esp-md) 0; background: #FFF; border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-sm); font-size: var(--texto-sm); }
+        .tabela-exemplo th { background: var(--chita-azul-escura); color: #FFF; padding: 10px 12px; text-align: left; font-weight: 700; }
+        .tabela-exemplo td { padding: 10px 12px; border-bottom: 1px solid var(--linha); color: var(--bordado); }
+        .tabela-exemplo tr:last-child td { border-bottom: none; }
+        .tabela-exemplo .total { background: var(--chita-amarela-bg); font-weight: 800; color: var(--bordado); }
+        .tabela-exemplo .sim { color: var(--chita-verde); font-weight: 700; }
+        .tabela-exemplo .nao { color: var(--chita-vermelha); font-weight: 700; }
+
+        /* Mockup do Gmail <span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span> + Quadradinhos do Google (launcher) */
+        .mockup-gmail { max-width: 460px; margin: var(--esp-md) auto; background: #FFF; border-radius: 14px; box-shadow: var(--sombra-md); position: relative; }
+        .mockup-gmail-topo { background: #FFF; border-bottom: 1px solid #EAEAEA; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+        .gmail-logo { font-weight: 800; font-size: 1.05rem; color: #5F6368; display: inline-flex; align-items: center; gap: 8px; }
+        .launcher-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: transparent; cursor: pointer; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 3px; padding: 11px; }
+        .launcher-btn span { width: 4px; height: 4px; border-radius: 50%; background: #5F6368; display: block; margin: auto; }
+        .launcher-btn:hover { background: #F1F3F4; }
+        .launcher-menu { display: none; position: absolute; top: 58px; right: 10px; background: #FFF; border: 1px solid #DADCE0; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,.2); padding: 12px; width: 248px; grid-template-columns: 1fr 1fr 1fr; gap: 6px; z-index: 30; }
+        .launcher-menu.aberto { display: grid; }
+        .launcher-app { border: none; background: transparent; border-radius: 10px; padding: 12px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .9rem; font-weight: 600; color: #3C4043; font-family: var(--font-body); }
+        .launcher-app:hover { background: #F1F3F4; }
+        .launcher-app .app-icone { font-size: 1.6rem; line-height: 1; }
+
+        /* Mockup do Google Docs (documento) */
+        .mockup-docs { max-width: 480px; margin: var(--esp-md) auto; background: #F8F9FA; border: 1px solid #DADCE0; border-radius: 12px; overflow: hidden; box-shadow: var(--sombra-md); }
+        .mockup-docs-topo { background: #FFF; border-bottom: 1px solid #E0E0E0; padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: .95rem; color: #5F6368; flex-wrap: wrap; }
+        .mockup-docs-titulo { font-weight: 700; color: #3C4043; flex: 1; }
+        .pagina-docs { background: #FFF; border: 1px solid #C8C8C8; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,.15); padding: 30px; margin: 16px; min-height: 200px; font-size: 1.05rem; line-height: 1.7; color: #202124; }
+        .mockup-docs-campo { width: 100%; border: none; outline: none; font-family: var(--font-body); font-size: 1.05rem; color: #202124; background: transparent; resize: none; min-height: 100px; line-height: 1.7; }
+        .mockup-docs-campo::placeholder { color: #9AA0A6; }
+        .indicador-salvo { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--chita-verde); font-weight: 700; background: var(--chita-verde-bg); border-radius: 999px; padding: 4px 12px; }
+
+        /* Barra de ferramentas do Docs */
+        .barra-ferramentas { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 16px 0; align-items: center; background: #FFF; border: 1px solid #DADCE0; border-radius: 10px; padding: 10px 12px; }
+        .btn-ferramenta { border: 1px solid #DADCE0; background: #FFF; border-radius: 8px; padding: 8px 12px; font-size: .9rem; font-weight: 600; cursor: pointer; font-family: var(--font-body); color: #3C4043; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .btn-ferramenta:hover { background: #E8F0FE; border-color: var(--chita-azul); }
+        .btn-ferramenta.ativa { background: var(--chita-azul); color: #FFF; border-color: var(--chita-azul); }
+        #pagina-formatada { transition: font-size var(--medio), text-align var(--medio); }
+
+        /* Planilha simulada (células clicáveis e =SOMA) */
+        .planilha-mock { max-width: 470px; margin: var(--esp-md) auto; background: #FFF; border: 2px solid var(--linha-forte); border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-md); }
+        .planilha-grade { display: grid; grid-template-columns: 56px repeat(4, 1fr); }
+        .celula { border: 1px solid #D5D8DC; padding: 10px 8px; min-height: 44px; font-size: .95rem; display: flex; align-items: center; cursor: pointer; transition: background var(--veloz), box-shadow var(--veloz); background: #FFF; color: var(--bordado); overflow: hidden; }
+        .celula:hover { background: var(--chita-azul-bg); }
+        .celula.destaque { background: var(--chita-verde-bg); box-shadow: inset 0 0 0 3px var(--chita-verde); font-weight: 700; }
+        .celula-cab { background: var(--algodao-escuro); font-weight: 700; color: var(--bordado-suave); font-size: .9rem; justify-content: center; cursor: default; }
+        .celula-cab:hover { background: var(--algodao-escuro); }
+        .celula-formula { font-family: 'Courier New', monospace; font-weight: 700; color: var(--chita-verde); }
+        .info-celula { background: var(--chita-azul-bg); border-top: 2px solid var(--chita-azul); padding: 12px 16px; font-size: var(--texto-sm); font-weight: 600; color: var(--chita-azul-escura); }
+        .formula-btn { width: 100%; margin-top: var(--esp-md); }
+
+        /* Cartão de receita */
+        .receita-card { max-width: 460px; margin: var(--esp-md) auto; background: #FFFDF7; border: 2px solid var(--chita-amarela); border-radius: 16px; padding: var(--esp-lg); box-shadow: var(--sombra-md); }
+        .receita-card h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--chita-vermelha); margin-bottom: 4px; }
+        .receita-card .receita-origem { font-size: .95rem; color: var(--bordado-suave); margin-bottom: var(--esp-md); }
+        .receita-card ul { list-style: none; margin: var(--esp-sm) 0; }
+        .receita-card li { padding: 6px 0; border-bottom: 1px dashed var(--linha); font-size: var(--texto-sm); }
+        .receita-card li:last-child { border-bottom: none; }
+        .receita-card .receita-tempo { font-size: .95rem; font-weight: 700; color: var(--chita-verde); margin-top: var(--esp-sm); }
+
+        /* Comparação Docs × Sheets */
+        .tabela-compara { width: 100%; border-collapse: collapse; margin: var(--esp-md) 0; background: #FFF; border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-sm); font-size: var(--texto-sm); }
+        .tabela-compara th { padding: 12px; font-family: var(--font-display); font-size: var(--texto-lg); }
+        .tabela-compara th.criterio { background: var(--algodao-escuro); color: var(--bordado); }
+        .tabela-compara th.docs { background: var(--chita-azul); color: #FFF; }
+        .tabela-compara th.sheets { background: var(--chita-verde); color: #FFF; }
+        .tabela-compara td { padding: 10px 12px; border-top: 1px solid var(--linha); }
+        .tabela-compara td.rotulo { font-weight: 700; background: var(--algodao-escuro); width: 30%; }
+    
+        /* Impeccable layout + adapt: leitura linear e espaçamento confortável. */
+        .etapa { --p-density: 1; }
+        .etapa.ativa { justify-content: flex-start; gap: clamp(12px, 1.6vh, 24px); }
+        .etapa > h2 { margin-bottom: var(--esp-xs); }
+        .etapa > p { max-width: 75ch; }
+        .etapa > .etapa-badge { align-self: flex-start; margin-bottom: 10px; }
+        .passos, .lista-check { gap: 10px; margin: var(--esp-sm) 0; }
+        .passos-duplos, .tres-colunas { gap: var(--esp-md); margin: var(--esp-md) 0; }
+        .mini-cartao { padding: var(--esp-md); }
+        .mini-cartao .icone-grande { font-size: 2.35rem; margin: 0 0 var(--esp-xs); }
+        .mockup-gmail, .mockup-docs, .planilha-mock, .receita-card, .slides-app,
+        .tabela-exemplo, .tabela-compara, .tema-botoes, .abas-visual, .caps-recap { margin-top: var(--esp-sm); margin-bottom: var(--esp-sm); }
+        .quiz-card { margin: var(--esp-xs) 0; padding: var(--esp-md); }
+        .quiz-pergunta { margin-bottom: var(--esp-sm); }
+        .analogia, .destaque, .atencao { flex: 0 0 auto; padding: var(--esp-sm) var(--esp-md); margin: var(--esp-xs) 0; }
+        .ilustracao-cena { margin: var(--esp-sm) auto; max-height: 56vh; object-fit: contain; }
+        @media (min-width: 901px) {
+          .etapa:has(> .ilustracao-cena) { display:none; grid-template-columns:minmax(0,1fr) minmax(280px,.72fr); align-content:center; }
+          .etapa.ativa:has(> .ilustracao-cena) { display:grid; }
+          .etapa:has(> .ilustracao-cena) > .ilustracao-cena { grid-column:2; grid-row:1 / span 8; align-self:center; }
+          .etapa:has(> .ilustracao-cena) > :not(.ilustracao-cena) { grid-column:1; }
+          .tres-colunas { grid-template-columns:repeat(3,minmax(0,1fr)); }
+          .passos-duplos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        }
+        @media (max-width: 900px) {
+          .etapa.ativa { justify-content:flex-start; }
+          .etapa > p { max-width:none; }
+          .etapa-grid { display:flex; flex-direction:column; gap:var(--esp-md); min-height:auto; }
+          .etapa-grid .etapa-texto, .etapa-grid .etapa-visual { overflow:visible; min-height:auto; }
+          .etapa-grid .etapa-visual { order:0; max-height:none; }
+          .ilustracao-cena { max-height:none; }
+          .tres-colunas, .passos-duplos { grid-template-columns:1fr 1fr; }
+        }
+        @media (max-width: 560px) {
+          .etapa { padding:var(--esp-md) var(--esp-sm); }
+          .etapa h2 { font-size:var(--texto-xl); }
+          .etapa p, .lista-check li { font-size:var(--texto-base); }
+          .tres-colunas, .passos-duplos { grid-template-columns:1fr; }
+          .tabela-exemplo { width:100%; max-width:100%; table-layout:fixed; }
+          .tabela-exemplo th, .tabela-exemplo td {
+            padding:8px 6px;
+            overflow-wrap:anywhere;
+            word-break:normal;
+          }
+          .player-nav .btn { min-height:48px; }
+        }
+        @media (pointer:coarse) {
+          .btn-ferramenta, .btn-ferr, .launcher-app, .tema-botao, .perm-botao { min-height:44px; }
+        }
+</style>
+</head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 06 · Escritório Digital</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 64</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+<!-- ============ FASE 2 · VAMOS JUNTOS ============ -->
+<!-- ============ FASE 3 · SUA VEZ ============ -->
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+<!-- Navegação -->
+<section class="etapa ativa" data-etapa="1" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta! Hoje nasce o seu escritório digital</h2><p>Que alegria ter vocês aqui de novo! Olhem só a bagagem que vocês já carregam:</p><ul class="lista-check">
+<li><span><strong>Gmail e e-mail</strong> — vocês mandam e recebem cartas digitais</span></li>
+<li><span><strong>WhatsApp</strong> — conversam com a família na hora</span></li>
+<li><span><strong>Google Drive e Fotos</strong> — guardam memórias na nuvem</span></li>
+<li><span><strong>Redes sociais</strong> — Facebook <span class="ferramenta"><img alt="" height="26" src="/assets/logos/facebook.svg" width="26"/> Facebook</span>, Instagram <span class="ferramenta"><img alt="" height="26" src="/assets/logos/instagram.svg" width="26"/> Instagram</span>, YouTube</span></li>
+</ul></section><section class="etapa" data-etapa="2" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Seu escritório digital começa hoje</h2><p>Vocês lembram daquela carta escrita à mão que se perdeu, ou do caderninho de contas
+            que sempre dava soma errada? <strong>Hoje isso acaba.</strong> Vamos aprender a criar
+            documentos e planilhas — como num escritório de verdade, só que gratuito e do seu jeito.</p><img alt="Ilustração em estilo aquarela de um casal de idosos sentado em uma mesa de madeira usando computadores em casa: um homem digita num documento de texto e uma mulher trabalha numa planilha, com caneca de café, livros e plantas ao redor, num ambiente acolhedor" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula06-escritorio-bg-16x9-v01.png" width="1536"/></section><section class="etapa" data-etapa="3" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta! Hoje nasce o seu escritório digital — continuação</h2><div class="analogia">
+                📝 "Hoje você vai ter uma máquina de escrever moderna e um caderno quadriculado
+                que faz as contas sozinho — os dois de graça, dentro do seu Gmail."
+            </div><div class="destaque">
+                💝 <strong>Para quem isso importa?</strong> Para você que quer escrever uma carta
+                para o neto sem medo de perder, anotar os remédios sem esquecer, e saber
+                exatamente quanto gasta por mês. Isso é autonomia — e começa hoje.
+            </div></section><section class="etapa" data-etapa="4" data-fase-origem="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Google Docs</strong> — a máquina de escrever moderna: escrever cartas, histórias e receitas</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Deixar o texto bonito</strong> — tamanho, cor, negrito e alinhamento</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Compartilhar</strong> — mostrar e até editar com a família, de longe</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Google Sheets</strong> — o caderno quadriculado que calcula sozinho</p></div>
+</div></section><section class="etapa" data-etapa="5" data-fase-origem="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">5</span><p><strong>Células, colunas e linhas</strong> — o alfabeto da planilha</p></div>
+<div class="passo"><span class="passo-num">6</span><p><strong>A fórmula =SOMA</strong> — nunca mais errar nas contas</p></div>
+<div class="passo"><span class="passo-num">7</span><p><strong>Na vida real</strong> — gastos do mês, lista de medicamentos e receitas da família</p></div>
+<div class="passo"><span class="passo-num">8</span><p><strong>Segurança</strong> — como proteger seus documentos e sua senha</p></div>
+</div></section><section class="etapa" data-etapa="6" data-fase-origem="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje — continuação</h2><div class="destaque">
+                💡 <strong>Boa notícia:</strong> a parte mais difícil vocês já fizeram — criar a
+                <span class="termo" tabindex="0">conta
+                    <span class="tooltip"><strong>Conta</strong>
+                    Seu cadastro no Google: nome, e-mail e senha. É a sua assinatura digital — ela diz ao Google quem é você.</span>
+</span>
+                do Gmail. Docs e Sheets moram dentro dela. Vamos juntos, um passo de cada vez?
+            </div></section><section class="etapa" data-etapa="7" data-fase-origem="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Por que usar o Google Docs e o Sheets?</h2><p>Essas duas ferramentas são a versão gratuita daqueles programas pagos de escrever
+            texto (Word) e fazer tabelas (Excel). E têm quatro superpoderes:</p></section><section class="etapa" data-etapa="8" data-fase-origem="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Por que usar o Google Docs e o Sheets? — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🆓</span>
+<h4>Totalmente gratuito</h4>
+<p style="margin:0;">Não precisa pagar nada! Basta ter o seu Gmail — que você já tem.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">☁️</span>
+<h4>Nunca se perde</h4>
+<p style="margin:0;">Tudo fica salvo na
+                    <span class="termo" tabindex="0">nuvem
+                        <span class="tooltip"><strong>Nuvem</strong>
+                        É um armário guardado na internet: não é o seu computador, mas só você acessa — de qualquer lugar, em qualquer aparelho.</span>
+</span>
+                    automaticamente, a cada palavra.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">👨‍👩‍👧‍👦</span>
+<h4>Família junto</h4>
+<p style="margin:0;">Todos podem ver e até editar o mesmo documento ao mesmo tempo — mesmo à distância.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📱</span>
+<h4>Em qualquer lugar</h4>
+<p style="margin:0;">Funciona no celular, no tablet e no computador. Começa num aparelho, continua no outro.</p>
+</div>
+</div></section><section class="etapa" data-etapa="9" data-fase-origem="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Por que usar o Google Docs e o Sheets? — continuação</h2><div class="analogia">
+                ☁️ "A nuvem é como um armário que não fica na sua casa, mas é só seu.
+                Você abre a porta de qualquer lugar — do celular, do computador do filho, de um tablet —
+                e lá estão seus documentos, sempre no mesmo lugar."
+            </div><div class="destaque">
+                🛡️ <strong>O melhor de tudo:</strong> se o computador quebrar ou o celular cair na água,
+                seus documentos continuam seguros na nuvem. Nada de "perdi tudo" nunca mais.
+            </div></section><section class="etapa" data-etapa="10" data-fase-origem="4"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Docs: sua máquina de escrever moderna</h2><p>O Google Docs é onde você <strong>escreve textos</strong> — cartas, histórias,
+            listas, receitas, anotações. A analogia perfeita:</p><div class="analogia">
+                📄 "O Docs é como escrever numa folha de papel, mas com superpoderes digitais!
+                É a sua máquina de escrever moderna: a caneta é o teclado, a folha é a tela,
+                e a borracha nunca mais suja nada — dá para apagar e corrigir à vontade."
+            </div><p>O que dá para fazer com ele:</p></section><section class="etapa" data-etapa="11" data-fase-origem="4"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Docs: sua máquina de escrever moderna — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">📄</span>
+<h4>Escrever cartas</h4>
+<p style="margin:0;">Para filhos, netos e amigos — do jeito que sempre fizeram, agora sem perder a folha.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">✍️</span>
+<h4>Escrever histórias</h4>
+<p style="margin:0;">Memórias da infância, causos da família, o diário de viagem.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📋</span>
+<h4>Fazer listas</h4>
+<p style="margin:0;">Lista de compras, de tarefas, de presentes — organizado e sempre à mão.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📖</span>
+<h4>Guardar receitas</h4>
+<p style="margin:0;">As receitas da família, em texto bonito, para nunca se perderem.</p>
+</div>
+</div></section><section class="etapa" data-etapa="12" data-fase-origem="4"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Google Docs: sua máquina de escrever moderna — continuação</h2><div class="destaque">
+                💡 <strong>E o melhor:</strong> tudo que você escreve fica salvo sozinho,
+                na nuvem. Pode fechar, desligar, voltar outro dia — o texto está lá te esperando.
+            </div></section><section class="etapa" data-etapa="13" data-fase-origem="5"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Como acessar o Google Docs</h2><p>O caminho é curto e usa coisas que você já conhece. São 4 passinhos:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Gmail</strong> — entre no seu e-mail, como você já faz todos os dias</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique nos quadradinhos</strong> — o desenho de 9 pontinhos no canto superior direito. É a "gaveta de programas" do Google</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Docs"</strong> — vai aparecer uma lista de programas; o Docs é o de folha azul 📄</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Pronto!</strong> Você já está no Google Docs. Clique em "+ Novo documento em branco" e comece a escrever</p></div>
+</div><p><strong>Teste você mesmo:</strong> clique nos quadradinhos e depois em Docs.</p></section><section class="etapa" data-etapa="14" data-fase-origem="5"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Como acessar o Google Docs — continuação</h2><div class="mockup-gmail">
+<div class="mockup-gmail-topo">
+<span class="gmail-logo">📧 Gmail</span>
+<button aria-label="Quadradinhos do Google (9 pontinhos)" class="launcher-btn" id="launcher-btn1">
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</button>
+</div>
+<div class="launcher-menu" id="launcher-menu1">
+<button class="launcher-app" data-app="docs"><span class="app-icone">📄</span><span>Docs</span></button>
+<button class="launcher-app" data-app="sheets"><span class="app-icone">📊</span><span>Planilhas</span></button>
+<button class="launcher-app" data-app="slides"><span class="app-icone">📽️</span><span>Slides</span></button>
+<button class="launcher-app" data-app="drive"><span class="app-icone">📁</span><span>Drive</span></button>
+<button class="launcher-app" data-app="fotos"><span class="app-icone">📷</span><span>Fotos</span></button>
+<button class="launcher-app" data-app="gmail"><span class="app-icone">📧</span><span>Gmail</span></button>
+</div>
+</div></section><section class="etapa" data-etapa="15" data-fase-origem="5"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Como acessar o Google Docs — continuação</h2><div class="destaque" id="launcher1-feedback" style="display:none;"></div><div class="analogia">
+                🧩 "Os quadradinhos do Google são como o porta-ferramentas da sua casa:
+                cada programinha (Docs, Planilhas, Drive, Fotos) tem seu lugarzinho,
+                e os 9 pontinhos abrem essa gaveta para você escolher o que precisa."
+            </div><div class="destaque">
+                📱 <strong>No celular:</strong> é o mesmo caminho — abra o aplicativo do Gmail e
+                toque nos 9 pontinhos no canto superior direito. Os mesmos programas aparecem.
+            </div></section><section class="etapa" data-etapa="16" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Sua primeira missão no Docs</h2><p>Sua primeira missão é <strong>escrever uma mensagem para um familiar</strong>.
+            Anote o passo a passo:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Gmail</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique nos quadradinhos</strong> (os 9 pontinhos)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Encontre e clique em "Docs"</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "+ Novo documento em branco"</strong></p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Escreva uma mensagem</strong> para alguém que você ama</p></div>
+</div></section><section class="etapa" data-etapa="17" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Sua primeira missão no Docs — continuação</h2><p>Aqui embaixo tem uma folhinha igual à do Docs. <strong>Escreva sua mensagem</strong>
+            e repare no que acontece no cantinho:</p></section><section class="etapa" data-etapa="18" data-fase-origem="6"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Vamos praticar! Sua primeira missão no Docs — continuação</h2><div class="mockup-docs">
+<div class="mockup-docs-topo">
+<span class="mockup-docs-titulo">📄 Documento sem título</span>
+<span class="indicador-salvo" id="indicador-salvo1" style="display:none;">✓ Salvo automaticamente</span>
+</div>
+<div class="pagina-docs">
+<textarea aria-label="Folha do Google Docs para escrever sua mensagem" class="mockup-docs-campo" id="campo-docs" placeholder="Escreva aqui sua mensagem para a família..."></textarea>
+</div>
+</div><div class="destaque" id="docs-sucesso" style="display:none;">
+                💾 <strong>Viu só?</strong> Apareceu "Salvo automaticamente" — o Docs salva sozinho,
+                a cada palavra. Não precisa clicar em nada. Se a energia acabar no meio do caminho,
+                sua mensagem continua lá na nuvem.
+            </div><div class="atencao">
+                ⏰ <strong>Tempo: 10 minutos.</strong> 🙋 Levantem a mão se precisarem de ajuda!
+                Monitores e familiares adoram ajudar nesse momento.
+            </div></section><section class="etapa" data-etapa="19" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Deixando o texto bonito</h2><p>Escrever é só o começo. Depois vem a parte gostosa: <strong>deixar o texto bonito</strong>.
+            No Docs, isso se chama
+            <span class="termo" tabindex="0">formatar
+                <span class="tooltip"><strong>Formatar</strong>
+                É arrumar a aparência do texto: maior, colorido, em negrito, centralizado. Como caprichar na caligrafia da carta.</span>
+</span>
+            — e são quatro ferramentas principais:</p></section><section class="etapa" data-etapa="20" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Deixando o texto bonito — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🔤</span>
+<h4>Tamanho</h4>
+<p style="margin:0;">Para aumentar ou diminuir as letras. Texto grande ajuda muito a ler.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🎨</span>
+<h4>Cores</h4>
+<p style="margin:0;">Para pintar o texto da sua cor favorita — ou destacar um trecho importante.</p>
+</div>
+</div></section><section class="etapa" data-etapa="21" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Deixando o texto bonito — alinhamento e negrito</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">📐</span>
+<h4>Alinhamento</h4>
+<p style="margin:0;">Deixar o texto centralizado, à direita ou à esquerda — como em convites.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🖊️</span>
+<h4>Negrito</h4>
+<p style="margin:0;">Para destacar o que é importante — como sublinhar a frase-chave da carta.</p>
+</div>
+</div><p><strong>Experimente agora:</strong> clique nos botões da barra de ferramentas
+            e veja o texto mudar na hora:</p></section><section class="etapa" data-etapa="22" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Deixando o texto bonito — continuação</h2><div class="mockup-docs">
+<div class="mockup-docs-topo">
+<span class="mockup-docs-titulo">📄 Minha carta</span>
+<span class="indicador-salvo">✓ Salvo automaticamente</span>
+</div>
+<div class="barra-ferramentas">
+<button aria-label="Aplicar negrito" class="btn-ferramenta" id="ft-negrito">🖊️ <strong>Negrito</strong></button>
+<button aria-label="Aumentar tamanho da letra" class="btn-ferramenta" id="ft-tamanho">🔤 A+</button>
+<button aria-label="Mudar a cor do texto" class="btn-ferramenta" id="ft-cor">🎨 Cor</button>
+<button aria-label="Centralizar o texto" class="btn-ferramenta" id="ft-centralizar">📐 Centralizar</button>
+</div>
+<div class="pagina-docs" id="pagina-formatada">
+                    Minha carta para a família ❤️<br/>
+                    Vocês são a minha maior alegria!
+                </div>
+</div><div class="destaque">
+                💡 <strong>Dica de ouro:</strong> todas as ferramentas ficam no topo da página,
+                como numa barra de ferramentas — é a mesma "gaveta" de opções em qualquer documento.
+                E se não gostar do resultado? Tem sempre o botão de desfazer ↩️.
+            </div></section><section class="etapa" data-etapa="23" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família</h2><p>Escreveu? Agora vem a mágica: <strong>compartilhar</strong>. Sua família pode ver — e
+            até ajudar a escrever — de qualquer lugar do mundo:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Compartilhar"</strong> — o botão azul no canto superior direito do Docs</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Digite o e-mail do familiar</strong> — o endereço de e-mail dele, igualzinho ao seu</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha o que ele pode fazer:</strong> <strong>"Ver"</strong> ou <strong>"Editar"</strong></p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "Enviar"</strong> — pronto, ele recebe o convite na hora</p></div>
+</div></section><section class="etapa" data-etapa="24" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="analogia">
+                🔑 "Compartilhar é como dar uma chave da sua casa: com <strong>Ver</strong> você
+                entrega a chave da sala de visitas — a pessoa olha, não mexe. Com <strong>Editar</strong>
+                você entrega a chave de tudo — a pessoa pode mudar o texto também."
+            </div><p><strong>Vamos testar com uma situação real:</strong></p></section><section class="etapa" data-etapa="25" data-fase-origem="8"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Compartilhando com a família — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📩 Você escreveu uma carta para sua filha e quer mostrar a ela —
+                    mas não quer que ninguém mude nada no texto. Qual permissão você dá?
+                </div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Editar — assim ela pode mudar o texto se quiser</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! A permissão &quot;Ver&quot; deixa sua filha ler a carta sem mudar o texto." data-feedback-wrong="💡 Quase! Quando você quer mostrar sem permitir mudanças, escolha &quot;Ver&quot;. A pessoa lê, mas não edita."><span class="letra">B</span><span>Ver — ela lê a carta, mas não mexe em nada</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Enviar sem escolher permissão</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div><div class="destaque">
+                👨‍👩‍👧‍👦 <strong>O mais lindo disso:</strong> filhos e netos podem ajudar você de longe!
+                Quer que seu neto corrija uma receita ou te ajude a escrever uma carta?
+                Dê permissão de <strong>Editar</strong> e ele mexe junto com você, ao mesmo tempo.
+            </div></section><section class="etapa" data-etapa="26" data-fase-origem="9"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Sheets: seu caderno de contas organizado</h2><p>Agora a segunda ferramenta: o Google Sheets. Ele é o irmão do Docs —
+            mas em vez de escrever textos, ele faz <strong>tabelas e contas</strong>:</p><div class="analogia">
+                📐 "O Sheets é como um caderno quadriculado, mas que faz as contas sozinho!
+                Você anota os números e ele soma, subtrai, organiza — sem errar nunca."
+            </div></section><section class="etapa" data-etapa="27" data-fase-origem="9"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Sheets: seu caderno de contas organizado — continuação</h2><p>O que dá para fazer com ele:</p><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">💰</span>
+<h4>Controlar gastos</h4>
+<p style="margin:0;">Anote contas e veja o total do mês na hora.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📞</span>
+<h4>Agenda telefônica</h4>
+<p style="margin:0;">Nomes e telefones organizados em tabela.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🛒</span>
+<h4>Listas de compras</h4>
+<p style="margin:0;">O mercado inteiro num lugar só, sem esquecer nada.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">💊</span>
+<h4>Horário de remédios</h4>
+<p style="margin:0;">Medicamento, horário e dose — tudo anotado.</p>
+</div>
+</div></section><section class="etapa" data-etapa="28" data-fase-origem="9"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Google Sheets: seu caderno de contas organizado — continuação</h2><div class="destaque">
+                🎂 <strong>E mais:</strong> tarefas da semana, aniversários da família,
+                receitas que rendem... Se é uma lista com números, o Sheets é o lugar dela.
+            </div></section><section class="etapa" data-etapa="29" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Qual a diferença? Docs ou Sheets?</h2><p>A dúvida mais comum da aula de hoje. A resposta é simples:</p><table class="tabela-compara">
+<tr>
+<th aria-label="Critério" class="criterio" scope="col"></th>
+<th class="docs">📝 Google Docs</th>
+<th class="sheets">📊 Google Sheets</th>
+</tr>
+<tr><td class="rotulo">É como...</td><td>Uma folha de papel 📄</td><td>Um caderno quadriculado 📐</td></tr>
+<tr><td class="rotulo">Serve para...</td><td>Escrever TEXTOS</td><td>Fazer TABELAS e contas</td></tr>
+<tr><td class="rotulo">Exemplos</td><td>Cartas, receitas, histórias, mensagens</td><td>Contas, listas, cálculos, horários</td></tr>
+</table></section><section class="etapa" data-etapa="30" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Qual a diferença? Docs ou Sheets? — continuação</h2><p><strong>Na dúvida, pergunte-se:</strong> "é um texto ou é uma tabela?"
+            Texto vai para o Docs. Tabela com números vai para o Sheets. Vamos treinar:</p><div class="quiz-card">
+<div class="quiz-pergunta">
+                    ✉️ Você quer escrever uma carta de aniversário para o seu neto,
+                    bem caprichada e bonita. Onde você escreve?
+                </div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>No Google Sheets, porque é onde eu organizo as coisas</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Carta é texto — mora no Google Docs, a folha de papel com superpoderes." data-feedback-wrong="💡 Quase! O Sheets é para tabelas e contas. Uma carta é texto — ela vai para o Docs, onde você escreve e formata do jeito que quiser."><span class="letra">B</span><span>No Google Docs, porque é a folha de papel digital</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></section><section class="etapa" data-etapa="31" data-fase-origem="10"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Qual a diferença? Docs ou Sheets? — continuação</h2><div class="quiz-card">
+<div class="quiz-pergunta">
+                    🧾 Você quer anotar suas contas do mês — luz, água, telefone —
+                    e somar tudo no final, sem errar. Onde você faz?
+                </div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Contas e somas são do Google Sheets: o caderno quadriculado que calcula sozinho." data-feedback-wrong="💡 Quase! No Docs você escreve textos. Para somar contas automaticamente, o lugar certo é o Sheets — ele faz a conta para você."><span class="letra">A</span><span>No Google Sheets, porque ele soma as contas sozinho</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">B</span><span>No Google Docs, e somo de cabeça no final</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div><div class="destaque">
+                🧭 <strong>Regra da memória:</strong> Docs é a <strong>folha</strong> 📄 (textos).
+                Sheets é o <strong>quadriculado</strong> 📐 (números). Grave isso e nunca mais erra!
+            </div></section><section class="etapa" data-etapa="32" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Como acessar o Google Sheets</h2><p>É o mesmo caminho do Docs! <strong>Só muda o nome no final.</strong>
+            A gaveta de quadradinhos que você já conhece guarda os dois:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Gmail</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Clique nos quadradinhos</strong> (os 9 pontinhos)</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escolha "Planilhas"</strong> (ou "Sheets") — o ícone é uma grade verde 📊</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Clique em "+ Nova planilha em branco"</strong></p></div>
+</div><p><strong>Teste você mesmo de novo:</strong> abra os quadradinhos e escolha Planilhas:</p></section><section class="etapa" data-etapa="33" data-fase-origem="11"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Como acessar o Google Sheets — continuação</h2><div class="mockup-gmail">
+<div class="mockup-gmail-topo">
+<span class="gmail-logo">📧 Gmail</span>
+<button aria-label="Quadradinhos do Google (9 pontinhos)" class="launcher-btn" id="launcher-btn2">
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</button>
+</div>
+<div class="launcher-menu" id="launcher-menu2">
+<button class="launcher-app" data-app="docs"><span class="app-icone">📄</span><span>Docs</span></button>
+<button class="launcher-app" data-app="sheets"><span class="app-icone">📊</span><span>Planilhas</span></button>
+<button class="launcher-app" data-app="slides"><span class="app-icone">📽️</span><span>Slides</span></button>
+<button class="launcher-app" data-app="drive"><span class="app-icone">📁</span><span>Drive</span></button>
+<button class="launcher-app" data-app="fotos"><span class="app-icone">📷</span><span>Fotos</span></button>
+<button class="launcher-app" data-app="gmail"><span class="app-icone">📧</span><span>Gmail</span></button>
+</div>
+</div><div class="destaque" id="launcher2-feedback" style="display:none;"></div><div class="analogia">
+                🗂️ "Docs e Sheets são vizinhos na mesma gaveta: um escreve textos, o outro
+                faz tabelas. Aprendeu a abrir um, aprendeu a abrir os dois!"
+            </div></section><section class="etapa" data-etapa="34" data-fase-origem="12"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Entendendo a planilha: células, colunas e linhas</h2><p>A planilha é cheia de quadradinhos chamados
+            <span class="termo" tabindex="0">células
+                <span class="tooltip"><strong>Célula</strong>
+                Cada quadradinho da planilha. Um lugarzinho que guarda uma informação — um nome, um preço, uma quantidade.</span>
+</span>.
+            Cada quadradinho guarda <strong>uma</strong> informação. E eles se organizam em dois sentidos:</p></section><section class="etapa" data-etapa="35" data-fase-origem="12"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Entendendo a planilha: células, colunas e linhas — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">⬇️</span>
+<h4>Colunas — para baixo</h4>
+<p style="margin:0;">São as
+                    <span class="termo" tabindex="0">colunas
+                        <span class="tooltip"><strong>Coluna</strong>
+                        A fileira de células que desce de cima para baixo (vertical), como as prateleiras de um armário. Elas têm letras: A, B, C...</span>
+</span>
+                    verticais, como as prateleiras de um armário, uma em cima da outra. Cada uma tem uma letra: A, B, C...</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">➡️</span>
+<h4>Linhas — para o lado</h4>
+<p style="margin:0;">São as
+                    <span class="termo" tabindex="0">linhas
+                        <span class="tooltip"><strong>Linha</strong>
+                        A fileira de células que vai da esquerda para a direita (horizontal), como as carteiras da sala de aula. Elas têm números: 1, 2, 3...</span>
+</span>
+                    horizontais, como as fileiras de carteiras da escola. Cada uma tem um número: 1, 2, 3...</p>
+</div>
+</div><p><strong>Toque nos quadradinhos da planilha</strong> e descubra o endereço de cada célula:</p></section><section class="etapa" data-etapa="36" data-fase-origem="12"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Entendendo a planilha: células, colunas e linhas — continuação</h2><div class="planilha-mock">
+<div class="planilha-grade" id="grade-celulas">
+<div class="celula celula-cab"></div>
+<div class="celula celula-cab">A</div>
+<div class="celula celula-cab">B</div>
+<div class="celula celula-cab">C</div>
+<div class="celula celula-cab">D</div>
+<div class="celula celula-cab">1</div>
+<div class="celula" data-cel="A1">Item</div>
+<div class="celula" data-cel="B1">Preço</div>
+<div class="celula" data-cel="C1">Quantidade</div>
+<div class="celula" data-cel="D1"></div>
+<div class="celula celula-cab">2</div>
+<div class="celula" data-cel="A2">Pão</div>
+<div class="celula" data-cel="B2">R$ 8,00</div>
+<div class="celula" data-cel="C2">2</div>
+<div class="celula" data-cel="D2"></div>
+<div class="celula celula-cab">3</div>
+<div class="celula" data-cel="A3">Leite</div>
+<div class="celula" data-cel="B3">R$ 5,00</div>
+<div class="celula" data-cel="C3">3</div>
+<div class="celula" data-cel="D3"></div>
+<div class="celula celula-cab">4</div>
+<div class="celula" data-cel="A4">Café</div>
+<div class="celula" data-cel="B4">R$ 12,00</div>
+<div class="celula" data-cel="C4">1</div>
+<div class="celula" data-cel="D4"></div>
+</div>
+<div class="info-celula" id="info-celula">👆 Toque num quadradinho (célula) para conhecê-la!</div>
+</div></section><section class="etapa" data-etapa="37" data-fase-origem="12"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Entendendo a planilha: células, colunas e linhas — continuação</h2><div class="analogia">
+                🧮 "A planilha é como o caderno quadriculado da escola: cada quadradinho tem um
+                endereço formado por letra + número — B2, C3... É assim que a planilha sabe
+                exatamente onde está cada informação."
+            </div><div class="destaque">
+                💡 <strong>Guarde isso:</strong> coluna desce ⬇️ (letras), linha anda ➡️ (números).
+                Esse endereço de célula vai ser seu melhor amigo na próxima etapa — a fórmula!
+            </div></section><section class="etapa" data-etapa="38" data-fase-origem="13"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica dos cálculos: a fórmula =SOMA</h2><p>Agora o momento mais impressionante da aula: a
+            <span class="termo" tabindex="0">fórmula
+                <span class="tooltip"><strong>Fórmula</strong>
+                Uma receita que a planilha segue para calcular sozinha. Você escreve o que quer somar e ela faz a conta — sem errar nunca.</span>
+</span>.
+            O Sheets faz as contas para você — <strong>nunca mais errar nas somas!</strong></p><p>Imagine suas contas do mês:</p><ul class="lista-check">
+<li><span>💡 <strong>Luz:</strong> R$ 120</span></li>
+<li><span>💧 <strong>Água:</strong> R$ 80</span></li>
+<li><span>📞 <strong>Telefone:</strong> R$ 50</span></li>
+</ul><p>Em vez de somar de cabeça, você digita <strong>=SOMA(B2:B4)</strong> —
+            e a planilha soma tudo sozinha. Veja como funciona:</p></section><section class="etapa" data-etapa="39" data-fase-origem="13"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica dos cálculos: a fórmula =SOMA — continuação</h2><div class="planilha-mock">
+<div class="planilha-grade">
+<div class="celula celula-cab"></div>
+<div class="celula celula-cab">A</div>
+<div class="celula celula-cab">B</div>
+<div class="celula celula-cab">C</div>
+<div class="celula celula-cab">1</div>
+<div class="celula">Despesa</div>
+<div class="celula">Valor</div>
+<div class="celula"></div>
+<div class="celula celula-cab">2</div>
+<div class="celula">💡 Luz</div>
+<div class="celula" data-valor="120">120</div>
+<div class="celula"></div>
+<div class="celula celula-cab">3</div>
+<div class="celula">💧 Água</div>
+<div class="celula" data-valor="80">80</div>
+<div class="celula"></div>
+<div class="celula celula-cab">4</div>
+<div class="celula">📞 Telefone</div>
+<div class="celula" data-valor="50">50</div>
+<div class="celula"></div>
+<div class="celula celula-cab">5</div>
+<div class="celula">TOTAL</div>
+<div class="celula celula-formula" id="celula-total">=SOMA(B2:B4)</div>
+<div class="celula"></div>
+</div>
+</div></section><section class="etapa" data-etapa="40" data-fase-origem="13"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>A mágica dos cálculos: a fórmula =SOMA — continuação</h2><button class="btn btn-verde formula-btn" id="btn-soma">🧮 Digitar =SOMA(B2:B4) e calcular</button><div class="destaque" id="soma-sucesso" style="display:none;">
+                🎉 <strong>R$ 250,00!</strong> Repare: a planilha leu os valores das células
+                B2, B3 e B4 (a coluna B, da linha 2 até a 4) e somou tudo sozinha.
+                <strong>120 + 80 + 50 = 250.</strong> Nada de somar de cabeça!
+            </div><div class="analogia">
+                🧮 "A fórmula é como a receita do bolo: você escreve os ingredientes
+                (as células) e a planilha faz o bolo (a conta). Quem acerta a soma é ela — sempre."
+            </div><div class="destaque">
+                💡 <strong>O segredo do sinal de igual (=):</strong> quando você começa uma
+                célula com <strong>=</strong>, a planilha entende: "atenção, vem conta aí!"
+                Depois do = vem a receita — e o resultado aparece na hora.
+            </div></section><section class="etapa" data-etapa="41" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Vamos praticar! Sua primeira planilha de gastos</h2><p>Chegou a hora de criar a sua. Anote o passo a passo e faça no seu computador:</p></section><section class="etapa" data-etapa="42" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Vamos praticar! Sua primeira planilha de gastos — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Abra o Google Sheets</strong> (quadradinhos → Planilhas)</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Crie uma nova planilha</strong> (botão "+ Nova planilha em branco")</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Escreva "Meus Gastos do Mês"</strong> no topo</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Faça 3 colunas:</strong> Despesa | Valor | Pago?</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Adicione pelo menos 3 contas suas</strong> (luz, água, mercado, farmácia...)</p></div>
+<div class="passo"><span class="passo-num">6</span><p><strong>Use =SOMA()</strong> para somar os valores — como acabamos de ver</p></div>
+</div></section><section class="etapa" data-etapa="43" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Vamos praticar! Sua primeira planilha de gastos — continuação</h2><p><strong>Treine aqui:</strong> digite 3 valores de contas suas e veja a planilha somar:</p></section><section class="etapa" data-etapa="44" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Vamos praticar! Sua primeira planilha de gastos — continuação</h2><div class="form-contato" id="form-gastos" style="max-width:420px;margin:var(--esp-md) auto;">
+<label for="gasto1">Primeira conta (ex.: Luz)</label>
+<input autocomplete="off" id="gasto1" placeholder="120" type="number"/>
+<label for="gasto2">Segunda conta (ex.: Água)</label>
+<input autocomplete="off" id="gasto2" placeholder="80" type="number"/>
+<label for="gasto3">Terceira conta (ex.: Telefone)</label>
+<input autocomplete="off" id="gasto3" placeholder="50" type="number"/>
+<button class="btn btn-verde" id="btn-soma-gastos" style="width:100%;">🧮 Somar com =SOMA</button>
+</div></section><section class="etapa" data-etapa="45" data-fase-origem="14"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Vamos praticar! Sua primeira planilha de gastos — continuação</h2><div class="destaque" id="gastos-sucesso" style="display:none;"></div><div class="atencao">
+                ⏰ <strong>Tempo: 15 minutos.</strong> 🙋 Peçam ajuda quando precisarem!
+                Errar aqui não tem problema nenhum — a planilha não se chateia com ninguém.
+            </div></section><section class="etapa" data-etapa="46" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Exemplos da vida real: medicamentos e gastos do mês</h2><h3>💊 Lista de medicamentos</h3><p>Nunca mais esqueça seus remédios! Organize tudo numa planilha, assim:</p></section><section class="etapa" data-etapa="47" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Exemplos da vida real: medicamentos e gastos do mês — continuação</h2><table class="tabela-exemplo">
+<tr><th>Medicamento</th><th>Horário</th><th>Dosagem</th><th>Observação</th></tr>
+<tr><td>Vitamina D</td><td>Manhã 8h</td><td>1 cápsula</td><td>Com café</td></tr>
+<tr><td>Losartana</td><td>Manhã e noite</td><td>1 comprimido</td><td>Depois do almoço</td></tr>
+<tr><td>Ômega 3</td><td>Noite 21h</td><td>2 cápsulas</td><td>Com jantar</td></tr>
+</table></section><section class="etapa" data-etapa="48" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Exemplos da vida real: medicamentos e gastos do mês — continuação</h2><ul class="lista-check">
+<li><span><strong>Compartilhe com os filhos</strong> — eles recebem a lista e lembram você na hora certa</span></li>
+<li><span><strong>Leve na consulta médica</strong> — a lista está no celular, sempre à mão</span></li>
+<li><span><strong>Nunca esqueça o horário</strong> dos remédios de novo</span></li>
+</ul><h3>💰 Controle de gastos mensais</h3><p>Saiba exatamente quanto gasta por mês — e o que ainda falta pagar:</p></section><section class="etapa" data-etapa="49" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Exemplos da vida real: medicamentos e gastos do mês — continuação</h2><table class="tabela-exemplo">
+<tr><th>Despesa</th><th>Valor</th><th>Vencimento</th><th>Pago?</th></tr>
+<tr><td>💡 Luz</td><td>R$ 120</td><td>Dia 10</td><td class="sim">✓ Sim</td></tr>
+<tr><td>💧 Água</td><td>R$ 80</td><td>Dia 15</td><td class="sim">✓ Sim</td></tr>
+<tr><td>📞 Telefone</td><td>R$ 50</td><td>Dia 20</td><td class="nao">✗ Não</td></tr>
+<tr class="total"><td>TOTAL</td><td>R$ 250,00</td><td colspan="2">🧮 use =SOMA para calcular!</td></tr>
+</table></section><section class="etapa" data-etapa="50" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Exemplos da vida real: medicamentos e gastos do mês — continuação</h2><div class="analogia">
+                📒 "A planilha de gastos é como aquele caderninho da feira — mas que nunca erra
+                a soma, mostra o que falta pagar e está sempre com você, no bolso."
+            </div><div class="destaque">
+                🧮 <strong>TOTAL: R$ 250,00</strong> — e quem calculou foi a fórmula =SOMA,
+                não a cabeça. Menos preocupação, mais sossego.
+            </div></section><section class="etapa" data-etapa="51" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Receitas da família: preservando a tradição no Docs</h2><p>Agora uma ideia que junta memória e carinho: <strong>guardar as receitas da família
+            no Google Docs</strong>. Aquela receita de bolo da vovó que só existia na cabeça dela?
+            Vamos eternizar:</p></section><section class="etapa" data-etapa="52" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Receitas da família: preservando a tradição no Docs — continuação</h2><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Nome da receita</strong> — e de quem ensinou (ex.: "Bolo de fubá da vovó")</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Lista de ingredientes</strong> — com as quantidades certinhas</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Modo de preparo passo a passo</strong> — como se estivesse contando para alguém</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Tempo de preparo</strong> — para ninguém errar o ponto</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Pode até adicionar uma foto do prato</strong> 📸 para ficar ainda mais gostoso</p></div>
+</div></section><section class="etapa" data-etapa="53" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Receitas da família: preservando a tradição no Docs — continuação</h2><div class="receita-card">
+<h4>🍰 Bolo de Fubá da Vovó</h4>
+<div class="receita-origem">Receita de Dona Zilda · ensinada em 1965</div>
+<ul>
+<li>🥚 <strong>Ingredientes:</strong> 3 ovos, 2 xícaras de fubá, 1 de farinha, 1 de açúcar, 1 copo de leite, 1 colher de fermento</li>
+<li>📝 <strong>Modo de preparo:</strong> bata tudo no liquidificador, despeje na forma untada e asse em forno médio até dourar</li>
+</ul>
+</div></section><section class="etapa" data-etapa="54" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Bolo de Fubá: tempo, foto e carinho</h2><div class="receita-card">
+<ul>
+<li>⏰ <strong>Tempo:</strong> 40 minutos</li>
+<li>📸 <strong>Foto do prato:</strong> (coloque aqui a foto da última fornada!)</li>
+</ul>
+<div class="receita-tempo">Feita com carinho pela família Silva ❤️</div>
+</div></section><section class="etapa" data-etapa="55" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Receitas da família: preservando a tradição no Docs — continuação</h2><div class="destaque">
+                💝 <strong>O presente que não acaba:</strong> compartilhe a receita com filhos e
+                netos para preservar a tradição da família. Daqui a anos, seu neto vai abrir esse
+                documento e fazer o bolo da bisavó — com a receita escrita por você.
+            </div></section><section class="etapa" data-etapa="56" data-fase-origem="17"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e boas práticas</h2><p>Seus documentos são preciosos — então vale repetir as regras de ouro:</p></section><section class="etapa" data-etapa="57" data-fase-origem="17"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e boas práticas — continuação</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">☁️</span>
+<h4>Backup automático</h4>
+<p style="margin:0;">Tudo fica salvo na
+                    <span class="termo" tabindex="0">nuvem
+                        <span class="tooltip"><strong>Nuvem</strong>
+                        O armário da internet que não é seu computador, mas só você acessa — de qualquer lugar, em qualquer aparelho.</span>
+</span>
+                    automaticamente. Computador quebrou? Documentos continuam seguros.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🔐</span>
+<h4>Senha segura</h4>
+<p style="margin:0;">Nunca compartilhe sua
+                    <span class="termo" tabindex="0">senha
+                        <span class="tooltip"><strong>Senha</strong>
+                        A chave da sua casa digital — só você tem. É ela que abre seu Gmail e seus documentos.</span>
+</span>
+                    do Gmail — nem com "funcionários do Google". Ninguém honesto pede senha.</p>
+</div>
+</div></section><section class="etapa" data-etapa="58" data-fase-origem="17"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e boas práticas — compartilhamento e salvamento</h2><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">👀</span>
+<h4>Verifique o compartilhamento</h4>
+<p style="margin:0;">Só compartilhe documentos com pessoas de confiança. Antes de clicar em "Enviar", confira se o e-mail digitado é mesmo da pessoa.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">💾</span>
+<h4>Salva sozinho</h4>
+<p style="margin:0;">Não precisa clicar em "Salvar" — é automático, a cada palavra. E você pode ver de qualquer lugar: celular, tablet ou computador.</p>
+</div>
+</div></section><section class="etapa" data-etapa="59" data-fase-origem="17"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Segurança e boas práticas — continuação</h2><p><strong>Vamos testar com uma situação real:</strong></p><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📧 Você recebe um e-mail dizendo que precisa da sua <strong>senha do Gmail</strong>
+                    "para confirmar seus documentos". O que você faz?
+                </div>
+<div class="quiz-opcoes" data-quiz="4">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Respondo o e-mail com a minha senha para resolver logo</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Ninguém sério — nem o Google — pede sua senha por e-mail. Apague e não responda. Sua senha é só sua, para sempre." data-feedback-wrong="💡 Cuidado! Sua senha é a chave da sua casa digital. Nenhuma empresa honesta pede a senha — e quem pede está tentando entrar na sua conta. Apague o e-mail e não clique em nada."><span class="letra">B</span><span>Apago o e-mail e não respondo — ninguém sério pede senha</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Clico no link do e-mail para ver do que se trata</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="4"></div>
+</div><div class="atencao">
+                🚨 <strong>Regra de ouro:</strong> senha, nunca. Documento, só para quem você confia.
+                E se algo parecer estranho, <strong>PARE, pense e pergunte</strong> — para um familiar
+                ou para o monitor. A calma é sua maior proteção.
+            </div></section><section class="etapa" data-etapa="60" data-fase-origem="18"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana</h2><div class="missao">
+<h3>🏠 Para fazer em casa até a próxima aula</h3>
+<p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> 📝 No Google Docs: escrever uma <strong>carta</strong> para um amigo ou familiar — e caprichar na formatação (negrito, cor, tamanho).</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> 📊 No Google Sheets: fazer uma <strong>lista de compras do mês</strong> com colunas e valores.</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> 💊 Extra: criar sua <strong>lista de medicamentos</strong> (se você tomar algum) com horário e dosagem.</p>
+<p><strong>4.</strong> 👨‍👩‍👧‍👦 Desafio: <strong>compartilhar um documento</strong> com um filho ou neto — escolhendo "Ver" ou "Editar" com consciência.</p>
+</div></section><section class="etapa" data-etapa="61" data-fase-origem="18"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — continuação</h2><div class="destaque">
+                💡 <strong>Pratiquem 15 minutos por dia</strong> — é melhor que tudo de uma vez!
+                Missões são como os pontos da costura: cada uma praticada em casa deixa o aprendizado mais firme. Na próxima aula, contamos como foi.
+            </div><div class="analogia">
+                🔗 <strong>Conectando tudo:</strong> Gmail → Drive → Docs → Sheets.
+                Tudo funciona junto, dentro da mesma conta — para facilitar a sua vida.
+            </div></section><section class="etapa" data-etapa="62" data-fase-origem="19"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
+<span class="trofeu">🧵</span>
+<h2>Agora você é um(a) organizador(a) digital!</h2>
+<p>Você criou documentos, deixou textos bonitos, compartilhou com a família,
+                montou planilhas e fez a planilha calcular sozinha com o =SOMA.
+                Isso não é "mexer em computador" — é <strong>autonomia</strong>.
+                Cada conquista digital é uma ponte para mais independência e conexão!</p>
+</div><h3 style="margin-top: var(--esp-lg);">Suas conquistas de hoje</h3></section><section class="etapa" data-etapa="63" data-fase-origem="19"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><ul class="lista-conquistas">
+<li>✅ Entendi o que é a nuvem</li>
+<li>✅ Criei um documento no Google Docs</li>
+<li>✅ Formatei texto (negrito, cor, tamanho)</li>
+<li>✅ Compartilhei com "Ver" ou "Editar"</li>
+<li>✅ Entendi célula, coluna e linha</li>
+<li>✅ Usei a fórmula =SOMA</li>
+<li>✅ Sei organizar gastos e medicamentos</li>
+<li>✅ Sei proteger minha senha</li>
+</ul><div style="text-align:center; margin-top: var(--esp-lg);">
+<div class="retalho-costurado">Aula 06 · costurada! 🎉</div>
+</div></section><section class="etapa" data-etapa="64" data-fase-origem="19"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="destaque" style="margin-top: var(--esp-lg);">
+                🔮 <strong>Na próxima aula:</strong> vamos criar <strong>APRESENTAÇÕES BONITAS</strong>
+                com o Google Slides <span class="ferramenta"><img alt="" height="26" src="/assets/logos/slides.png" width="26"/> Google Slides</span> — slides para festas 🎉, convites de aniversário 🎂 e álbuns
+                digitais 📸. Continuem praticando: cada dia vocês ficam mais independentes! 💪
+            </div><div style="text-align:center; margin-top: var(--esp-md);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div></section><nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ============================================================
+            // Aula 06 — Seu Escritório Digital Gratuito
+            // Lógica específica: launcher dos quadradinhos, simulador do
+            // Docs, barra de ferramentas, células clicáveis e =SOMA.
+            // ============================================================
+
+            // ===== Launcher dos quadradinhos (2 instâncias) =====
+            function montarLauncher(idBtn, idMenu, idFeedback, alvo, nomeAlvo, nomeOutros) {
+                var btn = document.getElementById(idBtn);
+                var menu = document.getElementById(idMenu);
+                var feedback = document.getElementById(idFeedback);
+                if (!btn || !menu || !feedback) return;
+
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    menu.classList.toggle('aberto');
+                });
+
+                menu.querySelectorAll('.launcher-app').forEach(function (app) {
+                    app.addEventListener('click', function () {
+                        var escolha = app.getAttribute('data-app');
+                        menu.classList.remove('aberto');
+                        feedback.style.display = 'block';
+                        if (escolha === alvo) {
+                            feedback.className = 'destaque';
+                            feedback.innerHTML = '✅ <strong>Você está no ' + nomeAlvo + '!</strong> ' +
+                                'Agora clique em "+ Novo documento em branco" (ou "+ Nova planilha em branco") para começar.';
+                        } else {
+                            feedback.className = 'destaque';
+                            feedback.innerHTML = '🧭 Esse é o <strong>' + nomeOutros[escolha] + '</strong> — ' +
+                                'ótimo programa, mas para esta missão escolha <strong>' + nomeAlvo + '</strong>.';
+                        }
+                        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    });
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                        menu.classList.remove('aberto');
+                    }
+                });
+            }
+
+            var nomes = {
+                docs: 'Docs', sheets: 'Planilhas', slides: 'Slides',
+                drive: 'Drive', fotos: 'Fotos', gmail: 'Gmail'
+            };
+            montarLauncher('launcher-btn1', 'launcher-menu1', 'launcher1-feedback', 'docs', 'Google Docs', nomes);
+            montarLauncher('launcher-btn2', 'launcher-menu2', 'launcher2-feedback', 'sheets', 'Google Sheets', nomes);
+
+            // ===== Simulador do Docs: salvar automático =====
+            var campoDocs = document.getElementById('campo-docs');
+            var indicadorSalvo1 = document.getElementById('indicador-salvo1');
+            var docsSucesso = document.getElementById('docs-sucesso');
+            if (campoDocs) {
+                campoDocs.addEventListener('input', function () {
+                    indicadorSalvo1.style.display = 'inline-flex';
+                    docsSucesso.style.display = 'block';
+                });
+            }
+
+            // ===== Barra de ferramentas (formatação) =====
+            var paginaFormatada = document.getElementById('pagina-formatada');
+            var ftNegrito = document.getElementById('ft-negrito');
+            var ftTamanho = document.getElementById('ft-tamanho');
+            var ftCor = document.getElementById('ft-cor');
+            var ftCentralizar = document.getElementById('ft-centralizar');
+
+            if (ftNegrito) {
+                var negritoAtivo = false;
+                ftNegrito.addEventListener('click', function () {
+                    negritoAtivo = !negritoAtivo;
+                    paginaFormatada.style.fontWeight = negritoAtivo ? '800' : 'normal';
+                    ftNegrito.classList.toggle('ativa', negritoAtivo);
+                });
+            }
+            if (ftTamanho) {
+                var tamanhoAtivo = false;
+                ftTamanho.addEventListener('click', function () {
+                    tamanhoAtivo = !tamanhoAtivo;
+                    paginaFormatada.style.fontSize = tamanhoAtivo ? '1.5rem' : '1.05rem';
+                    ftTamanho.classList.toggle('ativa', tamanhoAtivo);
+                });
+            }
+            if (ftCor) {
+                var cores = ['', '#B5372C', '#3E6C9E', '#4E7D4A'];
+                var corIdx = 0;
+                ftCor.addEventListener('click', function () {
+                    corIdx = (corIdx + 1) % cores.length;
+                    paginaFormatada.style.color = cores[corIdx];
+                    ftCor.classList.toggle('ativa', corIdx !== 0);
+                });
+            }
+            if (ftCentralizar) {
+                var centralizarAtivo = false;
+                ftCentralizar.addEventListener('click', function () {
+                    centralizarAtivo = !centralizarAtivo;
+                    paginaFormatada.style.textAlign = centralizarAtivo ? 'center' : 'left';
+                    ftCentralizar.classList.toggle('ativa', centralizarAtivo);
+                });
+            }
+
+            // ===== Células clicáveis da planilha =====
+            var gradeCelulas = document.getElementById('grade-celulas');
+            var infoCelula = document.getElementById('info-celula');
+            if (gradeCelulas) {
+                gradeCelulas.querySelectorAll('.celula[data-cel]').forEach(function (cel) {
+                    cel.addEventListener('click', function () {
+                        gradeCelulas.querySelectorAll('.celula.destaque').forEach(function (c) {
+                            c.classList.remove('destaque');
+                        });
+                        cel.classList.add('destaque');
+                        var endereco = cel.getAttribute('data-cel');
+                        var coluna = endereco.charAt(0);
+                        var linha = endereco.charAt(1);
+                        var conteudo = cel.textContent.trim() || '(vazia)';
+                        infoCelula.textContent = '📍 Célula ' + endereco + ': coluna ' + coluna +
+                            ' (⬇️ vertical) · linha ' + linha + ' (➡️ horizontal). Ela guarda: "' + conteudo + '".';
+                    });
+                });
+            }
+
+            // ===== Fórmula =SOMA (demonstração) =====
+            var btnSoma = document.getElementById('btn-soma');
+            var celulaTotal = document.getElementById('celula-total');
+            var somaSucesso = document.getElementById('soma-sucesso');
+            if (btnSoma) {
+                btnSoma.addEventListener('click', function () {
+                    celulaTotal.textContent = 'R$ 250,00';
+                    celulaTotal.classList.add('destaque');
+                    somaSucesso.style.display = 'block';
+                    somaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    btnSoma.disabled = true;
+                    btnSoma.textContent = '🧮 R$ 250,00 calculado!';
+                });
+            }
+
+            // ===== Planilha de gastos do aluno (soma real) =====
+            var btnSomaGastos = document.getElementById('btn-soma-gastos');
+            var gastosSucesso = document.getElementById('gastos-sucesso');
+            if (btnSomaGastos) {
+                btnSomaGastos.addEventListener('click', function () {
+                    var v1 = parseFloat(document.getElementById('gasto1').value) || 0;
+                    var v2 = parseFloat(document.getElementById('gasto2').value) || 0;
+                    var v3 = parseFloat(document.getElementById('gasto3').value) || 0;
+                    var total = v1 + v2 + v3;
+                    gastosSucesso.style.display = 'block';
+                    gastosSucesso.innerHTML = '🧮 <strong>O total das suas contas é R$ ' +
+                        total.toFixed(2).replace('.', ',') +
+                        '</strong> — e foi a planilha quem fez a conta, com a fórmula =SOMA. ' +
+                        'Agora faça isso na planilha de verdade, com as suas contas do mês!';
+                    gastosSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

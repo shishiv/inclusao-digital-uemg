@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="Aula 08 interativa: Gov.br e PIX — Sua vida digital mais fácil e segura. Programa de Inclusão Digital UEMG Frutal." name="description"/>
+<meta content="#1E4466" name="theme-color"/>
+<title>Aula 08 — Gov.br e PIX: Sua vida digital mais fácil e segura | Inclusão Digital UEMG</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/player.css" rel="stylesheet"/>
+<style>
+        /* Extras específicos da aula 08 — Gov.br e PIX */
+        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
+        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
+        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
+        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
+        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+        .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
+        .tres-colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .tres-colunas { grid-template-columns: 1fr; } }
+        .quatro-colunas { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .quatro-colunas { grid-template-columns: 1fr; } }
+        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao p { margin: 0; font-size: var(--texto-sm); }
+        .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
+        .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
+        .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
+        .lista-check li::before { content: '✅'; flex-shrink: 0; }
+
+        /* ===== Cards clicáveis (níveis e chaves) ===== */
+        .card-clicavel { background: var(--retalho); border: 2px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); text-align: left; cursor: pointer; transition: border-color var(--veloz), box-shadow var(--veloz), transform var(--veloz); width: 100%; font-family: var(--font-body); }
+        .card-clicavel:hover { border-color: var(--chita-azul); transform: translateY(-2px); }
+        .card-clicavel.aberto { border-color: var(--chita-azul); box-shadow: var(--sombra-md); }
+        .card-clicavel .medalha { font-size: 2.4rem; display: block; margin-bottom: var(--esp-xs); }
+        .card-clicavel h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--bordado); margin-bottom: 6px; }
+        .card-clicavel .resumo { font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); margin: 0; }
+        .card-clicavel .detalhe { display: none; margin: 10px 0 0; font-size: var(--texto-sm); color: var(--bordado-suave); border-top: 1px dashed var(--linha); padding-top: 10px; }
+        .card-clicavel.aberto .detalhe { display: block; }
+        .card-clicavel .dica-toque { display: block; margin-top: 10px; font-size: 1rem; font-weight: 700; color: var(--chita-azul); }
+        .card-clicavel.aberto .dica-toque { display: none; }
+        .card-clicavel.meta-card { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+        .card-clicavel.meta-card h4 { color: #2F522C; }
+
+        /* ===== Pilares da aula (3 colunas) ===== */
+        .pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
+        @media (max-width: 768px) { .pilares { grid-template-columns: 1fr; } }
+        .pilar { background: var(--algodao); border: 2px dashed var(--chita-azul); border-radius: var(--raio); padding: var(--esp-md); text-align: center; }
+        .pilar.vermelho { border-color: var(--chita-vermelha); }
+        .pilar.verde { border-color: var(--chita-verde); }
+        .pilar .icone-grande { margin-bottom: var(--esp-sm); }
+        .pilar h4 { font-family: var(--font-body); font-weight: 800; color: var(--bordado); margin-bottom: 6px; }
+        .pilar p { margin: 0; font-size: var(--texto-sm); }
+
+        /* ===== Mockup do app do banco (simuladores de PIX) ===== */
+        .bank-app { max-width: 400px; margin: var(--esp-lg) auto; background: #F4F7F5; border-radius: 26px; border: 8px solid #1B3A2F; box-shadow: var(--sombra-lg); overflow: hidden; }
+        .bank-topo { background: #0E5A3C; color: #FFF; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .bank-topo .bank-nome { font-weight: 800; font-size: .95rem; }
+        .bank-topo .bank-titulo { font-weight: 700; font-size: .9rem; background: rgba(255,255,255,.16); padding: 4px 12px; border-radius: var(--raio-pill); }
+        .bank-tela { padding: var(--esp-lg); }
+        .bank-tela h4 { font-family: var(--font-body); font-weight: 800; font-size: var(--texto-lg); color: var(--bordado); margin-bottom: var(--esp-sm); }
+        .bank-tela label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
+        .bank-tela input { width: 100%; padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
+        .bank-tela input:focus { outline: none; border-color: var(--chita-verde); }
+        .bank-dica { font-size: var(--texto-sm); color: var(--bordado-suave); margin-bottom: var(--esp-sm); }
+        .bank-botoes { display: flex; flex-direction: column; gap: 10px; margin-top: var(--esp-md); }
+        .bank-pessoa { background: #FFF; border: 2px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); margin: var(--esp-sm) 0; }
+        .bank-pessoa strong { display: block; font-size: var(--texto-lg); color: var(--bordado); }
+        .bank-pessoa span { font-size: var(--texto-sm); color: var(--bordado-suave); }
+        .confira-nome { background: #FBEAEA; border: 3px solid var(--chita-vermelha); border-radius: var(--raio); color: #7A2620; font-size: 1.25rem; text-align: center; padding: var(--esp-md); margin-bottom: var(--esp-md); letter-spacing: 1px; animation: pulso-alerta 1.6s ease-in-out 3; }
+        @keyframes pulso-alerta { 0%,100% { box-shadow: 0 0 0 0 rgba(181,55,44,.35); } 50% { box-shadow: 0 0 0 10px rgba(181,55,44,0); } }
+        .bank-sms { background: var(--chita-azul-bg); border: 1px dashed var(--chita-azul); border-radius: var(--raio); padding: var(--esp-sm) var(--esp-md); font-size: var(--texto-sm); margin-bottom: var(--esp-sm); }
+        .bank-sms strong { color: var(--chita-azul-escura); }
+        .bank-sucesso { font-size: 3rem; text-align: center; margin-bottom: var(--esp-sm); }
+        .bank-feedback { border-radius: var(--raio); padding: var(--esp-md); margin: var(--esp-sm) 0; font-weight: 600; font-size: var(--texto-sm); }
+        .bank-feedback.ok { background: var(--chita-verde-bg); color: #2F522C; border: 2px dashed var(--chita-verde); }
+        .bank-feedback.erro { background: #FBEAEA; color: #7A2620; border: 2px dashed var(--chita-vermelha); }
+
+        /* ===== QR Code desenhado em CSS ===== */
+        .qr-demo { display: grid; grid-template-columns: repeat(21, 1fr); width: 190px; aspect-ratio: 1; background: #FFF; border: 8px solid #FFF; border-radius: 10px; margin: 0 auto var(--esp-md); box-shadow: var(--sombra-sm); }
+        .qr-celula.preto { background: #141414; }
+    </style>
+<style>
+/* Aula 08 — passe Impeccable layout + adapt. O player compartilhado não é alterado. */
+body { min-width: 320px; display:flex; flex-direction:column; }
+.player-topo, .player-progresso { flex:0 0 auto; }
+.player { height:auto; min-height:0; flex:1 1 auto; width:100%; }
+.etapa { overflow: hidden; }
+.etapa > .etapa-grid { width: 100%; }
+.etapa-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, .96fr); gap: clamp(24px, 3vw, 48px); }
+.etapa-grid .etapa-texto,
+.etapa-grid .etapa-visual { overflow: auto; scrollbar-width: thin; padding: 2px; align-items: stretch; }
+.etapa-grid .etapa-texto { justify-content: flex-start; }
+.etapa-grid .etapa-visual { flex-direction: column; justify-content: center; }
+.etapa-grid .etapa-texto > :last-child,
+.etapa-grid .etapa-visual > :last-child { margin-bottom: 0; }
+.etapa-grid .etapa-visual > * { max-height: none; }
+.etapa-badge { align-self: flex-start; margin-bottom: 12px; }
+.etapa h2 { margin-bottom: var(--esp-sm); }
+.etapa p { line-height: 1.6; }
+.etapa .analogia, .etapa .destaque, .etapa .atencao { flex: 0 0 auto; }
+.etapa .passos { flex: 0 0 auto; }
+.etapa .passo { padding: 12px 16px; }
+.etapa .passo p { line-height: 1.5; }
+.lista-check { gap: 10px; margin: var(--esp-sm) 0; }
+.passos-duplos, .tres-colunas, .quatro-colunas, .pilares { margin: var(--esp-md) 0; gap: var(--esp-md); }
+.mini-cartao, .pilar, .card-clicavel { padding: var(--esp-md); }
+.icone-grande { font-size: 2.6rem; margin-bottom: var(--esp-xs); }
+.card-clicavel .medalha { font-size: 2.4rem; }
+.card-clicavel h4 { font-size: var(--texto-xl); }
+.card-clicavel .dica-toque { margin-top: 10px; font-size: .9rem; }
+.card-clicavel .detalhe { margin-top: 10px; padding-top: 10px; }
+.quiz-card { margin: var(--esp-xs) 0; padding: var(--esp-md); width: 100%; }
+.quiz-option { padding: 12px 16px; }
+.bank-app { width: min(100%, 390px); max-height: 100%; margin: 0 auto; border-width: 6px; display: flex; flex-direction: column; }
+.bank-topo { flex: 0 0 auto; }
+.bank-tela { overflow: auto; padding: var(--esp-md); }
+.confira-nome { animation: none; padding: var(--esp-md); }
+.qr-demo { width: min(190px, 46vw); }
+.missao { margin: var(--esp-sm) 0 0; padding: var(--esp-lg); }
+.momento { padding: var(--esp-lg); }
+.lista-conquistas { margin-top: var(--esp-md); gap: var(--esp-sm); grid-template-columns: 1fr 1fr; }
+.lista-conquistas li { padding: var(--esp-md); }
+
+/* Marcas oficiais nos pontos de reconhecimento. */
+.marca-aula08 { display:flex; align-items:center; justify-content:center; gap:18px; width:100%; padding:18px; background:#fff; border:2px dashed var(--linha); border-radius:var(--raio-lg); }
+.marca-aula08 img { width:min(150px, 34%); max-height:72px; object-fit:contain; }
+.marca-aula08 .sinal { font:700 1.8rem/1 var(--font-display); color:var(--chita-verde); }
+.gov-app { width:min(100%, 390px); background:#fff; border:7px solid #163d68; border-radius:24px; overflow:hidden; box-shadow:var(--sombra-lg); }
+.gov-app__topo { min-height:64px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:#f6f7f8; border-bottom:1px solid #d5d9dd; }
+.gov-app__topo img { width:104px; height:42px; object-fit:contain; }
+.gov-app__seguro { color:#275d38; font-size:.9rem; font-weight:800; }
+.gov-app__corpo { padding:18px; }
+.gov-app__corpo h4 { margin:0 0 12px; font:800 1.2rem/1.25 var(--font-body); color:#1b1b1b; }
+.gov-cpf { display:block; width:100%; min-height:48px; padding:11px 12px; border:2px solid #555; border-radius:8px; background:#fff; font:600 1rem var(--font-body); color:#555; }
+.gov-entrar { width:100%; min-height:48px; margin-top:12px; border:0; border-radius:24px; background:#1351b4; color:#fff; font:800 1rem var(--font-body); }
+.gov-banco { margin-top:14px; padding:12px; border:1px solid #b8c4d4; border-radius:10px; color:#254b79; font-weight:700; text-align:center; }
+.pix-reconhecer { width:100%; padding:18px; background:#edf9f7; border:2px dashed #277f75; border-radius:var(--raio-lg); text-align:center; }
+.pix-reconhecer img { width:min(176px, 55%); max-height:82px; object-fit:contain; margin:0 auto 10px; }
+.pix-reconhecer strong { display:block; color:#175c55; font-size:1.15rem; }
+
+@media (max-width: 900px) {
+  .player { height:auto; min-height:0; }
+  .etapa { overflow-y:auto; padding:var(--esp-md) var(--esp-sm); }
+  .etapa-grid { display:flex; flex-direction:column; gap:var(--esp-md); min-height:auto; }
+  .etapa-grid .etapa-texto, .etapa-grid .etapa-visual { overflow:visible; flex:0 0 auto; padding:0; }
+  .etapa-grid .etapa-visual { order:0; max-height:none; }
+  .etapa-grid .etapa-visual.primeiro-mobile { order:-1; }
+  .marca-aula08 { padding:var(--esp-sm); }
+  .marca-aula08 img { max-height:64px; }
+  .gov-app, .bank-app { max-height:none; }
+  .bank-tela { overflow:visible; }
+  .quatro-colunas { grid-template-columns:1fr 1fr; }
+  .tres-colunas, .pilares { grid-template-columns:1fr; }
+  .lista-conquistas { grid-template-columns:1fr; }
+}
+@media (max-width: 480px) {
+  .player { height:auto; min-height:0; }
+  .etapa { padding:var(--esp-md) var(--esp-sm); border-radius:14px; }
+  .etapa h2 { font-size:var(--texto-xl); }
+  .etapa p, .lista-check li, .mini-cartao p, .pilar p,
+  .card-clicavel .resumo, .card-clicavel .detalhe { font-size:var(--texto-base); }
+  .quatro-colunas { grid-template-columns:1fr; }
+  .player-nav { gap:var(--esp-sm); }
+  .player-nav .btn { min-height:48px; padding:12px 16px; }
+  .marca-aula08 { gap:10px; }
+  .marca-aula08 img { width:42%; }
+}
+</style></head>
+<body>
+<div class="player-topo">
+<a class="player-trilha-link" href="/aulas.html">← Todas as aulas</a>
+<h1 class="player-etiqueta">Aula 08 · Gov.br e PIX</h1>
+</div>
+<div class="player-progresso">
+<div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 16</span></div>
+<div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+</div>
+<main class="player" id="player">
+<!-- ============ FASE 1 · POR QUE ISSO IMPORTA ============ -->
+<section class="etapa ativa" data-etapa="1"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O governo na palma da mão — e o dinheiro que voa até lá</h2><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/pix.png" width="34"/> PIX</span><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/govbr.webp" width="34"/> Gov.br</span><p>Imagine duas cenas que todo mundo já viveu:</p><ul class="lista-check">
+<li><span><strong>A fila do INSS:</strong> acordar cedo, pegar senha, esperar horas para resolver uma aposentadoria — ou nem precisar sair de casa.</span></li>
+<li><span><strong>O dinheiro "preso":</strong> precisar pagar alguém no feriado, à noite, e descobrir que a transferência só cai no outro dia útil.</span></li>
+</ul><p>Hoje existe um jeito de resolver as duas coisas, com segurança, direto do celular:
+            o <strong>Gov.br</strong> e o <strong>PIX</strong>. E a melhor parte: <strong>você vai aprender a usar os dois hoje</strong>.</p><div class="analogia">
+                🔑 "O Gov.br é como um <strong>molho de chaves digital</strong>: uma única senha abre todas as portas do governo.
+                E o PIX é como um <strong>teletransporte</strong> para o seu dinheiro: cai na hora, qualquer dia, a qualquer hora."
+            </div><div class="destaque">
+                💡 <strong>Boa notícia:</strong> você não precisa ser expert em tecnologia.
+                Se você já sabe abrir um aplicativo, já sabe a parte mais difícil.
+                Vamos juntos, um passo de cada vez?
+            </div></div><div class="etapa-visual"><div aria-label="Gov.br e PIX" class="marca-aula08"><img alt="Logotipo Gov.br" src="/assets/logos/govbr.webp"/><span class="sinal">+</span><img alt="Logotipo PIX" src="/assets/logos/pix.png"/></div><img alt="Ilustração do Gov.br e do PIX: celular com serviços do governo e transferência de dinheiro na hora" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula08-govbr-pix-bg-16x9-v01.png" width="1536"/></div></div></section>
+<section class="etapa" data-etapa="2"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><p>Hoje tem três partes. Cada uma deixa sua vida mais fácil — e mais segura:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Gov.br</strong> — o molho de chaves digital: o que é, os serviços (INSS, CNH Digital, SUS, Trabalho) e os níveis Bronze, Prata e Ouro</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Nível Prata</strong> — o passo a passo para chegar lá usando o app do seu banco</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>PIX</strong> — o teletransporte do dinheiro: chaves, pagamento por chave e por QR Code</p></div>
+<div class="passo"><span class="passo-num">4</span><p><strong>Golpes</strong> — parente falso, link falso e a regra de ouro PARE-PENSE-LIGUE</p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>Mão na massa</strong> — missões para praticar em casa até a próxima aula</p></div>
+</div><div class="destaque">
+                🎯 <strong>Nossa meta hoje:</strong> sair daqui sabendo verificar sua conta no Gov.br
+                e entender o caminho do PIX — com a segurança de quem conhece os golpes.
+            </div></div><div class="etapa-visual"><div class="pilares">
+<div class="pilar">
+<span class="icone-grande">🏛️</span>
+<h4>1. Gov.br</h4>
+<p>O governo na palma da mão: identidade, serviços e segurança.</p>
+</div>
+<div class="pilar verde">
+<span class="icone-grande">💸</span>
+<h4>2. PIX</h4>
+<p>O dinheiro do futuro: como funciona, chaves e pagamentos.</p>
+</div>
+<div class="pilar vermelho">
+<span class="icone-grande">🛡️</span>
+<h4>3. Segurança</h4>
+<p>Como se proteger de golpes e usar tudo com confiança.</p>
+</div>
+</div></div></div></section>
+<!-- ============ FASE 2 · VAMOS JUNTOS ============ -->
+<section class="etapa" data-etapa="3"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O que é o Gov.br?</h2><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/govbr.webp" width="34"/> Gov.br</span><p>O Gov.br é o site e o aplicativo oficial do governo brasileiro.
+            Ele é a sua <strong>identidade digital oficial na internet</strong> — o jeito de provar quem você é
+            sem precisar ficar apresentando documentos toda hora.</p><div class="analogia">
+                🔑 "Imagine que você tem um único <strong>molho de chaves</strong> que abre todas as portas do governo —
+                INSS, Receita, Saúde. Com uma única
+                <span class="termo" tabindex="0">senha
+                    <span class="tooltip"><strong>Senha</strong> A chave da sua casa digital — só você tem.</span>
+</span>,
+                você acessa tudo."
+            </div><ul class="lista-check">
+<li><span><strong>Uma senha, tudo acessível:</strong> com um único cadastro, você entra nos serviços do governo</span></li>
+<li><span><strong>Identidade oficial:</strong> é o governo reconhecendo você — com segurança</span></li>
+<li><span><strong>Sem filas:</strong> muitos serviços que pediam presença agora podem ser resolvidos pelo celular</span></li>
+</ul><div class="destaque">
+                🧭 <strong>Lembra do seu Gmail?</strong> A sua
+                <span class="termo" tabindex="0">conta
+                    <span class="tooltip"><strong>Conta</strong> Cadastro que diz ao serviço quem você é — como sua assinatura.</span>
+</span>
+                no Gmail é do Google. A conta no Gov.br é do governo — o mesmo conceito de cadastro,
+                agora para os serviços públicos.
+            </div></div><div class="etapa-visual"><div aria-label="Exemplo em código da tela oficial de entrada do Gov.br" class="gov-app">
+<div class="gov-app__topo"><img alt="Gov.br" src="/assets/logos/govbr.webp"/><span class="gov-app__seguro">🔒 Ambiente seguro</span></div>
+<div class="gov-app__corpo"><h4>Identifique-se no gov.br</h4><label for="gov-demo-cpf"><strong>Número do CPF</strong></label><input aria-label="Exemplo do campo CPF" class="gov-cpf" id="gov-demo-cpf" readonly="" value="Digite seu CPF"/><button class="gov-entrar" type="button">Continuar</button><div class="gov-banco">🏦 Entrar com o seu banco<br/><small>caminho para confirmar o nível Prata</small></div></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="4"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Um mundo de serviços na palma da mão</h2><p>Com o Gov.br você acessa dezenas de serviços. Os mais usados pelo pessoal da nossa turma:</p><div class="analogia">
+                🗝️ "É como ter <strong>uma única chave que abre o armário inteiro</strong>:
+                você não precisa de uma chave para o INSS, outra para a CNH, outra para o SUS.
+                Uma conta, todas as portas."
+            </div><div class="destaque">
+                💡 <strong>Dica:</strong> você não precisa decorar tudo hoje.
+                O importante é saber que a porta existe — e que a chave é o Gov.br.
+                Quando precisar de um serviço, você já sabe onde entrar.
+            </div></div><div class="etapa-visual"><div class="quatro-colunas">
+<div class="mini-cartao">
+<span class="icone-grande">🧓</span>
+<h4>INSS</h4>
+<p>Aposentadoria, extratos e agendamentos sem filas.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🚗</span>
+<h4>CNH Digital</h4>
+<p>Sua carteira de motorista válida, direto no celular.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">🏥</span>
+<h4>SUS</h4>
+<p>Histórico de vacinas, exames e atendimentos.</p>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">💼</span>
+<h4>Trabalho</h4>
+<p>Carteira de Trabalho Digital e seguro-desemprego.</p>
+</div>
+</div></div></div></section>
+<section class="etapa" data-etapa="5"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Os níveis da conta: Bronze, Prata e Ouro</h2><p>Igual aos níveis de segurança de um prédio, a conta Gov.br tem três níveis.
+            <strong>Quanto maior o nível, mais serviços você consegue usar.</strong>
+            Toque em cada cartão para conhecer:</p><div class="analogia">
+                🚪 "Os níveis são como as portas de um prédio:
+                o Bronze abre o hall de entrada, o Prata abre os apartamentos,
+                e o Ouro abre até o cofre — mas exige a prova mais forte de que é você."
+            </div><p><strong>O que é a biometria facial?</strong> É o reconhecimento do seu rosto —
+            o celular usa a câmera e compara com a foto do seu documento.
+            É como assinar com a própria cara: uma prova difícil de falsificar.
+            A biometria facial é usada no nível Ouro — e também para desbloquear celulares e apps do banco.</p><div class="destaque">
+                🎯 <strong>Nossa meta hoje: o nível PRATA!</strong>
+                Ele é feito pelo banco, é mais simples que o Ouro e já libera a maioria dos serviços.
+                No próximo passo, o caminho completo.
+            </div></div><div class="etapa-visual"><div class="tres-colunas">
+<button aria-expanded="false" class="card-clicavel" data-abre="nivel-1">
+<span class="medalha">🥉</span>
+<h4>Bronze</h4>
+<p class="resumo">Acesso limitado · Básico</p>
+<p class="detalhe">Criado apenas com o CPF. Serve para consultas simples — mas não libera os serviços mais importantes.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+<button aria-expanded="false" class="card-clicavel meta-card" data-abre="nivel-2">
+<span class="medalha">🥈</span>
+<h4>Prata · Ideal! ⭐</h4>
+<p class="resumo">Acesso à maioria dos serviços</p>
+<p class="detalhe">Feito pelo seu banco, que já confirma quem você é. É a nossa meta de hoje: dá acesso à maioria dos serviços do governo.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+<button aria-expanded="false" class="card-clicavel" data-abre="nivel-3">
+<span class="medalha">🥇</span>
+<h4>Ouro</h4>
+<p class="resumo">Segurança total · Máximo</p>
+<p class="detalhe">Feito com
+                        <span class="termo" tabindex="0">biometria facial
+                            <span class="tooltip"><strong>Biometria facial</strong> Reconhecimento do seu rosto — a prova de que é você. O celular compara seu rosto com o da foto do documento e confirma a identidade.</span>
+</span>
+                        : o celular reconhece seu rosto para provar que é você.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+</div></div></div></section>
+<section class="etapa" data-etapa="6"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Passo a passo: como chegar ao nível Prata</h2><p>O segredo do nível Prata é deixar o <strong>banco confirmar quem você é</strong> —
+            porque o banco já fez isso quando você abriu sua conta. Veja o caminho:</p><div class="atencao">
+                💡 <strong>E se eu não tiver app de banco?</strong> Sem problema!
+                Use o <strong>reconhecimento facial</strong> (a
+                <span class="termo" tabindex="0">biometria facial
+                    <span class="tooltip"><strong>Biometria facial</strong> Reconhecimento do seu rosto — a prova de que é você.</span>
+</span>)
+                para tentar direto o nível <strong>Ouro</strong>. Peça ajuda a um monitor ou familiar na primeira vez — é rápido.
+            </div><div class="destaque">
+                🧭 <strong>O fio da meada:</strong> baixar o app (uma vez) → entrar com CPF → deixar o banco confirmar.
+                Guarde esses três passos: eles são 90% do caminho até o Prata.
+            </div></div><div class="etapa-visual"><div aria-label="Exemplo em código da tela oficial de entrada do Gov.br" class="gov-app">
+<div class="gov-app__topo"><img alt="Gov.br" src="/assets/logos/govbr.webp"/><span class="gov-app__seguro">🔒 Ambiente seguro</span></div>
+<div class="gov-app__corpo"><h4>Identifique-se no gov.br</h4><label for="gov-demo-cpf-prata"><strong>Número do CPF</strong></label><input aria-label="Exemplo do campo CPF" class="gov-cpf" id="gov-demo-cpf-prata" readonly="" value="Digite seu CPF"/><button class="gov-entrar" type="button">Continuar</button><div class="gov-banco">🏦 Entrar com o seu banco<br/><small>caminho para confirmar o nível Prata</small></div></div>
+</div><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>Baixe o aplicativo "Gov.br"</strong> na
+                    <span class="termo" tabindex="0">loja de aplicativos
+                        <span class="tooltip"><strong>Loja de aplicativos</strong> O shopping dos apps: Play Store (Android, símbolo ▶️ colorido) ou App Store (iPhone, símbolo da maçã 🍎).</span>
+</span>
+                    do seu celular (procure o desenho azul com o nome "gov.br")</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Abra o aplicativo</strong> e toque no botão azul <strong>"Entrar com gov.br"</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Digite seu CPF</strong> e siga as instruções que aparecem na tela</p></div>
+<div class="passo"><span class="passo-num">4</span><p>🥷 <strong>O segredo:</strong> quando aparecer a opção de confirmar identidade, <strong>escolha "entrar com o seu banco"</strong></p></div>
+<div class="passo"><span class="passo-num">5</span><p><strong>O app do banco vai abrir</strong> para você confirmar com sua senha. Pronto: é nível <strong>Prata</strong>! 🎉</p></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="7"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>O que é o PIX?</h2><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/pix.png" width="34"/> PIX</span><p>Agora vamos falar do dinheiro que viaja na velocidade da luz. O PIX é um jeito de
+            transferir dinheiro <strong>entre contas bancárias</strong> — criado pelo Banco Central do Brasil.</p><div class="analogia">
+                ⚡ "O PIX é como um <strong>teletransporte para o seu dinheiro</strong>:
+                ele sai da sua conta e cai na outra na hora — sem esperar, sem papel, sem burocracia."
+            </div><div class="destaque">
+                🧓 <strong>Por que isso muda sua vida:</strong> precisa mandar dinheiro para o neto que mora longe,
+                no domingo à noite? Com o PIX, o dinheiro chega na hora — e sem taxa.
+                Antigamente isso pedia fila no banco ou dias de espera.
+            </div></div><div class="etapa-visual"><div class="pix-reconhecer"><img alt="Logotipo PIX" src="/assets/logos/pix.png"/><strong>A marca que identifica o PIX no aplicativo do banco</strong></div><ul class="lista-check">
+<li><span><strong>Instantâneo:</strong> o dinheiro cai na hora (até 10 segundos!)</span></li>
+<li><span><strong>24 horas:</strong> funciona de noite, domingo e feriado — o dinheiro não tira folga</span></li>
+<li><span><strong>Gratuito:</strong> para pessoas físicas, na maioria dos casos, não custa nada</span></li>
+</ul></div></div></section>
+<section class="etapa" data-etapa="8"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Suas chaves PIX: o apelido da sua conta</h2><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/pix.png" width="34"/> PIX</span><p>Para enviar um PIX, você não precisa mais ficar passando agência e número de conta.
+            A <strong>chave PIX</strong> é o <strong>"apelido" da sua conta</strong> — um identificador fácil,
+            que o banco guarda para saber para onde o dinheiro deve ir.
+            Toque em cada chave para conhecer:</p><div class="analogia">
+                🏷️ "A chave PIX é como o <strong>apelido da sua conta</strong>:
+                em vez de decorar agência e número, você diz 'meu CPF' ou 'meu celular' —
+                e o dinheiro encontra o caminho sozinho."
+            </div><div class="destaque">
+                💡 <strong>Dica:</strong> você pode cadastrar mais de uma chave no mesmo banco.
+                O importante: a chave identifica <strong>sua</strong> conta — por isso, cuidado para não cadastrar
+                chave de outra pessoa por engano!
+            </div></div><div class="etapa-visual"><div class="pix-reconhecer"><img alt="Logotipo PIX" src="/assets/logos/pix.png"/><strong>Quatro tipos de chave, uma só rede PIX</strong></div><div class="quatro-colunas">
+<button aria-expanded="false" class="card-clicavel" data-abre="chave-1">
+<span class="medalha">🪪</span>
+<h4>CPF</h4>
+<p class="resumo">A mais fácil de lembrar</p>
+<p class="detalhe">É a mais fácil de lembrar e a mais segura. Ótima para receber do governo e de conhecidos.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+<button aria-expanded="false" class="card-clicavel" data-abre="chave-2">
+<span class="medalha">📱</span>
+<h4>Celular</h4>
+<p class="resumo">Prático para receber</p>
+<p class="detalhe">Prático para receber de amigos e familiares — todo mundo tem o número na agenda.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+<button aria-expanded="false" class="card-clicavel" data-abre="chave-3">
+<span class="medalha">✉️</span>
+<h4>E-mail</h4>
+<p class="resumo">Uso profissional</p>
+<p class="detalhe">Bom para uso profissional ou comercial — lembra o seu
+                        <span class="termo" tabindex="0">e-mail
+                            <span class="tooltip"><strong>E-mail</strong> Correio digital: carta que chega em segundos.</span>
+</span>.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+<button aria-expanded="false" class="card-clicavel" data-abre="chave-4">
+<span class="medalha">🔢</span>
+<h4>Aleatória</h4>
+<p class="resumo">Um código longo</p>
+<p class="detalhe">Um código longo e único, para quem não quer passar nenhum dado pessoal.</p>
+<span class="dica-toque">👆 Toque para ver mais</span>
+</button>
+</div></div></div></section>
+<!-- ============ FASE 3 · SUA VEZ ============ -->
+<section class="etapa" data-etapa="9"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Como fazer um pagamento com PIX?</h2><span class="ferramenta ferramenta-lg"><img alt="" height="34" src="/assets/logos/pix.png" width="34"/> PIX</span><p>Existem dois caminhos para pagar com PIX: <strong>usando a chave</strong> ou
+            <strong>usando o QR Code</strong>. Os dois terminam no mesmo lugar — mas sempre com um passo
+            sagrado no meio: <strong>CONFERIR O NOME</strong>. Primeiro, vamos conhecer o tal do QR Code:</p><div class="analogia">
+                📷 "<span class="termo" tabindex="0">QR Code
+                    <span class="tooltip"><strong>QR Code</strong> Código de barras quadrado que guarda um endereço — a câmera do celular lê por você.</span>
+</span>
+                é um código de barras quadrado, cheio de quadradinhos pretos e brancos, que guarda um endereço.
+                Você não precisa digitar nada: a câmera do celular <strong>lê por você</strong>."
+            </div><p>No QR Code está escondido o caminho do pagamento — quem é o recebedor, qual o valor.
+            A câmera decifra e o app do banco mostra na tela. Por isso ele é tão usado em lojas e contas:</p><div class="atencao">
+                🚨 <strong>A regra que vale ouro:</strong> antes de digitar a senha,
+                <strong>sempre</strong> confira o nome que aparece na tela.
+                Se o nome não é a pessoa (ou a loja) certa, <strong>cancele</strong>.
+                Esse simples hábito já impediu milhares de golpes.
+            </div></div><div class="etapa-visual"><div class="pix-reconhecer"><img alt="Logotipo PIX" src="/assets/logos/pix.png"/><strong>PIX por chave ou pela leitura do QR Code</strong></div><div class="passos-duplos">
+<div class="mini-cartao">
+<span class="icone-grande">🔑</span>
+<h4>Caminho 1 · Pela chave</h4>
+<div class="passos" style="margin:0;">
+<div class="passo"><span class="passo-num">1</span><p>No app do banco, toque em <strong>PIX</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p>Escolha <strong>Transferir</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p>Digite a chave (CPF, celular...)</p></div>
+<div class="passo"><span class="passo-num">4</span><p>⚠️ <strong>CONFIRA O NOME!</strong> (muito importante)</p></div>
+<div class="passo"><span class="passo-num">5</span><p>Digite o valor e a senha</p></div>
+</div>
+</div>
+<div class="mini-cartao">
+<span class="icone-grande">📷</span>
+<h4>Caminho 2 · Pelo QR Code</h4>
+<div class="passos" style="margin:0;">
+<div class="passo"><span class="passo-num">1</span><p>No app do banco, toque em <strong>PIX</strong></p></div>
+<div class="passo"><span class="passo-num">2</span><p>Escolha <strong>Ler QR Code</strong></p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Aponte a câmera</strong> para o quadrado</p></div>
+<div class="passo"><span class="passo-num">4</span><p>⚠️ <strong>CONFIRA O NOME DA LOJA!</strong></p></div>
+<div class="passo"><span class="passo-num">5</span><p>Digite sua senha</p></div>
+</div>
+</div>
+</div></div></div></section>
+<section class="etapa" data-etapa="10"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Sua vez: simule um PIX pela chave</h2><p>Este é um <strong>simulador do app do banco</strong>. É igualzinho ao de verdade —
+            mas aqui você pode errar à vontade, sem perder um centavo! Siga o caminho:</p><div class="destaque">
+                🔐 <strong>Você acabou de usar um token!</strong> O código que chega por SMS é o
+                <span class="termo" tabindex="0">código de verificação (token)
+                    <span class="tooltip"><strong>Token / código de verificação</strong> Senha temporária enviada por SMS — como o carimbo de autenticidade: prova que foi você quem assinou.</span>
+</span>:
+                uma senha temporária que funciona como um <strong>carimbo de autenticidade</strong> num documento —
+                prova que foi você quem mandou. <strong>Nunca conte esse código para ninguém</strong>, nem para quem se diz do banco.
+            </div></div><div class="etapa-visual primeiro-mobile"><div class="bank-app" id="pix-chave-app">
+<div class="bank-topo">
+<span class="bank-nome">🏦 Banco Amigo</span>
+<span class="bank-titulo">PIX</span>
+</div>
+<div class="bank-tela" id="pix-tela-1">
+<h4>Transferir com PIX</h4>
+<p class="bank-dica">Digite a chave de quem vai receber (celular, CPF ou e-mail).</p>
+<label for="pix-chave-input">Chave PIX</label>
+<input autocomplete="off" id="pix-chave-input" placeholder="Ex.: (34) 99999-0000" type="text"/>
+<button class="btn btn-verde" id="pix-chave-continuar" style="width:100%;">Continuar</button>
+</div>
+<div class="bank-tela" id="pix-tela-2" style="display:none;">
+<div class="confira-nome">⚠️ CONFIRA O NOME!</div>
+<p class="bank-dica">O dinheiro vai para:</p>
+<div class="bank-pessoa">
+<strong id="pix-nome-mostrado">Maria Aparecida da Silva</strong>
+<span>CPF: •••.123.456-••</span>
+</div>
+<p class="bank-dica"><strong>O nome confere</strong> com a pessoa que você quer pagar?</p>
+<div class="bank-botoes">
+<button class="btn btn-verde" id="pix-nome-confere">✅ O nome confere — continuar</button>
+<button class="btn btn-secondary" id="pix-nome-errado">❌ O nome NÃO confere — cancelar</button>
+</div>
+</div>
+<div class="bank-tela" id="pix-tela-3" style="display:none;">
+<h4>Quanto você quer enviar?</h4>
+<label for="pix-valor-input">Valor</label>
+<input autocomplete="off" id="pix-valor-input" placeholder="R$ 0,10" type="text"/>
+<button class="btn btn-verde" id="pix-valor-confirmar" style="width:100%;">Confirmar pagamento</button>
+</div>
+<div class="bank-tela" id="pix-tela-4" style="display:none;">
+<h4>Confirme que é você</h4>
+<p class="bank-dica">O banco enviou um <strong>código de verificação</strong> por mensagem de texto (SMS):
+                    uma senha temporária que prova que é você mesmo quem está enviando.</p>
+<div class="bank-sms">📩 SMS recebido: seu código é <strong>482913</strong> (válido por 5 minutos)</div>
+<label for="pix-token-input">Digite o código</label>
+<input autocomplete="off" id="pix-token-input" maxlength="6" placeholder="6 números" type="text"/>
+<button class="btn btn-verde" id="pix-token-confirmar" style="width:100%;">Confirmar e enviar</button>
+<div class="bank-feedback" id="pix-token-feedback" style="display:none;"></div>
+</div>
+<div class="bank-tela" id="pix-tela-5" style="display:none;">
+<div class="bank-sucesso">🎉</div>
+<h4>PIX enviado!</h4>
+<p>O dinheiro <strong>caiu na hora</strong> (simulação!). Repare no caminho que você fez:
+                    digitou a chave, <strong>conferiu o nome</strong>, digitou o valor e o código de verificação.
+                    É exatamente assim que um PIX seguro acontece.</p>
+</div>
+<div class="bank-feedback" id="pix-chave-feedback" style="display:none;"></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="11"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Sua vez: simule um PIX por QR Code</h2><p>Agora o segundo caminho: pagar lendo um
+            <span class="termo" tabindex="0">QR Code
+                <span class="tooltip"><strong>QR Code</strong> Código de barras quadrado que guarda um endereço — a câmera lê por você.</span>
+</span>.
+            Toque no botão para simular a leitura da câmera:</p><div class="atencao">
+                🚨 <strong>Lembrete:</strong> o QR Code guarda um endereço — pode ser o da loja certa
+                ou o de um golpista. A câmera lê, mas <strong>quem decide é você</strong>:
+                se o nome na tela não é o da loja, cancele e avise o dono da loja.
+            </div></div><div class="etapa-visual primeiro-mobile"><div class="bank-app" id="pix-qr-app">
+<div class="bank-topo">
+<span class="bank-nome">🏦 Banco Amigo</span>
+<span class="bank-titulo">PIX · Ler QR Code</span>
+</div>
+<div class="bank-tela" id="qr-tela-1">
+<h4>Ler QR Code</h4>
+<p class="bank-dica">Aponte a câmera para o quadradinho — o celular lê o endereço por você.</p>
+<div class="qr-demo" id="qr-demo"></div>
+<button class="btn btn-verde" id="qr-ler" style="width:100%;">📷 Simular leitura do QR Code</button>
+</div>
+<div class="bank-tela" id="qr-tela-2" style="display:none;">
+<div class="confira-nome">⚠️ CONFIRA O NOME DA LOJA!</div>
+<p class="bank-dica">Este QR Code é do:</p>
+<div class="bank-pessoa">
+<strong>Mercadinho da Dona Zilda</strong>
+<span>CNPJ: ••.123.456/0001-••</span>
+</div>
+<p class="bank-dica"><strong>É a loja onde você está comprando?</strong></p>
+<div class="bank-botoes">
+<button class="btn btn-verde" id="qr-nome-confere">✅ É essa loja — pagar</button>
+<button class="btn btn-secondary" id="qr-nome-errado">❌ Não é essa loja — cancelar</button>
+</div>
+</div>
+<div class="bank-tela" id="qr-tela-3" style="display:none;">
+<div class="bank-sucesso">🎉</div>
+<h4>Pagamento feito!</h4>
+<p>Você leu o QR Code e <strong>conferiu o nome da loja</strong> antes de pagar.
+                    Golpista adora trocar o QR Code — conferir o nome é a sua proteção.</p>
+</div>
+<div class="bank-feedback" id="qr-feedback" style="display:none;"></div>
+</div></div></div></section>
+<!-- ============ FASE 4 · NA VIDA REAL ============ -->
+<section class="etapa" data-etapa="12"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>🚨 Golpe do "Parente Falso"</h2><p>Golpistas são espertos — e por isso precisamos ser mais espertos ainda.
+            Um dos golpes mais comuns hoje é o do <strong>parente falso</strong>:</p><div class="atencao">
+                📵 <strong>Como funciona:</strong> alguém pega a foto do seu filho ou neto,
+                coloca em outro número e manda mensagem no WhatsApp:
+                <em>"Mãe, troquei de número! Me manda um PIX urgente, estou em apuros!"</em>
+</div><p>Parece real — tem a foto, tem o carinho, tem a pressa. Mas tem um jeito simples de se proteger:</p><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>📞 LIGUE para o número antigo</strong> — o que você já tinha salvo na agenda</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Ou faça uma pergunta que só a pessoa saberia</strong> — algo da história de vocês</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Nunca transfira dinheiro</strong> sem confirmar por voz — a foto pode ser copiada</p></div>
+</div><div class="analogia">
+                🚪 "É como alguém chegar no portão da sua casa dizendo que é seu filho.
+                Você não abre a porta sem ver o rosto — nem manda dinheiro sem ouvir a voz."
+            </div><p><strong>Agora é sua vez de decidir. Leia com atenção:</strong></p></div><div class="etapa-visual"><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📱 Você recebe uma mensagem de um número desconhecido:
+                    "Mãe, troquei de número! Me manda um PIX de R$ 300 urgente, estou em apuros!"
+                    O que você faz?
+                </div>
+<div class="quiz-opcoes" data-quiz="1">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Mando o PIX correndo — é meu filho em apuros</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Perfeito! Confirmar por voz (ligando para o número antigo salvo) é exatamente o que se faz antes de qualquer PIX. Nenhuma pressa vale seu dinheiro." data-feedback-wrong="💡 Cuidado! A foto pode ter sido copiada. A atitude segura é ligar para o número antigo que você já tem salvo — ou fazer uma pergunta que só a pessoa saberia — antes de qualquer transferência."><span class="letra">B</span><span>Ligo para o número antigo que já tenho salvo e confirmo antes de qualquer coisa</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Respondo pedindo mais detalhes e espero</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="1"></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="13"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>🚨 Golpe do Link Falso: não clique!</h2><p>Outro golpe clássico chega por mensagem de texto (SMS) ou por
+            <span class="termo" tabindex="0">e-mail
+                <span class="tooltip"><strong>E-mail</strong> Correio digital: carta que chega em segundos.</span>
+</span>.
+            A mensagem tenta ser assustadora ou tentadora — mas esconde um
+            <span class="termo" tabindex="0">link
+                <span class="tooltip"><strong>Link</strong> Atalho que leva direto a um lugar — como o caminho anotado no papel.</span>
+</span>
+            falso:</p><div class="atencao">
+                🎣 <strong>Como funciona:</strong> você recebe um SMS ou e-mail dizendo
+                <em>"Cadastre seu PIX para ganhar desconto"</em> ou <em>"Sua conta foi bloqueada, clique aqui"</em>.
+                O link leva para uma página falsa que rouba seus dados.
+            </div><div class="passos">
+<div class="passo"><span class="passo-num">1</span><p><strong>NUNCA clique no link</strong> — nem para "ver o que é"</p></div>
+<div class="passo"><span class="passo-num">2</span><p><strong>Seu banco nunca manda link para clicar</strong> — lembre-se disso sempre</p></div>
+<div class="passo"><span class="passo-num">3</span><p><strong>Faça tudo abrindo o aplicativo oficial do banco</strong> — sempre pelo ícone que você mesmo instalou</p></div>
+</div><div class="analogia">
+                📭 "Um link falso é como uma carta que diz 'abra para ganhar um prêmio',
+                mas tem algo estranho no envelope. A carta certa nunca chegaria assim —
+                e o banco também não."
+            </div><p><strong>Vamos testar com uma situação real:</strong></p></div><div class="etapa-visual"><div class="quiz-card">
+<div class="quiz-pergunta">
+                    📩 Você recebe um SMS: "Seu PIX foi bloqueado! Cadastre novamente para desbloquear:
+                    www.banco-seguro-rapido.com". O que você faz?
+                </div>
+<div class="quiz-opcoes" data-quiz="2">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Clico no link para resolver logo</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Exatamente! Banco não manda link para clicar. Apague a mensagem e abra o aplicativo oficial do banco pelo ícone que você mesmo instalou." data-feedback-wrong="💡 Quase! Esse link leva para uma página falsa que rouba seus dados. A atitude certa: não clicar nunca — apague a mensagem e abra o app oficial do banco."><span class="letra">B</span><span>Não clico — apago a mensagem. O banco nunca manda link; abro o aplicativo oficial</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Mando o link para um familiar conferir se é verdade</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="2"></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="14"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Regra de Ouro: PARE · PENSE · LIGUE</h2><p>Para qualquer golpe — parente falso, link falso, ligação suspeita —
+            existe uma regra de ouro que resolve tudo. São três passos simples:</p><div class="tres-colunas">
+<div class="mini-cartao" style="border: 2px dashed var(--chita-vermelha);">
+<span class="icone-grande">✋</span>
+<h4>1. PARE</h4>
+<p>Não faça nada na pressa. Golpistas usam a urgência para te apressar.</p>
+</div>
+<div class="mini-cartao" style="border: 2px dashed var(--chita-amarela);">
+<span class="icone-grande">🤔</span>
+<h4>2. PENSE</h4>
+<p>Essa história faz sentido? Por que a pressa? Banco pediria isso assim?</p>
+</div>
+<div class="mini-cartao" style="border: 2px dashed var(--chita-verde);">
+<span class="icone-grande">📞</span>
+<h4>3. LIGUE</h4>
+<p>Ligue para a pessoa ou peça ajuda a alguém de confiança antes de agir.</p>
+</div>
+</div><div class="analogia">
+                🚦 "PARE-PENSE-LIGUE é como atravessar a rua com segurança:
+                você olha para os dois lados antes de dar um passo.
+                No mundo digital, os golpistas são os carros — e a regra é o sinaleiro."
+            </div><p><strong>Teste final da regra de ouro:</strong></p><div class="atencao">
+                🚨 <strong>Regra de ouro:</strong> ninguém honesto — nem banco, nem governo, nem parente —
+                precisa que você faça algo <strong>na hora</strong> com senha ou dinheiro.
+                A calma é a sua maior proteção.
+            </div></div><div class="etapa-visual"><div class="quiz-card">
+<div class="quiz-pergunta">
+                    ☎️ Uma ligação diz que sua conta foi bloqueada e que você precisa
+                    <strong>passar a senha agora</strong>, senão "perde tudo". O que você faz?
+                </div>
+<div class="quiz-opcoes" data-quiz="3">
+<button class="quiz-option" data-correct="false"><span class="letra">A</span><span>Passo a senha na hora, para não perder a conta</span></button>
+<button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! PARE: ninguém precisa de pressa para coisa séria. PENSE: banco nunca pede senha por telefone. LIGUE: para o número oficial do banco (o de trás do cartão ou do site oficial)." data-feedback-wrong="💡 Cuidado! Essa pressa é a assinatura do golpista. PARE (não faça nada na pressa), PENSE (banco nunca pede senha por telefone) e LIGUE para o número oficial do banco."><span class="letra">B</span><span>PARE, não faço nada na pressa; PENSE: banco não pediria isso; LIGUE para o número oficial do banco</span></button>
+<button class="quiz-option" data-correct="false"><span class="letra">C</span><span>Desligo e apago o número, sem contar para ninguém</span></button>
+</div>
+<div class="quiz-feedback" data-feedback="3"></div>
+</div></div></div></section>
+<section class="etapa" data-etapa="15"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Mão na massa: suas missões da semana</h2><p>Chegou a hora de levar o aprendizado para a vida real.
+            São duas missões e um desafio extra — no seu ritmo, com ajuda de quem você confia:</p><div class="atencao">
+                🛡️ <strong>Dica de segurança da semana:</strong> se alguém pedir dinheiro ou código por mensagem,
+                <strong>PARE-PENSE-LIGUE</strong>: não faça nada na pressa, desconfie da história
+                e ligue para a pessoa no número que você já tem salvo.
+            </div><div class="destaque">
+                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                cada uma praticada em casa deixa o aprendizado mais firme.
+                Na próxima aula, contamos como foi!
+            </div></div><div class="etapa-visual"><div class="missao">
+<h3>🏠 Para fazer em casa até a próxima aula</h3>
+<p style="margin-bottom: var(--esp-sm);"><strong>Missão 1 · Verificar sua conta Gov.br.</strong>
+                Com ajuda de um monitor ou familiar, abra o app Gov.br e veja seu nível.
+                Vamos tentar chegar ao <strong>nível Prata</strong> usando o app do banco!</p>
+<p style="margin-bottom: var(--esp-sm);"><strong>Missão 2 · Encontrar a área PIX.</strong>
+                Abra o aplicativo do seu banco e procure a área <strong>PIX</strong>.
+                Só olhe e explore — ainda não precisa transferir nada.</p>
+<p><strong>Desafio extra · PIX de R$ 0,10.</strong> Com um colega de confiança (ou um monitor),
+                faça um PIX de <strong>R$ 0,10</strong> — dez centavos — e peça para ele devolver.
+                Confira o <strong>nome</strong> antes de enviar e guarde a sensação de "consegui!" 🎉</p>
+</div></div></div></section>
+<!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
+<section class="etapa" data-etapa="16"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
+<span class="trofeu">🧵</span>
+<h2>Você costurou mais um retalho!</h2>
+<p>Hoje você aprendeu o que é o Gov.br, a diferença entre os níveis Bronze, Prata e Ouro,
+                como o PIX teletransporta seu dinheiro, como pagar por chave e por QR Code conferindo o nome —
+                e, o mais importante, como se proteger dos golpes. Isso é <strong>autonomia</strong>.</p>
+</div><h3 style="margin-top: var(--esp-lg);">Suas conquistas de hoje</h3><div style="text-align:center; margin-top: var(--esp-lg);">
+<div class="retalho-costurado">Aula 08 · costurada! 🎉</div>
+</div><div class="destaque" style="margin-top: var(--esp-lg);">
+                🎊 <strong>Você está cada vez mais digital!</strong> Esta foi a última aula de conteúdo da trilha.
+                Na próxima aula, vamos <strong>celebrar</strong> tudo o que você aprendeu —
+                cada retalho costurado, cada conquista. Até lá!
+            </div><div style="text-align:center; margin-top: var(--esp-md);">
+<a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
+<a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
+</div></div><div class="etapa-visual"><ul class="lista-conquistas">
+<li>✅ Entendi o que é o Gov.br e seus serviços</li>
+<li>✅ Sei a diferença entre Bronze, Prata e Ouro</li>
+<li>✅ Sei o passo a passo do nível Prata pelo banco</li>
+<li>✅ Entendi o que é o PIX e as chaves</li>
+<li>✅ Sei pagar por chave e por QR Code conferindo o nome</li>
+<li>✅ Reconheço o golpe do parente falso e do link falso</li>
+<li>✅ Guardei a regra PARE-PENSE-LIGUE</li>
+</ul></div></div></section>
+<!-- Navegação -->
+<nav class="player-nav">
+<button class="btn btn-secondary" disabled="" id="btn-anterior">← Anterior</button>
+<button class="btn btn-primary" id="btn-proximo">Próximo →</button>
+</nav>
+</main>
+<script src="/assets/player-base.js"></script>
+<script>
+        (function () {
+            "use strict";
+
+            // ===== Estado específico da aula 08 =====
+            var pixEtapa = 1; // 1..5 telas do simulador de chave
+
+            // ===== Cards clicáveis (níveis e chaves) =====
+            document.querySelectorAll('.card-clicavel').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    var aberto = card.classList.toggle('aberto');
+                    card.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+                });
+            });
+
+            // ===== Simulador 1: PIX pela chave =====
+            var telas = {
+                1: document.getElementById('pix-tela-1'),
+                2: document.getElementById('pix-tela-2'),
+                3: document.getElementById('pix-tela-3'),
+                4: document.getElementById('pix-tela-4'),
+                5: document.getElementById('pix-tela-5')
+            };
+            var feedbackChave = document.getElementById('pix-chave-feedback');
+            var campoChave = document.getElementById('pix-chave-input');
+            var campoValor = document.getElementById('pix-valor-input');
+            var campoTok = document.getElementById('pix-token-input');
+            var tokFeedback = document.getElementById('pix-token-feedback');
+
+            function mostrarTelaPix(n) {
+                pixEtapa = n;
+                Object.keys(telas).forEach(function (k) {
+                    telas[k].style.display = (Number(k) === n) ? 'block' : 'none';
+                });
+                if (feedbackChave) feedbackChave.style.display = 'none';
+                if (tokFeedback) tokFeedback.style.display = 'none';
+                if (n === 2) document.getElementById('pix-chave-input').value = '';
+            }
+
+            function feedbackOkChave(msg) {
+                feedbackChave.className = 'bank-feedback ok';
+                feedbackChave.innerHTML = msg;
+                feedbackChave.style.display = 'block';
+                feedbackChave.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Passo 1: digitar a chave
+            document.getElementById('pix-chave-continuar').addEventListener('click', function () {
+                var chave = campoChave.value.trim();
+                if (!chave) {
+                    campoChave.focus();
+                    campoChave.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                campoChave.style.borderColor = '';
+                mostrarTelaPix(2);
+            });
+            campoChave.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') document.getElementById('pix-chave-continuar').click();
+            });
+
+            // Passo 2: CONFERIR O NOME
+            document.getElementById('pix-nome-confere').addEventListener('click', function () {
+                mostrarTelaPix(3);
+            });
+            document.getElementById('pix-nome-errado').addEventListener('click', function () {
+                mostrarTelaPix(1);
+                feedbackOkChave('💚 <strong>Excelente decisão!</strong> Você CANCELOU — e é exatamente isso que se faz quando o nome não confere. '
+                    + 'Golpista adora nome trocado. Verifique a chave com a pessoa antes de tentar de novo.');
+            });
+
+            // Passo 3: valor
+            document.getElementById('pix-valor-confirmar').addEventListener('click', function () {
+                var valor = campoValor.value.trim();
+                if (!valor) {
+                    campoValor.focus();
+                    campoValor.style.borderColor = 'var(--chita-vermelha)';
+                    return;
+                }
+                campoValor.style.borderColor = '';
+                mostrarTelaPix(4);
+            });
+            campoValor.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') document.getElementById('pix-valor-confirmar').click();
+            });
+
+            // Passo 4: token / código de verificação
+            document.getElementById('pix-token-confirmar').addEventListener('click', function () {
+                var codigo = campoTok.value.trim();
+                if (codigo === '482913') {
+                    mostrarTelaPix(5);
+                } else if (!codigo) {
+                    campoTok.focus();
+                } else {
+                    tokFeedback.className = 'bank-feedback erro';
+                    tokFeedback.textContent = 'Hmm, esse código não é o que chegou no SMS. Confira os 6 números (482913) e tente de novo — sem pressa!';
+                    tokFeedback.style.display = 'block';
+                    campoTok.focus();
+                }
+            });
+            campoTok.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') document.getElementById('pix-token-confirmar').click();
+            });
+
+            // ===== Simulador 2: PIX por QR Code =====
+            function gerarQR() {
+                var demo = document.getElementById('qr-demo');
+                demo.innerHTML = '';
+                var N = 21;
+                for (var r = 0; r < N; r++) {
+                    for (var c = 0; c < N; c++) {
+                        var celula = document.createElement('div');
+                        celula.className = 'qr-celula';
+                        var preto = false;
+                        // Padrões de canto (finder) nos três cantos
+                        var emCanto = (r < 7 && c < 7) || (r < 7 && c >= N - 7) || (r >= N - 7 && c < 7);
+                        if (emCanto) {
+                            if (r === 0 || r === 6 || c === 0 || c === 6) preto = true;
+                            else if (r >= 2 && r <= 4 && c >= 2 && c <= 4) preto = true;
+                        } else {
+                            preto = ((r * 7 + c * 13 + (r * c) % 5) % 3 === 0);
+                        }
+                        if (preto) celula.classList.add('preto');
+                        demo.appendChild(celula);
+                    }
+                }
+            }
+            gerarQR();
+
+            var qrTelas = {
+                1: document.getElementById('qr-tela-1'),
+                2: document.getElementById('qr-tela-2'),
+                3: document.getElementById('qr-tela-3')
+            };
+            var feedbackQR = document.getElementById('qr-feedback');
+
+            function mostrarTelaQR(n) {
+                Object.keys(qrTelas).forEach(function (k) {
+                    qrTelas[k].style.display = (Number(k) === n) ? 'block' : 'none';
+                });
+                if (feedbackQR) feedbackQR.style.display = 'none';
+            }
+
+            document.getElementById('qr-ler').addEventListener('click', function () {
+                mostrarTelaQR(2);
+            });
+            document.getElementById('qr-nome-confere').addEventListener('click', function () {
+                mostrarTelaQR(3);
+            });
+            document.getElementById('qr-nome-errado').addEventListener('click', function () {
+                mostrarTelaQR(1);
+                feedbackQR.className = 'bank-feedback ok';
+                feedbackQR.innerHTML = '💚 <strong>Perfeito!</strong> QR Code trocado é golpe clássico: o quadradinho leva para a conta do golpista. '
+                    + 'Se o nome não é a loja, CANCELA e avisa o dono da loja. Você se protegeu!';
+                feedbackQR.style.display = 'block';
+                feedbackQR.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        })();
+    </script>
+</body>
+</html>
