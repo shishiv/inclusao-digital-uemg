@@ -211,8 +211,8 @@
             box-shadow: var(--sombra-sm); pointer-events: none;
         }
         .player-scroll-hint {
-            position: absolute; z-index: 75;
-            left: 50%; bottom: 72px; transform: translateX(-50%);
+            position: static; z-index: 75;
+            align-self: center; margin: 4px auto;
             min-height: 36px; padding: 7px 13px;
             border: 1px solid var(--linha-forte); border-radius: var(--raio-pill);
             background: rgba(30, 68, 102, .94); color: #FFF;
@@ -240,7 +240,7 @@
         .tooltip { display: none; position: absolute; bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%); width: 260px; background: var(--retalho); border: var(--costura); border-radius: var(--raio); box-shadow: var(--sombra-lg); padding: var(--esp-sm); z-index: 300; font-size: var(--texto-sm); font-weight: 400; color: var(--bordado); line-height: 1.55; text-align: left; }
         .tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--linha-forte); }
         .tooltip strong { display: block; font-family: var(--font-display); font-size: var(--texto-base); color: var(--chita-azul-escura); margin-bottom: 4px; }
-        .termo:hover .tooltip, .termo:focus .tooltip, .termo:focus-within .tooltip, .termo.toque-ativo .tooltip { display: block; }
+        .termo:hover .tooltip, .termo:focus-visible:not(.tooltip-dismissed) .tooltip, .termo.toque-ativo .tooltip { display: block; }
 
         /* ===== Mockup WhatsApp ===== */
         .mockup { position: relative; max-width: clamp(280px, 26vw, 460px); width: 100%; margin: var(--esp-sm) auto; background: #ECE5DD; border-radius: 28px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); overflow: hidden; font-size: 0.95rem; }

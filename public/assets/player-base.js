@@ -164,6 +164,7 @@
     function alternarTermo() {
       var ativo = t.classList.contains('toque-ativo');
       fecharTermos(t);
+      t.classList.remove('tooltip-dismissed');
       t.classList.toggle('toque-ativo', !ativo);
       t.setAttribute('aria-expanded', ativo ? 'false' : 'true');
     }
@@ -178,10 +179,14 @@
         alternarTermo();
       } else if (e.key === 'Escape') {
         t.classList.remove('toque-ativo');
+        t.classList.add('tooltip-dismissed');
         t.setAttribute('aria-expanded', 'false');
       }
     });
-    t.addEventListener('mouseleave', function () { t.classList.remove('toque-ativo'); });
+    t.addEventListener('mouseleave', function () {
+      t.classList.remove('toque-ativo');
+      t.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // ===== Quizzes de decisão (genéricos) =====
@@ -195,16 +200,25 @@
     opcoes.querySelectorAll('.quiz-option').forEach(function (opcao) {
       opcao.addEventListener('click', function () {
         var correto = opcao.dataset.correct === 'true';
+        var correta = opcoes.querySelector('.quiz-option[data-correct="true"]');
+        var textoCorreto = correta ? correta.innerText.trim().replace(/^\s*[A-Z]\s+/, '') : 'a alternativa correta';
         opcoes.querySelectorAll('.quiz-option').forEach(function (o) {
           o.disabled = true;
-          if (o.dataset.correct === 'true') o.classList.add('correct');
+          var eCorreta = o.dataset.correct === 'true';
+          o.setAttribute('aria-pressed', eCorreta ? 'true' : 'false');
+          if (eCorreta) {
+            o.classList.add('correct');
+            o.setAttribute('aria-label', 'Resposta correta: ' + o.innerText.trim());
+          } else if (o === opcao) {
+            o.setAttribute('aria-label', 'Resposta escolhida, incorreta: ' + o.innerText.trim());
+          }
         });
         if (!correto) opcao.classList.add('incorrect');
         if (feedback) {
           var msgCorreta = opcao.dataset.feedbackCorrect || '🎉 Muito bem! Essa é a atitude certa.';
-          var msgErrada = opcao.dataset.feedbackWrong || '💡 Quase! A opção correta está marcada em verde.';
+          var msgErrada = opcao.dataset.feedbackWrong || '💡 Quase!';
           feedback.classList.add('show', correto ? 'success' : 'error');
-          feedback.textContent = correto ? msgCorreta : msgErrada;
+          feedback.textContent = correto ? msgCorreta : msgErrada + ' Resposta correta: ' + textoCorreto + '.';
         }
       });
     });

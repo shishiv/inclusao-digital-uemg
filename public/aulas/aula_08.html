@@ -244,7 +244,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 agora para os serviços públicos.
             </div></div><div class="etapa-visual"><div aria-label="Exemplo em código da tela oficial de entrada do Gov.br" class="gov-app">
 <div class="gov-app__topo"><img alt="Gov.br" src="/assets/logos/govbr.webp"/><span class="gov-app__seguro">🔒 Ambiente seguro</span></div>
-<div class="gov-app__corpo"><h4>Identifique-se no gov.br</h4><label for="gov-demo-cpf"><strong>Número do CPF</strong></label><input aria-label="Exemplo do campo CPF" class="gov-cpf" id="gov-demo-cpf" readonly="" value="Digite seu CPF"/><button class="gov-entrar" type="button">Continuar</button><div class="gov-banco">🏦 Entrar com o seu banco<br/><small>caminho para confirmar o nível Prata</small></div></div>
+<div class="gov-app__corpo"><h4>Identifique-se no gov.br</h4><label for="gov-demo-cpf"><strong>Número do CPF</strong></label><input aria-label="Exemplo do campo CPF" class="gov-cpf" id="gov-demo-cpf" readonly="" value="Digite seu CPF"/><button class="gov-entrar" id="gov-demo-continuar" type="button">Continuar</button><p id="gov-demo-feedback" role="status" aria-live="polite" hidden></p><div class="gov-banco">🏦 Entrar com o seu banco<br/><small>caminho para confirmar o nível Prata</small></div></div>
 </div></div></div></section>
 <section class="etapa" data-etapa="4"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Um mundo de serviços na palma da mão</h2><p>Com o Gov.br você acessa dezenas de serviços. Os mais usados pelo pessoal da nossa turma:</p><div class="analogia">
                 🗝️ "É como ter <strong>uma única chave que abre o armário inteiro</strong>:
@@ -690,6 +690,15 @@ body { min-width: 320px; display:flex; flex-direction:column; }
             // ===== Estado específico da aula 08 =====
             var pixEtapa = 1; // 1..5 telas do simulador de chave
 
+            var govContinuar = document.getElementById('gov-demo-continuar');
+            var govFeedback = document.getElementById('gov-demo-feedback');
+            if (govContinuar && govFeedback) {
+                govContinuar.addEventListener('click', function () {
+                    govFeedback.hidden = false;
+                    govFeedback.textContent = '✅ Demonstração concluída! Na prática, o gov.br pede seu CPF antes de continuar.';
+                });
+            }
+
             // ===== Cards clicáveis (níveis e chaves) =====
             document.querySelectorAll('.card-clicavel').forEach(function (card) {
                 card.addEventListener('click', function () {
@@ -726,7 +735,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 feedbackChave.className = 'bank-feedback ok';
                 feedbackChave.innerHTML = msg;
                 feedbackChave.style.display = 'block';
-                feedbackChave.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                feedbackChave.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             }
 
             // Passo 1: digitar a chave
@@ -838,7 +847,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 feedbackQR.innerHTML = '💚 <strong>Perfeito!</strong> QR Code trocado é golpe clássico: o quadradinho leva para a conta do golpista. '
                     + 'Se o nome não é a loja, CANCELA e avisa o dono da loja. Você se protegeu!';
                 feedbackQR.style.display = 'block';
-                feedbackQR.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                feedbackQR.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
         })();
     </script>

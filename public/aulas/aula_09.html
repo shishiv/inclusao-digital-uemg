@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/player.css">
     <style>
         :root {
             --azul-uemg: #4A6FA5;
@@ -52,7 +53,7 @@
         }
 
         /* Slide Base */
-        .slide {
+        .etapa {
             width: 100%;
             height: 100%;
             padding: 86px 80px 92px;
@@ -67,7 +68,7 @@
             scrollbar-gutter: stable;
         }
 
-        .slide.active {
+        .etapa.ativa {
             display: flex;
             animation: fadeIn 0.5s ease;
         }
@@ -115,8 +116,8 @@
         }
 
         /* Decorative Circles */
-        .slide::before,
-        .slide::after {
+        .etapa::before,
+        .etapa::after {
             content: '';
             position: absolute;
             border-radius: 50%;
@@ -796,7 +797,7 @@
 
         /* Responsive */
         @media (max-width: 900px) {
-            .slide {
+            .etapa {
                 padding: 76px 30px calc(100px + env(safe-area-inset-bottom));
             }
 
@@ -830,28 +831,27 @@
     </style>
 </head>
 <body>
-    <header class="lesson-toolbar">
-        <a href="/aulas.html" aria-label="Voltar para todas as aulas">← Todas as aulas</a>
-        <span class="lesson-toolbar-title">Aula 09 · Encerramento</span>
-        <button type="button" id="lesson-help-button" aria-expanded="false">🙋 Preciso de ajuda</button>
-    </header>
-    <div class="lesson-help" id="lesson-help" hidden>
-        Use <strong>Anterior</strong> e <strong>Próximo</strong> para navegar. Você também pode usar as setas do teclado. Sem pressa.
+    <div class="player-topo">
+        <a class="player-trilha-link" href="/aulas.html" aria-label="Voltar para todas as aulas">← Todas as aulas</a>
+        <h1 class="player-etiqueta">Aula 09 · Encerramento</h1>
     </div>
 
     <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
+    <div class="player-progresso">
+        <div class="progresso-label"><span>Seu progresso</span><span id="progresso-texto">Etapa 1 de 14</span></div>
+        <div class="progresso-trilho"><div class="progresso-preenchido" id="progresso-barra"></div></div>
+    </div>
 
     <!-- Presentation -->
-    <div class="presentation" id="presentation">
+    <div class="player" id="player">
 
         <!-- Slide 1: Cover -->
-        <section class="slide slide-cover active" data-slide="1">
+        <section class="etapa slide-cover ativa" data-etapa="1">
             <div class="cover-content">
                 <span class="slide-badge">Aula 09 - Encerramento</span>
                 <h1>Nossa Jornada Digital</h1>
-                <p class="slogan">Revisao, Celebracao e Proximos Passos</p>
-                <p class="subtitle">O fim do curso e o comeco de uma nova era digital para voces!</p>
+                <p class="slogan">Revisão, Celebração e Próximos Passos</p>
+                <p class="subtitle">O fim do curso e o começo de uma nova era digital para vocês!</p>
                 <div class="cover-meta">
                     <span>Myke Matos dos Santos</span>
                     <span>12 de Dezembro de 2025</span>
@@ -861,7 +861,7 @@
         </section>
 
         <!-- Slide 2: Agenda -->
-        <section class="slide slide-content" data-slide="2">
+        <section class="etapa slide-content" data-etapa="2">
             <div class="slide-header">
                 <span class="slide-badge">Nosso Roteiro</span>
                 <h2>O Que Vamos Fazer Hoje?</h2>
@@ -872,15 +872,15 @@
                     <div class="agenda-card">
                         <div class="agenda-number">1</div>
                         <div class="agenda-text">
-                            <h4>Revisao Geral</h4>
-                            <p>Tira-duvidas final para sairmos craques!</p>
+                            <h4>Revisão Geral</h4>
+                            <p>Tira-dúvidas final para sairmos craques!</p>
                         </div>
                     </div>
                     <div class="agenda-card">
                         <div class="agenda-number">2</div>
                         <div class="agenda-text">
                             <h4>Portal do Aluno</h4>
-                            <p>Um presente digital para voces!</p>
+                            <p>Um presente digital para vocês!</p>
                         </div>
                     </div>
                     <div class="agenda-card">
@@ -901,19 +901,19 @@
             </div>
         </section>
 
-        <!-- Slide 3: Section - Revisao -->
-        <section class="slide slide-section" data-slide="3">
+        <!-- Slide 3: Section - Revisão -->
+        <section class="etapa slide-section" data-etapa="3">
             <span class="slide-badge">Parte 1</span>
-            <h1>Revisao Geral</h1>
+            <h1>Revisão Geral</h1>
             <p class="subtitle">O "Tira-Duvidas" Final</p>
         </section>
 
         <!-- Slide 4: Review Topics -->
-        <section class="slide slide-content" data-slide="4">
+        <section class="etapa slide-content" data-etapa="4">
             <div class="slide-header">
-                <span class="slide-badge">Revisao</span>
-                <h2>O Que Voces Querem Relembrar?</h2>
-                <p class="slogan">Nao existem perguntas bobas!</p>
+                <span class="slide-badge">Revisão</span>
+                <h2>O Que Vocês Querem Relembrar?</h2>
+                <p class="slogan">Não existem perguntas bobas!</p>
             </div>
             <div class="slide-body">
                 <div class="topics-grid">
@@ -939,20 +939,20 @@
                     </div>
                 </div>
                 <p style="text-align: center; margin-top: 30px; font-size: 1.2rem; color: var(--verde);">
-                    <strong>A duvida de um colega pode ser a sua!</strong>
+                    <strong>A dúvida de um colega pode ser a sua!</strong>
                 </p>
             </div>
         </section>
 
         <!-- Slide 5: Section - Portal -->
-        <section class="slide slide-section" data-slide="5">
+        <section class="etapa slide-section" data-etapa="5">
             <span class="slide-badge">Parte 2</span>
             <h1>Portal do Aluno</h1>
-            <p class="subtitle">Um presente digital para voces!</p>
+            <p class="subtitle">Um presente digital para vocês!</p>
         </section>
 
         <!-- Slide 6: Portal Intro -->
-        <section class="slide slide-content" data-slide="6">
+        <section class="etapa slide-content" data-etapa="6">
             <div class="slide-header">
                 <span class="slide-badge">Novidade</span>
                 <h2>Apresentando o Portal do Aluno!</h2>
@@ -992,7 +992,7 @@
                             </div>
                             <div class="portal-content">
                                 <div class="logo">🎓</div>
-                                <h5>Inclusao Digital UEMG</h5>
+                                <h5>Inclusão Digital UEMG</h5>
                                 <p>Conhecimento que conecta</p>
                                 <div class="portal-nav">
                                     <span>Inicio</span>
@@ -1008,7 +1008,7 @@
         </section>
 
         <!-- Slide 7: Portal Sections -->
-        <section class="slide slide-content" data-slide="7">
+        <section class="etapa slide-content" data-etapa="7">
             <div class="slide-header">
                 <span class="slide-badge">Explorando</span>
                 <h2>O Que Tem no Portal?</h2>
@@ -1034,7 +1034,7 @@
                     <div class="portal-section-card">
                         <div class="emoji">👥</div>
                         <h4>Comunidade</h4>
-                        <p>Link do nosso grupo</p>
+                        <p>Acesso oficial pelo monitor</p>
                     </div>
                 </div>
                 <div class="url-box">
@@ -1044,21 +1044,21 @@
         </section>
 
         <!-- Slide 8: Section - Comunidade -->
-        <section class="slide slide-section" data-slide="8">
+        <section class="etapa slide-section" data-etapa="8">
             <span class="slide-badge">Parte 3</span>
             <h1>Nossa Comunidade</h1>
             <p class="subtitle">A jornada nao termina aqui!</p>
         </section>
 
         <!-- Slide 9: WhatsApp Group -->
-        <section class="slide slide-cover" data-slide="9">
+        <section class="etapa slide-cover" data-etapa="9">
             <div class="whatsapp-icon">📱</div>
             <h2>Grupo do WhatsApp da Turma</h2>
-            <p class="slogan" style="color: #25D366;">O fim do curso e o comeco da nossa amizade digital!</p>
+            <p class="slogan" style="color: #25D366;">O fim do curso e o começo da nossa amizade digital!</p>
             <div class="rules-list">
                 <div class="rule-item">
                     <div class="emoji">❓</div>
-                    <p>Tirar duvidas</p>
+                    <p>Tirar dúvidas</p>
                 </div>
                 <div class="rule-item">
                     <div class="emoji">🏆</div>
@@ -1072,17 +1072,17 @@
         </section>
 
         <!-- Slide 10: Section - Formatura -->
-        <section class="slide slide-celebration" data-slide="10">
+        <section class="etapa slide-celebration" data-etapa="10">
             <span class="slide-badge">Parte 4</span>
             <h1>A Grande Formatura!</h1>
             <p class="subtitle">O momento mais esperado</p>
         </section>
 
         <!-- Slide 11: Celebration -->
-        <section class="slide slide-celebration" data-slide="11">
+        <section class="etapa slide-celebration" data-etapa="11">
             <div class="trophy">🏆</div>
-            <h1>Voces Conseguiram!</h1>
-            <p class="slogan" style="color: var(--amarelo);">Hoje voces sao cidadaos digitais!</p>
+            <h1>Vocês Conseguiram!</h1>
+            <p class="slogan" style="color: var(--amarelo);">Hoje vocês são cidadãos digitais!</p>
             <div class="achievement-cards">
                 <div class="achievement-card">
                     <div class="emoji">💪</div>
@@ -1092,31 +1092,31 @@
                 <div class="achievement-card">
                     <div class="emoji">🧠</div>
                     <h4>Aprenderam muito</h4>
-                    <p>Do basico ao avancado</p>
+                    <p>Do básico ao avançado</p>
                 </div>
                 <div class="achievement-card">
                     <div class="emoji">🌟</div>
                     <h4>Se transformaram</h4>
-                    <p>Idade e so um numero!</p>
+                    <p>Idade é só um número!</p>
                 </div>
             </div>
         </section>
 
         <!-- Slide 12: Certificate -->
-        <section class="slide slide-content" data-slide="12">
+        <section class="etapa slide-content" data-etapa="12">
             <div class="slide-header">
                 <span class="slide-badge">Conquista</span>
                 <h2>Hora de Oficializar!</h2>
-                <p class="slogan">Cada nome sera chamado com carinho</p>
+                <p class="slogan">Cada nome será chamado com carinho</p>
             </div>
             <div class="slide-body centered">
                 <div class="certificate-preview">
                     <div class="logo">🎓</div>
                     <h4>CERTIFICADO DE CONCLUSAO</h4>
-                    <p class="subtitle">Programa de Inclusao Digital 60+</p>
+                    <p class="subtitle">Programa de Inclusão Digital 60+</p>
                     <p>Certificamos que</p>
                     <div class="name-line">Seu Nome Aqui</div>
-                    <p>concluiu com exito o Programa de Inclusao Digital 60+<br>promovido pela UEMG Frutal</p>
+                    <p>concluiu com êxito o Programa de Inclusão Digital 60+<br>promovido pela UEMG Frutal</p>
                     <p style="margin-top: 20px; font-size: 0.85rem; color: var(--cinza-medio);">
                         Frutal, 12 de Dezembro de 2025
                     </p>
@@ -1125,9 +1125,9 @@
         </section>
 
         <!-- Slide 13: Final Message -->
-        <section class="slide slide-final" data-slide="13">
-            <h2>O futuro e digital...</h2>
-            <h1 style="color: var(--azul-uemg);">E agora, ele tambem e de voces!</h1>
+        <section class="etapa slide-final" data-etapa="13">
+            <h2>O futuro é digital...</h2>
+            <h1 style="color: var(--azul-uemg);">E agora, ele também é de vocês!</h1>
             <div class="final-messages">
                 <div class="final-message">
                     <span class="emoji">🔍</span>
@@ -1142,11 +1142,11 @@
                     <span>Continuem se ajudando</span>
                 </div>
             </div>
-            <p class="final-quote">Parabens, formandos!</p>
+            <p class="final-quote">Parabéns, formandos!</p>
         </section>
 
         <!-- Slide 14: Celebration End -->
-        <section class="slide slide-celebration" data-slide="14">
+        <section class="etapa slide-celebration" data-etapa="14">
             <div class="trophy">🥂</div>
             <h1>Vamos Celebrar!</h1>
             <p class="slogan" style="color: var(--amarelo);">Um brinde ao conhecimento, a amizade e as novas conquistas!</p>
@@ -1157,173 +1157,17 @@
 
     </div>
 
-    <button type="button" class="slide-scroll-hint" id="slide-scroll-hint" hidden>Role para ver todo o slide ↓</button>
-
     <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <span class="nav-progress" id="nav-progress">Slide 1 de 14</span>
-        <div class="nav-buttons">
-            <button class="nav-btn secondary" id="prev-btn" onclick="prevSlide()">
-                Anterior
-            </button>
-            <button class="nav-btn primary" id="next-btn" onclick="nextSlide()">
-                Proximo
-            </button>
-        </div>
+    <nav class="player-nav">
+        <button class="nav-btn secondary btn" id="btn-anterior">Anterior</button>
+        <button class="nav-btn primary btn" id="btn-proximo">
+            Próximo
+        </button>
     </nav>
 
+    <script src="/assets/player-base.js"></script>
     <script>
-        // State
-        let currentSlide = 1;
-        const totalSlides = 14;
-
-        // DOM Elements
-        const slides = document.querySelectorAll('.slide');
-        const progressBar = document.getElementById('progress-bar');
-        const navProgress = document.getElementById('nav-progress');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const scrollHint = document.getElementById('slide-scroll-hint');
-
-        function scrollBehavior() {
-            return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-        }
-
-        function updateScrollHint() {
-            const slide = slides[currentSlide - 1];
-            const contentChildren = slide
-                ? Array.from(slide.children).filter(child => !child.classList.contains('confetti'))
-                : [];
-            const contentBottom = contentChildren.reduce((bottom, child) =>
-                Math.max(bottom, child.offsetTop + child.offsetHeight), 0);
-            const visibleBottom = slide ? slide.scrollTop + slide.clientHeight - 92 : 0;
-            const hasMore = contentBottom > visibleBottom + 4;
-            scrollHint.hidden = !hasMore;
-        }
-
-        // Update UI
-        function updateUI() {
-            // Update slides
-            slides.forEach((slide, index) => {
-                const active = index + 1 === currentSlide;
-                slide.classList.toggle('active', active);
-                slide.hidden = !active;
-                slide.setAttribute('aria-hidden', active ? 'false' : 'true');
-                if (active) slide.scrollTop = 0;
-            });
-
-            // Update progress bar
-            const progress = (currentSlide / totalSlides) * 100;
-            progressBar.style.width = `${progress}%`;
-
-            // Update nav text
-            navProgress.textContent = `Slide ${currentSlide} de ${totalSlides}`;
-
-            // Update buttons
-            prevBtn.disabled = currentSlide === 1;
-            nextBtn.textContent = currentSlide === totalSlides ? 'Fim!' : 'Proximo';
-            nextBtn.disabled = currentSlide === totalSlides;
-            window.requestAnimationFrame(updateScrollHint);
-        }
-
-        slides.forEach(slide => slide.addEventListener('scroll', updateScrollHint));
-        window.addEventListener('resize', updateScrollHint);
-        window.addEventListener('load', updateScrollHint);
-        if (document.fonts) document.fonts.ready.then(updateScrollHint);
-        scrollHint.addEventListener('click', () => {
-            const slide = slides[currentSlide - 1];
-            slide?.scrollBy({ top: Math.max(180, slide.clientHeight * 0.7), behavior: scrollBehavior() });
-        });
-
-        // Navigation Functions
-        function nextSlide() {
-            if (currentSlide < totalSlides) {
-                currentSlide++;
-                updateUI();
-                const title = slides[currentSlide - 1].querySelector('h1, h2');
-                if (title) {
-                    title.setAttribute('tabindex', '-1');
-                    title.focus({ preventScroll: true });
-                }
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 1) {
-                currentSlide--;
-                updateUI();
-                const title = slides[currentSlide - 1].querySelector('h1, h2');
-                if (title) {
-                    title.setAttribute('tabindex', '-1');
-                    title.focus({ preventScroll: true });
-                }
-            }
-        }
-
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                e.preventDefault();
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-            }
-        });
-
-        // Touch Navigation
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-            }
-        }
-
-        // Click on slide to advance (optional)
-        document.querySelector('.presentation').addEventListener('click', (e) => {
-            // Only advance if clicking on empty space (not buttons)
-            if (e.target.closest('.nav-bar') || e.target.closest('button') || e.target.closest('.topic-card')) {
-                return;
-            }
-            const clickX = e.clientX;
-            const windowWidth = window.innerWidth;
-
-            if (clickX > windowWidth * 0.7) {
-                nextSlide();
-            } else if (clickX < windowWidth * 0.3) {
-                prevSlide();
-            }
-        });
-
-        // Initialize
-        updateUI();
-
-        const helpButton = document.getElementById('lesson-help-button');
-        const helpPanel = document.getElementById('lesson-help');
-        helpButton.addEventListener('click', () => {
-            const open = helpPanel.hidden;
-            helpPanel.hidden = !open;
-            helpButton.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-
-        // Add confetti on celebration slides
+        // Conteúdo específico da aula: celebrações visuais, sem duplicar a navegação compartilhada.
         function addConfetti() {
             const celebrationSlides = document.querySelectorAll('.slide-celebration');
             const confettiEmojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎈'];

@@ -1136,7 +1136,7 @@
             var boasVindasMsg = document.getElementById('boas-vindas-msg');
             btnBoasVindas.addEventListener('click', function () {
                 boasVindasMsg.style.display = 'block';
-                boasVindasMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                boasVindasMsg.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
 
             // ===== Veredito dos endereços (URL) =====
@@ -1149,7 +1149,7 @@
                     ch.classList.add(boa ? 'boa' : 'ruim');
                     veredito.className = 'veredito show ' + (boa ? 'ok' : 'cuidado');
                     veredito.textContent = ch.dataset.mensagem;
-                    veredito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    veredito.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                 });
             });
 
@@ -1180,7 +1180,7 @@
                         lojaAviso.className = 'loja-aviso show erro';
                         lojaAviso.textContent = '💡 Atenção: este não é o aplicativo oficial. Confira o nome com calma e o criador (editor) — apps falsos usam nomes parecidos. Continue tentando!';
                     }
-                    lojaAviso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    lojaAviso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                 });
             });
 

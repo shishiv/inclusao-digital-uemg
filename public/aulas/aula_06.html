@@ -759,7 +759,7 @@
                             feedback.innerHTML = '🧭 Esse é o <strong>' + nomeOutros[escolha] + '</strong> — ' +
                                 'ótimo programa, mas para esta missão escolha <strong>' + nomeAlvo + '</strong>.';
                         }
-                        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        feedback.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                     });
                 });
 
@@ -858,7 +858,7 @@
                     celulaTotal.textContent = 'R$ 250,00';
                     celulaTotal.classList.add('destaque');
                     somaSucesso.style.display = 'block';
-                    somaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    somaSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                     btnSoma.disabled = true;
                     btnSoma.textContent = '🧮 R$ 250,00 calculado!';
                 });
@@ -878,7 +878,7 @@
                         total.toFixed(2).replace('.', ',') +
                         '</strong> — e foi a planilha quem fez a conta, com a fórmula =SOMA. ' +
                         'Agora faça isso na planilha de verdade, com as suas contas do mês!';
-                    gastosSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    gastosSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                 });
             }
         })();

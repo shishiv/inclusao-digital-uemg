@@ -133,9 +133,14 @@ h3 { font-size: var(--texto-xl); }
 ::selection { background: var(--chita-amarela); color: var(--bordado); }
 
 :focus-visible {
-  outline: 4px solid var(--chita-azul);
+  outline: 4px solid var(--chita-azul-escura);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+.sidebar :focus-visible,
+.mobile-header :focus-visible {
+  outline-color: var(--chita-amarela);
 }
 
 /* ==================================================================
@@ -555,7 +560,7 @@ h3 { font-size: var(--texto-xl); }
 
 .retalho-futuro {
   background: var(--algodao-escuro);
-  color: var(--linha-forte);
+  color: var(--bordado);
   border-style: dashed;
 }
 
@@ -563,9 +568,9 @@ h3 { font-size: var(--texto-xl); }
   position: absolute;
   top: 4px; left: 8px;
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .retalho .retalho-check {
@@ -870,8 +875,8 @@ h3 { font-size: var(--texto-xl); }
   gap: var(--esp-sm);
   max-width: 1200px;
   margin: 0 auto;
-  font-size: 0.85rem;
-  color: #A89B86;
+  font-size: var(--texto-sm);
+  color: #F3EEE2;
 }
 
 .footer-logo { height: 40px; width: auto; opacity: 0.9; }

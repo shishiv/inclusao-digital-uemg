@@ -272,7 +272,7 @@
                 🧰 "É como a caixa de costura: a agulha, a linha e a tesoura servem para coisas
                 diferentes. Nenhuma é melhor que a outra — cada uma tem seu momento. A mesma coisa
                 com Docs, Sheets e Slides."
-            </div><p><strong>Agora vamos treinar! Leia cada situação e escolha a ferramenta certa:</strong></p></section><section class="etapa" data-etapa="13" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
+            </div><button class="btn btn-secondary" id="slides-quiz-primeira-vitoria">Ver uma resposta de exemplo</button><div id="slides-quiz-primeira-vitoria-feedback" role="status" aria-live="polite" hidden>✅ Exemplo visto: uma carta longa combina com o Google Docs.</div><p><strong>Agora vamos treinar:</strong> leia cada situação e escolha a ferramenta certa:</p></section><section class="etapa" data-etapa="13" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
 <div class="quiz-pergunta">✉️ Sua irmã pediu para você escrever uma carta longa contando as novidades da família. Qual ferramenta usar?</div>
 <div class="quiz-opcoes" data-quiz="1">
 <button class="quiz-option" data-correct="true" data-feedback-correct="🎉 Isso mesmo! Carta é texto corrido — o Docs, a máquina de escrever digital, é o lugar certo." data-feedback-wrong="💡 Quase! Carta longa é texto corrido — o lugar certo é o Docs (a máquina de escrever digital da aula passada)."><span class="letra">A</span><span>Google Docs 📝</span></button>
@@ -333,10 +333,10 @@
 <div class="passo"><span class="passo-num">1</span><p><strong>Clique em "Tema"</strong> — fica no lado direito da tela</p></div>
 <div class="passo"><span class="passo-num">2</span><p><strong>Escolha o que você gosta</strong> — passe o mouse e veja as opções</p></div>
 <div class="passo"><span class="passo-num">3</span><p><strong>Clique para aplicar</strong> — pronto, a apresentação inteira muda de cara!</p></div>
-</div><p><strong>Teste aqui mesmo:</strong> clique nos temas abaixo e veja o slide mudar:</p></section><section class="etapa" data-etapa="20" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Escolhendo um tema bonito 🎨 — continuação</h2><div class="tema-botoes">
-<button class="tema-botao sel" id="tema-claro"><span class="tema-amostra am-claro"></span>🌿 Claro e limpo</button>
-<button class="tema-botao" id="tema-azul"><span class="tema-amostra am-azul"></span>💙 Azul calmo</button>
-<button class="tema-botao" id="tema-escuro"><span class="tema-amostra am-escuro"></span>🌙 Escuro</button>
+</div><button class="btn btn-secondary" id="slides-primeira-vitoria">Ver uma mudança segura</button><div id="slides-primeira-vitoria-feedback" role="status" aria-live="polite" hidden>✅ Você já viu a ideia principal: o tema muda a aparência do slide sem apagar o conteúdo.</div><p><strong>Agora teste:</strong> clique nos temas abaixo e veja o slide mudar:</p></section><section class="etapa" data-etapa="20" data-fase-origem="7"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Escolhendo um tema bonito 🎨 — continuação</h2><div class="tema-botoes">
+<button class="tema-botao sel" id="tema-claro" aria-pressed="true"><span class="tema-amostra am-claro"></span>🌿 Claro e limpo</button>
+<button class="tema-botao" id="tema-azul" aria-pressed="false"><span class="tema-amostra am-azul"></span>💙 Azul calmo</button>
+<button class="tema-botao" id="tema-escuro" aria-pressed="false"><span class="tema-amostra am-escuro"></span>🌙 Escuro</button>
 </div><div class="slides-canvas tema-claro" id="e7-canvas" style="max-width: 560px; margin: 0 auto;">
 <div class="slides-titulo" id="e7-titulo">Minha Família 💙</div>
 <div class="slides-sub" id="e7-sub">por Dona Zilda</div>
@@ -524,7 +524,7 @@
 <div class="slides-titulo">Minha Família 💙</div>
 <div class="slides-sub">por Dona Zilda</div>
 </div>
-</div><div class="apresentacao-overlay" id="apresentacao-overlay">
+</div><div class="apresentacao-overlay" id="apresentacao-overlay" role="dialog" aria-modal="true" aria-label="Apresentação em tela cheia" aria-labelledby="apres-contador" tabindex="-1" hidden>
 <div class="apres-contador" id="apres-contador">Slide 1 de 3</div>
 <div class="apres-slide" id="apres-slide"></div>
 <div class="apres-hint">
@@ -569,8 +569,8 @@
 </div><p><strong>Simule aqui:</strong> escolha a permissão, digite um e-mail e envie:</p></section><section class="etapa" data-etapa="42" data-fase-origem="13"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Salvar automático e compartilhar ☁️ — continuação</h2><div class="form-compartilhar">
 <label>O que a pessoa pode fazer?</label>
 <div class="perm-botoes">
-<button class="perm-botao sel" id="perm-ver">👁️ Pode ver</button>
-<button class="perm-botao" id="perm-editar">✏️ Pode editar</button>
+<button class="perm-botao sel" id="perm-ver" aria-pressed="true">👁️ Pode ver</button>
+<button class="perm-botao" id="perm-editar" aria-pressed="false">✏️ Pode editar</button>
 </div>
 <label for="e13-email">E-mail da pessoa</label>
 <input autocomplete="off" id="e13-email" placeholder="ex.: filha@gmail.com" type="email"/>
@@ -745,11 +745,24 @@
             var temaAzul = document.getElementById('tema-azul');
             var temaEscuro = document.getElementById('tema-escuro');
             var canvasTema = document.getElementById('e7-canvas');
+            var quizPrimeiraVitoria = document.getElementById('slides-quiz-primeira-vitoria');
+            var quizPrimeiraVitoriaFeedback = document.getElementById('slides-quiz-primeira-vitoria-feedback');
+            if (quizPrimeiraVitoria && quizPrimeiraVitoriaFeedback) quizPrimeiraVitoria.addEventListener('click', function () {
+                quizPrimeiraVitoriaFeedback.hidden = false;
+            });
+            var primeiraVitoria = document.getElementById('slides-primeira-vitoria');
+            var primeiraVitoriaFeedback = document.getElementById('slides-primeira-vitoria-feedback');
+            if (primeiraVitoria && primeiraVitoriaFeedback) primeiraVitoria.addEventListener('click', function () {
+                primeiraVitoriaFeedback.hidden = false;
+            });
 
             function aplicarTema(classe, botao) {
                 canvasTema.className = 'slides-canvas ' + classe;
                 [temaClaro, temaAzul, temaEscuro].forEach(function (b) { b.classList.remove('sel'); });
                 botao.classList.add('sel');
+                [temaClaro, temaAzul, temaEscuro].forEach(function (b) {
+                    b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
+                });
             }
             if (temaClaro) temaClaro.addEventListener('click', function () { aplicarTema('tema-claro', temaClaro); });
             if (temaAzul) temaAzul.addEventListener('click', function () { aplicarTema('tema-azul', temaAzul); });
@@ -844,14 +857,25 @@
                 slideAtual = slidesData.length - 1;
                 simRender();
                 simSucesso.style.display = 'block';
-                simSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                simSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
             if (simImagem) simImagem.addEventListener('click', function () {
                 slidesData[slideAtual].img = !slidesData[slideAtual].img;
                 simRender();
                 simSucesso.style.display = 'block';
-                simSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                simSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
+            var simToolbarMais = document.getElementById('sim-btn-mais');
+            var simToolbarImg = document.getElementById('sim-btn-img');
+            function proxyButton(source, target) {
+                if (!source || !target) return;
+                source.addEventListener('click', function () { target.click(); });
+                source.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); target.click(); }
+                });
+            }
+            proxyButton(simToolbarMais, simNovoSlide);
+            proxyButton(simToolbarImg, simImagem);
 
             // ============================================================
             // Etapa 12 — Tela cheia (apresentação simulada)
@@ -869,6 +893,8 @@
             var btnApresentar = document.getElementById('apresentar-btn');
             var btnSair = document.getElementById('apres-sair');
             var apresSucesso = document.getElementById('apres-sucesso');
+            var apresTrigger = null;
+            var apresBackground = [];
 
             function apresMostrar() {
                 apresSlide.innerHTML = slidesApresentacao[apresIdx];
@@ -878,15 +904,26 @@
             function apresAbrir() {
                 apresIdx = 0;
                 apresMostrar();
+                apresTrigger = document.activeElement === document.body ? btnApresentar : document.activeElement;
+                apresBackground = Array.prototype.filter.call(
+                    overlay.parentElement.children,
+                    function (el) { return el !== overlay; }
+                );
+                apresBackground.forEach(function (el) { el.inert = true; });
+                overlay.hidden = false;
                 overlay.classList.add('modo-tela-cheia');
                 telaCheiaAtiva = true;
+                window.requestAnimationFrame(function () { btnSair.focus(); });
             }
 
             function apresFechar() {
                 overlay.classList.remove('modo-tela-cheia');
+                overlay.hidden = true;
                 telaCheiaAtiva = false;
+                apresBackground.forEach(function (el) { el.inert = false; });
                 apresSucesso.style.display = 'block';
-                apresSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                apresSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+                if (apresTrigger) apresTrigger.focus();
             }
 
             function apresAvancar() {
@@ -914,6 +951,12 @@
                     e.stopImmediatePropagation();
                     apresFechar();
                 }
+                if (e.key === 'Tab') {
+                    var focaveis = [btnSair].filter(function (el) { return el && !el.disabled; });
+                    if (focaveis.length && e.shiftKey && document.activeElement === focaveis[0]) {
+                        e.preventDefault(); focaveis[0].focus();
+                    }
+                }
             }, true);
 
             // ============================================================
@@ -927,6 +970,8 @@
             var permVer = document.getElementById('perm-ver');
             var permEditar = document.getElementById('perm-editar');
             var permissaoEscolhida = 'Pode ver';
+            if (permVer) permVer.setAttribute('aria-pressed', 'true');
+            if (permEditar) permEditar.setAttribute('aria-pressed', 'false');
 
             if (e13Nome) e13Nome.addEventListener('input', function () {
                 e13Titulo.textContent = e13Nome.value.trim() || 'Apresentação sem título';
@@ -934,11 +979,15 @@
             if (permVer) permVer.addEventListener('click', function () {
                 permVer.classList.add('sel');
                 permEditar.classList.remove('sel');
+                permVer.setAttribute('aria-pressed', 'true');
+                permEditar.setAttribute('aria-pressed', 'false');
                 permissaoEscolhida = 'Pode ver';
             });
             if (permEditar) permEditar.addEventListener('click', function () {
                 permEditar.classList.add('sel');
                 permVer.classList.remove('sel');
+                permVer.setAttribute('aria-pressed', 'false');
+                permEditar.setAttribute('aria-pressed', 'true');
                 permissaoEscolhida = 'Pode editar';
             });
             if (e13Enviar) e13Enviar.addEventListener('click', function () {
@@ -955,7 +1004,7 @@
                     : 'A pessoa <strong>também poderá editar</strong> — use com pessoas de confiança.';
                 e13Sucesso.style.display = 'block';
                 e13Sucesso.innerHTML = '📤 <strong>Convite enviado para ' + email.replace(/</g, '&lt;') + '!</strong> "' + nome.replace(/</g, '&lt;') + '" foi compartilhada com permissão "' + permissaoEscolhida + '". ' + verOuEditar + ' Para a maioria dos casos, "Pode ver" é o suficiente.';
-                e13Sucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                e13Sucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
         })();
     </script>

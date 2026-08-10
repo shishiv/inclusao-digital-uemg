@@ -279,6 +279,8 @@
                 a agenda pode estar vazia. Não se preocupe — o próximo passo ensina
                 a adicionar sua primeira pessoa!
             </div>
+            <button class="btn btn-secondary" id="agenda-primeira-vitoria">Explorar uma agenda de exemplo</button>
+            <div id="agenda-primeira-vitoria-feedback" role="status" aria-live="polite" hidden>✅ Agenda encontrada! No celular, seus contatos ficam reunidos neste caderninho digital.</div>
         </section>
 
         <section class="etapa" data-etapa="9">
@@ -925,6 +927,12 @@
         (function () {
             "use strict";
 
+            var agendaPrimeiraVitoria = document.getElementById('agenda-primeira-vitoria');
+            var agendaPrimeiraVitoriaFeedback = document.getElementById('agenda-primeira-vitoria-feedback');
+            if (agendaPrimeiraVitoria && agendaPrimeiraVitoriaFeedback) agendaPrimeiraVitoria.addEventListener('click', function () {
+                agendaPrimeiraVitoriaFeedback.hidden = false;
+            });
+
             // ===== Estado específico da aula 03 =====
             var contatoAdicionado = false;
             var mensagemEnviada = false;
@@ -956,7 +964,7 @@
                 campoNome.style.borderColor = '';
                 contatoAdicionado = true;
                 agendaSucesso.style.display = 'block';
-                agendaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                agendaSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
 
             // ===== Simulador de conversa =====

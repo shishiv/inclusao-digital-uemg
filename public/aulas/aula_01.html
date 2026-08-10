@@ -1482,7 +1482,7 @@
                 campoEmail.value = '';
                 campoSenha.value = '';
                 campoSenha2.value = '';
-                contaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                contaSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
 
             // ===== Simulador: enviar e-mail =====
@@ -1526,7 +1526,7 @@
                 campoPara.value = '';
                 campoAssunto.value = '';
                 campoMensagem.value = '';
-                emailSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                emailSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
         })();
     </script>

@@ -699,7 +699,7 @@
                 btnSeguir.textContent = seguindo ? '✓ Seguindo' : '➕ Seguir';
                 if (seguindo) {
                     seguirSucesso.style.display = 'block';
-                    seguirSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    seguirSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                 } else {
                     seguirSucesso.style.display = 'none';
                 }
@@ -766,7 +766,7 @@
                 btnPublicar.closest('.feed-card').appendChild(post);
 
                 instaSucesso.style.display = 'block';
-                instaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                instaSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
             instaFrase.addEventListener('keydown', function (e) { if (e.key === 'Enter') btnPublicar.click(); });
         })();

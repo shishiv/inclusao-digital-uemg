@@ -191,7 +191,7 @@
 
 <section class="etapa" data-etapa="10"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem? — continuação</h2><p>Quando você guarda algo na nuvem, o documento ou a foto <strong>não fica preso
             a um aparelho só</strong>. Se o celular quebrar, se o computador estragar ou se a
-            casa pegar fogo, o que está na nuvem continua salvo.</p><p><strong>Vamos testar? Toque na resposta certa:</strong></p></section>
+            casa pegar fogo, o que está na nuvem continua salvo.</p><button class="btn btn-secondary" id="nuvem-revelar">Ver um exemplo seguro</button><div id="nuvem-revelar-feedback" role="status" aria-live="polite" hidden>✅ Exemplo visto: a mesma foto pode aparecer no celular, no computador e em outro aparelho.</div><p><strong>Depois, toque na resposta certa:</strong></p></section>
 
 <section class="etapa" data-etapa="11"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><h2>Primeiro: o que é a nuvem? — continuação</h2><div class="quiz-card">
 <div class="quiz-pergunta">
@@ -796,6 +796,12 @@
         (function () {
             "use strict";
 
+            var nuvemRevelar = document.getElementById('nuvem-revelar');
+            var nuvemFeedback = document.getElementById('nuvem-revelar-feedback');
+            if (nuvemRevelar && nuvemFeedback) nuvemRevelar.addEventListener('click', function () {
+                nuvemFeedback.hidden = false;
+            });
+
             // ===== Simulador 1: criar pasta no Drive (etapa 6) =====
             var btnNovo = document.getElementById('btn-drive-novo');
             var opcoes = document.getElementById('drive-opcoes');
@@ -825,7 +831,7 @@
                 campoPasta.style.borderColor = '';
                 criar.style.display = 'none';
                 pastaSucesso.style.display = 'block';
-                pastaSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                pastaSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
 
             // ===== Simulador 2: upload de documento (etapa 7) =====
@@ -848,7 +854,7 @@
                 item.textContent = '📄 CPF — Maria da Silva.pdf';
                 driveLista2.appendChild(item);
                 uploadSucesso.style.display = 'block';
-                uploadSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                uploadSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
 
             // ===== Simulador 3: criar álbum no Google Fotos (etapa 12) =====
@@ -875,7 +881,7 @@
                     albumSucesso.style.background = '#FBEAEA';
                     albumSucesso.style.borderColor = 'var(--chita-vermelha)';
                     albumSucesso.innerHTML = '💡 <strong>Quase lá!</strong> Toque em pelo menos uma foto do evento para selecioná-la.';
-                    albumSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    albumSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
                     return;
                 }
                 if (!nome) {
@@ -894,7 +900,7 @@
                     '. No Google Fotos de verdade, é exatamente assim: escolher, nomear e concluir!';
                 campoAlbum.value = '';
                 campoAlbum.style.borderColor = '';
-                albumSucesso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                albumSucesso.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
             });
         })();
     </script>

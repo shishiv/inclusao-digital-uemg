@@ -9,6 +9,7 @@ export default defineConfig({
         aulas: resolve(__dirname, 'aulas.html'),
         pratique: resolve(__dirname, 'pratique.html'),
         comunidade: resolve(__dirname, 'comunidade.html'),
+        certificado: resolve(__dirname, 'certificado.html'),
       },
     },
   },
