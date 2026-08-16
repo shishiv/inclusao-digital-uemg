@@ -1,0 +1,10 @@
+[surface=aula role=bg ratio=16:9 quality=low model=gpt-image-2 world="Ateliê de Autonomia"]
+Use case: lesson cover ambient scene for a communication lesson in an accessible digital-learning portal for older adults.
+Asset type: wide ambient scene, opaque background, no interface.
+Scene/backdrop: a warm Brazilian home living room with a light wood table, a plant, family photo frames showing only blank paper rectangles, and a soft daylight window.
+Subject: a dignified Brazilian grandmother aged about 68 holding a smartphone in both hands and smiling gently at it as if on a video call; a companion beside her looks on warmly.
+Style/medium: tactile editorial illustration with hand-cut paper layers, soft graphite outlines, and matte ink textures; respectful, warm, never childish, never photorealistic.
+Composition/framing: 16:9 wide at seated eye level; subjects sit on the right; keep a calm off-white copy-safe field on the left; the phone screen is a blank pale geometric field, never a real interface.
+Lighting/mood: warm afternoon daylight, closeness and calm confidence.
+Color palette: deep university blue, clear sky blue, warm terracotta, marigold, leaf green, off-white paper.
+Constraints: no readable words, letters, numbers, logos, badges, institutional marks, chat bubbles with text, app interfaces, invented branding, or distorted hands.

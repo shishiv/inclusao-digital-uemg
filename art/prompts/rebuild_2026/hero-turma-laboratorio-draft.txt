@@ -1,0 +1,9 @@
+Use case: visual evidence draft for the homepage of an accessible digital-learning portal.
+Asset type: wide ambient scene, opaque background, no interface.
+Scene/backdrop: an airy Brazilian public-university computer laboratory in Frutal, Minas Gerais, with pale-blue painted walls, light wood tables, large daylight windows, leafy plants, and a small fabric noticeboard with blank shapes only.
+Subject: three Brazilian adults aged 60 to 75 learn together with one young adult monitor; an older woman guides a mouse while her classmate points to a keyboard, and the monitor listens beside them as an equal.
+Style/medium: tactile editorial illustration with hand-cut paper, soft graphite outlines, and matte ink textures, dignified and contemporary, not childish and not photorealistic.
+Composition/framing: 16:9 wide at seated eye level; the active learning group occupies the right two-thirds; leave a calm, lightly textured copy-safe area in the left third; show device shells only with blank pale screens.
+Lighting/mood: clear late-morning daylight, calm attention, mutual respect.
+Color palette: deep university blue, clear sky blue, warm terracotta, marigold, leaf green, and off-white paper.
+Constraints: no readable words, letters, numbers, logos, badges, institutional marks, data, QR codes, application interfaces, invented brand marks, or distorted hands.

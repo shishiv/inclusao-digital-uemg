@@ -1,0 +1,9 @@
+[surface=player role=subject ratio=1:1 quality=low model=gpt-image-2 world="Ateliê de Autonomia"]
+Use case: reusable simulator avatar for an accessible digital-learning portal for older adults.
+Asset type: single centered portrait subject, opaque background.
+Subject: a warm, dignified Brazilian grandmother aged about 70 with silver curly hair, gentle smile, simple terracotta blouse, calm confident expression, head and shoulders only.
+Style/medium: tactile editorial illustration with hand-cut paper layers, soft graphite outlines, and matte ink textures; respectful, not childish, not photorealistic.
+Composition/framing: 1:1 centered portrait with even breathing room on all sides, suitable for a round avatar crop.
+Lighting/mood: soft even daylight, friendly and capable.
+Color palette: deep university blue, sky blue, warm terracotta, marigold, leaf green, off-white paper background.
+Constraints: no readable words, letters, numbers, logos, jewelry brands, institutional marks, or distorted features.
