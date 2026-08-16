@@ -11,7 +11,7 @@
 **Status:** proposta de redesenho para revisão do captain. Não altera páginas de produção.
 **Baseline:** `origin/main` em `2c59781` ("feat: close user surface readiness gate").
 **Idioma do produto:** português brasileiro. **Stack:** Vite 7 + HTML/CSS/JS puro, deploy Vercel.
-**Fonte de intenção:** sessão Hermes `20260809_190458_3e1408` + `PRODUCT.md` + `DESIGN.md` + `SEMINARIO/DOCS`.
+**Fonte de intenção:** sessão de design recuperada + `PRODUCT.md` + `DESIGN.md` + `SEMINARIO/DOCS`.
 
 Este documento é a especificação única. Ele reaproveita o produto que já existe e propõe um próximo
 passo coerente: substituir o mundo visual "Colcha de Retalhos" por um mundo mais digno e legível para
@@ -117,7 +117,7 @@ Nada abaixo pode ser removido ou alterado pelo redesenho sem autorização expl�
 
 ## 3. O que o redesenho SUBSTITUI (e por quê)
 
-Fundamentado na sessão Hermes e no código atual. A sessão pediu explicitamente: "tornar a page o
+Fundamentado na sessão de design recuperada e no código atual. A sessão pediu explicitamente: "tornar a page o
 ambiente das aulas", "conteúdo denso e real", "etapas guiadas + renderizações reais + tooltips",
 "trilha coesa que ensina os pré-requisitos", "uma etapa = uma tela", "logos reais". Tudo isso **fica**.
 O que muda é só o mundo visual e três decisões de legibilidade.
@@ -231,7 +231,7 @@ completa por aula/trilha é regenerada na fase de implementação (seção 11), 
 
 ## 7. Evidência gerada (contact sheet)
 
-Folha de contato dos 4 assets selecionados (rótulos por papel):
+Folha de contato dos 5 assets selecionados (rótulos por papel):
 
 ![Contact sheet - Ateliê de Autonomia](public/assets/ilustracoes/rebuild_2026/_contact-sheet-rebuild-2026.png)
 
@@ -260,11 +260,12 @@ Comparados lado a lado, compartilham material, paleta, luz e dignidade - mundo c
 - **Ledger legível por máquina:** `art/provenance/rebuild_2026-assets.json` - contém para cada artefato:
   arquivo, superfície, papel, proporção, dimensões, SHA-256 (16), qualidade, prompt, disposição
   (selected/rejected-draft), derivação e resultado do read-back.
-- **Receipt de infraestrutura (medido nesta tarefa):** neste deployment Azure `gpt-image-2`,
-  `quality=low` completou sempre; `quality=medium/high` falhou em toda tentativa por erro de rede
-  (timeout de transporte), mesmo com o endpoint raiz respondendo HTTP 200. Por isso os assets
+- **Receipt de infraestrutura (observação datada de 2026-08-16, janela medida - não é garantia
+  permanente):** com Azure OpenAI v1 / `gpt-image-2`, `quality=low` completou nas 7 tentativas medidas;
+  `quality=medium` falhou nas 2 tentativas medidas e `quality=high` nas 4 tentativas medidas (timeout de
+  transporte), enquanto o endpoint configurado respondia HTTP 200 na mesma janela. Por isso os assets
   selecionados foram gerados em `low` (saída ainda limpa e revisável). Finais de produção podem ser
-  re-renderizados em qualidade maior quando o deployment aceitar renders maiores. Registrado no ledger.
+  re-renderizados em qualidade maior depois. Contagens no ledger `art/provenance/rebuild_2026-assets.json`.
 - **Regra de sobrescrita:** nomeação versionada `-vNN`; nada sobrescreve asset anterior em silêncio.
 
 ---
@@ -417,7 +418,7 @@ existem e permanecem; a imagem ensina aparência, e rótulos/setas ficam em HTML
 
 ---
 
-## 11. Sequência de implementação (executável sem voltar ao transcript Hermes)
+## 11. Sequência de implementação (executável sem voltar à sessão de design recuperada)
 
 Ordem em camadas (grow-in-layers). Cada fase é verificável e não quebra a anterior.
 
@@ -528,7 +529,7 @@ Os assets gerados são **ilustração sintética** para revisão. Antes de produ
 - Não anunciar trilha futura como lançada nem prometer data de início não confirmada.
 
 **Privacidade e segurança.**
-- Nenhuma credencial, chave ou payload da sessão Hermes entra no Git.
+- Nenhuma credencial, chave ou payload da sessão de design recuperada entra no Git.
 - Nenhuma foto ou rosto de aluno/monitor/coordenador real; sujeitos gerados são composições inventadas.
 - Sem PII legível em imagens (documentos e telas ficam em branco/genéricos).
 - **Formulário de sugestão (LGPD):** coletar o mínimo (sugestão é obrigatória; nome/e-mail opcionais);
@@ -551,10 +552,10 @@ Os assets gerados são **ilustração sintética** para revisão. Antes de produ
 
 ## Anexo A - Ponteiros de evidência
 
-- Baseline: `origin/main` @ `2c59781`; relatório de recuperação:
-  `/home/shiv/tec-workspace/data/inclusao-hermes-branch-recovery/report.md`.
-- Intenção da sessão: Hermes `20260809_190458_3e1408` (mensagens de usuário 3503, 3537, 3584, 3615, 3629,
-  4200, 4314, 4726, 4763 confirmam: ambiente de aulas, densidade, coesão, uma-etapa-uma-tela, logos reais).
+- Baseline: `origin/main` @ `2c59781`. Contexto de intenção: sessão de design recuperada, resumida em
+  relatório interno de recuperação (documento fora do repositório, sem IDs privados no conteúdo público).
+- Intenção da sessão de design recuperada (confirmada nas mensagens do usuário): ambiente de aulas,
+  densidade de conteúdo, coesão de pré-requisitos, uma-etapa-uma-tela, logos reais.
 - Produto/design atuais: `PRODUCT.md`, `DESIGN.md`.
 - Propostas reais das trilhas: `.next_steps/trilhas_programa_inclusao_digital.html` (documento de trabalho,
   Março 2026); Processo SEI 2350.01.0000627/2025-48; Registro SIGA 24535/2025.

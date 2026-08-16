@@ -63,7 +63,7 @@ Programa de extensão universitária que ensina tecnologia para pessoas 60+ usan
 ## Ambiente de build e ferramentas de agente
 
 - Dev/preview: rode `portless run npx vite` (não `portless run npm run dev`, que esconde o Vite e não recebe `--port`). Nunca cite portas numéricas em docs/reviews.
-- Geração de imagem (Azure `gpt-image-2` via `image_generate`): neste deployment só `quality=low` completa; `medium`/`high` estouram timeout de rede, e o helper não aceita imagem de referência (sem image-to-image). Gere por texto.
+- Geração de imagem (Azure OpenAI v1 / `gpt-image-2` via `image_generate`): em janela medida (2026-08-16) só `quality=low` completou; `medium`/`high` estouraram timeout de rede, e o helper não aceita imagem de referência (sem image-to-image). Gere por texto. Ver ledger em `art/provenance/`.
 - `/tmp` é tmpfs e pode chegar a 100%. Direcione temporários para `/var/tmp`. Para `chrome-devtools-axi`: `TMPDIR=/var/tmp`, `CHROME_DEVTOOLS_AXI_USER_DATA_DIR` em `/var/tmp`, e `CHROME_DEVTOOLS_AXI_CHROME_ARGS=--ignore-certificate-errors` (CA do portless).
 
 ## Maintaining this file

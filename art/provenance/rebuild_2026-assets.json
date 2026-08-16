@@ -4,21 +4,18 @@
   "purpose": "Review evidence for SPEC.md rebuild of the Inclusão Digital UEMG portal. These assets prove the proposed visual world across every raster role; they are not yet wired into production pages.",
   "generator": {
     "tool": "image_generate (@amaster.ai/pi-image-gen)",
-    "configuredProvider": "pi-image-gen.providers.openai -> Azure providers.openai",
-    "configuredBaseUrl": "https://tritec-main.services.ai.azure.com/openai/v1",
+    "configuredProvider": "configured image provider (Azure OpenAI v1 compatible)",
     "configuredModel": "gpt-image-2",
-    "credentialsHandling": "AZURE_OPENAI_API_KEY read from environment by the tool; never printed or committed"
+    "credentialsHandling": "Credential read from the environment by the tool; never printed, logged, or committed"
   },
   "infrastructureReceipt": {
-    "observation": "On this Azure gpt-image-2 deployment, image_generate with quality=low completed reliably, while quality=medium and quality=high failed every attempt with a network error (request timeout at the transport layer). The Azure Foundry root endpoint answered HTTP 200 during the same window, so the base connection was healthy.",
-    "measurements": {
-      "low_1024x1024": "success",
-      "low_1536x864": "success",
-      "medium_1536x864": "failed x2 (network error)",
-      "high_1536x864": "failed x3 (network error)",
-      "high_1536x864_with_reference_image": "failed x2 (network error); the tec-image Azure helper also documents that this deployment does not accept a reference image for image-to-image"
+    "observation": "Dated observation on 2026-08-16 (a measured window, not a permanent guarantee): with Azure OpenAI v1 / gpt-image-2, image_generate at quality=low completed in every measured attempt, while quality=medium and quality=high returned a transport-layer network timeout in the measured attempts below. The configured endpoint answered HTTP 200 during the same window, so the base connection was healthy.",
+    "measurements_2026-08-16": {
+      "low": "7/7 succeeded (1x 1024x1024, 6x 1536x864 including the rejected draft)",
+      "medium_1536x864": "0/2 succeeded (network timeout)",
+      "high_1536x864": "0/4 succeeded (network timeout); attempts that also passed a reference image failed, and the tec-image helper documents that this path does not accept a reference image for image-to-image"
     },
-    "decision": "Selected assets were generated at quality=low, which for gpt-image-2 still yields clean, review-grade output. Production finals may be re-rendered at a higher quality once the deployment accepts larger renders, or via a queue/retry path. Recorded here as the receipt behind the quality choice."
+    "decision": "Selected assets were generated at quality=low, which for gpt-image-2 still yields clean, review-grade output. Production finals may be re-rendered at a higher quality later, or via a queue/retry path. Recorded here as the receipt behind the quality choice."
   },
   "world": {
     "name": "Ateliê de Autonomia",
