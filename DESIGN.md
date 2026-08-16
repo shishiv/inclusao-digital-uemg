@@ -2,119 +2,128 @@
 
 <!-- impeccable:design-schema 1 -->
 
-Data da build: agosto 2026 · Mundo: **Colcha de Retalhos** (direção atribuída pelo dado, seed `inclusao-uemg-roll-01`, candidato 6 da lista grounded)
+Data da build: agosto de 2026 · Mundo: **Ateliê de Autonomia**
 
-## Mundo Visual
+## Mundo visual
 
-O portal é uma colcha que o aluno costura aula a aula. Cada aula concluída = um retalho
-costurado na colcha da sua vida digital. O objeto da casa da avó brasileira (colcha de
-retalhos de chita) carrega o mecanismo do produto: progresso visível, cuidado, paciência,
-erro sem culpa (costura se desfaz e refaz).
+O portal é um ateliê calmo entre o laboratório público da universidade e a casa do aluno.
+Adultos 60+ aparecem como protagonistas capazes. Cada aula concluída é uma peça montada na
+jornada digital. O portal recusa nostalgia infantilizada, manuscrito decorativo e metáforas de
+trabalho doméstico.
 
-### Paleta (chita sobre algodão cru)
+### Paleta
 
 | Token | Valor | Papel |
 |---|---|---|
-| `--algodao` | `#FAF6EC` | Fundo da página (algodão cru) |
-| `--algodao-escuro` | `#F1EADA` | Superfície rebaixada, trilho de progresso |
-| `--retalho` | `#FFFDF7` | Cards (retalhos claros) |
-| `--chita-vermelha` | `#B5372C` | Primário de ação (botões principais) |
-| `--chita-vermelha-escura` | `#93281F` | Hover do primário |
-| `--chita-amarela` | `#E9B44C` | Acento (etiquetas, destaques, números) |
-| `--chita-amarela-bg` | `#FBF0D6` | Fundo de analogias |
-| `--chita-verde` | `#4E7D4A` | Sucesso, conclusão, "momento eu consigo" |
-| `--chita-verde-bg` | `#E9F0E4` | Fundo de conquistas |
-| `--chita-azul` | `#3E6C9E` | Âncora institucional UEMG (links, tooltips) |
-| `--chita-azul-bg` | `#E3ECF5` | Fundo de destaques |
-| `--chita-azul-escura` | `#1E4466` | Sidebar, footer, page-header |
-| `--linha` / `--linha-forte` | `#C9BCA4` / `#A8987E` | Bordas de costura |
-| `--bordado` | `#4A3B2A` | Texto principal (tom de terra, não cinza) |
-| `--bordado-suave` | `#7A6B55` | Texto secundário |
+| `--azul-uemg-profundo` | `#1E4466` | Sidebar, rodapé, títulos escuros e confiança institucional |
+| `--azul-ceu` | `#3E6C9E` | Links, apoio e destaque secundário |
+| `--terracota` | `#B5372C` | Ação principal |
+| `--terracota-escura` | `#93281F` | Hover da ação principal |
+| `--marigold` | `#E9B44C` | Acentos e etiquetas |
+| `--verde-folha` | `#4E7D4A` | Conclusão e sucesso |
+| `--papel` | `#FAF6EC` | Fundo de papel off-white |
+| `--papel-rebaixado` | `#F1EADA` | Superfícies rebaixadas e trilhos |
+| `--tinta` | `#3A3228` | Texto principal |
+| `--tinta-suave` | `#6B6152` | Texto secundário |
 
-Estratégia de cor: **Committed** — vermelho chita carrega as ações; azul UEMG âncora a
-confiança institucional; amarelo/verde pontuam estados.
+A cor tem função. Terracota é ação, verde é sucesso, azul é orientação e marigold é destaque.
+Estados nunca dependem apenas da cor.
 
 ### Tipografia
 
-| Papel | Fonte | Justificativa |
-|---|---|---|
-| Display/títulos | **Kalam** (700) | Letra de caderno — a "letra da vovó" nos retalhos; personalidade do mundo |
-| Corpo | **Open Sans** | Legibilidade 60+ (decisão de acessibilidade, não estética); escolha documentada no PRODUCT.md |
+- Títulos e corpo usam **Open Sans**, com peso 700 ou 800 para hierarquia.
+- Não há fonte manuscrita nas superfícies do portal ou das aulas.
+- Conteúdo geral usa no mínimo 18 px.
+- Conteúdo pedagógico e opções de quiz do player usam no mínimo 20 px.
+- Títulos equilibram linhas com `text-wrap: balance`; descrições mantêm medida legível.
 
-Escala: 15px–54px; conteúdo de aula nunca abaixo de 18px (`--texto-base: 1.15rem`).
+### Materiais
 
-### Materiais e texturas
-
-- **Trama de tecido**: `--trama` (repeating-linear-gradient sutil) aplicada em body,
-  sidebar e footer — o algodão cru.
-- **Linha de costura**: bordas `2px dashed` em cards, divisores e molduras; zigue-zague
-  decorativo (`--costura-decorativa`) em seções.
-- **Etiquetas de tecido**: badges `.etiqueta` com ponta à direita (como etiqueta de roupa).
-- **Retalhos**: `.retalho` — quadrados coloridos com leve sombra; estados: costurado
-  (cor sólida + check), futuro (tracejado + "?").
-- **Ilustrações geradas** (Azure gpt-image-2 via skill tec-image): hero da colcha,
-  avó em videochamada, textura de chita seamless. Nomeação tec-image
-  `<surface>-<sujeito>-<papel>-<proporcao>-v01` em `public/assets/ilustracoes/`.
+- Papel recortado em camadas, tinta fosca, contorno de grafite e madeira clara.
+- `textura-oficina-papel-bg-16x9-v01.png` é a textura de fundo ativa.
+- Divisores e molduras usam linhas sólidas de grafite suave. Não usam costura tracejada.
+- Sombras têm deslocamento e desfoque suaves. Cards usam cantos de 8 a 22 px.
 
 ## Componentes
 
-| Componente | Descrição |
+| Componente | Contrato |
 |---|---|
-| Sidebar | Azul profundo com trama, borda amarela, logo + título, trilhas "em breve"; off-canvas mobile |
-| `.btn` | Alvos ≥56px, pill, `scale(0.97)` no active; variantes primária/verde/amarela/secundária |
-| `.etiqueta` | Badge etiqueta de tecido (amarela/vermelha/verde/azul) |
-| `.colcha` | Grid 3×3 de retalhos com legenda — o objeto central do hero |
-| `.aula-item` | Card de aula: número colorido, tópicos em pills, ação "Aula Interativa" + link PDF (monitor) |
-| Player `.etapa` | 5 fases andragógicas, uma por tela, barra de progresso, navegação A com círculos de 58px nos cantos e teclado ←/→ |
-| `.player-scroll-hint` | Aparece somente quando a etapa tem overflow interno; informa “Role para continuar” e rola a área ao toque |
-| `.termo` / `.tooltip` | Vocabulário: primeiro uso = lição; reuso = tooltip etiqueta (hover + toque) |
-| `.mockup` | Simuladores fiéis de interface (WhatsApp, agenda) em HTML/CSS — nunca screenshots reais |
-| `.quiz-option` | Opções grandes com letra A/B/C/D; feedback sucesso/erro sem culpa |
-| `.momento` | Celebração "momento eu consigo" — verde→amarelo, retalho costurado |
+| Sidebar | Azul institucional, marca UEMG, cinco rotas e menu off-canvas no mobile |
+| `.btn` | Ação grande, alvo mínimo de 56 px, terracota para a ação primária |
+| `.papel-card` | Superfície elevada de papel com linha de grafite e sombra suave |
+| Peças de progresso | Nove peças numeradas para comunicar uma etapa por vez, sem pressionar o aluno |
+| `.aula-item` | Capa 16:9, número, tópicos, ação da aula e PDF discreto do monitor |
+| Player | Cinco fases andragógicas, uma etapa por tela e navegação pelos cantos |
+| `.termo` / `.tooltip` | Primeira lição introduz o termo; reaparições explicam por tooltip acessível |
+| Formulário de trilhas | Labels visíveis, erros por campo, consentimento LGPD e status ao vivo |
+| Status de trilha | Selo com texto e cor: ativa, em planejamento ou formato aberto |
 
-## Estados e interação
+## Página inicial
 
-- Progresso do player: `--progresso-preenchido` verde listrado, animação 500ms.
-- Retalho costura na colcha ao concluir aula (metáfora; animação com
-  `prefers-reduced-motion: reduce` → 0.01ms).
-- Erro de quiz: feedback explica o que fazer, nunca julga a pessoa.
-- Tooltip: hover (desktop) + toque (mobile); toque alterna `toque-ativo`.
+O primeiro viewport usa a cena `home-turma-laboratorio-bg-16x9-v01.png` com uma área clara
+para a promessa, a ação “Começar a Aula 1” e a explicação da ajuda disponível. A segunda
+seção reforça que ninguém aprende sozinho. A sequência de nove peças, as evidências do
+programa, as áreas de aprendizado, a aula recente e os acessos rápidos permanecem visíveis.
 
-## Regras de acessibilidade (60+)
+## Aulas e player
 
-1. Fonte de conteúdo ≥18px; contraste AA+ (texto marrom sobre algodão, branco sobre azul).
-2. Um passo por tela no player; botão Anterior sempre visível.
-3. Primeira interação de cada aula é trivial e garantida (autoeficácia — Di Giacomo 2019).
-4. `prefers-reduced-motion`: todas as animações colapsam.
-5. Foco visível: outline 4px azul.
-6. Alvos de toque ≥44px; botões ≥56px.
+- As nove capas usam a série Ateliê de Autonomia em 16:9.
+- Fotos didáticas reais e logos oficiais continuam como evidência de reconhecimento.
+- Simuladores seguem em HTML, CSS e SVG. Nenhuma interface vem de imagem gerada.
+- Dona Zilda e Seu José usam retratos sintéticos próprios do mundo Ateliê.
+- A barra de progresso comunica etapa concluída e peça montada.
+- `body` não rola no player. Overflow significativo acontece só dentro da etapa e aciona a dica de rolagem.
+- Setas navegam apenas fora de controles; a nova etapa recebe foco no `h2`; Escape fecha tooltip e menu.
 
-## Responsivo
+## Trilhas
 
-- `≤1100px`: hero empilha, features 2 col, footer 2 col.
-- `≤900px`: stats 2×2, aula-item colapsa.
-- `≤768px`: sidebar off-canvas + mobile header com hambúrguer; player nav empilha;
-  tooltips reposicionam.
-- `≤480px`: colcha 2 col, botões full-width.
-- Aula 09 preserva o formato de slides, mas mantém toolbar global com retorno às aulas e ajuda, além de safe area na navegação inferior.
+`/trilhas.html` é uma página de leitura e participação, não uma página de venda. Ela mostra:
 
-## Assets
+1. Inclusão Digital 60+ como trilha ativa com nove aulas.
+2. Inteligência Artificial para Todos como proposta em planejamento.
+3. Tecnologia e Mercado de Trabalho como proposta em planejamento.
+4. Palestras e Cursos com Convidados como formato aberto.
 
-- `public/assets/ilustracoes/` — hero-colcha-retalhos-16x9-v01, aula-avo-videochamada-subject-9x16-v01, textura-chita-floral-bg-16x9-v01 (gerados via Azure gpt-image-2; prompts em `art/prompts/`).
-- `public/assets/mockups/` — simuladores de interface (aula_03 embute os primeiros).
-- Índice e curadoria: `public/assets/README.md`.
+Cards usam `<details>` para módulos em divulgação progressiva. Trilha ativa pode abrir as aulas.
+Trilhas futuras convidam a sugerir ou colaborar. Nenhuma delas oferece um botão para começar ou
+data de lançamento.
+
+O formulário usa `POST` para um endpoint Formspree configurável. Enquanto o atributo
+`data-endpoint-configured` é `false`, a página informa com clareza que o envio ainda não está
+configurado e não transmite dados. Quando estiver ligado, o JavaScript envia o `FormData`,
+anuncia sucesso ou falha com `role="status"` e mantém os mesmos campos e consentimento.
+
+## Acessibilidade e responsividade
+
+1. Foco visível de 4 px em todos os controles.
+2. Alvos de toque com pelo menos 44 px. Botões principais têm 56 px.
+3. Menu móvel move foco para o primeiro link, torna o conteúdo inerte e fecha com Escape.
+4. `prefers-reduced-motion: reduce` colapsa animações e transições.
+5. A Home, Aulas, Pratique, Comunidade e Trilhas passam para uma coluna em telas pequenas.
+6. O player colapsa `.etapa-grid` para uma coluna e coloca o visual antes do texto no mobile.
+7. O formulário não bloqueia o botão antes da validação. Erros recebem `aria-invalid`,
+   `aria-describedby` e foco no primeiro campo inválido.
+
+## Assets ativos
+
+| Asset | Uso |
+|---|---|
+| `home-turma-laboratorio-bg-16x9-v01.png` | Home e comunidade |
+| `aula-fundamentos-computador` até `aula-celebracao-conquistas` | Nove capas de aula |
+| `avatar-dona-zilda-subject-1x1-v01.png` | Simuladores de Dona Zilda |
+| `avatar-seu-jose-subject-1x1-v01.png` | Simuladores de Seu José |
+| `textura-oficina-papel-bg-16x9-v01.png` | Fundo global de papel |
+| `roadmap-trilhas-futuras-bg-16x9-v01.png` | Hero de `/trilhas.html` |
+
+Todo asset gerado tem prompt em `art/prompts/rebuild_2026/` e receipt em
+`art/provenance/rebuild_2026-assets.json`. A freeze-list preserva câmera no nível dos olhos,
+luz quente, papel recortado, telas vazias e pessoas adultas brasileiras capazes.
 
 ## Decisões registradas
 
-- **Open Sans como corpo**: overused segundo detectores, mas é escolha de acessibilidade
-  para leitura 60+ (legibilidade comprovada, peso 400-700 disponível) — não é default estético.
-- **Bordas laterais em seções**: costura `dashed`, não sólida (evita tell de side-tab).
-- **PDFs**: rebaixados a "material do monitor" (link discreto sob o botão de aula interativa).
-- **Quizzes**: integrados às aulas (fase "Sua Vez"); pratique.html mantém sistema próprio
-  (`#quiz-container`) — o handler genérico do main.js não interfere.
-- **Trilhas futuras** (IA, Mercado, Palestras): anunciadas "em breve" na sidebar, sem conteúdo.
-- **Piso tipográfico das aulas**: conteúdo pedagógico e opções de quiz usam no mínimo 20px em desktop e mobile; overflow interno é preferível a reduzir a fonte e sempre recebe affordance condicional de rolagem.
-- **Contrato acessível do player**: apenas a etapa ativa permanece sem `hidden`; ao navegar, o foco vai para o novo `h2`; termos respondem a Enter/Space/Escape; feedback de quiz usa live region; “Concluir” retorna ao catálogo.
-- **Menu mobile**: abre com foco no primeiro item, torna o conteúdo principal inerte, fecha com Escape e restaura foco no botão de menu.
-- **Aula 09 especializada**: preserva slides, mas cada slide pode rolar internamente; o hint “Role para ver todo o slide” aparece apenas quando conteúdo significativo continua abaixo, ignora decoração e some no fim.
-- **Certificado**: ferramenta A4 standalone, sem shell do portal; preview atualiza automaticamente durante a digitação e a única ação principal é “Imprimir certificado”.
+- O Ateliê de Autonomia substitui a Colcha de Retalhos conforme `SPEC.md`.
+- Open Sans atende título e corpo para favorecer leitura 60+.
+- PDFs seguem como material discreto do monitor.
+- Certificado continua uma ferramenta A4 independente, com conteúdo factual em HTML e CSS.
+- Conteúdo, rotas, logos, fotos didáticas e atribuição institucional permanecem intactos.
+- O destino inicial do formulário é um serviço estático de formulários. Não há backend próprio.

@@ -1,50 +1,34 @@
 /* ==================================================================
    Inclusão Digital UEMG — Portal do Aluno
-   MUNDO VISUAL: COLCHA DE RETALHOS
-   Chita brasileira · linha de costura · algodão cru · etiquetas de tecido
+   MUNDO VISUAL: ATELIÊ DE AUTONOMIA
+   Papel recortado artesanal · grafite suave · laboratório e casa
    ================================================================== */
 
-/* CSS Variables — tokens do mundo */
+/* Tokens do mundo */
 :root {
-  /* Tecidos (paleta chita) */
-  --algodao: #FAF6EC;            /* fundo — algodão cru */
-  --algodao-escuro: #F1EADA;     /* superfície rebaixada */
-  --retalho: #FFFDF7;            /* card — retalho claro */
-  --chita-vermelha: #B5372C;     /* primário — vermelho-fogo de chita */
-  --chita-vermelha-escura: #93281F;
-  --chita-amarela: #E9B44C;      /* acento — mostarda */
-  --chita-amarela-bg: #FBF0D6;
-  --chita-verde: #4E7D4A;        /* sucesso — verde jardim */
-  --chita-verde-bg: #E9F0E4;
-  --chita-azul: #3E6C9E;         /* UEMG — azul institucional */
-  --chita-azul-bg: #E3ECF5;
-  --chita-azul-escura: #1E4466;  /* azul profundo UEMG */
-  --linha: #C9BCA4;              /* linha de costura (bordas) */
-  --linha-forte: #A8987E;
-  --bordado: #4A3B2A;            /* texto principal — tom de terra */
-  --bordado-suave: #7A6B55;      /* texto secundário */
-  --bordado-fraco: #A89B86;      /* texto terciário */
+  --papel: #FAF6EC;
+  --papel-rebaixado: #F1EADA;
+  --papel-elevado: #FFFDF7;
+  --terracota: #B5372C;
+  --terracota-escura: #93281F;
+  --marigold: #E9B44C;
+  --marigold-suave: #FBF0D6;
+  --verde-folha: #4E7D4A;
+  --verde-folha-suave: #E9F0E4;
+  --azul-ceu: #3E6C9E;
+  --azul-ceu-suave: #E3ECF5;
+  --azul-uemg-profundo: #1E4466;
+  --grafite-suave: #C9BCA4;
+  --grafite: #A8987E;
+  --tinta: #3A3228;
+  --tinta-suave: #6B6152;
+  --tinta-fraca: #8F8577;
   --branco: #FFFFFF;
 
-  /* Trama do tecido (fundo) */
-  --trama:
-    repeating-linear-gradient(
-      0deg,
-      rgba(74, 59, 42, 0.016) 0px,
-      rgba(74, 59, 42, 0.016) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(74, 59, 42, 0.016) 0px,
-      rgba(74, 59, 42, 0.016) 1px,
-      transparent 1px,
-      transparent 4px
-    );
+  --textura-papel: url('/assets/ilustracoes/textura-oficina-papel-bg-16x9-v01.png');
 
-  /* Tipografia — letra de caderno + leitura */
-  --font-display: 'Kalam', 'Segoe Print', cursive;
+  /* A mesma família sem serifa sustenta títulos e leitura para 60+. */
+  --font-display: 'Open Sans', system-ui, sans-serif;
   --font-body: 'Open Sans', system-ui, sans-serif;
 
   /* Escala — generosa para 60+ */
@@ -71,21 +55,21 @@
   --sombra-lg: 0 12px 32px rgba(74, 59, 42, 0.14);
   --sombra-vermelha: 0 6px 20px rgba(181, 55, 44, 0.28);
 
-  /* Cantos — retalho levemente arredondado */
+  /* Cantos — peca-progresso levemente arredondado */
   --raio-sm: 8px;
   --raio: 14px;
   --raio-lg: 22px;
   --raio-pill: 999px;
 
-  /* Costura — bordas tracejadas como linha */
-  --costura: 2px dashed var(--linha);
-  --costura-forte: 2.5px dashed var(--linha-forte);
+  /* Linhas de grafite estruturam divisores e molduras. */
+  --divisor-grafite: 1px solid var(--grafite-suave);
+  --divisor-grafite-forte: 2px solid var(--grafite);
 
   /* Motion — Emil + Apple */
-  --ease-costura: cubic-bezier(0.23, 1, 0.32, 1);
-  --veloz: 140ms var(--ease-costura);
-  --medio: 260ms var(--ease-costura);
-  --lento: 420ms var(--ease-costura);
+  --ease-atelie: cubic-bezier(0.23, 1, 0.32, 1);
+  --veloz: 140ms var(--ease-atelie);
+  --medio: 260ms var(--ease-atelie);
+  --lento: 420ms var(--ease-atelie);
 
   /* Layout */
   --sidebar-largura: 264px;
@@ -106,22 +90,22 @@ body {
   font-family: var(--font-body);
   font-size: var(--texto-base);
   line-height: 1.75;
-  color: var(--bordado);
-  background: var(--algodao);
-  background-image: var(--trama);
+  color: var(--tinta);
+  background: var(--papel);
+  background-image: var(--textura-papel);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; display: block; }
-a { color: var(--chita-azul); text-decoration: none; }
+a { color: var(--azul-ceu); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font-family: inherit; cursor: pointer; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  color: var(--bordado);
+  color: var(--tinta);
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
@@ -130,30 +114,30 @@ h1 { font-size: var(--texto-3xl); }
 h2 { font-size: var(--texto-2xl); }
 h3 { font-size: var(--texto-xl); }
 
-::selection { background: var(--chita-amarela); color: var(--bordado); }
+::selection { background: var(--marigold); color: var(--tinta); }
 
 :focus-visible {
-  outline: 4px solid var(--chita-azul-escura);
+  outline: 4px solid var(--azul-uemg-profundo);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 .sidebar :focus-visible,
 .mobile-header :focus-visible {
-  outline-color: var(--chita-amarela);
+  outline-color: var(--marigold);
 }
 
 /* ==================================================================
-   Sidebar — tecido com linha de costura
+   Sidebar — papel, tinta e marca institucional
    ================================================================== */
 .sidebar {
   position: fixed;
   top: 0; left: 0; bottom: 0;
   width: var(--sidebar-largura);
-  background: var(--chita-azul-escura);
+  background: var(--azul-uemg-profundo);
   background-image:
     linear-gradient(160deg, rgba(255,255,255,0.05) 0%, transparent 45%),
-    var(--trama);
+    var(--textura-papel);
   color: #F3EEE2;
   display: flex;
   flex-direction: column;
@@ -164,7 +148,7 @@ h3 { font-size: var(--texto-xl); }
 
 .sidebar-header {
   padding: var(--esp-md) var(--esp-md) var(--esp-sm);
-  border-bottom: var(--costura);
+  border-bottom: var(--divisor-grafite);
   border-color: rgba(233, 180, 76, 0.4);
 }
 
@@ -190,7 +174,7 @@ h3 { font-size: var(--texto-xl); }
   font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--chita-amarela);
+  color: var(--marigold);
   margin-top: 2px;
 }
 
@@ -227,20 +211,20 @@ h3 { font-size: var(--texto-xl); }
 
 .sidebar-link.active {
   background: rgba(255, 255, 255, 0.12);
-  border-left-color: var(--chita-amarela);
+  border-left-color: var(--marigold);
   color: #FFF;
 }
 
 .sidebar-footer {
   padding: var(--esp-sm) var(--esp-md) var(--esp-md);
-  border-top: var(--costura);
+  border-top: var(--divisor-grafite);
   border-color: rgba(233, 180, 76, 0.4);
   font-size: 0.85rem;
   color: #BDB4A0;
   line-height: 1.6;
 }
 
-.sidebar-footer strong { color: var(--chita-amarela); font-weight: 700; }
+.sidebar-footer strong { color: var(--marigold); font-weight: 700; }
 
 /* Mobile header */
 .mobile-header {
@@ -252,10 +236,10 @@ h3 { font-size: var(--texto-xl); }
   align-items: center;
   gap: 14px;
   padding: 0 var(--esp-md);
-  background: var(--chita-azul-escura);
-  background-image: var(--trama);
+  background: var(--azul-uemg-profundo);
+  background-image: var(--textura-papel);
   color: #F3EEE2;
-  border-bottom: 3px solid var(--chita-amarela);
+  border-bottom: 3px solid var(--marigold);
 }
 
 .mobile-title {
@@ -309,7 +293,7 @@ h3 { font-size: var(--texto-xl); }
 }
 
 /* ==================================================================
-   Botões — retalhos de tecido, alvos grandes
+   Botões — peca-progressos de tecido, alvos grandes
    ================================================================== */
 .btn {
   display: inline-flex;
@@ -332,45 +316,45 @@ h3 { font-size: var(--texto-xl); }
 .btn:active { transform: scale(0.97); }
 
 .btn-primary {
-  background: var(--chita-vermelha);
+  background: var(--terracota);
   color: #FFF;
   box-shadow: var(--sombra-vermelha);
 }
 
 .btn-primary:hover {
-  background: var(--chita-vermelha-escura);
+  background: var(--terracota-escura);
   color: #FFF;
   text-decoration: none;
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: var(--retalho);
-  color: var(--chita-azul-escura);
-  border: 2px solid var(--linha-forte);
+  background: var(--papel-elevado);
+  color: var(--azul-uemg-profundo);
+  border: 2px solid var(--grafite);
   box-shadow: var(--sombra-sm);
 }
 
 .btn-secondary:hover {
-  border-color: var(--chita-azul);
-  color: var(--chita-azul);
+  border-color: var(--azul-ceu);
+  color: var(--azul-ceu);
   text-decoration: none;
   transform: translateY(-2px);
 }
 
 .btn-verde {
-  background: var(--chita-verde);
+  background: var(--verde-folha);
   color: #FFF;
   box-shadow: 0 6px 20px rgba(78, 125, 74, 0.3);
 }
 .btn-verde:hover { background: #3E6B3B; color: #FFF; text-decoration: none; transform: translateY(-2px); }
 
 .btn-amarelo {
-  background: var(--chita-amarela);
-  color: var(--bordado);
+  background: var(--marigold);
+  color: var(--tinta);
   box-shadow: 0 6px 20px rgba(233, 180, 76, 0.35);
 }
-.btn-amarelo:hover { background: #DDA333; color: var(--bordado); text-decoration: none; transform: translateY(-2px); }
+.btn-amarelo:hover { background: #DDA333; color: var(--tinta); text-decoration: none; transform: translateY(-2px); }
 
 .btn-sm { padding: 10px 18px; font-size: var(--texto-sm); min-height: 44px; }
 
@@ -391,15 +375,15 @@ h3 { font-size: var(--texto-xl); }
   align-items: center;
   gap: 8px;
   padding: 6px 16px 6px 20px;
-  background: var(--chita-amarela-bg);
-  border: 2px solid var(--linha-forte);
+  background: var(--marigold-suave);
+  border: 2px solid var(--grafite);
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--bordado);
+  color: var(--tinta);
   position: relative;
 }
 
@@ -408,27 +392,27 @@ h3 { font-size: var(--texto-xl); }
   position: absolute;
   right: -2px; top: -2px; bottom: -2px;
   width: 10px;
-  background: var(--chita-amarela-bg);
-  border: 2px solid var(--linha-forte);
+  background: var(--marigold-suave);
+  border: 2px solid var(--grafite);
   border-left: none;
   border-radius: 0 6px 6px 0;
 }
 
-.etiqueta-vermelha { background: var(--chita-vermelha); border-color: var(--chita-vermelha-escura); color: #FFF; }
-.etiqueta-vermelha::after { background: var(--chita-vermelha); border-color: var(--chita-vermelha-escura); border-left: none; }
-.etiqueta-verde { background: var(--chita-verde); border-color: #3E6B3B; color: #FFF; }
-.etiqueta-verde::after { background: var(--chita-verde); border-color: #3E6B3B; }
-.etiqueta-azul { background: var(--chita-azul); border-color: var(--chita-azul-escura); color: #FFF; }
-.etiqueta-azul::after { background: var(--chita-azul); border-color: var(--chita-azul-escura); }
+.etiqueta-vermelha { background: var(--terracota); border-color: var(--terracota-escura); color: #FFF; }
+.etiqueta-vermelha::after { background: var(--terracota); border-color: var(--terracota-escura); border-left: none; }
+.etiqueta-verde { background: var(--verde-folha); border-color: #3E6B3B; color: #FFF; }
+.etiqueta-verde::after { background: var(--verde-folha); border-color: #3E6B3B; }
+.etiqueta-azul { background: var(--azul-ceu); border-color: var(--azul-uemg-profundo); color: #FFF; }
+.etiqueta-azul::after { background: var(--azul-ceu); border-color: var(--azul-uemg-profundo); }
 
 /* ==================================================================
-   Hero — a colcha em construção
+   Hero — a progresso-montagem em construção
    ================================================================== */
 .hero {
   position: relative;
   padding: var(--esp-2xl) var(--esp-xl) var(--esp-xl);
   overflow: hidden;
-  border-bottom: 3px solid var(--chita-amarela);
+  border-bottom: 3px solid var(--marigold);
 }
 
 .hero::before {
@@ -459,8 +443,8 @@ h3 { font-size: var(--texto-xl); }
 
 .hero-badge {
   display: inline-block;
-  background: var(--chita-amarela);
-  color: var(--bordado);
+  background: var(--marigold);
+  color: var(--tinta);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -477,7 +461,7 @@ h3 { font-size: var(--texto-xl); }
 }
 
 .hero-title .highlight {
-  color: var(--chita-vermelha);
+  color: var(--terracota);
   position: relative;
   white-space: nowrap;
 }
@@ -485,13 +469,13 @@ h3 { font-size: var(--texto-xl); }
 .hero-subtitle {
   font-family: var(--font-display);
   font-size: var(--texto-xl);
-  color: var(--chita-azul);
+  color: var(--azul-ceu);
   margin-bottom: var(--esp-sm);
 }
 
 .hero-description {
   font-size: var(--texto-lg);
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
   max-width: 52ch;
   margin-bottom: var(--esp-lg);
 }
@@ -502,34 +486,34 @@ h3 { font-size: var(--texto-xl); }
   gap: var(--esp-sm);
 }
 
-/* Colcha — o objeto central do hero */
-.colcha {
+/* Peças montadas — metáfora de progresso do Ateliê */
+.progresso-montagem {
   position: relative;
   padding: var(--esp-md);
-  background: var(--retalho);
-  border: var(--costura-forte);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite-forte);
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-lg);
   transition: transform var(--lento);
 }
 
-.colcha:hover { transform: rotate(0deg) scale(1.01); }
+.progresso-montagem:hover { transform: rotate(0deg) scale(1.01); }
 
-.colcha-legenda {
+.progresso-montagem-legenda {
   margin-top: var(--esp-sm);
   text-align: center;
   font-family: var(--font-display);
   font-size: var(--texto-sm);
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
 }
 
-.colcha-grade {
+.progresso-montagem-grade {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-.retalho {
+.peca-progresso {
   position: relative;
   aspect-ratio: 1;
   border-radius: 10px;
@@ -542,29 +526,29 @@ h3 { font-size: var(--texto-xl); }
   transition: transform var(--medio), box-shadow var(--medio);
 }
 
-.retalho:hover { transform: scale(1.04); box-shadow: var(--sombra-md); }
+.peca-progresso:hover { transform: scale(1.04); box-shadow: var(--sombra-md); }
 
-.retalho-icone { font-size: 1.5rem; }
+.peca-progresso-icone { font-size: 1.5rem; }
 
-.retalho-costurado {
-  background: var(--chita-vermelha);
+.peca-montada {
+  background: var(--terracota);
   color: #FFF;
   background-image:
     radial-gradient(circle at 20% 25%, rgba(255,255,255,0.25) 0%, transparent 45%),
     radial-gradient(circle at 80% 75%, rgba(0,0,0,0.12) 0%, transparent 40%);
 }
 
-.retalho-verde { background: var(--chita-verde); color: #FFF; background-image: radial-gradient(circle at 20% 25%, rgba(255,255,255,0.2) 0%, transparent 45%); }
-.retalho-amarelo { background: var(--chita-amarela); color: var(--bordado); }
-.retalho-azul { background: var(--chita-azul); color: #FFF; }
+.peca-progresso-verde { background: var(--verde-folha); color: #FFF; background-image: radial-gradient(circle at 20% 25%, rgba(255,255,255,0.2) 0%, transparent 45%); }
+.peca-progresso-amarela { background: var(--marigold); color: var(--tinta); }
+.peca-progresso-azul { background: var(--azul-ceu); color: #FFF; }
 
-.retalho-futuro {
-  background: var(--algodao-escuro);
-  color: var(--bordado);
-  border-style: dashed;
+.peca-progresso-futura {
+  background: var(--papel-rebaixado);
+  color: var(--tinta);
+  border-style: solid;
 }
 
-.retalho .retalho-numero {
+.peca-progresso .peca-progresso-numero {
   position: absolute;
   top: 4px; left: 8px;
   font-family: var(--font-body);
@@ -573,7 +557,7 @@ h3 { font-size: var(--texto-xl); }
   opacity: 1;
 }
 
-.retalho .retalho-check {
+.peca-progresso .peca-progresso-check {
   position: absolute;
   bottom: 2px; right: 6px;
   font-size: 0.85rem;
@@ -585,7 +569,7 @@ h3 { font-size: var(--texto-xl); }
   width: 100%;
   height: auto;
   border-radius: var(--raio-lg);
-  border: var(--costura);
+  border: var(--divisor-grafite);
   box-shadow: var(--sombra-lg);
   transform: rotate(-0.8deg);
   transition: transform var(--lento);
@@ -593,8 +577,8 @@ h3 { font-size: var(--texto-xl); }
 
 .hero-ilustracao:hover { transform: rotate(0deg); }
 
-/* Linha de costura decorativa em zigue-zague */
-.costura-decorativa {
+/* Divisor de grafite discreto */
+.divisor-grafite-decorativo {
   height: 14px;
   margin: var(--esp-md) auto;
   max-width: 640px;
@@ -602,31 +586,31 @@ h3 { font-size: var(--texto-xl); }
     repeating-linear-gradient(
       -45deg,
       transparent 0 6px,
-      var(--linha-forte) 6px 10px,
+      var(--grafite) 6px 10px,
       transparent 10px 16px,
-      var(--linha-forte) 16px 20px
+      var(--grafite) 16px 20px
     );
   opacity: 0.5;
   border-radius: 4px;
 }
 
 /* ==================================================================
-   Stats — faixa de retalhos
+   Stats — faixa de peca-progressos
    ================================================================== */
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border-bottom: 3px solid var(--chita-amarela);
-  background: var(--chita-azul-escura);
-  background-image: var(--trama);
+  border-bottom: 3px solid var(--marigold);
+  background: var(--azul-uemg-profundo);
+  background-image: var(--textura-papel);
 }
 
 .stat-item {
   padding: var(--esp-lg) var(--esp-md);
   text-align: center;
   color: #F3EEE2;
-  border-right: var(--costura);
+  border-right: var(--divisor-grafite);
   border-color: rgba(233, 180, 76, 0.35);
 }
 
@@ -636,7 +620,7 @@ h3 { font-size: var(--texto-xl); }
   font-family: var(--font-display);
   font-size: var(--texto-3xl);
   font-weight: 700;
-  color: var(--chita-amarela);
+  color: var(--marigold);
   line-height: 1.1;
 }
 
@@ -658,15 +642,15 @@ h3 { font-size: var(--texto-xl); }
   width: 100%;
 }
 
-.section-chita {
+.section-papel {
   background:
     linear-gradient(rgba(250, 246, 236, 0.94), rgba(250, 246, 236, 0.94)),
-    url('/assets/ilustracoes/textura-chita-floral-bg-16x9-v01.png');
+    url('/assets/ilustracoes/textura-oficina-papel-bg-16x9-v01.png');
   background-size: cover;
   background-position: center;
   max-width: none;
-  border-top: 3px solid var(--chita-amarela);
-  border-bottom: 3px solid var(--chita-amarela);
+  border-top: 3px solid var(--marigold);
+  border-bottom: 3px solid var(--marigold);
 }
 
 .section-header {
@@ -679,7 +663,7 @@ h3 { font-size: var(--texto-xl); }
 .section-header .subtitle {
   font-family: var(--font-display);
   font-size: var(--texto-lg);
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
 }
 
 .section-title {
@@ -694,26 +678,26 @@ h3 { font-size: var(--texto-xl); }
   width: 90px;
   height: 3px;
   margin: var(--esp-sm) auto 0;
-  background: repeating-linear-gradient(90deg, var(--chita-vermelha) 0 12px, var(--chita-amarela) 12px 24px, var(--chita-verde) 24px 36px);
+  background: repeating-linear-gradient(90deg, var(--terracota) 0 12px, var(--marigold) 12px 24px, var(--verde-folha) 24px 36px);
   border-radius: 2px;
 }
 
 /* ==================================================================
-   Cards de retalho
+   Cards de peca-progresso
    ================================================================== */
-.retalho-card {
-  background: var(--retalho);
-  border: var(--costura);
+.papel-card {
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
   border-radius: var(--raio);
   padding: var(--esp-lg);
   box-shadow: var(--sombra-sm);
   transition: transform var(--medio), box-shadow var(--medio), border-color var(--medio);
 }
 
-.retalho-card:hover {
+.papel-card:hover {
   transform: translateY(-4px) rotate(-0.4deg);
   box-shadow: var(--sombra-md);
-  border-color: var(--chita-azul);
+  border-color: var(--azul-ceu);
 }
 
 .features-grid {
@@ -731,12 +715,12 @@ h3 { font-size: var(--texto-xl); }
   justify-content: center;
   font-size: 2.2rem;
   margin-bottom: var(--esp-sm);
-  background: var(--chita-azul-bg);
+  background: var(--azul-ceu-suave);
   box-shadow: var(--sombra-sm);
 }
 
 .feature-card h3 { margin-bottom: 8px; }
-.feature-card p { color: var(--bordado-suave); font-size: var(--texto-sm); }
+.feature-card p { color: var(--tinta-suave); font-size: var(--texto-sm); }
 
 /* ==================================================================
    Aula mais recente
@@ -746,7 +730,7 @@ h3 { font-size: var(--texto-xl); }
   grid-template-columns: auto auto 1fr auto;
   align-items: center;
   gap: var(--esp-md);
-  background: linear-gradient(120deg, var(--chita-vermelha) 0%, var(--chita-vermelha-escura) 100%);
+  background: linear-gradient(120deg, var(--terracota) 0%, var(--terracota-escura) 100%);
   border-radius: var(--raio-lg);
   padding: var(--esp-lg);
   color: #FFF;
@@ -758,7 +742,7 @@ h3 { font-size: var(--texto-xl); }
   font-family: var(--font-display);
   font-size: var(--texto-4xl);
   font-weight: 700;
-  color: var(--chita-amarela);
+  color: var(--marigold);
   line-height: 1;
 }
 
@@ -780,21 +764,21 @@ h3 { font-size: var(--texto-xl); }
   display: flex;
   align-items: center;
   gap: var(--esp-md);
-  background: var(--retalho);
-  border: var(--costura);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
   border-radius: var(--raio);
   padding: var(--esp-md) var(--esp-lg);
   box-shadow: var(--sombra-sm);
   transition: transform var(--medio), box-shadow var(--medio), border-color var(--medio);
-  color: var(--bordado);
+  color: var(--tinta);
 }
 
 .quick-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--sombra-md);
-  border-color: var(--chita-verde);
+  border-color: var(--verde-folha);
   text-decoration: none;
-  color: var(--bordado);
+  color: var(--tinta);
 }
 
 .quick-icon {
@@ -807,21 +791,21 @@ h3 { font-size: var(--texto-xl); }
   flex-shrink: 0;
 }
 
-.quick-icon.pratique { background: var(--chita-verde-bg); color: var(--chita-verde); }
-.quick-icon.comunidade { background: var(--chita-amarela-bg); color: #C08A1F; }
+.quick-icon.pratique { background: var(--verde-folha-suave); color: var(--verde-folha); }
+.quick-icon.comunidade { background: var(--marigold-suave); color: #C08A1F; }
 
 .quick-card h3 { margin-bottom: 2px; }
-.quick-card p { color: var(--bordado-suave); font-size: var(--texto-sm); }
+.quick-card p { color: var(--tinta-suave); font-size: var(--texto-sm); }
 
 /* ==================================================================
    Footer
    ================================================================== */
 .site-footer {
   margin-top: auto;
-  background: var(--chita-azul-escura);
-  background-image: var(--trama);
+  background: var(--azul-uemg-profundo);
+  background-image: var(--textura-papel);
   color: #D8D0BC;
-  border-top: 3px solid var(--chita-amarela);
+  border-top: 3px solid var(--marigold);
 }
 
 .footer-content {
@@ -840,7 +824,7 @@ h3 { font-size: var(--texto-xl); }
 
 .footer-brand .slogan {
   font-family: var(--font-display);
-  color: var(--chita-amarela);
+  color: var(--marigold);
   font-size: var(--texto-base);
   margin-bottom: 10px;
 }
@@ -863,10 +847,10 @@ h3 { font-size: var(--texto-xl); }
   margin-bottom: 8px;
 }
 
-.footer-column a:hover { color: var(--chita-amarela); }
+.footer-column a:hover { color: var(--marigold); }
 
 .footer-bottom {
-  border-top: var(--costura);
+  border-top: var(--divisor-grafite);
   border-color: rgba(233, 180, 76, 0.3);
   padding: var(--esp-md) var(--esp-xl);
   display: flex;
@@ -886,10 +870,10 @@ h3 { font-size: var(--texto-xl); }
    ================================================================== */
 .page-header {
   padding: var(--esp-xl) var(--esp-xl) var(--esp-lg);
-  background: linear-gradient(120deg, var(--chita-azul-escura) 0%, var(--chita-azul) 100%);
-  background-image: linear-gradient(120deg, var(--chita-azul-escura) 0%, var(--chita-azul) 100%), var(--trama);
+  background: linear-gradient(120deg, var(--azul-uemg-profundo) 0%, var(--azul-ceu) 100%);
+  background-image: linear-gradient(120deg, var(--azul-uemg-profundo) 0%, var(--azul-ceu) 100%), var(--textura-papel);
   color: #F3EEE2;
-  border-bottom: 3px solid var(--chita-amarela);
+  border-bottom: 3px solid var(--marigold);
   text-align: center;
 }
 
@@ -907,7 +891,7 @@ h3 { font-size: var(--texto-xl); }
 }
 
 /* ==================================================================
-   Trilha de aulas — colcha de retalhos
+   Trilha de aulas — progresso-montagem de peca-progressos
    ================================================================== */
 .trilha {
   max-width: 1000px;
@@ -923,9 +907,9 @@ h3 { font-size: var(--texto-xl); }
   grid-template-columns: auto auto 1fr auto;
   gap: var(--esp-md);
   align-items: center;
-  background: var(--retalho);
-  border: var(--costura);
-  border-left: var(--costura);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
+  border-left: var(--divisor-grafite);
   border-radius: var(--raio);
   padding: var(--esp-md) var(--esp-lg);
   box-shadow: var(--sombra-sm);
@@ -949,16 +933,16 @@ h3 { font-size: var(--texto-xl); }
   box-shadow: var(--sombra-md);
 }
 
-.aula-item:nth-child(odd) { border-left-color: var(--chita-verde); }
-.aula-item:nth-child(3n) { border-left-color: var(--chita-azul); }
-.aula-item:nth-child(4n) { border-left-color: var(--chita-amarela); }
+.aula-item:nth-child(odd) { border-left-color: var(--verde-folha); }
+.aula-item:nth-child(3n) { border-left-color: var(--azul-ceu); }
+.aula-item:nth-child(4n) { border-left-color: var(--marigold); }
 
 .aula-capa {
   width: 200px;
   height: 118px;
   object-fit: cover;
   border-radius: var(--raio-sm);
-  border: 2px solid var(--linha);
+  border: 2px solid var(--grafite-suave);
   box-shadow: var(--sombra-sm);
   flex-shrink: 0;
 }
@@ -967,7 +951,7 @@ h3 { font-size: var(--texto-xl); }
   width: 68px;
   height: 68px;
   border-radius: 16px;
-  background: var(--chita-vermelha);
+  background: var(--terracota);
   color: #FFF;
   font-family: var(--font-display);
   font-size: var(--texto-xl);
@@ -978,21 +962,21 @@ h3 { font-size: var(--texto-xl); }
   box-shadow: var(--sombra-sm);
 }
 
-.aula-item:nth-child(odd) .aula-numero { background: var(--chita-verde); }
-.aula-item:nth-child(3n) .aula-numero { background: var(--chita-azul); }
-.aula-item:nth-child(4n) .aula-numero { background: var(--chita-amarela); color: var(--bordado); }
+.aula-item:nth-child(odd) .aula-numero { background: var(--verde-folha); }
+.aula-item:nth-child(3n) .aula-numero { background: var(--azul-ceu); }
+.aula-item:nth-child(4n) .aula-numero { background: var(--marigold); color: var(--tinta); }
 
 .aula-info h3 { margin-bottom: 4px; }
-.aula-info p { color: var(--bordado-suave); font-size: var(--texto-sm); margin-bottom: 6px; }
+.aula-info p { color: var(--tinta-suave); font-size: var(--texto-sm); margin-bottom: 6px; }
 .aula-topics { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
 
 .aula-topics li {
   font-size: 0.82rem;
   font-weight: 600;
   padding: 4px 12px;
-  background: var(--algodao-escuro);
+  background: var(--papel-rebaixado);
   border-radius: var(--raio-pill);
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
 }
 
 .aula-acoes {
@@ -1004,13 +988,13 @@ h3 { font-size: var(--texto-xl); }
 
 .aula-pdf-link {
   font-size: 0.85rem;
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
   text-align: center;
   text-decoration: underline dotted;
   font-weight: 600;
 }
 
-.aula-pdf-link:hover { color: var(--chita-azul); }
+.aula-pdf-link:hover { color: var(--azul-ceu); }
 
 /* ==================================================================
    PDF modal
@@ -1028,8 +1012,8 @@ h3 { font-size: var(--texto-xl); }
 .pdf-modal.active { display: flex; align-items: center; justify-content: center; }
 
 .pdf-modal-content {
-  background: var(--retalho);
-  border: var(--costura-forte);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite-forte);
   border-radius: var(--raio-lg);
   width: 100%;
   max-width: 1000px;
@@ -1046,15 +1030,15 @@ h3 { font-size: var(--texto-xl); }
   align-items: center;
   gap: var(--esp-sm);
   padding: var(--esp-md);
-  border-bottom: var(--costura);
-  background: var(--algodao);
+  border-bottom: var(--divisor-grafite);
+  background: var(--papel);
 }
 
 .pdf-modal-title {
   font-family: var(--font-body);
   font-size: var(--texto-base);
   font-weight: 700;
-  color: var(--bordado);
+  color: var(--tinta);
 }
 
 .pdf-modal-actions { display: flex; gap: 8px; align-items: center; }
@@ -1063,9 +1047,9 @@ h3 { font-size: var(--texto-xl); }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid var(--linha-forte);
-  background: var(--retalho);
-  color: var(--bordado);
+  border: 2px solid var(--grafite);
+  background: var(--papel-elevado);
+  color: var(--tinta);
   font-size: 1.4rem;
   line-height: 1;
   display: flex;
@@ -1074,7 +1058,7 @@ h3 { font-size: var(--texto-xl); }
   transition: background var(--veloz), transform var(--veloz);
 }
 
-.pdf-modal-close:hover { background: var(--chita-vermelha); color: #FFF; transform: rotate(90deg); }
+.pdf-modal-close:hover { background: var(--terracota); color: #FFF; transform: rotate(90deg); }
 
 .pdf-modal-body { flex: 1; min-height: 60vh; }
 .pdf-modal-body iframe { width: 100%; height: 100%; border: none; min-height: 60vh; }
@@ -1104,15 +1088,15 @@ h3 { font-size: var(--texto-xl); }
   gap: 8px;
   font-weight: 700;
   font-size: var(--texto-sm);
-  color: var(--chita-azul);
+  color: var(--azul-ceu);
   padding: 10px 16px;
   border-radius: var(--raio-pill);
-  border: 2px solid var(--linha);
-  background: var(--retalho);
+  border: 2px solid var(--grafite-suave);
+  background: var(--papel-elevado);
   transition: border-color var(--veloz), background var(--veloz);
 }
 
-.player-trilha-link:hover { border-color: var(--chita-azul); text-decoration: none; }
+.player-trilha-link:hover { border-color: var(--azul-ceu); text-decoration: none; }
 
 /* Barra de progresso — linha de alinhavo */
 .player-progresso {
@@ -1126,14 +1110,14 @@ h3 { font-size: var(--texto-xl); }
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
   margin-bottom: 8px;
 }
 
 .progresso-trilho {
   height: 14px;
-  background: var(--algodao-escuro);
-  border: 2px solid var(--linha-forte);
+  background: var(--papel-rebaixado);
+  border: 2px solid var(--grafite);
   border-radius: var(--raio-pill);
   overflow: hidden;
   position: relative;
@@ -1143,8 +1127,8 @@ h3 { font-size: var(--texto-xl); }
   height: 100%;
   background: repeating-linear-gradient(
     -45deg,
-    var(--chita-verde) 0 10px,
-    var(--chita-verde-escuro, #3E6B3B) 10px 20px
+    var(--verde-folha) 0 10px,
+    var(--verde-folha-escuro, #3E6B3B) 10px 20px
   );
   border-radius: var(--raio-pill);
   width: 0%;
@@ -1154,12 +1138,12 @@ h3 { font-size: var(--texto-xl); }
 /* Etapa do player */
 .etapa {
   display: none;
-  background: var(--retalho);
-  border: var(--costura);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-md);
   padding: var(--esp-xl) var(--esp-xl);
-  animation: etapaEntra 420ms var(--ease-costura);
+  animation: etapaEntra 420ms var(--ease-atelie);
 }
 
 .etapa.ativa { display: block; }
@@ -1171,8 +1155,8 @@ h3 { font-size: var(--texto-xl); }
 
 .etapa-badge {
   display: inline-block;
-  background: var(--chita-amarela);
-  color: var(--bordado);
+  background: var(--marigold);
+  color: var(--tinta);
   font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 700;
@@ -1183,11 +1167,11 @@ h3 { font-size: var(--texto-xl); }
   margin-bottom: var(--esp-md);
 }
 
-.etapa-badge.fase1 { background: var(--chita-vermelha); color: #FFF; }
-.etapa-badge.fase2 { background: var(--chita-azul); color: #FFF; }
-.etapa-badge.fase3 { background: var(--chita-verde); color: #FFF; }
-.etapa-badge.fase4 { background: var(--chita-amarela); color: var(--bordado); }
-.etapa-badge.fase5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+.etapa-badge.fase1 { background: var(--terracota); color: #FFF; }
+.etapa-badge.fase2 { background: var(--azul-ceu); color: #FFF; }
+.etapa-badge.fase3 { background: var(--verde-folha); color: #FFF; }
+.etapa-badge.fase4 { background: var(--marigold); color: var(--tinta); }
+.etapa-badge.fase5 { background: var(--azul-uemg-profundo); color: var(--marigold); }
 
 .etapa h2 {
   font-size: var(--texto-2xl);
@@ -1200,34 +1184,34 @@ h3 { font-size: var(--texto-xl); }
   font-weight: 700;
   font-size: var(--texto-lg);
   margin: var(--esp-lg) 0 var(--esp-sm);
-  color: var(--chita-azul-escura);
+  color: var(--azul-uemg-profundo);
 }
 
 .etapa p { margin-bottom: var(--esp-sm); font-size: var(--texto-base); }
 
 .etapa .analogia {
-  background: var(--chita-amarela-bg);
-  border-left: 4px dashed var(--chita-amarela);
-  border-radius: 0 var(--raio) var(--raio) 0;
+  background: var(--marigold-suave);
+  border: 1px solid var(--marigold);
+  border-radius: var(--raio);
   padding: var(--esp-md);
   font-family: var(--font-display);
   font-size: var(--texto-lg);
-  color: var(--bordado);
+  color: var(--tinta);
   margin: var(--esp-md) 0;
 }
 
 .etapa .destaque {
-  background: var(--chita-azul-bg);
-  border-left: 4px dashed var(--chita-azul);
-  border-radius: 0 var(--raio) var(--raio) 0;
+  background: var(--azul-ceu-suave);
+  border: 1px solid var(--azul-ceu);
+  border-radius: var(--raio);
   padding: var(--esp-md);
   margin: var(--esp-md) 0;
 }
 
 .etapa .atencao {
   background: #FBEAEA;
-  border-left: 4px dashed var(--chita-vermelha);
-  border-radius: 0 var(--raio) var(--raio) 0;
+  border: 1px solid var(--terracota);
+  border-radius: var(--raio);
   padding: var(--esp-md);
   margin: var(--esp-md) 0;
   color: #7A2620;
@@ -1241,7 +1225,7 @@ h3 { font-size: var(--texto-xl); }
   gap: var(--esp-sm);
   margin-top: var(--esp-lg);
   padding-top: var(--esp-md);
-  border-top: var(--costura);
+  border-top: var(--divisor-grafite);
 }
 
 .player-nav .btn { min-width: 160px; }
@@ -1252,8 +1236,8 @@ h3 { font-size: var(--texto-xl); }
 .termo {
   position: relative;
   display: inline;
-  border-bottom: 2px dotted var(--chita-azul);
-  color: var(--chita-azul);
+  border-bottom: 2px dotted var(--azul-ceu);
+  color: var(--azul-ceu);
   font-weight: 700;
   cursor: help;
   padding: 0 2px;
@@ -1266,15 +1250,15 @@ h3 { font-size: var(--texto-xl); }
   left: 50%;
   transform: translateX(-50%);
   width: 260px;
-  background: var(--retalho);
-  border: var(--costura-forte);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite-forte);
   border-radius: var(--raio);
   box-shadow: var(--sombra-lg);
   padding: var(--esp-sm);
   z-index: var(--z-tooltip);
   font-size: var(--texto-sm);
   font-weight: 400;
-  color: var(--bordado);
+  color: var(--tinta);
   line-height: 1.55;
   text-align: left;
 }
@@ -1286,14 +1270,14 @@ h3 { font-size: var(--texto-xl); }
   left: 50%;
   transform: translateX(-50%);
   border: 8px solid transparent;
-  border-top-color: var(--linha-forte);
+  border-top-color: var(--grafite);
 }
 
 .tooltip strong {
   display: block;
   font-family: var(--font-display);
   font-size: var(--texto-base);
-  color: var(--chita-azul-escura);
+  color: var(--azul-uemg-profundo);
   margin-bottom: 4px;
 }
 
@@ -1301,7 +1285,7 @@ h3 { font-size: var(--texto-xl); }
   display: block;
   margin-top: 6px;
   font-size: 0.8rem;
-  color: var(--chita-azul);
+  color: var(--azul-ceu);
   font-weight: 700;
 }
 
@@ -1309,7 +1293,7 @@ h3 { font-size: var(--texto-xl); }
 .termo:focus-within .tooltip,
 .termo.toque-ativo .tooltip {
   display: block;
-  animation: tooltipEntra 180ms var(--ease-costura);
+  animation: tooltipEntra 180ms var(--ease-atelie);
 }
 
 @keyframes tooltipEntra {
@@ -1444,7 +1428,7 @@ h3 { font-size: var(--texto-xl); }
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--chita-amarela);
+  background: var(--marigold);
   border: 3px solid #FFF;
   box-shadow: 0 2px 10px rgba(0,0,0,0.35);
   cursor: pointer;
@@ -1453,7 +1437,7 @@ h3 { font-size: var(--texto-xl); }
   justify-content: center;
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--bordado);
+  color: var(--tinta);
   animation: pulso 2s ease-in-out 3;
   transition: transform var(--veloz);
 }
@@ -1470,7 +1454,7 @@ h3 { font-size: var(--texto-xl); }
 .mockup-nota {
   position: absolute;
   z-index: 6;
-  background: var(--chita-azul-escura);
+  background: var(--azul-uemg-profundo);
   color: #FFF;
   border-radius: 10px;
   padding: 10px 14px;
@@ -1530,8 +1514,8 @@ h3 { font-size: var(--texto-xl); }
    Quiz — prática interativa
    ================================================================== */
 .quiz-card {
-  background: var(--retalho);
-  border: var(--costura);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
   border-radius: var(--raio);
   padding: var(--esp-lg);
   margin: var(--esp-md) 0;
@@ -1542,7 +1526,7 @@ h3 { font-size: var(--texto-xl); }
   font-family: var(--font-display);
   font-size: var(--texto-xl);
   margin-bottom: var(--esp-md);
-  color: var(--bordado);
+  color: var(--tinta);
 }
 
 .quiz-opcoes {
@@ -1557,32 +1541,32 @@ h3 { font-size: var(--texto-xl); }
   gap: 12px;
   padding: 14px 18px;
   border-radius: var(--raio);
-  border: 2px solid var(--linha);
+  border: 2px solid var(--grafite-suave);
   background: var(--branco);
-  font-size: var(--texto-base);
+  font-size: var(--texto-lg);
   font-weight: 600;
-  color: var(--bordado);
+  color: var(--tinta);
   text-align: left;
   transition: border-color var(--veloz), background var(--veloz), transform var(--veloz);
   min-height: 56px;
 }
 
 .quiz-option:hover:not(:disabled) {
-  border-color: var(--chita-azul);
-  background: var(--chita-azul-bg);
+  border-color: var(--azul-ceu);
+  background: var(--azul-ceu-suave);
   transform: translateX(4px);
 }
 
 .quiz-option:disabled { cursor: default; }
 
 .quiz-option.correct {
-  border-color: var(--chita-verde);
-  background: var(--chita-verde-bg);
+  border-color: var(--verde-folha);
+  background: var(--verde-folha-suave);
   color: #2F522C;
 }
 
 .quiz-option.incorrect {
-  border-color: var(--chita-vermelha);
+  border-color: var(--terracota);
   background: #FBEAEA;
   color: #7A2620;
 }
@@ -1591,7 +1575,7 @@ h3 { font-size: var(--texto-xl); }
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--algodao-escuro);
+  background: var(--papel-rebaixado);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1610,8 +1594,8 @@ h3 { font-size: var(--texto-xl); }
 }
 
 .quiz-feedback.show { display: block; }
-.quiz-feedback.success { background: var(--chita-verde-bg); color: #2F522C; border: 2px dashed var(--chita-verde); }
-.quiz-feedback.error { background: #FBEAEA; color: #7A2620; border: 2px dashed var(--chita-vermelha); }
+.quiz-feedback.success { background: var(--verde-folha-suave); color: #2F522C; border: 2px solid var(--verde-folha); }
+.quiz-feedback.error { background: #FBEAEA; color: #7A2620; border: 2px solid var(--terracota); }
 
 /* ==================================================================
    Momento eu consigo — celebração
@@ -1619,7 +1603,7 @@ h3 { font-size: var(--texto-xl); }
 .momento {
   text-align: center;
   padding: var(--esp-xl) var(--esp-lg);
-  background: linear-gradient(140deg, var(--chita-verde) 0%, #5C9456 60%, var(--chita-amarela) 160%);
+  background: linear-gradient(140deg, var(--verde-folha) 0%, #5C9456 60%, var(--marigold) 160%);
   border-radius: var(--raio-lg);
   color: #FFF;
   position: relative;
@@ -1630,7 +1614,7 @@ h3 { font-size: var(--texto-xl); }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: var(--trama);
+  background-image: var(--textura-papel);
   opacity: 0.5;
 }
 
@@ -1674,8 +1658,8 @@ h3 { font-size: var(--texto-xl); }
 }
 
 .comunidade-card {
-  background: var(--retalho);
-  border: var(--costura);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite);
   border-radius: var(--raio-lg);
   padding: var(--esp-xl);
   text-align: center;
@@ -1686,7 +1670,7 @@ h3 { font-size: var(--texto-xl); }
 
 .comunidade-card h2 { margin-bottom: var(--esp-sm); }
 
-.comunidade-card p { color: var(--bordado-suave); margin-bottom: var(--esp-lg); font-size: var(--texto-base); }
+.comunidade-card p { color: var(--tinta-suave); margin-bottom: var(--esp-lg); font-size: var(--texto-base); }
 
 /* ==================================================================
    Certificado
@@ -1698,8 +1682,8 @@ h3 { font-size: var(--texto-xl); }
 }
 
 .certificado-moldura {
-  background: var(--retalho);
-  border: var(--costura-forte);
+  background: var(--papel-elevado);
+  border: var(--divisor-grafite-forte);
   border-radius: var(--raio-lg);
   padding: var(--esp-xl);
   text-align: center;
@@ -1712,7 +1696,7 @@ h3 { font-size: var(--texto-xl); }
   content: '';
   position: absolute;
   width: 70px; height: 70px;
-  border: 3px solid var(--chita-amarela);
+  border: 3px solid var(--marigold);
 }
 
 .certificado-moldura::before { top: 18px; left: 18px; border-right: none; border-bottom: none; }
@@ -1723,7 +1707,7 @@ h3 { font-size: var(--texto-xl); }
    ================================================================== */
 @media (max-width: 1100px) {
   .hero-content { grid-template-columns: 1fr; gap: var(--esp-lg); }
-  .colcha { max-width: 520px; margin: 0 auto; width: 100%; }
+  .progresso-montagem { max-width: 520px; margin: 0 auto; width: 100%; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-content { grid-template-columns: 1fr 1fr; }
   .latest-card { grid-template-columns: auto 1fr; }
@@ -1733,7 +1717,7 @@ h3 { font-size: var(--texto-xl); }
 @media (max-width: 900px) {
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .stat-item:nth-child(2) { border-right: none; }
-  .stat-item:nth-child(-n+2) { border-bottom: var(--costura); border-color: rgba(233,180,76,0.35); }
+  .stat-item:nth-child(-n+2) { border-bottom: var(--divisor-grafite); border-color: rgba(233,180,76,0.35); }
   .aula-item { grid-template-columns: auto 1fr; }
   .aula-capa { grid-column: 1 / -1; width: 100%; height: 150px; object-fit: cover; }
   .aula-acoes { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; }
@@ -1784,7 +1768,7 @@ h3 { font-size: var(--texto-xl); }
   }
   .tooltip::after { left: auto; right: 48px; }
   .termo:hover .tooltip, .termo.toque-ativo .tooltip {
-    animation: tooltipEntraMobile 180ms var(--ease-costura);
+    animation: tooltipEntraMobile 180ms var(--ease-atelie);
   }
   @keyframes tooltipEntraMobile {
     from { opacity: 0; transform: translateY(6px); }
@@ -1795,7 +1779,7 @@ h3 { font-size: var(--texto-xl); }
 @media (max-width: 480px) {
   .stats-bar { grid-template-columns: 1fr 1fr; }
   .stat-number { font-size: var(--texto-2xl); }
-  .colcha-grade { grid-template-columns: repeat(2, 1fr); }
+  .progresso-montagem-grade { grid-template-columns: repeat(2, 1fr); }
   .btn { width: 100%; }
   .hero-buttons .btn { width: 100%; }
 }
@@ -1818,10 +1802,10 @@ h3 { font-size: var(--texto-xl); }
    ================================================================== */
 
 html {
-  scrollbar-color: var(--linha-forte) var(--algodao-escuro);
+  scrollbar-color: var(--grafite) var(--papel-rebaixado);
 }
 
-body { caret-color: var(--chita-vermelha); }
+body { caret-color: var(--terracota); }
 
 a {
   text-underline-offset: 0.2em;
@@ -1848,10 +1832,10 @@ a {
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.colcha { padding: clamp(1.5rem, 3vw, 2.25rem); }
-.colcha-grade { gap: 14px; }
-.retalho .retalho-numero { font-size: 0.9rem; }
-.retalho .retalho-check { font-size: 1rem; }
+.progresso-montagem { padding: clamp(1.5rem, 3vw, 2.25rem); }
+.progresso-montagem-grade { gap: 14px; }
+.peca-progresso .peca-progresso-numero { font-size: 0.9rem; }
+.peca-progresso .peca-progresso-check { font-size: 1rem; }
 
 .hero-community {
   max-width: 1320px;
@@ -1868,7 +1852,7 @@ a {
 .hero-community-copy h2 { margin-bottom: var(--esp-sm); }
 .hero-community-copy p {
   margin-bottom: var(--esp-lg);
-  color: var(--bordado-suave);
+  color: var(--tinta-suave);
   font-size: var(--texto-lg);
 }
 
@@ -1884,16 +1868,16 @@ a {
   gap: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 4rem);
 }
 
-.features-section .retalho-card {
+.features-section .papel-card {
   border: 0;
-  border-bottom: 1px dashed var(--linha-forte);
+  border-bottom: 1px solid var(--grafite);
   border-radius: 0;
   box-shadow: none;
   background: transparent;
   padding: 0 0 var(--esp-lg);
 }
 
-.features-section .retalho-card:hover { transform: none; box-shadow: none; }
+.features-section .papel-card:hover { transform: none; box-shadow: none; }
 
 .page-header {
   padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 5vw, 5rem);
@@ -1922,12 +1906,12 @@ a {
   gap: var(--esp-sm) var(--esp-lg);
   align-items: start;
   padding: var(--esp-lg);
-  border-left: var(--costura);
+  border-left: var(--divisor-grafite);
 }
 
 .aula-item:nth-child(odd),
 .aula-item:nth-child(3n),
-.aula-item:nth-child(4n) { border-left-color: var(--linha); }
+.aula-item:nth-child(4n) { border-left-color: var(--grafite-suave); }
 
 .aula-capa {
   grid-area: capa;
@@ -1961,12 +1945,12 @@ a {
   padding: 0;
   background: transparent;
   border-radius: 0;
-  font-size: 1rem;
+  font-size: var(--texto-base);
 }
 
 .aula-topics li::before {
   content: '•';
-  color: var(--chita-vermelha);
+  color: var(--terracota);
   margin-right: 8px;
 }
 
@@ -1977,7 +1961,7 @@ a {
   gap: var(--esp-sm);
   padding-top: var(--esp-sm);
   margin-bottom: var(--esp-sm);
-  border-top: 1px dashed var(--linha);
+  border-top: 1px solid var(--grafite-suave);
 }
 
 .aula-pdf-link {
@@ -1986,7 +1970,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 10px 18px;
-  border: 2px solid var(--linha-forte);
+  border: 2px solid var(--grafite);
   border-radius: var(--raio-pill);
   font-size: var(--texto-sm);
   font-weight: 700;
@@ -2020,8 +2004,8 @@ a {
 .pratique-shell { max-width: 1120px; margin: 0 auto; }
 
 .pratique-dica {
-  background: var(--chita-azul-bg);
-  border: 2px dashed var(--chita-azul);
+  background: var(--azul-ceu-suave);
+  border: 2px solid var(--azul-ceu);
   border-radius: var(--raio);
   padding: var(--esp-md) var(--esp-lg);
   margin-bottom: var(--esp-lg);
@@ -2048,7 +2032,7 @@ a {
 }
 
 .progress-section {
-  background: var(--algodao-escuro);
+  background: var(--papel-rebaixado);
   border-radius: var(--raio);
   padding: var(--esp-md) var(--esp-lg);
   margin-bottom: var(--esp-lg);
@@ -2134,9 +2118,9 @@ a {
   gap: 12px;
   margin-top: auto;
   padding: 12px 16px;
-  border: 2px dashed var(--chita-verde);
+  border: 2px solid var(--verde-folha);
   border-radius: var(--raio);
-  background: var(--chita-verde-bg);
+  background: var(--verde-folha-suave);
   color: #2F522C;
   text-align: left;
 }
@@ -2148,8 +2132,8 @@ a {
 }
 .progress-section { margin-bottom: var(--esp-md); }
 .lesson-btn.active {
-  background: var(--chita-azul);
-  border-color: var(--chita-azul);
+  background: var(--azul-ceu);
+  border-color: var(--azul-ceu);
   color: #FFF;
 }
 .pratique-shell { margin-top: -0.5rem; }

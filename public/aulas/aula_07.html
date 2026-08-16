@@ -9,33 +9,33 @@
 <title>Aula 07 — Google Slides: Criando Apresentações Bonitas | Inclusão Digital UEMG</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="/assets/player.css" rel="stylesheet"/>
 <style>
         /* Extras específicos da aula 07 — Google Slides */
-        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
-        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
-        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
-        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
-        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
-        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+        .etapa-badge { display: inline-block; background: var(--marigold); color: var(--tinta); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--terracota); color: #FFF; }
+        .etapa-badge.f2 { background: var(--azul-ceu); color: #FFF; }
+        .etapa-badge.f3 { background: var(--verde-folha); color: #FFF; }
+        .etapa-badge.f4 { background: var(--marigold); color: var(--tinta); }
+        .etapa-badge.f5 { background: var(--azul-uemg-profundo); color: var(--marigold); }
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
         .tres-colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .tres-colunas { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .mini-cartao p { margin: 0; font-size: var(--texto-sm); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
         .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
         .lista-check li::before { content: '✅'; flex-shrink: 0; }
         .caps-recap { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--esp-md) 0; }
-        .chip-rec { background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); color: #2F522C; font-weight: 700; padding: 8px 16px; border-radius: var(--raio-pill); font-size: var(--texto-sm); }
+        .chip-rec { background: var(--verde-folha-suave); border: 2px solid var(--verde-folha); color: #2F522C; font-weight: 700; padding: 8px 16px; border-radius: var(--raio-pill); font-size: var(--texto-sm); }
         .paginas-demo { display: flex; gap: 12px; margin: var(--esp-md) 0; }
-        .pagina-demo { width: 110px; aspect-ratio: 16 / 9; background: var(--chita-azul-bg); border: 2px solid var(--chita-azul); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: var(--sombra-sm); }
+        .pagina-demo { width: 110px; aspect-ratio: 16 / 9; background: var(--azul-ceu-suave); border: 2px solid var(--azul-ceu); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: var(--sombra-sm); }
         /* ===== Mockup do editor do Google Slides ===== */
-        .slides-app { background: #FFF; border-radius: 14px; border: 2px solid var(--linha-forte); box-shadow: var(--sombra-lg); overflow: hidden; margin: var(--esp-md) 0; font-size: .95rem; }
+        .slides-app { background: #FFF; border-radius: 14px; border: 2px solid var(--grafite); box-shadow: var(--sombra-lg); overflow: hidden; margin: var(--esp-md) 0; font-size: .95rem; }
         .slides-topo { background: #F8F9FA; border-bottom: 1px solid #DADCE0; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
         .slides-titulo-app { font-weight: 700; color: #3C4043; font-size: .95rem; }
         .slides-topo-botoes { display: flex; gap: 8px; }
@@ -58,20 +58,20 @@
         .slides-canvas.tema-azul { background: linear-gradient(150deg, #F4F8FD 0%, #DCE9F7 100%); }
         .slides-canvas.tema-escuro { background: linear-gradient(150deg, #26324A 0%, #17223A 100%); }
         .slides-canvas.tema-escuro .slides-titulo, .slides-canvas.tema-escuro .slides-sub { color: #F4F8FD; }
-        .slides-titulo { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--bordado); line-height: 1.2; }
-        .slides-sub { font-size: 1rem; color: var(--bordado-suave); }
-        .slides-texto { border: 2px dashed var(--chita-azul); border-radius: 8px; padding: 10px 16px; background: rgba(255,255,255,.75); font-size: .95rem; color: var(--bordado); max-width: 80%; }
-        .slides-img { width: 130px; height: 90px; border: 2px dashed var(--chita-verde); border-radius: 8px; background: var(--chita-verde-bg); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-        .ghost { color: #9AA0A6; border-bottom: 2px dashed #9AA0A6; }
+        .slides-titulo { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--tinta); line-height: 1.2; }
+        .slides-sub { font-size: 1rem; color: var(--tinta-suave); }
+        .slides-texto { border: 2px solid var(--azul-ceu); border-radius: 8px; padding: 10px 16px; background: rgba(255,255,255,.75); font-size: .95rem; color: var(--tinta); max-width: 80%; }
+        .slides-img { width: 130px; height: 90px; border: 2px solid var(--verde-folha); border-radius: 8px; background: var(--verde-folha-suave); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .ghost { color: #9AA0A6; border-bottom: 2px solid #9AA0A6; }
         .sim-controles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--esp-md); }
         @media (max-width: 768px) { .sim-controles { grid-template-columns: 1fr; } }
-        .sim-controles input { padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-sm); font-family: var(--font-body); background: #FFF; }
-        .sim-controles input:focus { outline: none; border-color: var(--chita-azul); }
+        .sim-controles input { padding: 12px 14px; border: 2px solid var(--grafite); border-radius: 10px; font-size: var(--texto-sm); font-family: var(--font-body); background: #FFF; }
+        .sim-controles input:focus { outline: none; border-color: var(--azul-ceu); }
         .sim-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
         /* ===== Abas do navegador ===== */
         .abas-visual { display: flex; align-items: flex-end; gap: 6px; margin: var(--esp-md) 0; }
-        .aba-nav { background: #E8EAED; border: 2px solid var(--linha); border-bottom: none; border-radius: 10px 10px 0 0; padding: 10px 18px; font-size: .9rem; font-weight: 700; color: var(--bordado-suave); }
-        .aba-nav.nova { background: #FFF; color: var(--chita-azul-escura); border-color: var(--chita-azul); animation: pulso-aba 2s ease-in-out infinite; }
+        .aba-nav { background: #E8EAED; border: 2px solid var(--grafite-suave); border-bottom: none; border-radius: 10px 10px 0 0; padding: 10px 18px; font-size: .9rem; font-weight: 700; color: var(--tinta-suave); }
+        .aba-nav.nova { background: #FFF; color: var(--azul-uemg-profundo); border-color: var(--azul-ceu); animation: pulso-aba 2s ease-in-out infinite; }
         @keyframes pulso-aba { 0%,100% { box-shadow: 0 0 0 0 rgba(62,108,158,.35); } 50% { box-shadow: 0 0 0 10px rgba(62,108,158,0); } }
         /* ===== Tela cheia (modo apresentação) ===== */
         .apresentacao-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: #0F1420; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; }
@@ -85,21 +85,21 @@
         .apres-contador { position: absolute; top: 18px; right: 24px; color: #C6CBD6; font-weight: 700; }
         /* ===== Compartilhar ===== */
         .perm-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin: var(--esp-sm) 0; }
-        .perm-botao { border: 2px solid var(--linha-forte); background: #FFF; border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), color var(--veloz), transform var(--veloz); }
-        .perm-botao.sel { border-color: var(--chita-verde); background: var(--chita-verde-bg); color: #2F522C; }
-        .form-compartilhar { max-width: 460px; background: var(--algodao); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); }
+        .perm-botao { border: 2px solid var(--grafite); background: #FFF; border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 700; font-size: var(--texto-sm); color: var(--tinta); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .perm-botao.sel { border-color: var(--verde-folha); background: var(--verde-folha-suave); color: #2F522C; }
+        .form-compartilhar { max-width: 460px; background: var(--papel); border: var(--divisor-grafite); border-radius: var(--raio); padding: var(--esp-md); }
         .form-compartilhar label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
-        .form-compartilhar input { width: 100%; padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
-        .form-compartilhar input:focus { outline: none; border-color: var(--chita-azul); }
+        .form-compartilhar input { width: 100%; padding: 12px 14px; border: 2px solid var(--grafite); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
+        .form-compartilhar input:focus { outline: none; border-color: var(--azul-ceu); }
         /* ===== Tema picker ===== */
         .tema-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin: var(--esp-md) 0; }
-        .tema-botao { display: flex; align-items: center; gap: 10px; border: 2px solid var(--linha-forte); background: #FFF; border-radius: var(--raio); padding: 10px 16px; font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), transform var(--veloz); }
-        .tema-botao.sel { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
-        .tema-amostra { width: 46px; height: 26px; border-radius: 5px; border: 1px solid var(--linha); flex-shrink: 0; }
+        .tema-botao { display: flex; align-items: center; gap: 10px; border: 2px solid var(--grafite); background: #FFF; border-radius: var(--raio); padding: 10px 16px; font-weight: 700; font-size: var(--texto-sm); color: var(--tinta); cursor: pointer; transition: border-color var(--veloz), background-color var(--veloz), transform var(--veloz); }
+        .tema-botao.sel { border-color: var(--azul-ceu); background: var(--azul-ceu-suave); }
+        .tema-amostra { width: 46px; height: 26px; border-radius: 5px; border: 1px solid var(--grafite-suave); flex-shrink: 0; }
         .tema-amostra.am-claro { background: linear-gradient(150deg, #FFFDF7, #EAF3E7); }
         .tema-amostra.am-azul { background: linear-gradient(150deg, #F4F8FD, #DCE9F7); }
         .tema-amostra.am-escuro { background: linear-gradient(150deg, #26324A, #17223A); }
-        .miniatura-mini { width: 100%; aspect-ratio: 16 / 9; border-radius: 5px; border: 1px solid var(--linha); display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 700; color: var(--bordado-suave); background: var(--chita-azul-bg); margin-bottom: 6px; }
+        .miniatura-mini { width: 100%; aspect-ratio: 16 / 9; border-radius: 5px; border: 1px solid var(--grafite-suave); display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 700; color: var(--tinta-suave); background: var(--azul-ceu-suave); margin-bottom: 6px; }
     
         /* Impeccable layout + adapt: leitura linear e espaçamento confortável. */
         .etapa { --p-density: 1; }
@@ -165,7 +165,7 @@
 <!-- Navegação -->
 <section class="etapa ativa" data-etapa="1" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos à Aula 7! Hoje é um dia especial! 🎨</h2><p>Hoje vamos <strong>criar apresentações</strong>, <strong>contar histórias</strong> e
             <strong>ser criativos</strong>. Você vai aprender a fazer trabalhos bonitos para mostrar
-            para a família — convites, álbuns de fotos, receitas ilustradas e muito mais.</p><img alt="Ilustração da aula 07: um álbum digital de apresentações colorido com slides, fotos e desenhos" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula07-slides-bg-16x9-v01.png" width="1536"/><h3>Olhem o quanto já aprendemos! ⭐</h3><div class="caps-recap">
+            para a família — convites, álbuns de fotos, receitas ilustradas e muito mais.</p><img alt="Ilustração da aula 07: um álbum digital de apresentações colorido com slides, fotos e desenhos" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula-apresentacao-criativa-bg-16x9-v01.png" width="1536"/><h3>Olhem o quanto já aprendemos! ⭐</h3><div class="caps-recap">
 <span class="chip-rec">✅ Computador básico</span>
 <span class="chip-rec">✅ Navegar na internet</span>
 <span class="chip-rec">✅ WhatsApp</span>
@@ -173,8 +173,8 @@
 <span class="chip-rec">✅ Redes sociais</span>
 <span class="chip-rec">✅ Google Fotos <span class="ferramenta"><img alt="" height="26" src="/assets/logos/photos.png" width="26"/> Google Fotos</span> e Drive</span>
 </div></section><section class="etapa" data-etapa="2" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos à Aula 7! Hoje é um dia especial! 🎨 — continuação</h2><div class="destaque">
-                ✨ <strong>Vocês são INCRÍVEIS!</strong> Cada aula foi um retalho costurado na sua
-                colcha digital. Hoje vamos usar tudo isso junto para criar coisas lindas. 💪
+                ✨ <strong>Vocês são INCRÍVEIS!</strong> Cada aula foi um etapa concluída na sua
+                progresso-montagem digital. Hoje vamos usar tudo isso junto para criar coisas lindas. 💪
             </div><div class="analogia">
                 🎨 "Se você já sabe guardar fotos no Google Fotos e escrever no Google Docs <span class="ferramenta"><img alt="" height="26" src="/assets/logos/docs.png" width="26"/> Google Docs</span>,
                 já sabe 80% do que o Google Slides pede. Hoje a gente só junta as peças."
@@ -269,7 +269,7 @@
 <p style="text-align:center;">É para <strong>MOSTRAR</strong>: apresentações, álbuns, convites.</p>
 </div>
 </div></section><section class="etapa" data-etapa="12" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Cada ferramenta tem seu momento</h2><div class="analogia">
-                🧰 "É como a caixa de costura: a agulha, a linha e a tesoura servem para coisas
+                🧰 "É como a caixa de ferramentas: os botões, menus e atalhos servem para coisas
                 diferentes. Nenhuma é melhor que a outra — cada uma tem seu momento. A mesma coisa
                 com Docs, Sheets e Slides."
             </div><button class="btn btn-secondary" id="slides-quiz-primeira-vitoria">Ver uma resposta de exemplo</button><div id="slides-quiz-primeira-vitoria-feedback" role="status" aria-live="polite" hidden>✅ Exemplo visto: uma carta longa combina com o Google Docs.</div><p><strong>Agora vamos treinar:</strong> leia cada situação e escolha a ferramenta certa:</p></section><section class="etapa" data-etapa="13" data-fase-origem="5"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Docs vs Sheets vs Slides: cada ferramenta tem seu uso! — continuação</h2><div class="quiz-card">
@@ -373,7 +373,7 @@
 <p>Clique no botão <strong>+</strong> da
                     <span class="termo" tabindex="0">barra de ferramentas
                         <span class="tooltip"><strong>Barra de ferramentas</strong>
-                        A faixa de botões com as ações mais usadas, logo abaixo dos menus — como a caixa de costura com agulha e linha sempre à mão.</span>
+                        A faixa de botões com as ações mais usadas, logo abaixo dos menus — como a caixa de ferramentas sempre à mão.</span>
 </span>
                     (a faixa de botões em cima da tela).</p>
 </div>
@@ -657,7 +657,7 @@
 <div class="passo"><span class="passo-num">3</span><p><strong>A turma aplaude</strong> e comenta o que gostou — junto aprendemos!</p></div>
 </div></section><section class="etapa" data-etapa="52" data-fase-origem="15"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Atividade prática: Apresentação sobre Você! 👨‍💻 — continuação</h2><div class="destaque">
                 💛 <strong>Não precisa ser perfeito!</strong> Cada apresentação é uma obra única —
-                como cada retalho da colcha. Todos são artistas digitais!
+                como cada peca-progresso da progresso-montagem. Todos são artistas digitais!
             </div></section><section class="etapa" data-etapa="53" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆</h2><div class="missao">
 <h3>🎯 Desafio final: crie uma apresentação com 5 slides!</h3>
 <p style="margin-bottom: var(--esp-sm);">Escolha um tema que fale do seu coração:</p>
@@ -690,18 +690,18 @@
 <li><span><strong>🔗 Criar links clicáveis</strong> — para sites ou e-mails</span></li>
 <li><span><strong>✨ Transições entre slides</strong> — efeitos suaves ao avançar</span></li>
 <li><span><strong>👥 Trabalhar junto</strong> — várias pessoas editando ao mesmo tempo</span></li>
-</ul><p style="text-align:center;"><em>Infinitas possibilidades — explore no seu ritmo!</em></p><h3>🧵 Conexão com as aulas anteriores</h3></section><section class="etapa" data-etapa="58" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><div class="passos-duplos">
+</ul><p style="text-align:center;"><em>Infinitas possibilidades — explore no seu ritmo!</em></p><h3>Conexão com as aulas anteriores</h3></section><section class="etapa" data-etapa="58" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana 🏆 — continuação</h2><div class="passos-duplos">
 <div class="mini-cartao"><span class="icone-grande">☁️</span><h4>Drive</h4><p>Salva automaticamente e guarda sua apresentação na nuvem.</p></div>
 <div class="mini-cartao"><span class="icone-grande">📸</span><h4>Google Fotos</h4><p>Fornece as imagens que você insere nos slides.</p></div>
 <div class="mini-cartao"><span class="icone-grande">📧</span><h4>Gmail</h4><p>Compartilha por e-mail os convites para ver a apresentação.</p></div>
 <div class="mini-cartao"><span class="icone-grande">📝</span><h4>Docs</h4><p>Mesma interface: menus, formatar texto, tudo igual.</p></div>
 </div></section><section class="etapa" data-etapa="59" data-fase-origem="16"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Praticar deixa o aprendizado mais firme</h2><div class="destaque">
-                🧵 <strong>Por que isso importa:</strong> a missão é como os pontos da costura —
+                <strong>Por que isso importa:</strong> a missão é com a prática de cada passo —
                 cada apresentação praticada em casa deixa o aprendizado mais firme.
                 Na próxima aula, contamos como foi!
             </div></section><section class="etapa" data-etapa="60" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
 <span class="trofeu">🎨</span>
-<h2>Você costurou mais um retalho!</h2>
+<h2>Você montou mais uma etapa!</h2>
 <p>Hoje você criou apresentações, escolheu temas, colocou fotos e textos e
                 apresentou em tela cheia. Você é um artista digital! Cada clique, cada foto
                 inserida, cada slide criado é uma conquista.</p>
@@ -720,9 +720,9 @@
                 com criatividade e criaram apresentações lindas. Vocês são inspiração!
                 Parabéns — você domina o Google Slides! 🌟"
             </div><div style="text-align:center; margin-top: var(--esp-lg);">
-<div class="retalho-costurado">Aula 07 · costurada! 🎉</div>
+<div class="peca-montada">Aula 07 · etapa montada! 🎉</div>
 </div></section><section class="etapa" data-etapa="63" data-fase-origem="17"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="destaque" style="margin-top: var(--esp-lg);">
-                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos aprender sobre o
+                <strong>Continue praticando.</strong> Na próxima aula vamos aprender sobre o
                 <strong>Gov.br e o PIX</strong> — seus documentos e suas transferências digitais,
                 com o mesmo jeito de aprender: um passo de cada vez, no seu ritmo.
             </div><div style="text-align:center; margin-top: var(--esp-md);">
@@ -995,7 +995,7 @@
                 var nome = e13Nome.value.trim() || 'Apresentação sem título';
                 if (!email) {
                     e13Email.focus();
-                    e13Email.style.borderColor = 'var(--chita-vermelha)';
+                    e13Email.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 e13Email.style.borderColor = '';

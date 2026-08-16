@@ -1,0 +1,8 @@
+surface: aula 06
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Um casal brasileiro de 60 a 75 anos trabalha junto em documentos e listas no computador em uma mesa clara, com uma monitora como igual em um laboratório da universidade pública. As telas mostram somente campos geométricos pálidos completamente em branco, sem qualquer interface. Cena ampla ao nível dos olhos sentado, luz quente de dia claro. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.

@@ -1,0 +1,225 @@
+/* Camada final do Ateliê de Autonomia: novas superfícies e componentes. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  padding: 12px 16px;
+  background: var(--azul-uemg-profundo);
+  color: #FFF;
+  transform: translateY(-120%);
+}
+.skip-link:focus-visible { transform: translateY(0); color: #FFF; }
+.form-nota[hidden] { display: none; }
+.hero-atelie {
+  background:
+    linear-gradient(90deg, var(--papel) 0%, var(--papel) 40%, rgba(250, 246, 236, 0.78) 51%, rgba(250, 246, 236, 0.08) 72%),
+    url('/assets/ilustracoes/home-turma-laboratorio-bg-16x9-v01.png') center / cover;
+  border-bottom: 1px solid var(--grafite-suave);
+}
+
+.hero-atelie::before { background: none; }
+.hero-atelie .hero-content { grid-template-columns: minmax(0, 0.88fr) minmax(300px, 1.12fr); }
+.hero-atelie .hero-text { padding-block: clamp(1rem, 2vw, 2rem); }
+.hero-atelie .hero-title { font-size: clamp(2.5rem, 4.2vw, 4rem); }
+.hero-atelie .hero-description { font-size: var(--texto-base); margin-bottom: var(--esp-md); }
+.hero-atelie .hero-visual { min-height: clamp(280px, 30vw, 420px); }
+.hero-badge {
+  background: var(--marigold-suave);
+  border: 1px solid var(--marigold);
+  box-shadow: none;
+  color: var(--tinta);
+}
+.hero-subtitle { font-family: var(--font-body); font-weight: 700; }
+
+.progresso-resumo {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(340px, 1.25fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+.progresso-resumo h2 { margin-bottom: var(--esp-sm); }
+.progresso-resumo p { color: var(--tinta-suave); max-width: 48ch; }
+.progresso-resumo .progresso-montagem-grade {
+  list-style: none;
+  margin: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.peca-progresso {
+  min-height: 76px;
+  aspect-ratio: auto;
+  background: var(--papel-elevado);
+  border: 1px solid var(--grafite-suave);
+  color: var(--tinta);
+  font-family: var(--font-body);
+  font-size: var(--texto-lg);
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--sombra-sm);
+}
+.peca-progresso-futura {
+  background: var(--papel-rebaixado);
+  border-style: solid;
+  color: var(--tinta-suave);
+}
+.peca-montada {
+  display: inline-block;
+  margin-top: var(--esp-md);
+  padding: 14px 28px;
+  background: var(--terracota);
+  color: #FFF;
+  font-family: var(--font-body);
+  font-size: var(--texto-xl);
+  font-weight: 800;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-md);
+}
+
+.sidebar,
+.mobile-header,
+.site-footer,
+.stats-bar {
+  background-color: var(--azul-uemg-profundo);
+  background-image:
+    linear-gradient(rgba(30, 68, 102, 0.94), rgba(30, 68, 102, 0.94)),
+    var(--textura-papel);
+}
+.sidebar-footer a { color: #F3EEE2; text-decoration: underline; text-decoration-thickness: 1px; }
+.sidebar-footer a:hover { color: var(--marigold); }
+
+.roadmap-hero {
+  min-height: clamp(360px, 44vw, 580px);
+  display: grid;
+  align-items: end;
+  padding: clamp(2rem, 5vw, 5rem);
+  color: #FFF;
+  background:
+    linear-gradient(90deg, rgba(30, 68, 102, 0.96) 0%, rgba(30, 68, 102, 0.84) 34%, rgba(30, 68, 102, 0.18) 68%, rgba(30, 68, 102, 0.05) 100%),
+    url('/assets/ilustracoes/roadmap-trilhas-futuras-bg-16x9-v01.png') center / cover;
+  border-bottom: 3px solid var(--marigold);
+}
+.roadmap-hero > div { max-width: 650px; }
+.roadmap-hero h1 { color: #FFF; font-size: clamp(2.6rem, 5vw, 4.6rem); text-wrap: balance; }
+.roadmap-hero p { font-size: var(--texto-lg); max-width: 48ch; margin-top: var(--esp-sm); }
+.roadmap-hero .hero-badge { display: inline-flex; margin-bottom: var(--esp-sm); }
+
+.trilhas-section { padding-top: clamp(3rem, 6vw, 5rem); }
+.trilhas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.trilha-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-md);
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--papel-elevado);
+  border: 1px solid var(--grafite-suave);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-sm);
+}
+.trilha-card h2 { font-size: var(--texto-xl); }
+.trilha-card > p { color: var(--tinta-suave); }
+.status-selo {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 32px;
+  padding: 5px 12px;
+  border-radius: var(--raio-pill);
+  border: 1px solid currentColor;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.status-ativa { color: #2F522C; background: var(--verde-folha-suave); }
+.status-planejamento { color: var(--azul-uemg-profundo); background: var(--azul-ceu-suave); }
+.status-aberta { color: #754D0C; background: var(--marigold-suave); }
+.trilha-meta { display: grid; gap: var(--esp-sm); }
+.trilha-meta div { padding-top: var(--esp-sm); border-top: 1px solid var(--grafite-suave); }
+.trilha-meta dt { font-size: 0.95rem; color: var(--tinta-suave); font-weight: 700; }
+.trilha-meta dd { margin: 2px 0 0; font-size: var(--texto-base); font-weight: 700; }
+.trilha-card details { margin-top: auto; background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio-sm); }
+.trilha-card summary {
+  min-height: 48px;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: var(--azul-uemg-profundo);
+  font-weight: 800;
+}
+.trilha-card details ul { margin: 0; padding: 0 20px 18px 38px; color: var(--tinta-suave); }
+.trilha-card details li + li { margin-top: 8px; }
+.trilha-card .btn { align-self: flex-start; }
+
+.visao-integrada {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--esp-lg);
+  align-items: start;
+  margin-top: var(--esp-xl);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--azul-ceu-suave);
+  border: 1px solid var(--azul-ceu);
+  border-radius: var(--raio);
+}
+.visao-integrada p { color: var(--tinta); }
+.visao-integrada-lista { display: grid; gap: var(--esp-sm); list-style: none; }
+.visao-integrada-lista li { padding: var(--esp-sm); background: rgba(255,255,255,.65); border-radius: var(--raio-sm); }
+.visao-integrada-lista strong { display: block; color: var(--azul-uemg-profundo); }
+.base-institucional { margin-top: var(--esp-lg); color: var(--tinta-suave); }
+
+.sugestao-section { background: var(--papel-rebaixado); border-top: 1px solid var(--grafite-suave); border-bottom: 1px solid var(--grafite-suave); }
+.sugestao-layout { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.sugestao-intro p { color: var(--tinta-suave); }
+.sugestao-intro p + p { margin-top: var(--esp-md); }
+.sugestao-form {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--papel-elevado);
+  border: 1px solid var(--grafite-suave);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-sm);
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); }
+.form-campo { display: grid; gap: 8px; }
+.form-campo.form-largo { grid-column: 1 / -1; }
+.form-campo label, .form-consentimento label { color: var(--tinta); font-size: var(--texto-base); font-weight: 800; }
+.form-campo input, .form-campo select, .form-campo textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  color: var(--tinta);
+  background: #FFF;
+  border: 2px solid var(--grafite);
+  border-radius: var(--raio-sm);
+  font: inherit;
+  font-size: var(--texto-base);
+}
+.form-campo textarea { min-height: 140px; resize: vertical; }
+.form-campo input[aria-invalid="true"], .form-campo select[aria-invalid="true"], .form-campo textarea[aria-invalid="true"] { border-color: var(--terracota); }
+.form-erro { min-height: 1.25em; color: #7A2620; font-weight: 700; }
+.form-consentimento { display: flex; align-items: flex-start; gap: 12px; margin: var(--esp-md) 0; }
+.form-consentimento input { width: 24px; height: 24px; margin-top: 3px; flex: 0 0 auto; accent-color: var(--terracota); }
+.form-nota { margin-top: var(--esp-md); color: var(--tinta-suave); font-size: var(--texto-base); }
+.form-status { min-height: 1.5em; margin-top: var(--esp-md); font-weight: 700; }
+.form-status[data-state="error"] { color: #7A2620; }
+.form-status[data-state="success"] { color: #2F522C; }
+
+@media (max-width: 900px) {
+  .hero-atelie { background: linear-gradient(rgba(250, 246, 236, .96), rgba(250, 246, 236, .84)), url('/assets/ilustracoes/home-turma-laboratorio-bg-16x9-v01.png') center / cover; }
+  .hero-atelie .hero-content, .progresso-resumo, .visao-integrada, .sugestao-layout { grid-template-columns: 1fr; }
+  .hero-atelie .hero-visual { display: none; }
+  .trilhas-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .roadmap-hero { min-height: 420px; background: linear-gradient(rgba(30, 68, 102, .92), rgba(30, 68, 102, .56)), url('/assets/ilustracoes/roadmap-trilhas-futuras-bg-16x9-v01.png') center / cover; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-campo.form-largo { grid-column: auto; }
+  .progresso-resumo .progresso-montagem-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .peca-progresso { min-height: 62px; font-size: var(--texto-base); }
+}

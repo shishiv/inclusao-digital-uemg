@@ -1,0 +1,8 @@
+surface: aula 05
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Uma adulta brasileira de 60 a 75 anos organiza fotografias impressas e um computador em uma mesa de madeira clara em casa, conectando memórias e tecnologia com uma expressão segura. A tela do computador é um campo geométrico pálido completamente em branco e as fotos não mostram rostos ou dados identificáveis. Cena ampla ao nível dos olhos sentado, luz quente de dia claro. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.

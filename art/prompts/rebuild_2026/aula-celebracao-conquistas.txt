@@ -1,0 +1,8 @@
+surface: aula 09
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Grupo diverso de adultos brasileiros de 60 a 75 anos e monitores celebra uma jornada de aprendizado em um laboratório de informática da universidade pública, todos como protagonistas capazes, com as mãos levantadas e pequenos recortes geométricos coloridos sem texto. Nenhum certificado, tela, papel, cartaz ou objeto contém palavras, números, logo, marca, dado, QR code ou interface. Cena ampla ao nível dos olhos sentado, luz quente de dia claro. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto.

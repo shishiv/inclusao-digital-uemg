@@ -1,0 +1,8 @@
+surface: player
+role: subject
+ratio: 1:1
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Retrato centralizado da Dona Zilda, adulta brasileira de aproximadamente 70 anos, cabelo curto grisalho, blusa terracota, expressão atenta e capaz, olhando para a câmera. Fundo simples de papel recortado em camadas com folhas abstratas, respiro uniforme para recorte circular. Luz clara e quente, tinta fosca, contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Sem palavras, letras, números, logos, marcas, dados, QR codes ou interface.

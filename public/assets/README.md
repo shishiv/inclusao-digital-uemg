@@ -25,12 +25,29 @@ Exemplo: `aula-whatsapp-mockup-9x16-v01.png`
 public/assets/
 ├── mockups/       # Simuladores de interface em HTML/CSS (WhatsApp, Gmail, PIX…)
 ├── ilustracoes/   # Imagens geradas (tec-image / Azure gpt-image-2)
-├── icones/        # Ícones SVG no mundo Colcha de Retalhos (agulha, dedal, tesoura, linha)
-├── texturas/      # Chita, trama de tecido, linha de costura (SVG/CSS)
+├── icones/        # Ícones SVG de interface, sempre em código
+├── texturas/      # Texturas e superfícies do Ateliê de Autonomia
 └── README.md      # Este arquivo — índice e curadoria
 ```
 
 ## Índice de assets
+
+### Ateliê de Autonomia (`public/assets/ilustracoes/`)
+
+O mundo visual ativo usa papel recortado artesanal, tinta fosca, grafite suave, madeira clara,
+luz quente e adultos brasileiros 60+ como protagonistas capazes. A freeze-list e o ledger
+estão em `SPEC.md`, `art/prompts/rebuild_2026/` e `art/provenance/rebuild_2026-assets.json`.
+
+| Asset | Uso | Status |
+|---|---|---|
+| `home-turma-laboratorio-bg-16x9-v01.png` | Home e aprendizado em comunidade | ✅ ativo |
+| `aula-fundamentos-computador` até `aula-celebracao-conquistas` | Série de 9 capas de aula | ✅ ativo |
+| `avatar-dona-zilda-subject-1x1-v01.png` e `avatar-seu-jose-subject-1x1-v01.png` | Simuladores de contato | ✅ ativos |
+| `textura-oficina-papel-bg-16x9-v01.png` | Fundo de seção | ✅ ativo |
+| `roadmap-trilhas-futuras-bg-16x9-v01.png` | Página das trilhas | ✅ ativo |
+
+Os assets anteriores permanecem como patrimônio e evidência. Eles não são apagados ou usados
+pelas superfícies redesenhadas.
 
 ### Fotos didáticas realistas (`public/assets/fotos/`)
 
@@ -85,7 +102,7 @@ Uso: `<span class="ferramenta"><img src="/assets/logos/whatsapp.svg" width="26" 
 | Gov.br — níveis Bronze/Prata/Ouro | Aula 08 | ⏳ planejado |
 | Google Fotos — álbum | Aula 05 | ⏳ planejado |
 
-### Ilustrações (tec-image / Azure gpt-image-2)
+### Ilustrações legadas (tec-image / Azure gpt-image-2)
 | Asset | Uso | Status |
 |---|---|---|
 | `hero-colcha-retalhos-16x9-v01.png` | Home — hero (6 idosos costurando colcha + videochamada com netos) | ✅ gerado (2026-08) |

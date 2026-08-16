@@ -9,45 +9,45 @@
 <title>Aula 02 — Navegando com Segurança | Inclusão Digital UEMG</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="/assets/player.css" rel="stylesheet"/>
 <style>
         /* ===== Extras específicos da aula 02 ===== */
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
         .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
         .lista-check li::before { content: '✅'; flex-shrink: 0; }
 
         /* Mockup navegador */
-        .mockup-navegador { position: relative; max-width: 560px; margin: var(--esp-md) auto; background: #FFF; border-radius: 14px; border: 1px solid var(--linha); box-shadow: var(--sombra-md); overflow: hidden; }
-        .navegador-tab { background: #F1F3F4; padding: 8px 14px; font-size: .8rem; color: var(--bordado-suave); border-bottom: 1px solid #E3E6E8; font-weight: 600; }
+        .mockup-navegador { position: relative; max-width: 560px; margin: var(--esp-md) auto; background: #FFF; border-radius: 14px; border: 1px solid var(--grafite-suave); box-shadow: var(--sombra-md); overflow: hidden; }
+        .navegador-tab { background: #F1F3F4; padding: 8px 14px; font-size: .8rem; color: var(--tinta-suave); border-bottom: 1px solid #E3E6E8; font-weight: 600; }
         .barra-endereco { display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
         .cadeado { font-size: 1.15rem; }
-        .endereco-texto { flex: 1; background: #F1F3F4; border-radius: 20px; padding: 10px 14px; font-size: .9rem; color: var(--bordado); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .endereco-texto { flex: 1; background: #F1F3F4; border-radius: 20px; padding: 10px 14px; font-size: .9rem; color: var(--tinta); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
         /* Chips de URL clicáveis */
         .url-chips { display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
-        .url-chip { display: flex; align-items: center; gap: 10px; background: var(--algodao); border: 2px solid var(--linha); border-radius: var(--raio); padding: 12px 16px; cursor: pointer; font-family: monospace; font-size: .92rem; text-align: left; transition: border-color var(--veloz), background var(--veloz); }
-        .url-chip:hover { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
-        .url-chip.boa { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
-        .url-chip.ruim { border-color: var(--chita-vermelha); background: #FBEAEA; }
+        .url-chip { display: flex; align-items: center; gap: 10px; background: var(--papel); border: 2px solid var(--grafite-suave); border-radius: var(--raio); padding: 12px 16px; cursor: pointer; font-family: monospace; font-size: .92rem; text-align: left; transition: border-color var(--veloz), background var(--veloz); }
+        .url-chip:hover { border-color: var(--azul-ceu); background: var(--azul-ceu-suave); }
+        .url-chip.boa { border-color: var(--verde-folha); background: var(--verde-folha-suave); }
+        .url-chip.ruim { border-color: var(--terracota); background: #FBEAEA; }
         .veredito { display: none; margin-top: var(--esp-md); padding: var(--esp-md); border-radius: var(--raio); font-weight: 600; }
         .veredito.show { display: block; }
-        .veredito.ok { background: var(--chita-verde-bg); color: #2F522C; border: 2px dashed var(--chita-verde); }
-        .veredito.cuidado { background: #FBEAEA; color: #7A2620; border: 2px dashed var(--chita-vermelha); }
+        .veredito.ok { background: var(--verde-folha-suave); color: #2F522C; border: 2px solid var(--verde-folha); }
+        .veredito.cuidado { background: #FBEAEA; color: #7A2620; border: 2px solid var(--terracota); }
 
         /* Mockup Google */
         .mockup-google { max-width: 520px; margin: var(--esp-md) auto; background: #FFF; border-radius: 16px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); overflow: hidden; }
         .google-barra { padding: 12px 16px; border-bottom: 1px solid #F0F2F5; display: flex; align-items: center; gap: 10px; }
-        .google-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--chita-azul-escura); }
-        .google-campo { flex: 1; background: #F1F3F4; border-radius: 24px; padding: 8px 14px; font-size: .88rem; color: var(--bordado-suave); }
+        .google-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--azul-uemg-profundo); }
+        .google-campo { flex: 1; background: #F1F3F4; border-radius: 24px; padding: 8px 14px; font-size: .88rem; color: var(--tinta-suave); }
         .resultado { padding: 12px 16px; border-bottom: 1px solid #F0F2F5; }
         .resultado.anuncio { background: #FFF8E7; }
-        .tag-anuncio { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .66rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 4px; }
+        .tag-anuncio { display: inline-block; background: var(--marigold); color: var(--tinta); font-size: .66rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 4px; }
         .resultado .url-linha { font-size: .78rem; color: #5F6368; }
         .resultado .titulo { font-weight: 700; color: #1A0DAB; font-size: .95rem; }
         .resultado .descricao { font-size: .82rem; color: #4D5156; }
@@ -55,40 +55,40 @@
         /* Mockup celular + tela inicial */
         .mockup-celular { max-width: 300px; margin: var(--esp-md) auto; background: #111B21; border-radius: 34px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); overflow: hidden; }
         .celular-tela { background: linear-gradient(160deg, #E8F1F8, #F6F1E3); min-height: 400px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
-        .status-celular { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 700; color: var(--bordado-suave); padding: 0 4px; }
+        .status-celular { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 700; color: var(--tinta-suave); padding: 0 4px; }
         .tela-inicial { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; }
-        .app-icone { background: #FFF; border: 2px solid var(--linha); border-radius: 16px; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: transform var(--veloz), border-color var(--veloz); }
-        .app-icone:hover { transform: translateY(-2px); border-color: var(--chita-azul); }
+        .app-icone { background: #FFF; border: 2px solid var(--grafite-suave); border-radius: 16px; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: transform var(--veloz), border-color var(--veloz); }
+        .app-icone:hover { transform: translateY(-2px); border-color: var(--azul-ceu); }
         .app-icone .emoji { font-size: 1.55rem; }
-        .app-icone .rotulo { font-size: .62rem; font-weight: 700; color: var(--bordado); text-align: center; line-height: 1.1; }
-        .nota-celular { display: none; background: var(--chita-azul-escura); color: #FFF; border-radius: 12px; padding: 12px 14px; font-size: .85rem; line-height: 1.5; }
+        .app-icone .rotulo { font-size: .62rem; font-weight: 700; color: var(--tinta); text-align: center; line-height: 1.1; }
+        .nota-celular { display: none; background: var(--azul-uemg-profundo); color: #FFF; border-radius: 12px; padding: 12px 14px; font-size: .85rem; line-height: 1.5; }
         .nota-celular.show { display: block; }
 
         /* Loja de aplicativos */
         .loja-mock { max-width: 360px; margin: var(--esp-md) auto; background: #FFF; border-radius: 20px; overflow: hidden; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); }
         .loja-topo { background: #0F766E; color: #FFF; padding: 12px 16px; font-weight: 800; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
         .loja-topo img { border-radius: 5px; flex-shrink: 0; }
-        .loja-busca { background: #F1F3F4; margin: 12px 12px 4px; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--bordado-suave); }
+        .loja-busca { background: #F1F3F4; margin: 12px 12px 4px; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--tinta-suave); }
         .loja-lista { padding: 8px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
-        .loja-card { display: flex; align-items: center; gap: 12px; background: var(--algodao); border: 2px solid var(--linha); border-radius: 14px; padding: 10px 12px; }
-        .loja-card .app-emoji { width: 46px; height: 46px; border-radius: 12px; background: #FFF; border: 1px solid var(--linha); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; flex-shrink: 0; }
+        .loja-card { display: flex; align-items: center; gap: 12px; background: var(--papel); border: 2px solid var(--grafite-suave); border-radius: 14px; padding: 10px 12px; }
+        .loja-card .app-emoji { width: 46px; height: 46px; border-radius: 12px; background: #FFF; border: 1px solid var(--grafite-suave); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; flex-shrink: 0; }
         .loja-card .infos { flex: 1; min-width: 0; }
         .loja-card .nome-app { font-weight: 800; font-size: .9rem; color: #111B21; }
         .loja-card .editor { font-size: .72rem; color: #5F6368; }
-        .botao-instalar { background: var(--chita-verde); color: #FFF; border: none; border-radius: 999px; padding: 7px 16px; font-weight: 800; font-size: .8rem; cursor: pointer; flex-shrink: 0; }
+        .botao-instalar { background: var(--verde-folha); color: #FFF; border: none; border-radius: 999px; padding: 7px 16px; font-weight: 800; font-size: .8rem; cursor: pointer; flex-shrink: 0; }
         .botao-instalar:hover { background: #3E6B3B; }
-        .botao-instalar.instalado { background: var(--chita-azul); cursor: default; }
+        .botao-instalar.instalado { background: var(--azul-ceu); cursor: default; }
         .loja-aviso { display: none; margin-top: var(--esp-sm); padding: 12px 14px; border-radius: var(--raio); font-weight: 600; font-size: .9rem; }
         .loja-aviso.show { display: block; }
-        .loja-aviso.ok { background: var(--chita-verde-bg); color: #2F522C; }
+        .loja-aviso.ok { background: var(--verde-folha-suave); color: #2F522C; }
         .loja-aviso.erro { background: #FBEAEA; color: #7A2620; }
 
         /* Painel Wi-Fi / dados móveis */
-        .painel-rede { max-width: 420px; margin: var(--esp-md) auto; background: var(--algodao); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); }
-        .chip-rede { display: flex; align-items: center; gap: 12px; width: 100%; background: #FFF; border: 2px solid var(--linha); border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; cursor: pointer; font-weight: 700; text-align: left; font-size: .95rem; transition: border-color var(--veloz), background var(--veloz); }
-        .chip-rede:hover { border-color: var(--chita-azul); }
-        .chip-rede.ativo { border-color: var(--chita-verde); background: var(--chita-verde-bg); color: #2F522C; }
-        .status-rede { display: none; margin-top: var(--esp-sm); padding: var(--esp-sm) var(--esp-md); border-radius: var(--raio); font-weight: 600; background: var(--chita-azul-bg); color: var(--chita-azul-escura); }
+        .painel-rede { max-width: 420px; margin: var(--esp-md) auto; background: var(--papel); border: var(--divisor-grafite); border-radius: var(--raio); padding: var(--esp-md); }
+        .chip-rede { display: flex; align-items: center; gap: 12px; width: 100%; background: #FFF; border: 2px solid var(--grafite-suave); border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; cursor: pointer; font-weight: 700; text-align: left; font-size: .95rem; transition: border-color var(--veloz), background var(--veloz); }
+        .chip-rede:hover { border-color: var(--azul-ceu); }
+        .chip-rede.ativo { border-color: var(--verde-folha); background: var(--verde-folha-suave); color: #2F522C; }
+        .status-rede { display: none; margin-top: var(--esp-sm); padding: var(--esp-sm) var(--esp-md); border-radius: var(--raio); font-weight: 600; background: var(--azul-ceu-suave); color: var(--azul-uemg-profundo); }
         .status-rede.show { display: block; }
 
         /* Produto + avaliações */
@@ -96,13 +96,13 @@
         .produto-foto { height: 150px; background: linear-gradient(135deg, #E3ECF5, #F1EADA); display: flex; align-items: center; justify-content: center; font-size: 3.4rem; }
         .produto-info { padding: 14px 16px; }
         .produto-info .nome-produto { font-weight: 700; font-size: .95rem; }
-        .estrelas { color: var(--chita-amarela); font-size: 1.05rem; letter-spacing: 2px; }
+        .estrelas { color: var(--marigold); font-size: 1.05rem; letter-spacing: 2px; }
         .avaliacao-linha { font-size: .78rem; color: #5F6368; }
 
         /* Mockup Google Maps */
         .maps-mock { position: relative; max-width: 420px; margin: var(--esp-md) auto; border-radius: 20px; overflow: hidden; border: 6px solid #E8EAED; box-shadow: var(--sombra-lg); background: #FFF; }
         .maps-barra { padding: 10px; background: #FFF; }
-        .maps-busca { background: #F1F3F4; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--bordado-suave); border: none; width: 100%; }
+        .maps-busca { background: #F1F3F4; border-radius: 24px; padding: 9px 16px; font-size: .85rem; color: var(--tinta-suave); border: none; width: 100%; }
         .maps-tela { height: 210px; position: relative; background: linear-gradient(160deg, #E8F0E4 0%, #E3ECF5 60%, #F6F1E3 100%); overflow: hidden; }
         .maps-rua { position: absolute; background: #FFF; border: 2px solid #E3DCCB; }
         .maps-rua.h { left: 0; right: 0; top: 55px; height: 26px; }
@@ -115,9 +115,9 @@
         .maps-resultado .tempo { font-size: .78rem; color: #5F6368; }
         .botao-rota { background: #4285F4; color: #FFF; border: none; border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .8rem; cursor: pointer; flex-shrink: 0; }
         .lugares { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--esp-md) 0; }
-        .lugar-chip { background: #FFF; border: 2px solid var(--linha); border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .88rem; cursor: pointer; transition: border-color var(--veloz), background var(--veloz); }
-        .lugar-chip:hover { border-color: var(--chita-azul); background: var(--chita-azul-bg); }
-        .lugar-chip.ativo { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+        .lugar-chip { background: #FFF; border: 2px solid var(--grafite-suave); border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .88rem; cursor: pointer; transition: border-color var(--veloz), background var(--veloz); }
+        .lugar-chip:hover { border-color: var(--azul-ceu); background: var(--azul-ceu-suave); }
+        .lugar-chip.ativo { border-color: var(--verde-folha); background: var(--verde-folha-suave); }
 
         /* ===== Adaptações tela cheia (aula 02) ===== */
         .etapa-visual .mockup,
@@ -134,22 +134,22 @@
         .etapa-visual .ferramentas-linha { margin: var(--esp-sm) 0 0; justify-content: center; }
 
         /* Cartão visual genérico (reconhecimento rápido) */
-        .cartao-visual { max-width: 380px; margin: 0 auto; background: var(--algodao); border: 2px dashed var(--linha-forte); border-radius: var(--raio-lg); padding: var(--esp-lg) var(--esp-md); text-align: center; box-shadow: var(--sombra-md); }
+        .cartao-visual { max-width: 380px; margin: 0 auto; background: var(--papel); border: 2px solid var(--grafite); border-radius: var(--raio-lg); padding: var(--esp-lg) var(--esp-md); text-align: center; box-shadow: var(--sombra-md); }
         .cartao-visual .cv-icone { font-size: 3rem; display: block; margin-bottom: var(--esp-sm); }
-        .cartao-visual h4 { font-family: var(--font-display); font-size: var(--texto-lg); color: var(--chita-azul-escura); margin-bottom: 6px; }
-        .cartao-visual p { font-size: var(--texto-sm); color: var(--bordado-suave); margin: 0; }
+        .cartao-visual h4 { font-family: var(--font-display); font-size: var(--texto-lg); color: var(--azul-uemg-profundo); margin-bottom: 6px; }
+        .cartao-visual p { font-size: var(--texto-sm); color: var(--tinta-suave); margin: 0; }
 
         /* Navegador com site SUSPEITO (sem cadeado) */
         .mockup-navegador.ruim .navegador-tab { background: #FBEAEA; color: #7A2620; }
-        .mockup-navegador.ruim .endereco-texto { border: 2px solid var(--chita-vermelha); color: #7A2620; }
-        .aviso-nao-seguro { display: flex; align-items: center; gap: 10px; background: #FBEAEA; border: 2px solid var(--chita-vermelha); color: #7A2620; border-radius: 10px; padding: 10px 14px; margin: 0 14px 14px; font-weight: 700; font-size: .85rem; }
+        .mockup-navegador.ruim .endereco-texto { border: 2px solid var(--terracota); color: #7A2620; }
+        .aviso-nao-seguro { display: flex; align-items: center; gap: 10px; background: #FBEAEA; border: 2px solid var(--terracota); color: #7A2620; border-radius: 10px; padding: 10px 14px; margin: 0 14px 14px; font-weight: 700; font-size: .85rem; }
 
         /* Etiqueta de mensagem encaminhada (WhatsApp) */
         .mockup-encaminhada { display: block; font-size: .66rem; color: #8696A0; font-style: italic; margin-bottom: 4px; }
 
         /* Fontes confiáveis (checagem de notícias) */
         .fonte-linha { display: flex; flex-direction: column; gap: 8px; margin-top: var(--esp-sm); text-align: left; }
-        .fonte-linha span { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--texto-sm); background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); border-radius: var(--raio); padding: 8px 14px; color: #2F522C; }
+        .fonte-linha span { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--texto-sm); background: var(--verde-folha-suave); border: 2px solid var(--verde-folha); border-radius: var(--raio); padding: 8px 14px; color: #2F522C; }
 
         /* Logo real dentro dos ícones da tela inicial */
         .app-icone .emoji-img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; }
@@ -159,16 +159,16 @@
         .cartao-loja .loja-hero { background: linear-gradient(140deg, #0F766E, #14B8A6); padding: var(--esp-lg); }
         .cartao-loja .loja-hero img { width: 72px; height: 72px; margin: 0 auto; border-radius: 14px; }
         .cartao-loja .loja-hero p { color: #FFF; font-weight: 800; font-size: 1.05rem; margin-top: 8px; }
-        .cartao-loja .loja-rodape { padding: var(--esp-sm); font-size: .8rem; color: var(--bordado-suave); font-weight: 600; }
+        .cartao-loja .loja-rodape { padding: var(--esp-sm); font-size: .8rem; color: var(--tinta-suave); font-weight: 600; }
 
         /* Mini tela inicial (app recém-instalado) */
         .mini-tela { max-width: 300px; margin: 0 auto; background: linear-gradient(160deg, #E8F1F8, #F6F1E3); border-radius: 26px; border: 6px solid #1F2C34; box-shadow: var(--sombra-lg); padding: 14px; }
         .mini-tela .mini-grelha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .mini-app { background: #FFF; border: 2px solid var(--linha); border-radius: 14px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
+        .mini-app { background: #FFF; border: 2px solid var(--grafite-suave); border-radius: 14px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
         .mini-app img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; }
-        .mini-app .rotulo { font-size: .6rem; font-weight: 700; color: var(--bordado); text-align: center; line-height: 1.1; }
-        .mini-app.novo { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
-        .mini-app.novo::after { content: 'novo!'; position: absolute; top: -8px; right: -6px; background: var(--chita-vermelha); color: #FFF; font-size: .55rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; }
+        .mini-app .rotulo { font-size: .6rem; font-weight: 700; color: var(--tinta); text-align: center; line-height: 1.1; }
+        .mini-app.novo { border-color: var(--verde-folha); background: var(--verde-folha-suave); }
+        .mini-app.novo::after { content: 'novo!'; position: absolute; top: -8px; right: -6px; background: var(--terracota); color: #FFF; font-size: .55rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; }
 
         /* Mini mapa estático */
         .mini-mapa { max-width: 340px; margin: 0 auto; border-radius: 18px; overflow: hidden; border: 6px solid #E8EAED; box-shadow: var(--sombra-lg); background: #FFF; }
@@ -178,8 +178,8 @@
         /* Status seguro x não seguro */
         .mini-status { display: flex; gap: 10px; justify-content: center; margin-top: var(--esp-sm); }
         .mini-status .st { flex: 1; max-width: 150px; border-radius: var(--raio); padding: var(--esp-sm); text-align: center; font-weight: 800; font-size: .8rem; line-height: 1.4; }
-        .mini-status .st.ok { background: var(--chita-verde-bg); border: 2px solid var(--chita-verde); color: #2F522C; }
-        .mini-status .st.ruim { background: #FBEAEA; border: 2px solid var(--chita-vermelha); color: #7A2620; }
+        .mini-status .st.ok { background: var(--verde-folha-suave); border: 2px solid var(--verde-folha); color: #2F522C; }
+        .mini-status .st.ruim { background: #FBEAEA; border: 2px solid var(--terracota); color: #7A2620; }
 
         /* Impeccable layout + adapt: ritmo legível e rolagem interna honesta. */
         .lista-check { gap: var(--esp-sm); }
@@ -224,7 +224,7 @@
                     </div>
 </div>
 <div class="etapa-visual">
-<img alt="Ilustração da aula 02: uma senhora navegando na internet com segurança, ao lado de um computador com cadeado e ferramentas digitais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula02-navegacao-bg-16x9-v01.png" width="1536"/>
+<img alt="Ilustração da aula 02: uma senhora navegando na internet com segurança, ao lado de um computador com cadeado e ferramentas digitais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula-navegacao-segura-bg-16x9-v01.png" width="1536"/>
 </div>
 </div>
 </section>
@@ -429,7 +429,7 @@
 </span>
                     são como propagandas de jornal: <strong>pagaram para aparecer primeiro</strong> e estão marcados com a palavra "Anúncio".</p>
 <div class="destaque">
-                        🧵 <strong>Assim como você diferencia propagandas de notícias no jornal,</strong>
+                        <strong>Assim como você diferencia propagandas de notícias no jornal,</strong>
                         aprenda a identificar anúncios nos resultados de pesquisa.
                         Aprender a diferenciar resultados pagos dos naturais é uma habilidade importante para navegar com segurança!
                     </div>
@@ -649,7 +649,7 @@
 <div style="padding: 20px; text-align: center;">
 <div style="font-size: 2.6rem;">⚠️</div>
 <div style="font-weight: 800; color: #7A2620; margin: 6px 0 4px; font-size: 1rem;">Este site não é seguro</div>
-<div style="font-size: .82rem; color: var(--bordado-suave);">A conexão não é particular — alguém pode estar vendo suas informações.</div>
+<div style="font-size: .82rem; color: var(--tinta-suave);">A conexão não é particular — alguém pode estar vendo suas informações.</div>
 </div>
 </div>
 </div></div></div></section><section class="etapa" data-etapa="22"><span class="etapa-badge f2">Fase 2 · Vamos juntos</span><span class="etapa-rotulo">Segurança no dia a dia</span><h2>Explore com conhecimento e atenção</h2><div class="etapa-grid"><div class="etapa-texto"><div class="analogia">
@@ -854,7 +854,7 @@
 <div class="mini-app"><span style="font-size:1.3rem;">📷</span><span class="rotulo">Câmera</span></div>
 </div>
 </div>
-<p style="text-align:center; font-size:.85rem; color:var(--bordado-suave); margin-top: var(--esp-sm);">Pronto! O ícone do WhatsApp apareceu na tela inicial 👆</p>
+<p style="text-align:center; font-size:.85rem; color:var(--tinta-suave); margin-top: var(--esp-sm);">Pronto! O ícone do WhatsApp apareceu na tela inicial 👆</p>
 </div>
 </div>
 </section>
@@ -1087,30 +1087,30 @@
 </section>
 <section class="etapa" data-etapa="43"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — parte 1</h2><div class="etapa-grid"><div class="etapa-texto"><div class="missao"><h3>🏠 Para fazer em casa até a próxima aula</h3><p style="margin-bottom: var(--esp-sm);"><strong>1.</strong> Abra o navegador, digite o endereço do seu banco e <strong>repare no cadeado</strong> 🔒 ao lado do endereço.</p><p style="margin-bottom: var(--esp-sm);"><strong>2.</strong> Pesquise algo no Google e <strong>procure um resultado marcado como "Anúncio"</strong> — veja como ele aparece antes dos resultados naturais.</p><p style="margin-bottom: var(--esp-sm);"><strong>3.</strong> Mostre a um familiar a <strong>tela inicial do seu celular</strong> e identifiquem juntos os ícones dos aplicativos (e onde fica a loja de aplicativos).</p></div></div><div class="etapa-visual"><div class="cartao-visual">
 <span class="cv-icone">🧵</span>
-<h4>Costura em casa</h4>
-<p>Cada missão praticada em casa deixa o aprendizado mais firme — como os pontos da costura.</p>
+<h4>Prática em casa</h4>
+<p>Cada missão praticada em casa deixa o aprendizado mais firme — com a prática de cada passo.</p>
 </div></div></div></section><section class="etapa" data-etapa="44"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — parte 2</h2><div class="etapa-grid"><div class="etapa-texto"><div class="missao"><h3>🏠 Continue a missão</h3><p style="margin-bottom: var(--esp-sm);"><strong>4.</strong> Abra o Google Maps e procure <strong>"farmácia perto de mim"</strong> — veja quantos minutos o Maps indica para chegar.</p><p><strong>5.</strong> Antes de acreditar numa notícia da internet, <strong>confira em mais de um site confiável</strong> — e compartilhe só o que for verdade.</p></div><div class="destaque">
-                        🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                        <strong>Por que isso importa:</strong> missões são com a prática de cada passo —
                         cada uma praticada em casa deixa o aprendizado mais firme.
                         Na próxima aula, contamos como foi! E anote suas dúvidas para levarmos juntos.
                     </div></div><div class="etapa-visual"><div class="cartao-visual"><span class="cv-icone">✅</span><h4>Pratique no seu ritmo</h4><p>Faça uma missão de cada vez e anote suas dúvidas para a próxima aula.</p></div></div></div></section>
 <!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
 <section class="etapa" data-etapa="45"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
 <span class="trofeu">🧵</span>
-<h2>Você costurou mais um retalho!</h2>
+<h2>Você montou mais uma etapa!</h2>
 <p>Hoje você aprendeu a ler os endereços da internet, a reconhecer sites
                 suspeitos, a separar anúncios de resultados, a desconfiar de fake news e golpes,
                 a comprar online com segurança e a se guiar com o Google Maps.
                 E ainda deu os primeiros passos no celular — aplicativos, ícones e conexão.
                 Isso é muito mais do que "usar a internet": é <strong>autonomia</strong>.</p>
 </div></section><section class="etapa" data-etapa="46"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — segurança</h2><ul class="lista-conquistas"><li>✅ Entendi o que é URL e o cadeado 🔒</li><li>✅ Sei identificar sites suspeitos</li><li>✅ Reconheço links patrocinados</li><li>✅ Verifico notícias antes de compartilhar</li><li>✅ Conheço as regras de ouro contra golpes</li></ul></section><section class="etapa" data-etapa="47"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Suas conquistas de hoje — autonomia</h2><ul class="lista-conquistas"><li>✅ Compro online com segurança</li><li>✅ Sei usar o Google Maps</li><li>✅ Sei o que é app, ícone e tela inicial</li><li>✅ Aprendi sobre a loja de aplicativos e instalação</li><li>✅ Sei a diferença entre Wi-Fi e dados móveis</li></ul><div style="text-align:center; margin-top: var(--esp-md);">
-<div class="retalho-costurado">Aula 02 · costurada! 🎉</div>
+<div class="peca-montada">Aula 02 · etapa montada! 🎉</div>
 </div></section>
 <section class="etapa" data-etapa="48">
 <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
 <h2>Continue praticando</h2>
 <div class="destaque" style="margin-top: var(--esp-md);">
-                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos ao
+                <strong>Continue praticando.</strong> Na próxima aula vamos ao
                 <strong>WhatsApp</strong> — e você já sabe instalar aplicativos,
                 conhece a tela inicial e sabe a diferença entre Wi-Fi e dados móveis.
                 Vai ser ainda mais fácil conversar com quem você ama!

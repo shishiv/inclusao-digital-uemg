@@ -1,0 +1,8 @@
+surface: aula 02
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Uma adulta brasileira de 60 a 75 anos usa um computador com calma enquanto um monitor aponta uma pequena placa de proteção abstrata sem símbolos, no laboratório de informática de uma universidade pública em Frutal. Cena ampla ao nível dos olhos sentado, luz quente de dia claro, monitor com tela geométrica pálida completamente em branco. Ilustração de papel recortado artesanal em camadas, tinta fosca, contorno suave de grafite e madeira clara, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.

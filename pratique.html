@@ -8,10 +8,11 @@
     <meta name="theme-color" content="#1E4466" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Pratique — Inclusão Digital UEMG</title>
   </head>
   <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -35,10 +36,14 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span>Comunidade</span>
         </a>
+        <a href="/trilhas.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 16 11 11l3 3 4-6"/><circle cx="6" cy="16" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="18" cy="8" r="1"/></svg>
+          <span>Trilhas</span>
+        </a>
       </nav>
       <div class="sidebar-footer">
         <strong>Trilha 60+</strong> — ativa<br>
-        IA · Mercado · Palestras — <em>em breve</em>
+        <a href="/trilhas.html">Conheça as próximas trilhas</a>
       </div>
     </aside>
 
@@ -54,7 +59,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="conteudo">
       <section class="page-header">
         <h1 class="page-title">Pratique</h1>
         <p class="page-subtitle">Quizzes e desafios para reforçar o que você aprendeu nas aulas. Sem nota, sem pressão — é treino!</p>
@@ -82,19 +87,19 @@
 
           <div class="progress-section">
             <div class="progress-header">
-              <span style="font-weight: 700; color: var(--chita-azul-escura);">Progresso</span>
-              <span style="font-weight: 700; color: var(--chita-verde);" id="score-display" role="status" aria-live="polite" aria-atomic="true">0 de 0 corretas</span>
+              <span style="font-weight: 700; color: var(--azul-uemg-profundo);">Progresso</span>
+              <span style="font-weight: 700; color: var(--verde-folha);" id="score-display" role="status" aria-live="polite" aria-atomic="true">0 de 0 corretas</span>
             </div>
             <div class="progresso-trilho"><div class="progresso-preenchido" id="progress-fill"></div></div>
           </div>
 
           <div id="quiz-container"></div>
 
-          <div id="completion-card" style="display:none; text-align:center; background: linear-gradient(140deg, var(--chita-verde) 0%, #5C9456 60%, var(--chita-amarela) 160%); border-radius: var(--raio-lg); padding: var(--esp-xl); color: #FFF;">
+          <div id="completion-card" style="display:none; text-align:center; background: linear-gradient(140deg, var(--verde-folha) 0%, #5C9456 60%, var(--marigold) 160%); border-radius: var(--raio-lg); padding: var(--esp-xl); color: #FFF;">
             <div style="font-size: 3.4rem; margin-bottom: var(--esp-sm);">🧵</div>
             <h2 style="color: #FFF;">Quiz concluído!</h2>
             <p style="font-size: var(--texto-lg); margin-bottom: var(--esp-md);">Você acertou <strong id="final-correct">0</strong> de <strong id="final-total">0</strong>.</p>
-            <p style="margin-bottom: var(--esp-lg);">Cada acerto é um retalho a mais na sua colcha!</p>
+            <p style="margin-bottom: var(--esp-lg);">Cada acerto fortalece sua jornada digital!</p>
             <button class="btn btn-amarelo" onclick="restartQuiz()">Refazer quiz</button>
             <a href="/aulas.html" class="btn btn-secondary" style="margin-left: 10px;">Ver aulas</a>
           </div>
@@ -115,6 +120,7 @@
             <a href="/aulas.html">Aulas</a>
             <a href="/pratique.html">Pratique</a>
             <a href="/comunidade.html">Comunidade</a>
+            <a href="/trilhas.html">Trilhas</a>
           </div>
           <div class="footer-column">
             <h4>Contato</h4>
@@ -493,7 +499,7 @@
             currentLesson = btn.dataset.lesson;
             lessonButtons.forEach(b => { b.classList.remove('active'); b.style.background = ''; b.style.color = ''; });
             btn.classList.add('active');
-            btn.style.background = 'var(--chita-azul)';
+            btn.style.background = 'var(--azul-ceu)';
             btn.style.color = '#FFF';
             resetQuiz();
           });
@@ -525,8 +531,8 @@
         quizContainer.innerHTML = `
           <div class="quiz-card">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: var(--esp-md);">
-              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--chita-azul); color: #FFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">${currentQuestion + 1}</div>
-              <span style="color: var(--bordado-suave); font-weight: 600;">Pergunta ${currentQuestion + 1} de ${questions.length} · ${quizData[currentLesson].title}</span>
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--azul-ceu); color: #FFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">${currentQuestion + 1}</div>
+              <span style="color: var(--tinta-suave); font-weight: 600;">Pergunta ${currentQuestion + 1} de ${questions.length} · ${quizData[currentLesson].title}</span>
             </div>
             <h3 class="quiz-pergunta">${q.question}</h3>
             <div class="quiz-opcoes">

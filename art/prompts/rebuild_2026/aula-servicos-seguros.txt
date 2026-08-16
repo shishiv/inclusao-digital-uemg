@@ -1,0 +1,8 @@
+surface: aula 08
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Um adulto brasileiro de 60 a 75 anos usa um smartphone com segurança enquanto organiza documentos genéricos sem dados pessoais em uma mesa clara, com uma pessoa jovem ao lado como igual. A tela do smartphone é um campo geométrico pálido completamente em branco e nenhum papel mostra texto. Cena ampla ao nível dos olhos sentado, luz quente de dia claro. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.
