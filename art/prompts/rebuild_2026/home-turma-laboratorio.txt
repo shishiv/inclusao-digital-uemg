@@ -1,0 +1,10 @@
+[surface=home role=bg ratio=16:9 quality=low model=gpt-image-2 world="Ateliê de Autonomia"]
+Use case: final homepage ambient scene for an accessible digital-learning portal for older adults.
+Asset type: wide ambient scene, opaque background, no interface.
+Scene/backdrop: an airy Brazilian public-university computer laboratory in Frutal, Minas Gerais, pale-blue walls, light wood tables, large daylight windows, leafy plants, and a small fabric noticeboard holding only blank paper shapes.
+Subject: three dignified Brazilian adults aged 60 to 75, varied skin tones, learning together with one calm young-adult monitor treated as an equal; an older woman rests her hand on a computer mouse while a classmate points to a keyboard and the monitor listens beside them.
+Style/medium: tactile editorial illustration with hand-cut paper layers, soft graphite outlines, and matte ink textures; contemporary and respectful, never childish, never photorealistic.
+Composition/framing: 16:9 wide at seated eye level; the learning group sits in the right two-thirds; keep a calm, lightly textured off-white copy-safe field in the left third; device shells show only blank pale geometric screens.
+Lighting/mood: clear late-morning daylight, calm focused attention, mutual respect and capability.
+Color palette: deep university blue, clear sky blue, warm terracotta, marigold, leaf green, off-white paper.
+Constraints: no readable words, letters, numbers, logos, badges, institutional marks, data, charts, QR codes, application interfaces, invented brand marks, or distorted hands.

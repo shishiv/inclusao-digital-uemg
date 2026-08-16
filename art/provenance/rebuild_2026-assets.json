@@ -1,0 +1,131 @@
+{
+  "schema": "inclusao-digital-uemg.asset-ledger.v1",
+  "generatedAt": "2026-08-16",
+  "purpose": "Review evidence for SPEC.md rebuild of the Inclusão Digital UEMG portal. These assets prove the proposed visual world across every raster role; they are not yet wired into production pages.",
+  "generator": {
+    "tool": "image_generate (@amaster.ai/pi-image-gen)",
+    "configuredProvider": "configured image provider (Azure OpenAI v1 compatible)",
+    "configuredModel": "gpt-image-2",
+    "credentialsHandling": "Credential read from the environment by the tool; never printed, logged, or committed"
+  },
+  "infrastructureReceipt": {
+    "observation": "Dated observation on 2026-08-16 (a measured window, not a permanent guarantee): with Azure OpenAI v1 / gpt-image-2, image_generate at quality=low completed in every measured attempt, while quality=medium and quality=high returned a transport-layer network timeout in the measured attempts below. The configured endpoint answered HTTP 200 during the same window, so the base connection was healthy.",
+    "measurements_2026-08-16": {
+      "low": "7/7 succeeded (1x 1024x1024, 6x 1536x864 including the rejected draft)",
+      "medium_1536x864": "0/2 succeeded (network timeout)",
+      "high_1536x864": "0/4 succeeded (network timeout); attempts that also passed a reference image failed, and the tec-image helper documents that this path does not accept a reference image for image-to-image"
+    },
+    "decision": "Selected assets were generated at quality=low, which for gpt-image-2 still yields clean, review-grade output. Production finals may be re-rendered at a higher quality later, or via a queue/retry path. Recorded here as the receipt behind the quality choice."
+  },
+  "world": {
+    "name": "Ateliê de Autonomia",
+    "oneLine": "A calm hand-cut-paper craft world set between a Brazilian public-university lab and the learner's own home, where older adults are shown as capable protagonists, never as helpless.",
+    "replaces": "Colcha de Retalhos (chita quilt) - see SPEC.md section 4 for why."
+  },
+  "freezeList": {
+    "camera": "seated eye level, wide contextual scenes; no forced perspective, no top-down",
+    "palette": ["#1E4466 deep university blue", "#3E6C9E / sky blue", "#B5372C warm terracotta", "#E9B44C marigold", "#4E7D4A leaf green", "#FAF6EC off-white paper"],
+    "materials": ["hand-cut paper layers", "matte ink", "soft graphite outline", "light wood", "handmade paper texture"],
+    "lighting": "clear warm daylight (late morning to afternoon)",
+    "people": "Brazilian adults aged 60-75, varied skin tones and genders, dignified everyday clothing, attentive and capable expressions; monitors read as equals",
+    "environment": "Brazilian public-university computer laboratory in Frutal and the learner's home living room/kitchen",
+    "deviceLanguage": "recognizable hardware shells with blank pale geometric screens; all real UI stays HTML/CSS/SVG"
+  },
+  "assets": [
+    {
+      "file": "public/assets/ilustracoes/rebuild_2026/home-turma-laboratorio-bg-16x9-v01.png",
+      "surface": "home",
+      "role": "bg (ambient hero scene)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "6b495361554946eb",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/home-turma-laboratorio.txt",
+      "promptSummary": "Airy Brazilian public-university computer lab; three dignified adults 60-75 learn with a young monitor as an equal; hand-cut paper style; copy-safe field left third; blank pale screens.",
+      "disposition": "selected",
+      "derivation": "text-to-image; composition first explored in the rejected draft below",
+      "readback": "PASS - 3 elders + 1 monitor, lab with window/noticeboard (blank shapes), plants, blank screens, clean left copy field, clean hands, no text/logos"
+    },
+    {
+      "file": "public/assets/ilustracoes/rebuild_2026/aula-familia-conexao-bg-16x9-v01.png",
+      "surface": "aula (lesson cover, Fase 1 - Por que importa)",
+      "role": "bg (ambient lesson scene)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "6d554da5ef754bb4",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-familia-conexao.txt",
+      "promptSummary": "Brazilian grandmother holding a smartphone on a video call at home; companion beside; blank photo frames; blank pale phone screen; copy-safe field left.",
+      "disposition": "selected",
+      "derivation": "text-to-image",
+      "readback": "PASS - grandmother + companion, blank phone screen, home living room, no chat text, clean hands, no logos"
+    },
+    {
+      "file": "public/assets/ilustracoes/rebuild_2026/roadmap-trilhas-futuras-bg-16x9-v01.png",
+      "surface": "trilhas (roadmap das trilhas)",
+      "role": "bg (ambient roadmap scene)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "c5de8f40276ee3d2",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/roadmap-trilhas-futuras.txt",
+      "promptSummary": "Mixed-age Brazilian group at a hand-cut paper roadmap board with blank cards and colored connecting paths; university community space; copy-safe field bottom-left.",
+      "disposition": "selected",
+      "derivation": "text-to-image",
+      "readback": "PASS - mixed-age group, paper roadmap board with blank cards + colored paths, copy-safe bottom-left, clean hands, no text/numbers/logos"
+    },
+    {
+      "file": "public/assets/ilustracoes/rebuild_2026/avatar-dona-lourdes-subject-1x1-v01.png",
+      "surface": "player (interface simulators)",
+      "role": "subject (reusable avatar)",
+      "ratio": "1:1",
+      "dimensions": "1024x1024",
+      "format": "PNG",
+      "sha256_16": "a30c29072af0fd92",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/avatar-dona-lourdes.txt",
+      "promptSummary": "Centered dignified Brazilian grandmother portrait, silver curly hair, terracotta blouse, hand-cut paper leaf backdrop; even breathing room for round crop.",
+      "disposition": "selected",
+      "derivation": "text-to-image",
+      "readback": "PASS - centered portrait, clean features, even padding, world palette, no text"
+    },
+    {
+      "file": "public/assets/ilustracoes/rebuild_2026/textura-oficina-papel-bg-16x9-v01.png",
+      "surface": "global (section backgrounds)",
+      "role": "texture (bg)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "f362759d44cfdacd",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/textura-oficina-papel.txt",
+      "promptSummary": "Low-contrast layered off-white handmade paper with faint blue/marigold stitch dashes and graphite grid; uniform, text-safe, no focal point.",
+      "disposition": "selected",
+      "derivation": "text-to-image",
+      "readback": "PASS - uniform low-contrast paper texture, safe for large text, no letters/numbers/logos"
+    },
+    {
+      "file": "art/rejeitados/rebuild_2026/home-turma-laboratorio-bg-16x9-draft-v01.png",
+      "surface": "home",
+      "role": "bg (ambient hero scene)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "328dbea91238a599",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/hero-turma-laboratorio-draft.txt",
+      "disposition": "rejected-draft",
+      "reason": "First composition exploration for the hero. Kept as evidence of the direction; the selected hero refines it. Not wired into any page.",
+      "derivation": "text-to-image"
+    }
+  ],
+  "contactSheet": "public/assets/ilustracoes/rebuild_2026/_contact-sheet-rebuild-2026.png",
+  "boundaries": {
+    "modelMayGenerate": ["ambient scenes", "invented dignified subjects", "device shells", "textures", "decorative art"],
+    "modelMayNotGenerate": ["UI/app screens", "text", "numbers", "certificates", "logos", "institutional marks", "QR codes", "charts/data", "real identifiable people without authorized reference"],
+    "identity": "No real learner, monitor, or coordinator is depicted. Subjects are invented composites; the program preserves collective PAEx authorship and never fabricates testimonials or impact numbers."
+  }
+}

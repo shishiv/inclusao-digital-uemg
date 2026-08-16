@@ -1,0 +1,9 @@
+[surface=global role=texture ratio=16:9 quality=low model=gpt-image-2 world="Ateliê de Autonomia"]
+Use case: seamless ambient background texture for section backgrounds in an accessible digital-learning portal for older adults.
+Asset type: quiet full-bleed texture, opaque, no focal point.
+Scene/backdrop: an evenly distributed tactile surface of layered off-white handmade paper with faint deep-blue and marigold thread stitches and soft graphite grid lines, gentle and low-contrast.
+Style/medium: hand-cut paper and matte ink craft texture, subtle and calm, never busy.
+Composition/framing: 16:9, uniform coverage with no subject, safe to place large legible text on top.
+Lighting/mood: soft even daylight, calm and warm.
+Color palette: off-white paper, faint deep university blue, faint marigold, faint leaf green.
+Constraints: no readable words, letters, numbers, logos, faces, objects, or strong focal points; keep contrast very low.

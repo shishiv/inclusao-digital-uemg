@@ -1,0 +1,10 @@
+[surface=trilhas(roadmap) role=bg ratio=16:9 quality=low model=gpt-image-2 world="Ateliê de Autonomia"]
+Use case: roadmap ambient scene for a page that presents future learning tracks of a Brazilian public-university digital-inclusion program.
+Asset type: wide ambient scene, opaque background, no interface.
+Scene/backdrop: a bright Brazilian university community space with light wood tables, pale-blue walls, large daylight windows and plants; on the wall hangs a large hand-cut paper planning board showing only blank rectangles and simple path shapes connecting them, like a roadmap with no text.
+Subject: a small mixed-age Brazilian group - an older adult, a young adult, and a middle-aged person - standing together looking at the paper roadmap board with curiosity and shared purpose; one gestures toward a future path.
+Style/medium: tactile editorial illustration with hand-cut paper layers, soft graphite outlines, and matte ink textures; contemporary and respectful, never childish, never photorealistic.
+Composition/framing: 16:9 wide at standing eye level; the group is on the right, the paper roadmap board fills the upper center-left; keep a calm off-white copy-safe field along the bottom-left; all board cards are blank pale paper shapes.
+Lighting/mood: clear daytime light, forward-looking optimism, dignity and collaboration.
+Color palette: deep university blue, clear sky blue, warm terracotta, marigold, leaf green, off-white paper.
+Constraints: no readable words, letters, numbers, logos, badges, institutional marks, data, charts with values, QR codes, application interfaces, invented branding, or distorted hands.
