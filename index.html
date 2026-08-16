@@ -8,16 +8,17 @@
     <meta name="theme-color" content="#1E4466" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Inclusão Digital UEMG — Portal do Aluno</title>
   </head>
   <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <!--
-      THESIS: O portal é uma colcha que o aluno costura aula a aula. Cada aula é um retalho de chita; concluir = costurar. O progresso é a própria colcha crescendo, não uma barra. Recusa o padrão "portal institucional com cards e gradientes".
-      OWN-WORLD: Chita brasileira (vermelho-fogo, mostarda, verde-jardim, azul UEMG) sobre algodão cru com trama de tecido. Linha de costura tracejada como borda e divisor. Etiquetas de tecido como badges. Tipografia: Kalam (letra de caderno) para display, Open Sans para leitura 60+.
-      STORY: O aluno chega, vê a colcha em construção — retalhos costurados das aulas que já fez, em branco as próximas — e entende que cada aula completa costura um retalho novo na colcha da sua vida digital.
-      FIRST VIEWPORT: Colcha em construção à direita (retalhos numerados 1-9, costurados vs. futuros), à esquerda a promessa ("Conhecimento que conecta"), botão gigante "Começar a Aula 1". Faixa de resultados (16+ anos, 500+ pessoas) logo abaixo.
-      FORM: Colcha de Retalhos — candidato 6 da lista grounded; seed key inclusao-uemg-roll-01.
+      THESIS: O Ateliê de Autonomia mostra a tecnologia como prática possível, não como obstáculo. Recusa o portal nostálgico e infantilizado.
+      OWN-WORLD: Papel recortado artesanal, tinta fosca, grafite suave e madeira clara. Azul UEMG ancora a instituição; terracota marca a ação; Open Sans serve títulos e leitura.
+      STORY: O aluno entende que aprende no próprio ritmo, com apoio, e vê as nove etapas da trilha como peças que monta ao avançar.
+      FIRST VIEWPORT: A promessa e o botão para a Aula 1 ocupam o terço esquerdo calmo. A cena do laboratório ocupa o lado direito; abaixo, a sequência de peças mostra a trilha real.
+      FORM: Ateliê de Autonomia — direção definida em SPEC.md, seção 4.
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
     <!-- Sidebar -->
@@ -43,10 +44,14 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span>Comunidade</span>
         </a>
+        <a href="/trilhas.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 16 11 11l3 3 4-6"/><circle cx="6" cy="16" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="18" cy="8" r="1"/></svg>
+          <span>Trilhas</span>
+        </a>
       </nav>
       <div class="sidebar-footer">
         <strong>Trilha 60+</strong> — ativa<br>
-        IA · Mercado · Palestras — <em>em breve</em>
+        <a href="/trilhas.html">Conheça as próximas trilhas</a>
       </div>
     </aside>
 
@@ -62,55 +67,57 @@
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="conteudo">
       <!-- Hero -->
-      <section class="hero">
+      <section class="hero hero-atelie">
         <div class="hero-content">
           <div class="hero-text">
-            <span class="hero-badge">🧵 Costure sua jornada digital</span>
-            <h1 class="hero-title">Programa de <span class="highlight">Inclusão Digital</span></h1>
-            <p class="hero-subtitle">Conhecimento que conecta</p>
+            <span class="hero-badge">Tecnologia no seu ritmo</span>
+            <h1 class="hero-title">Tecnologia com <span class="highlight">autonomia</span></h1>
+            <p class="hero-subtitle">Com calma, prática e ajuda quando precisar.</p>
             <p class="hero-description">
-              Aulas interativas para aprender no seu ritmo: cada aula concluída costura
-              um retalho novo na sua colcha digital. Sem pressa, sem medo, com ajuda
-              sempre por perto.
+              O Programa de Inclusão Digital UEMG oferece aulas interativas para você praticar
+              tarefas reais e ganhar confiança no mundo digital.
             </p>
             <div class="hero-buttons">
               <a href="/aulas/aula_01.html" class="btn btn-primary btn-lg">Começar a Aula 1</a>
-              <a href="/comunidade.html" class="btn btn-secondary btn-lg">Nossa Comunidade</a>
+              <a href="/comunidade.html" class="btn btn-secondary btn-lg">Conhecer a comunidade</a>
             </div>
           </div>
-          <div class="hero-visual">
-            <div class="colcha" aria-label="Trilha de 9 aulas disponíveis">
-              <div class="colcha-grade">
-                <div class="retalho retalho-futuro" aria-label="Aula 1 da trilha"><span class="retalho-numero">1</span><span class="retalho-icone">💻</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 2 da trilha"><span class="retalho-numero">2</span><span class="retalho-icone">🔍</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 3 da trilha"><span class="retalho-numero">3</span><span class="retalho-icone">💬</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 4 da trilha"><span class="retalho-numero">4</span><span class="retalho-icone">📱</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 5 da trilha"><span class="retalho-numero">5</span><span class="retalho-icone">📷</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 6 da trilha"><span class="retalho-numero">6</span><span class="retalho-icone">📝</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 7 da trilha"><span class="retalho-numero">7</span><span class="retalho-icone">🎨</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 8 da trilha"><span class="retalho-numero">8</span><span class="retalho-icone">🏛️</span></div>
-                <div class="retalho retalho-futuro" aria-label="Aula 9 da trilha"><span class="retalho-numero">9</span><span class="retalho-icone">🎓</span></div>
-              </div>
-              <p class="colcha-legenda">Cada aula concluída costura um retalho</p>
-            </div>
-          </div>
+          <div class="hero-visual" aria-hidden="true"></div>
         </div>
       </section>
 
       <section class="hero-community" aria-label="Aprendizado em comunidade">
         <img
-          src="/assets/ilustracoes/hero-colcha-retalhos-16x9-v01.png"
-          alt="Idosos costurando juntos uma colcha de retalhos enquanto fazem videochamada com os netos"
+          src="/assets/ilustracoes/home-turma-laboratorio-bg-16x9-v01.png"
+          alt="Adultos aprendem a usar computadores com uma monitora em um laboratório de informática da universidade"
           class="hero-ilustracao"
           width="1536" height="864"
         />
         <div class="hero-community-copy">
           <h2>Ninguém aprende sozinho</h2>
-          <p>Monitores, colegas e família ajudam a costurar cada nova conquista digital.</p>
+          <p>Monitores, colegas e família apoiam cada nova conquista digital.</p>
           <a href="/comunidade.html" class="btn btn-secondary">Conhecer a comunidade</a>
         </div>
+      </section>
+
+      <section class="progresso-resumo" aria-labelledby="progresso-resumo-titulo">
+        <div>
+          <h2 id="progresso-resumo-titulo">Uma peça por vez</h2>
+          <p>As nove aulas formam uma trilha. Você avança no seu tempo e pode voltar sempre que quiser.</p>
+        </div>
+        <ol class="progresso-montagem-grade" aria-label="Nove aulas disponíveis na trilha">
+          <li class="peca-progresso peca-progresso-futura">01</li>
+          <li class="peca-progresso peca-progresso-futura">02</li>
+          <li class="peca-progresso peca-progresso-futura">03</li>
+          <li class="peca-progresso peca-progresso-futura">04</li>
+          <li class="peca-progresso peca-progresso-futura">05</li>
+          <li class="peca-progresso peca-progresso-futura">06</li>
+          <li class="peca-progresso peca-progresso-futura">07</li>
+          <li class="peca-progresso peca-progresso-futura">08</li>
+          <li class="peca-progresso peca-progresso-futura">09</li>
+        </ol>
       </section>
 
       <!-- Stats Bar -->
@@ -134,40 +141,40 @@
       </section>
 
       <!-- Features Section -->
-      <section class="section section-chita features-section">
+      <section class="section section-papel features-section">
         <div class="section-inner" style="max-width: 1200px; margin: 0 auto;">
           <div class="section-header">
             <h2>O que você vai aprender</h2>
             <p class="subtitle">Cada passo é uma conquista!</p>
           </div>
           <div class="features-grid">
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-azul-bg);">💻</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--azul-ceu-suave);">💻</div>
               <h3>Informática Básica</h3>
               <p>Computador, mouse, teclado e navegação na internet — do zero, sem medo.</p>
             </div>
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-verde-bg);">📱</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--verde-folha-suave);">📱</div>
               <h3>Comunicação Digital</h3>
               <p>WhatsApp, e-mail e videochamadas para falar com a família onde estiver.</p>
             </div>
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-amarela-bg);">🔒</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--marigold-suave);">🔒</div>
               <h3>Segurança Online</h3>
               <p>Proteja-se de golpes, reconheça fake news e navegue com tranquilidade.</p>
             </div>
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-vermelha); color:#fff;">🏦</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--terracota); color:#fff;">🏦</div>
               <h3>Serviços do Dia a Dia</h3>
               <p>Gov.br, INSS, PIX e documentos digitais — autonomia nos serviços essenciais.</p>
             </div>
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-verde-bg);">📷</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--verde-folha-suave);">📷</div>
               <h3>Memórias Digitais</h3>
               <p>Google Fotos e Drive para guardar e compartilhar momentos com quem ama.</p>
             </div>
-            <div class="retalho-card feature-card">
-              <div class="feature-icon" style="background: var(--chita-azul-bg);">🎨</div>
+            <div class="papel-card feature-card">
+              <div class="feature-icon" style="background: var(--azul-ceu-suave);">🎨</div>
               <h3>Criatividade</h3>
               <p>Documentos, planilhas e apresentações bonitas para contar suas histórias.</p>
             </div>
@@ -234,6 +241,7 @@
             <a href="/aulas.html">Aulas</a>
             <a href="/pratique.html">Pratique</a>
             <a href="/comunidade.html">Comunidade</a>
+            <a href="/trilhas.html">Trilhas</a>
           </div>
           <div class="footer-column">
             <h4>Contato</h4>

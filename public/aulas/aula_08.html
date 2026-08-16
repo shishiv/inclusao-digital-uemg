@@ -9,24 +9,24 @@
 <title>Aula 08 — Gov.br e PIX: Sua vida digital mais fácil e segura | Inclusão Digital UEMG</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="/assets/player.css" rel="stylesheet"/>
 <style>
         /* Extras específicos da aula 08 — Gov.br e PIX */
-        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
-        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
-        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
-        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
-        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
-        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+        .etapa-badge { display: inline-block; background: var(--marigold); color: var(--tinta); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--terracota); color: #FFF; }
+        .etapa-badge.f2 { background: var(--azul-ceu); color: #FFF; }
+        .etapa-badge.f3 { background: var(--verde-folha); color: #FFF; }
+        .etapa-badge.f4 { background: var(--marigold); color: var(--tinta); }
+        .etapa-badge.f5 { background: var(--azul-uemg-profundo); color: var(--marigold); }
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
         .tres-colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .tres-colunas { grid-template-columns: 1fr; } }
         .quatro-colunas { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .quatro-colunas { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .mini-cartao p { margin: 0; font-size: var(--texto-sm); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
@@ -34,27 +34,27 @@
         .lista-check li::before { content: '✅'; flex-shrink: 0; }
 
         /* ===== Cards clicáveis (níveis e chaves) ===== */
-        .card-clicavel { background: var(--retalho); border: 2px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); text-align: left; cursor: pointer; transition: border-color var(--veloz), box-shadow var(--veloz), transform var(--veloz); width: 100%; font-family: var(--font-body); }
-        .card-clicavel:hover { border-color: var(--chita-azul); transform: translateY(-2px); }
-        .card-clicavel.aberto { border-color: var(--chita-azul); box-shadow: var(--sombra-md); }
+        .card-clicavel { background: var(--papel-elevado); border: 2px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); text-align: left; cursor: pointer; transition: border-color var(--veloz), box-shadow var(--veloz), transform var(--veloz); width: 100%; font-family: var(--font-body); }
+        .card-clicavel:hover { border-color: var(--azul-ceu); transform: translateY(-2px); }
+        .card-clicavel.aberto { border-color: var(--azul-ceu); box-shadow: var(--sombra-md); }
         .card-clicavel .medalha { font-size: 2.4rem; display: block; margin-bottom: var(--esp-xs); }
-        .card-clicavel h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--bordado); margin-bottom: 6px; }
-        .card-clicavel .resumo { font-weight: 700; font-size: var(--texto-sm); color: var(--bordado); margin: 0; }
-        .card-clicavel .detalhe { display: none; margin: 10px 0 0; font-size: var(--texto-sm); color: var(--bordado-suave); border-top: 1px dashed var(--linha); padding-top: 10px; }
+        .card-clicavel h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--tinta); margin-bottom: 6px; }
+        .card-clicavel .resumo { font-weight: 700; font-size: var(--texto-sm); color: var(--tinta); margin: 0; }
+        .card-clicavel .detalhe { display: none; margin: 10px 0 0; font-size: var(--texto-sm); color: var(--tinta-suave); border-top: 1px solid var(--grafite-suave); padding-top: 10px; }
         .card-clicavel.aberto .detalhe { display: block; }
-        .card-clicavel .dica-toque { display: block; margin-top: 10px; font-size: 1rem; font-weight: 700; color: var(--chita-azul); }
+        .card-clicavel .dica-toque { display: block; margin-top: 10px; font-size: 1rem; font-weight: 700; color: var(--azul-ceu); }
         .card-clicavel.aberto .dica-toque { display: none; }
-        .card-clicavel.meta-card { border-color: var(--chita-verde); background: var(--chita-verde-bg); }
+        .card-clicavel.meta-card { border-color: var(--verde-folha); background: var(--verde-folha-suave); }
         .card-clicavel.meta-card h4 { color: #2F522C; }
 
         /* ===== Pilares da aula (3 colunas) ===== */
         .pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .pilares { grid-template-columns: 1fr; } }
-        .pilar { background: var(--algodao); border: 2px dashed var(--chita-azul); border-radius: var(--raio); padding: var(--esp-md); text-align: center; }
-        .pilar.vermelho { border-color: var(--chita-vermelha); }
-        .pilar.verde { border-color: var(--chita-verde); }
+        .pilar { background: var(--papel); border: 2px solid var(--azul-ceu); border-radius: var(--raio); padding: var(--esp-md); text-align: center; }
+        .pilar.vermelho { border-color: var(--terracota); }
+        .pilar.verde { border-color: var(--verde-folha); }
         .pilar .icone-grande { margin-bottom: var(--esp-sm); }
-        .pilar h4 { font-family: var(--font-body); font-weight: 800; color: var(--bordado); margin-bottom: 6px; }
+        .pilar h4 { font-family: var(--font-body); font-weight: 800; color: var(--tinta); margin-bottom: 6px; }
         .pilar p { margin: 0; font-size: var(--texto-sm); }
 
         /* ===== Mockup do app do banco (simuladores de PIX) ===== */
@@ -63,23 +63,23 @@
         .bank-topo .bank-nome { font-weight: 800; font-size: .95rem; }
         .bank-topo .bank-titulo { font-weight: 700; font-size: .9rem; background: rgba(255,255,255,.16); padding: 4px 12px; border-radius: var(--raio-pill); }
         .bank-tela { padding: var(--esp-lg); }
-        .bank-tela h4 { font-family: var(--font-body); font-weight: 800; font-size: var(--texto-lg); color: var(--bordado); margin-bottom: var(--esp-sm); }
+        .bank-tela h4 { font-family: var(--font-body); font-weight: 800; font-size: var(--texto-lg); color: var(--tinta); margin-bottom: var(--esp-sm); }
         .bank-tela label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
-        .bank-tela input { width: 100%; padding: 12px 14px; border: 2px solid var(--linha-forte); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
-        .bank-tela input:focus { outline: none; border-color: var(--chita-verde); }
-        .bank-dica { font-size: var(--texto-sm); color: var(--bordado-suave); margin-bottom: var(--esp-sm); }
+        .bank-tela input { width: 100%; padding: 12px 14px; border: 2px solid var(--grafite); border-radius: 10px; font-size: var(--texto-base); font-family: var(--font-body); margin-bottom: var(--esp-sm); background: #FFF; }
+        .bank-tela input:focus { outline: none; border-color: var(--verde-folha); }
+        .bank-dica { font-size: var(--texto-sm); color: var(--tinta-suave); margin-bottom: var(--esp-sm); }
         .bank-botoes { display: flex; flex-direction: column; gap: 10px; margin-top: var(--esp-md); }
-        .bank-pessoa { background: #FFF; border: 2px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); margin: var(--esp-sm) 0; }
-        .bank-pessoa strong { display: block; font-size: var(--texto-lg); color: var(--bordado); }
-        .bank-pessoa span { font-size: var(--texto-sm); color: var(--bordado-suave); }
-        .confira-nome { background: #FBEAEA; border: 3px solid var(--chita-vermelha); border-radius: var(--raio); color: #7A2620; font-size: 1.25rem; text-align: center; padding: var(--esp-md); margin-bottom: var(--esp-md); letter-spacing: 1px; animation: pulso-alerta 1.6s ease-in-out 3; }
+        .bank-pessoa { background: #FFF; border: 2px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); margin: var(--esp-sm) 0; }
+        .bank-pessoa strong { display: block; font-size: var(--texto-lg); color: var(--tinta); }
+        .bank-pessoa span { font-size: var(--texto-sm); color: var(--tinta-suave); }
+        .confira-nome { background: #FBEAEA; border: 3px solid var(--terracota); border-radius: var(--raio); color: #7A2620; font-size: 1.25rem; text-align: center; padding: var(--esp-md); margin-bottom: var(--esp-md); letter-spacing: 1px; animation: pulso-alerta 1.6s ease-in-out 3; }
         @keyframes pulso-alerta { 0%,100% { box-shadow: 0 0 0 0 rgba(181,55,44,.35); } 50% { box-shadow: 0 0 0 10px rgba(181,55,44,0); } }
-        .bank-sms { background: var(--chita-azul-bg); border: 1px dashed var(--chita-azul); border-radius: var(--raio); padding: var(--esp-sm) var(--esp-md); font-size: var(--texto-sm); margin-bottom: var(--esp-sm); }
-        .bank-sms strong { color: var(--chita-azul-escura); }
+        .bank-sms { background: var(--azul-ceu-suave); border: 1px solid var(--azul-ceu); border-radius: var(--raio); padding: var(--esp-sm) var(--esp-md); font-size: var(--texto-sm); margin-bottom: var(--esp-sm); }
+        .bank-sms strong { color: var(--azul-uemg-profundo); }
         .bank-sucesso { font-size: 3rem; text-align: center; margin-bottom: var(--esp-sm); }
         .bank-feedback { border-radius: var(--raio); padding: var(--esp-md); margin: var(--esp-sm) 0; font-weight: 600; font-size: var(--texto-sm); }
-        .bank-feedback.ok { background: var(--chita-verde-bg); color: #2F522C; border: 2px dashed var(--chita-verde); }
-        .bank-feedback.erro { background: #FBEAEA; color: #7A2620; border: 2px dashed var(--chita-vermelha); }
+        .bank-feedback.ok { background: var(--verde-folha-suave); color: #2F522C; border: 2px solid var(--verde-folha); }
+        .bank-feedback.erro { background: #FBEAEA; color: #7A2620; border: 2px solid var(--terracota); }
 
         /* ===== QR Code desenhado em CSS ===== */
         .qr-demo { display: grid; grid-template-columns: repeat(21, 1fr); width: 190px; aspect-ratio: 1; background: #FFF; border: 8px solid #FFF; border-radius: 10px; margin: 0 auto var(--esp-md); box-shadow: var(--sombra-sm); }
@@ -128,9 +128,9 @@ body { min-width: 320px; display:flex; flex-direction:column; }
 .lista-conquistas li { padding: var(--esp-md); }
 
 /* Marcas oficiais nos pontos de reconhecimento. */
-.marca-aula08 { display:flex; align-items:center; justify-content:center; gap:18px; width:100%; padding:18px; background:#fff; border:2px dashed var(--linha); border-radius:var(--raio-lg); }
+.marca-aula08 { display:flex; align-items:center; justify-content:center; gap:18px; width:100%; padding:18px; background:#fff; border:2px solid var(--grafite-suave); border-radius:var(--raio-lg); }
 .marca-aula08 img { width:min(150px, 34%); max-height:72px; object-fit:contain; }
-.marca-aula08 .sinal { font:700 1.8rem/1 var(--font-display); color:var(--chita-verde); }
+.marca-aula08 .sinal { font:700 1.8rem/1 var(--font-display); color:var(--verde-folha); }
 .gov-app { width:min(100%, 390px); background:#fff; border:7px solid #163d68; border-radius:24px; overflow:hidden; box-shadow:var(--sombra-lg); }
 .gov-app__topo { min-height:64px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:#f6f7f8; border-bottom:1px solid #d5d9dd; }
 .gov-app__topo img { width:104px; height:42px; object-fit:contain; }
@@ -140,7 +140,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
 .gov-cpf { display:block; width:100%; min-height:48px; padding:11px 12px; border:2px solid #555; border-radius:8px; background:#fff; font:600 1rem var(--font-body); color:#555; }
 .gov-entrar { width:100%; min-height:48px; margin-top:12px; border:0; border-radius:24px; background:#1351b4; color:#fff; font:800 1rem var(--font-body); }
 .gov-banco { margin-top:14px; padding:12px; border:1px solid #b8c4d4; border-radius:10px; color:#254b79; font-weight:700; text-align:center; }
-.pix-reconhecer { width:100%; padding:18px; background:#edf9f7; border:2px dashed #277f75; border-radius:var(--raio-lg); text-align:center; }
+.pix-reconhecer { width:100%; padding:18px; background:#edf9f7; border:2px solid #277f75; border-radius:var(--raio-lg); text-align:center; }
 .pix-reconhecer img { width:min(176px, 55%); max-height:82px; object-fit:contain; margin:0 auto 10px; }
 .pix-reconhecer strong { display:block; color:#175c55; font-size:1.15rem; }
 
@@ -194,7 +194,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 💡 <strong>Boa notícia:</strong> você não precisa ser expert em tecnologia.
                 Se você já sabe abrir um aplicativo, já sabe a parte mais difícil.
                 Vamos juntos, um passo de cada vez?
-            </div></div><div class="etapa-visual"><div aria-label="Gov.br e PIX" class="marca-aula08"><img alt="Logotipo Gov.br" src="/assets/logos/govbr.webp"/><span class="sinal">+</span><img alt="Logotipo PIX" src="/assets/logos/pix.png"/></div><img alt="Ilustração do Gov.br e do PIX: celular com serviços do governo e transferência de dinheiro na hora" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula08-govbr-pix-bg-16x9-v01.png" width="1536"/></div></div></section>
+            </div></div><div class="etapa-visual"><div aria-label="Gov.br e PIX" class="marca-aula08"><img alt="Logotipo Gov.br" src="/assets/logos/govbr.webp"/><span class="sinal">+</span><img alt="Logotipo PIX" src="/assets/logos/pix.png"/></div><img alt="Ilustração do Gov.br e do PIX: celular com serviços do governo e transferência de dinheiro na hora" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula-servicos-seguros-bg-16x9-v01.png" width="1536"/></div></div></section>
 <section class="etapa" data-etapa="2"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>O que vamos aprender hoje</h2><p>Hoje tem três partes. Cada uma deixa sua vida mais fácil — e mais segura:</p><div class="passos">
 <div class="passo"><span class="passo-num">1</span><p><strong>Gov.br</strong> — o molho de chaves digital: o que é, os serviços (INSS, CNH Digital, SUS, Trabalho) e os níveis Bronze, Prata e Ouro</p></div>
 <div class="passo"><span class="passo-num">2</span><p><strong>Nível Prata</strong> — o passo a passo para chegar lá usando o app do seu banco</p></div>
@@ -595,17 +595,17 @@ body { min-width: 320px; display:flex; flex-direction:column; }
 </div></div></div></section>
 <section class="etapa" data-etapa="14"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Regra de Ouro: PARE · PENSE · LIGUE</h2><p>Para qualquer golpe — parente falso, link falso, ligação suspeita —
             existe uma regra de ouro que resolve tudo. São três passos simples:</p><div class="tres-colunas">
-<div class="mini-cartao" style="border: 2px dashed var(--chita-vermelha);">
+<div class="mini-cartao" style="border: 2px solid var(--terracota);">
 <span class="icone-grande">✋</span>
 <h4>1. PARE</h4>
 <p>Não faça nada na pressa. Golpistas usam a urgência para te apressar.</p>
 </div>
-<div class="mini-cartao" style="border: 2px dashed var(--chita-amarela);">
+<div class="mini-cartao" style="border: 2px solid var(--marigold);">
 <span class="icone-grande">🤔</span>
 <h4>2. PENSE</h4>
 <p>Essa história faz sentido? Por que a pressa? Banco pediria isso assim?</p>
 </div>
-<div class="mini-cartao" style="border: 2px dashed var(--chita-verde);">
+<div class="mini-cartao" style="border: 2px solid var(--verde-folha);">
 <span class="icone-grande">📞</span>
 <h4>3. LIGUE</h4>
 <p>Ligue para a pessoa ou peça ajuda a alguém de confiança antes de agir.</p>
@@ -636,7 +636,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 <strong>PARE-PENSE-LIGUE</strong>: não faça nada na pressa, desconfie da história
                 e ligue para a pessoa no número que você já tem salvo.
             </div><div class="destaque">
-                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                <strong>Por que isso importa:</strong> missões são com a prática de cada passo —
                 cada uma praticada em casa deixa o aprendizado mais firme.
                 Na próxima aula, contamos como foi!
             </div></div><div class="etapa-visual"><div class="missao">
@@ -654,16 +654,16 @@ body { min-width: 320px; display:flex; flex-direction:column; }
 <!-- ============ FASE 5 · MOMENTO EU CONSIGO ============ -->
 <section class="etapa" data-etapa="16"><div class="etapa-grid"><div class="etapa-texto"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="momento">
 <span class="trofeu">🧵</span>
-<h2>Você costurou mais um retalho!</h2>
+<h2>Você montou mais uma etapa!</h2>
 <p>Hoje você aprendeu o que é o Gov.br, a diferença entre os níveis Bronze, Prata e Ouro,
                 como o PIX teletransporta seu dinheiro, como pagar por chave e por QR Code conferindo o nome —
                 e, o mais importante, como se proteger dos golpes. Isso é <strong>autonomia</strong>.</p>
 </div><h3 style="margin-top: var(--esp-lg);">Suas conquistas de hoje</h3><div style="text-align:center; margin-top: var(--esp-lg);">
-<div class="retalho-costurado">Aula 08 · costurada! 🎉</div>
+<div class="peca-montada">Aula 08 · etapa montada! 🎉</div>
 </div><div class="destaque" style="margin-top: var(--esp-lg);">
                 🎊 <strong>Você está cada vez mais digital!</strong> Esta foi a última aula de conteúdo da trilha.
                 Na próxima aula, vamos <strong>celebrar</strong> tudo o que você aprendeu —
-                cada retalho costurado, cada conquista. Até lá!
+                cada etapa concluída, cada conquista. Até lá!
             </div><div style="text-align:center; margin-top: var(--esp-md);">
 <a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
 <a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
@@ -743,7 +743,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 var chave = campoChave.value.trim();
                 if (!chave) {
                     campoChave.focus();
-                    campoChave.style.borderColor = 'var(--chita-vermelha)';
+                    campoChave.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 campoChave.style.borderColor = '';
@@ -768,7 +768,7 @@ body { min-width: 320px; display:flex; flex-direction:column; }
                 var valor = campoValor.value.trim();
                 if (!valor) {
                     campoValor.focus();
-                    campoValor.style.borderColor = 'var(--chita-vermelha)';
+                    campoValor.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 campoValor.style.borderColor = '';

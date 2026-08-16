@@ -1,0 +1,8 @@
+surface: player
+role: subject
+ratio: 1:1
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Retrato centralizado do Seu José, adulto brasileiro de aproximadamente 70 anos, cabelos grisalhos curtos, camisa azul UEMG sem marca ou texto, expressão atenta e capaz, olhando para a câmera. Fundo simples de papel recortado em camadas com formas de folhas abstratas, respiro uniforme para recorte circular. Luz clara e quente, tinta fosca, contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Sem palavras, letras, números, logos, marcas, dados, QR codes ou interface.

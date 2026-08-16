@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Roadmap das trilhas do Programa de Inclusão Digital UEMG Frutal" />
+    <meta name="theme-color" content="#1E4466" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Trilhas — Inclusão Digital UEMG</title>
+  </head>
+  <body>
+    <!--
+      THESIS: O roadmap mostra o próximo passo do programa com clareza e sem prometer o que ainda não existe.
+      OWN-WORLD: O Ateliê de Autonomia usa papel recortado, grafite, azul UEMG e status em texto e cor.
+      STORY: A pessoa entende o que está ativo, o que está em planejamento e como pode ajudar a construir o programa.
+      FIRST VIEWPORT: A cena do roadmap ocupa o fundo; título, explicação e status ficam em contraste no lado esquerdo.
+      FORM: Roadmap de leitura e participação — direção Ateliê de Autonomia definida em SPEC.md, seção 9.7.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="/images/logo.png" alt="Inclusão Digital UEMG" class="sidebar-logo" />
+        <div class="sidebar-titulo">Inclusão Digital<small>UEMG Frutal · desde 2009</small></div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Navegação principal">
+        <a href="/" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Início</span>
+        </a>
+        <a href="/aulas.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <span>Aulas</span>
+        </a>
+        <a href="/pratique.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Pratique</span>
+        </a>
+        <a href="/comunidade.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Comunidade</span>
+        </a>
+        <a href="/trilhas.html" class="sidebar-link active" aria-current="page">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M6 16 11 11l3 3 4-6"/><circle cx="6" cy="16" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="18" cy="8" r="1"/></svg>
+          <span>Trilhas</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <strong>Trilha 60+</strong> — ativa<br />
+        <a href="#sugestoes">Sugira uma próxima trilha</a>
+      </div>
+    </aside>
+
+    <header class="mobile-header" id="mobileHeader">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="mobile-title">Trilhas</span>
+    </header>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <main class="main-content" id="conteudo">
+      <section class="roadmap-hero">
+        <div>
+          <span class="hero-badge">Propostas reais para o programa</span>
+          <h1>Para onde o programa vai</h1>
+          <p>Conheça a trilha que já acontece e as propostas em planejamento. Nada aqui promete uma data que ainda não existe.</p>
+        </div>
+      </section>
+
+      <section class="section trilhas-section" aria-labelledby="trilhas-titulo">
+        <div class="section-header">
+          <h2 id="trilhas-titulo">Quatro trilhas, um programa que cresce junto</h2>
+          <p class="subtitle">Cada card informa o status, o público, o formato e os conteúdos propostos.</p>
+        </div>
+
+        <div class="trilhas-grid">
+          <article class="trilha-card">
+            <span class="status-selo status-ativa">Ativa · 9 aulas prontas</span>
+            <h2>Inclusão Digital 60+</h2>
+            <p>A trilha âncora do programa ensina tecnologia para uso no dia a dia, no ritmo de cada pessoa.</p>
+            <dl class="trilha-meta">
+              <div><dt>Público</dt><dd>Adultos 50+, terceira idade e comunidade</dd></div>
+              <div><dt>Formato</dt><dd>Encontro presencial semanal de aproximadamente 2 horas</dd></div>
+              <div><dt>Base</dt><dd>16 anos de execução e 80% de retenção no ciclo PAEx 2025</dd></div>
+            </dl>
+            <details data-disclosure>
+              <summary aria-expanded="false">Ver as aulas da trilha</summary>
+              <ul>
+                <li>Primeiros passos e navegação segura</li>
+                <li>WhatsApp, comunicação e mídias sociais</li>
+                <li>Fotos, Drive, documentos e apresentações</li>
+                <li>Gov.br, PIX, segurança e celebração da jornada</li>
+              </ul>
+            </details>
+            <a href="/aulas.html" class="btn btn-primary">Ver aulas ativas</a>
+          </article>
+
+          <article class="trilha-card">
+            <span class="status-selo status-planejamento">Em planejamento · 8 módulos propostos</span>
+            <h2>Inteligência Artificial para Todos</h2>
+            <p>Uma proposta para devolver tempo e ampliar a capacidade humana com prática e linguagem clara.</p>
+            <dl class="trilha-meta">
+              <div><dt>Público</dt><dd>Comunidade geral, todas as idades</dd></div>
+              <div><dt>Formato</dt><dd>Encontro semanal ou intensivo de aproximadamente 2 horas</dd></div>
+              <div><dt>Ferramentas propostas</dt><dd>Claude, ChatGPT, Gemini, Perplexity, NotebookLM, Lovable, Bolt e Gamma</dd></div>
+            </dl>
+            <details data-disclosure>
+              <summary aria-expanded="false">Ver os módulos propostos</summary>
+              <ul>
+                <li>O que é IA e por que importa</li>
+                <li>Conversando com IA e pesquisa com fontes</li>
+                <li>IA no trabalho, produtividade e criação de aplicativos sem código</li>
+                <li>Conteúdo visual, ética e projeto final com um problema real</li>
+              </ul>
+            </details>
+            <a href="#sugestoes" class="btn btn-secondary">Quero ajudar a construir</a>
+          </article>
+
+          <article class="trilha-card">
+            <span class="status-selo status-planejamento">Em planejamento · 8 módulos propostos</span>
+            <h2>Tecnologia e Mercado de Trabalho</h2>
+            <p>Uma proposta de qualificação para jovens e adultos criarem presença profissional e projetos reais.</p>
+            <dl class="trilha-meta">
+              <div><dt>Público</dt><dd>Jovens e adultos, alunos UEMG e comunidade</dd></div>
+              <div><dt>Formato</dt><dd>Encontro semanal ou workshop de aproximadamente 2 horas</dd></div>
+              <div><dt>Resultado proposto</dt><dd>Projeto de marca pessoal e portfólio</dd></div>
+            </dl>
+            <details data-disclosure>
+              <summary aria-expanded="false">Ver os módulos propostos</summary>
+              <ul>
+                <li>GitHub Student Pack, portfólio online e LinkedIn</li>
+                <li>Produtividade com IA e Copilot como parceiro de código</li>
+                <li>Plataformas de trabalho, freelance e empreendedorismo digital</li>
+                <li>Projeto final de marca pessoal completa</li>
+              </ul>
+            </details>
+            <a href="#sugestoes" class="btn btn-secondary">Quero ajudar a construir</a>
+          </article>
+
+          <article class="trilha-card">
+            <span class="status-selo status-aberta">Formato aberto · sob demanda</span>
+            <h2>Palestras e Cursos com Convidados</h2>
+            <p>Eventos pontuais com convidados externos para temas que interessam à comunidade acadêmica e externa.</p>
+            <dl class="trilha-meta">
+              <div><dt>Público</dt><dd>Comunidade acadêmica e externa</dd></div>
+              <div><dt>Formato</dt><dd>Evento presencial ou híbrido de 1 a 4 horas</dd></div>
+              <div><dt>Organização</dt><dd>Convidados externos e temas definidos conforme a demanda</dd></div>
+            </dl>
+            <details data-disclosure>
+              <summary aria-expanded="false">Ver exemplos de temas</summary>
+              <ul>
+                <li>Cibersegurança e acessibilidade digital</li>
+                <li>IA generativa, carreira em tecnologia e dados abertos</li>
+                <li>Marketing digital para pequenos negócios</li>
+              </ul>
+            </details>
+            <a href="#sugestoes" class="btn btn-secondary">Sugerir um tema</a>
+          </article>
+        </div>
+
+        <section class="visao-integrada" aria-labelledby="visao-titulo">
+          <div>
+            <h2 id="visao-titulo">Visão integrada</h2>
+            <p>As trilhas podem ser combinadas conforme a capacidade de cada unidade. Os conteúdos produzidos por uma unidade alimentam as outras.</p>
+          </div>
+          <ul class="visao-integrada-lista">
+            <li><strong>Entrada mínima</strong>1 trilha + palestras</li>
+            <li><strong>Entrada ideal</strong>2 trilhas + palestras</li>
+            <li><strong>Programa completo</strong>4 trilhas integradas</li>
+          </ul>
+        </section>
+        <p class="base-institucional">Base institucional: Bolsa PAEx de R$ 850/mês, Resolução CONUN 625/2024 para colaboradores externos e Resolução COEPE 287/2021 para extensão curricular. Processo SEI 2350.01.0000627/2025-48 · Registro SIGA 24535/2025.</p>
+      </section>
+
+      <section class="section sugestao-section" id="sugestoes" aria-labelledby="sugestoes-titulo">
+        <div class="sugestao-layout">
+          <div class="sugestao-intro">
+            <h2 id="sugestoes-titulo">Ajude a construir a próxima trilha</h2>
+            <p>Você pode sugerir uma trilha nova ou um tema de palestra. A equipe usa estas sugestões apenas para planejar o programa.</p>
+            <p>Coletamos só o necessário. Nome e e-mail são opcionais. Não envie dados sensíveis.</p>
+          </div>
+
+          <!-- Troque o valor de action e data-endpoint-configured para true quando a coordenação contratar o endpoint. -->
+          <form class="sugestao-form" id="form-sugestao" action="https://formspree.io/f/SEU_FORM_ID" method="POST" data-endpoint-configured="false" novalidate>
+            <div class="form-grid">
+              <div class="form-campo">
+                <label for="sugestao-nome">Nome <span aria-hidden="true">(opcional)</span></label>
+                <input id="sugestao-nome" name="nome" type="text" autocomplete="name" />
+              </div>
+              <div class="form-campo">
+                <label for="sugestao-email">E-mail para retorno <span aria-hidden="true">(opcional)</span></label>
+                <input id="sugestao-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="erro-sugestao-email" />
+                <span class="form-erro" id="erro-sugestao-email"></span>
+              </div>
+              <div class="form-campo form-largo">
+                <label for="sugestao-perfil">Quem é você?</label>
+                <select id="sugestao-perfil" name="perfil" required aria-describedby="erro-sugestao-perfil">
+                  <option value="">Selecione uma opção</option>
+                  <option value="aluno">Aluno</option>
+                  <option value="monitor">Monitor</option>
+                  <option value="professor">Professor</option>
+                  <option value="comunidade">Comunidade</option>
+                </select>
+                <span class="form-erro" id="erro-sugestao-perfil"></span>
+              </div>
+              <div class="form-campo form-largo">
+                <label for="sugestao-tema">Trilha ou tema sugerido</label>
+                <input id="sugestao-tema" name="tema" type="text" required aria-describedby="erro-sugestao-tema" />
+                <span class="form-erro" id="erro-sugestao-tema"></span>
+              </div>
+              <div class="form-campo form-largo">
+                <label for="sugestao-motivo">Por que isso importa e quem se beneficia?</label>
+                <textarea id="sugestao-motivo" name="motivo" required aria-describedby="erro-sugestao-motivo"></textarea>
+                <span class="form-erro" id="erro-sugestao-motivo"></span>
+              </div>
+            </div>
+            <div class="form-consentimento">
+              <input id="sugestao-consentimento" name="consentimento" type="checkbox" value="autorizado" required aria-describedby="erro-sugestao-consentimento" />
+              <div>
+                <label for="sugestao-consentimento">Autorizo o uso desta sugestão pelo programa para planejar trilhas futuras.</label>
+                <span class="form-erro" id="erro-sugestao-consentimento"></span>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar sugestão</button>
+            <p class="form-nota" id="nota-endpoint">Envio ainda não configurado. Sua sugestão não será enviada até a coordenação ligar o serviço de formulário.</p>
+            <p class="form-status" id="status-sugestao" role="status" aria-live="polite" aria-atomic="true"></p>
+          </form>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <h3>Portal UEMG — Inclusão Digital</h3>
+            <p class="slogan">Conhecimento que conecta</p>
+            <p>Um projeto de extensão da UEMG Frutal que desde 2009 capacita adultos 60+ para o mundo digital, com metodologia andragógica e aulas interativas.</p>
+          </div>
+          <div class="footer-column">
+            <h4>Navegação</h4>
+            <a href="/">Início</a>
+            <a href="/aulas.html">Aulas</a>
+            <a href="/pratique.html">Pratique</a>
+            <a href="/comunidade.html">Comunidade</a>
+            <a href="/trilhas.html">Trilhas</a>
+          </div>
+          <div class="footer-column">
+            <h4>Contato</h4>
+            <p>Myke Matos dos Santos</p>
+            <p>Prof. Cícero Marcelo de Oliveira</p>
+          </div>
+          <div class="footer-column">
+            <h4>UEMG Frutal</h4>
+            <a href="https://uemg.br" target="_blank" rel="noopener">Site Oficial</a>
+            <p>Apoio: PAEx — UEMG</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2025 UEMG Frutal — Programa de Inclusão Digital</span>
+          <img src="/logos/uemg_small.png" alt="UEMG" class="footer-logo" />
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

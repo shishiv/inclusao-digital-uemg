@@ -8,14 +8,14 @@
     <title>Aula 03 — WhatsApp: Conectando Famílias | Inclusão Digital UEMG</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/player.css">
     <style>
         /* Extras específicos da aula 03 */
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
         .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
@@ -27,23 +27,23 @@
 
         .cartao-app { background: #FFF; border-radius: 22px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-lg); width: 100%; max-width: 300px; overflow: hidden; margin: 0 auto; }
         .cartao-app .app-linha { display: flex; align-items: center; gap: 14px; padding: 18px; }
-        .cartao-app .app-icone { width: 64px; height: 64px; border-radius: 16px; background: #FFF; border: 2px solid var(--linha); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .cartao-app .app-icone { width: 64px; height: 64px; border-radius: 16px; background: #FFF; border: 2px solid var(--grafite-suave); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .cartao-app .app-icone img { width: 46px; height: 46px; object-fit: contain; }
         .cartao-app .app-nome { font-weight: 800; color: #111B21; font-size: 1.05rem; }
         .cartao-app .app-dev { font-size: .8rem; color: #667781; }
         .cartao-app .app-botao { display: block; width: calc(100% - 36px); margin: 0 18px 18px; padding: 14px; border: none; border-radius: 12px; background: #0B8F4C; color: #FFF; font-weight: 800; font-size: 1rem; font-family: var(--font-body); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.16); }
-        .cartao-app .loja-tag { display: flex; align-items: center; gap: 8px; justify-content: center; padding: 12px; border-top: 1px solid #F0F2F5; font-size: .8rem; font-weight: 700; color: var(--bordado-suave); }
+        .cartao-app .loja-tag { display: flex; align-items: center; gap: 8px; justify-content: center; padding: 12px; border-top: 1px solid #F0F2F5; font-size: .8rem; font-weight: 700; color: var(--tinta-suave); }
 
         .cartao-sms { background: #FFF; border-radius: 22px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); width: 100%; max-width: 290px; overflow: hidden; margin: 0 auto; }
         .cartao-sms .sms-topo { background: #075E54; color: #FFF; padding: 12px 14px; font-weight: 700; font-size: .95rem; display: flex; align-items: center; gap: 10px; }
         .cartao-sms .sms-corpo { padding: 18px; text-align: center; }
         .cartao-sms .sms-titulo { font-size: .85rem; color: #667781; margin-bottom: 10px; }
-        .cartao-sms .sms-codigo { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #111B21; letter-spacing: 8px; background: var(--algodao); border: 2px dashed var(--linha-forte); border-radius: 12px; padding: 10px; }
+        .cartao-sms .sms-codigo { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #111B21; letter-spacing: 8px; background: var(--papel); border: 2px solid var(--grafite); border-radius: 12px; padding: 10px; }
         .cartao-sms .sms-aviso { margin-top: 12px; font-size: .78rem; color: #B5372C; font-weight: 700; }
 
         .cadeia { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; }
-        .cadeia .elo { display: inline-flex; align-items: center; gap: 10px; background: var(--branco); border: 2px solid var(--linha); border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 800; font-size: 1.05rem; color: var(--bordado); box-shadow: var(--sombra-sm); }
-        .cadeia .seta { font-size: 1.4rem; line-height: 1; color: var(--chita-vermelha); }
+        .cadeia .elo { display: inline-flex; align-items: center; gap: 10px; background: var(--branco); border: 2px solid var(--grafite-suave); border-radius: var(--raio-pill); padding: 10px 20px; font-weight: 800; font-size: 1.05rem; color: var(--tinta); box-shadow: var(--sombra-sm); }
+        .cadeia .seta { font-size: 1.4rem; line-height: 1; color: var(--terracota); }
 
         .cartao-chat { background: #ECE5DD; border-radius: 24px; border: 8px solid #1F2C34; box-shadow: var(--sombra-lg); width: 100%; max-width: 300px; overflow: hidden; margin: 0 auto; }
         .cartao-chat .chat-topo { background: #075E54; color: #FFF; padding: 12px 14px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .9rem; }
@@ -54,8 +54,8 @@
 
         .cartao-reacao { background: #FFF; border-radius: 18px; border: 1px solid #E9EDEF; box-shadow: var(--sombra-md); width: 100%; max-width: 320px; padding: 16px; display: flex; flex-direction: column; gap: 12px; margin: 0 auto; }
         .cartao-reacao .reacao-linha { display: flex; gap: 10px; justify-content: center; }
-        .cartao-reacao .reacao { font-size: 2rem; background: var(--algodao); border: 2px solid var(--linha); border-radius: 14px; width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; }
-        .cartao-reacao .reacao-legenda { text-align: center; font-size: .8rem; font-weight: 700; color: var(--bordado-suave); }
+        .cartao-reacao .reacao { font-size: 2rem; background: var(--papel); border: 2px solid var(--grafite-suave); border-radius: 14px; width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; }
+        .cartao-reacao .reacao-legenda { text-align: center; font-size: .8rem; font-weight: 700; color: var(--tinta-suave); }
 
         .cartao-web { background: #FFF; border-radius: 14px; border: 1px solid #D9DEE3; box-shadow: var(--sombra-lg); width: 100%; max-width: 360px; overflow: hidden; margin: 0 auto; }
         .cartao-web .web-bar { background: #F0F2F5; padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #E4E8EC; }
@@ -122,7 +122,7 @@
                 </div>
                 <div class="etapa-visual">
                     <img
-                      src="/assets/ilustracoes/aula-avo-videochamada-subject-9x16-v01.png"
+                      src="/assets/ilustracoes/aula-whatsapp-familia-bg-16x9-v01.png"
                       alt="Avó sorridente falando por videochamada com a família no celular"
                       class="ilustracao-cena"
                       width="864" height="1536"
@@ -194,7 +194,7 @@
                     <div class="mockup-agenda" style="max-width: 340px; width: 100%; margin: 0 auto;">
                         <div class="agenda-topo">📇 Minha agenda</div>
                         <div class="contato-linha">
-                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
                             <div><div class="contato-nome">Dona Zilda</div><div class="contato-tel">(34) 98888-0000</div></div>
                         </div>
                     </div>
@@ -251,11 +251,11 @@
                     <div class="mockup-agenda" style="max-width: 340px; width: 100%; margin: 0 auto;">
                         <div class="agenda-topo">📇 Minha agenda</div>
                         <div class="contato-linha">
-                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
                             <div><div class="contato-nome">Dona Zilda</div><div class="contato-tel">(34) 98888-0000</div></div>
                         </div>
                         <div class="contato-linha">
-                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Seu José" width="42" height="42">
+                            <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-seu-jose-subject-1x1-v01.png" alt="Seu José" width="42" height="42">
                             <div><div class="contato-nome">Seu José</div><div class="contato-tel">(34) 97777-0000</div></div>
                         </div>
                         <div class="contato-linha">
@@ -307,7 +307,7 @@
                         <div class="agenda-topo">📇 Minha agenda</div>
                         <div id="agenda-lista">
                             <div class="contato-linha">
-                                <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
+                                <img class="contato-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="42" height="42">
                                 <div><div class="contato-nome">Dona Zilda (exemplo)</div><div class="contato-tel">(34) 98888-0000</div></div>
                             </div>
                         </div>
@@ -449,7 +449,7 @@
                     <div class="mockup" style="margin: 0 auto;">
                         <div class="mockup-tela" id="mockup-tela">
                             <div class="mockup-topo">
-                                <img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="36" height="36">
+                                <img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="36" height="36">
                                 <div class="mockup-titulo" id="mockup-titulo">Dona Zilda (exemplo)</div>
                                 <div style="font-size:1.2rem;">📞</div>
                                 <div style="font-size:1.2rem;">📷</div>
@@ -504,7 +504,7 @@
                 </div>
                 <div class="etapa-visual">
                     <div class="cartao-chat">
-                        <div class="chat-topo"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="36" height="36"> Conversa com Dona Zilda</div>
+                        <div class="chat-topo"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="36" height="36"> Conversa com Dona Zilda</div>
                         <div class="chat-corpo">
                             <div class="mockup-bolha recebida">Oi, netinha! Tudo bem? 😊<span class="hora">09:12</span></div>
                             <div class="mockup-bolha enviada">Tô ótima, vovó! Saudades! 🥰<span class="hora">09:13</span></div>
@@ -728,8 +728,8 @@
                         </div>
                         <div class="web-corpo">
                             <div class="web-lista">
-                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" alt="Dona Zilda" width="28" height="28"><span class="nome">Dona Zilda</span></div>
-                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Seu José" width="28" height="28"><span class="nome">Seu José</span></div>
+                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" alt="Dona Zilda" width="28" height="28"><span class="nome">Dona Zilda</span></div>
+                                <div class="web-item"><img class="mockup-avatar-img" src="/assets/ilustracoes/avatar-seu-jose-subject-1x1-v01.png" alt="Seu José" width="28" height="28"><span class="nome">Seu José</span></div>
                                 <div class="web-item"><span class="contato-avatar" style="width:28px;height:28px;font-size:.9rem;">👨‍👩‍👧‍👦</span><span class="nome">Família Silva</span></div>
                             </div>
                             <div class="web-chat">
@@ -751,7 +751,7 @@
                 <li><span><strong>Veja, responda e envie</strong> mensagens direto do computador</span></li>
             </ul>
             <div class="destaque">
-                🧵 <strong>Fio da meada:</strong> mesmas conversas, mesmos contatos, mesma segurança.
+                <strong>Fio da meada:</strong> mesmas conversas, mesmos contatos, mesma segurança.
                 A tecnologia deve facilitar a vida, não complicar. WhatsApp Web é praticidade!
             </div>
         </section>
@@ -862,7 +862,7 @@
                 <p><strong>4.</strong> Se alguém te pedir dinheiro ou código pelo WhatsApp, <strong>ligue para a pessoa</strong> antes de fazer qualquer coisa.</p>
             </div>
             <div class="destaque">
-                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                <strong>Por que isso importa:</strong> missões são com a prática de cada passo —
                 cada uma praticada em casa deixa o aprendizado mais firme.
                 Na próxima aula, contamos como foi!
             </div>
@@ -874,7 +874,7 @@
 
             <div class="momento">
                 <span class="trofeu">🧵</span>
-                <h2>Você costurou mais um retalho!</h2>
+                <h2>Você montou mais uma etapa!</h2>
                 <p>Hoje você aprendeu o que é um contato, como adicionar na agenda,
                 como conversar, mandar fotos e áudios, participar de grupos, fazer chamadas
                 e se proteger de golpes. Isso é muito mais do que "usar o celular" —
@@ -882,7 +882,7 @@
             </div>
 
             <div style="text-align:center; margin-top: var(--esp-lg);">
-                <div class="retalho-costurado">Aula 03 · costurada! 🎉</div>
+                <div class="peca-montada">Aula 03 · etapa montada! 🎉</div>
             </div>
         </section>
 
@@ -904,7 +904,7 @@
             <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
             <h2>Continue praticando</h2>
             <div class="destaque">
-                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos visitar as redes
+                <strong>Continue praticando.</strong> Na próxima aula vamos visitar as redes
                 sociais — Facebook <span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span>, Instagram <span class="ferramenta"><img src="/assets/logos/instagram.svg" alt="" width="26" height="26"> Instagram</span> e YouTube <span class="ferramenta"><img src="/assets/logos/youtube.svg" alt="" width="26" height="26"> YouTube</span> — com o mesmo jeito de aprender:
                 um passo de cada vez, no seu ritmo.
             </div>
@@ -949,12 +949,12 @@
                 var tel = campoTel.value.trim();
                 if (!nome) {
                     campoNome.focus();
-                    campoNome.style.borderColor = 'var(--chita-vermelha)';
+                    campoNome.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 var linha = document.createElement('div');
                 linha.className = 'contato-linha';
-                linha.innerHTML = '<img class="contato-avatar-img" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" alt="Novo contato" width="42" height="42">' +
+                linha.innerHTML = '<img class="contato-avatar-img" src="/assets/ilustracoes/avatar-seu-jose-subject-1x1-v01.png" alt="Novo contato" width="42" height="42">' +
                     '<div><div class="contato-nome"></div><div class="contato-tel"></div></div>';
                 linha.querySelector('.contato-nome').textContent = nome;
                 linha.querySelector('.contato-tel').textContent = tel || '(número salvo depois)';

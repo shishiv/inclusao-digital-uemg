@@ -1,0 +1,8 @@
+surface: aula 03
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Uma avó brasileira de 60 a 75 anos conversa com familiares próximos usando um smartphone em casa, todos atentos e capazes, com uma tela do telefone geométrica pálida completamente em branco. Cena ampla ao nível dos olhos sentado, luz quente de dia claro, sala brasileira com madeira clara e plantas. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.

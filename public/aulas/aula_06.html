@@ -9,14 +9,14 @@
 <title>Aula 06 — Seu Escritório Digital Gratuito | Inclusão Digital UEMG</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="/assets/player.css" rel="stylesheet"/>
 <style>
         /* ===== Extras específicos da aula 06 ===== */
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
         .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
@@ -24,12 +24,12 @@
 
         /* Tabelas de exemplo (medicamentos, gastos) */
         .tabela-exemplo { width: 100%; border-collapse: collapse; margin: var(--esp-md) 0; background: #FFF; border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-sm); font-size: var(--texto-sm); }
-        .tabela-exemplo th { background: var(--chita-azul-escura); color: #FFF; padding: 10px 12px; text-align: left; font-weight: 700; }
-        .tabela-exemplo td { padding: 10px 12px; border-bottom: 1px solid var(--linha); color: var(--bordado); }
+        .tabela-exemplo th { background: var(--azul-uemg-profundo); color: #FFF; padding: 10px 12px; text-align: left; font-weight: 700; }
+        .tabela-exemplo td { padding: 10px 12px; border-bottom: 1px solid var(--grafite-suave); color: var(--tinta); }
         .tabela-exemplo tr:last-child td { border-bottom: none; }
-        .tabela-exemplo .total { background: var(--chita-amarela-bg); font-weight: 800; color: var(--bordado); }
-        .tabela-exemplo .sim { color: var(--chita-verde); font-weight: 700; }
-        .tabela-exemplo .nao { color: var(--chita-vermelha); font-weight: 700; }
+        .tabela-exemplo .total { background: var(--marigold-suave); font-weight: 800; color: var(--tinta); }
+        .tabela-exemplo .sim { color: var(--verde-folha); font-weight: 700; }
+        .tabela-exemplo .nao { color: var(--terracota); font-weight: 700; }
 
         /* Mockup do Gmail <span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span> + Quadradinhos do Google (launcher) */
         .mockup-gmail { max-width: 460px; margin: var(--esp-md) auto; background: #FFF; border-radius: 14px; box-shadow: var(--sombra-md); position: relative; }
@@ -51,44 +51,44 @@
         .pagina-docs { background: #FFF; border: 1px solid #C8C8C8; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,.15); padding: 30px; margin: 16px; min-height: 200px; font-size: 1.05rem; line-height: 1.7; color: #202124; }
         .mockup-docs-campo { width: 100%; border: none; outline: none; font-family: var(--font-body); font-size: 1.05rem; color: #202124; background: transparent; resize: none; min-height: 100px; line-height: 1.7; }
         .mockup-docs-campo::placeholder { color: #9AA0A6; }
-        .indicador-salvo { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--chita-verde); font-weight: 700; background: var(--chita-verde-bg); border-radius: 999px; padding: 4px 12px; }
+        .indicador-salvo { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--verde-folha); font-weight: 700; background: var(--verde-folha-suave); border-radius: 999px; padding: 4px 12px; }
 
         /* Barra de ferramentas do Docs */
         .barra-ferramentas { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 16px 0; align-items: center; background: #FFF; border: 1px solid #DADCE0; border-radius: 10px; padding: 10px 12px; }
         .btn-ferramenta { border: 1px solid #DADCE0; background: #FFF; border-radius: 8px; padding: 8px 12px; font-size: .9rem; font-weight: 600; cursor: pointer; font-family: var(--font-body); color: #3C4043; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
-        .btn-ferramenta:hover { background: #E8F0FE; border-color: var(--chita-azul); }
-        .btn-ferramenta.ativa { background: var(--chita-azul); color: #FFF; border-color: var(--chita-azul); }
+        .btn-ferramenta:hover { background: #E8F0FE; border-color: var(--azul-ceu); }
+        .btn-ferramenta.ativa { background: var(--azul-ceu); color: #FFF; border-color: var(--azul-ceu); }
         #pagina-formatada { transition: font-size var(--medio), text-align var(--medio); }
 
         /* Planilha simulada (células clicáveis e =SOMA) */
-        .planilha-mock { max-width: 470px; margin: var(--esp-md) auto; background: #FFF; border: 2px solid var(--linha-forte); border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-md); }
+        .planilha-mock { max-width: 470px; margin: var(--esp-md) auto; background: #FFF; border: 2px solid var(--grafite); border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-md); }
         .planilha-grade { display: grid; grid-template-columns: 56px repeat(4, 1fr); }
-        .celula { border: 1px solid #D5D8DC; padding: 10px 8px; min-height: 44px; font-size: .95rem; display: flex; align-items: center; cursor: pointer; transition: background var(--veloz), box-shadow var(--veloz); background: #FFF; color: var(--bordado); overflow: hidden; }
-        .celula:hover { background: var(--chita-azul-bg); }
-        .celula.destaque { background: var(--chita-verde-bg); box-shadow: inset 0 0 0 3px var(--chita-verde); font-weight: 700; }
-        .celula-cab { background: var(--algodao-escuro); font-weight: 700; color: var(--bordado-suave); font-size: .9rem; justify-content: center; cursor: default; }
-        .celula-cab:hover { background: var(--algodao-escuro); }
-        .celula-formula { font-family: 'Courier New', monospace; font-weight: 700; color: var(--chita-verde); }
-        .info-celula { background: var(--chita-azul-bg); border-top: 2px solid var(--chita-azul); padding: 12px 16px; font-size: var(--texto-sm); font-weight: 600; color: var(--chita-azul-escura); }
+        .celula { border: 1px solid #D5D8DC; padding: 10px 8px; min-height: 44px; font-size: .95rem; display: flex; align-items: center; cursor: pointer; transition: background var(--veloz), box-shadow var(--veloz); background: #FFF; color: var(--tinta); overflow: hidden; }
+        .celula:hover { background: var(--azul-ceu-suave); }
+        .celula.destaque { background: var(--verde-folha-suave); box-shadow: inset 0 0 0 3px var(--verde-folha); font-weight: 700; }
+        .celula-cab { background: var(--papel-rebaixado); font-weight: 700; color: var(--tinta-suave); font-size: .9rem; justify-content: center; cursor: default; }
+        .celula-cab:hover { background: var(--papel-rebaixado); }
+        .celula-formula { font-family: 'Courier New', monospace; font-weight: 700; color: var(--verde-folha); }
+        .info-celula { background: var(--azul-ceu-suave); border-top: 2px solid var(--azul-ceu); padding: 12px 16px; font-size: var(--texto-sm); font-weight: 600; color: var(--azul-uemg-profundo); }
         .formula-btn { width: 100%; margin-top: var(--esp-md); }
 
         /* Cartão de receita */
-        .receita-card { max-width: 460px; margin: var(--esp-md) auto; background: #FFFDF7; border: 2px solid var(--chita-amarela); border-radius: 16px; padding: var(--esp-lg); box-shadow: var(--sombra-md); }
-        .receita-card h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--chita-vermelha); margin-bottom: 4px; }
-        .receita-card .receita-origem { font-size: .95rem; color: var(--bordado-suave); margin-bottom: var(--esp-md); }
+        .receita-card { max-width: 460px; margin: var(--esp-md) auto; background: #FFFDF7; border: 2px solid var(--marigold); border-radius: 16px; padding: var(--esp-lg); box-shadow: var(--sombra-md); }
+        .receita-card h4 { font-family: var(--font-display); font-size: var(--texto-xl); color: var(--terracota); margin-bottom: 4px; }
+        .receita-card .receita-origem { font-size: .95rem; color: var(--tinta-suave); margin-bottom: var(--esp-md); }
         .receita-card ul { list-style: none; margin: var(--esp-sm) 0; }
-        .receita-card li { padding: 6px 0; border-bottom: 1px dashed var(--linha); font-size: var(--texto-sm); }
+        .receita-card li { padding: 6px 0; border-bottom: 1px solid var(--grafite-suave); font-size: var(--texto-sm); }
         .receita-card li:last-child { border-bottom: none; }
-        .receita-card .receita-tempo { font-size: .95rem; font-weight: 700; color: var(--chita-verde); margin-top: var(--esp-sm); }
+        .receita-card .receita-tempo { font-size: .95rem; font-weight: 700; color: var(--verde-folha); margin-top: var(--esp-sm); }
 
         /* Comparação Docs × Sheets */
         .tabela-compara { width: 100%; border-collapse: collapse; margin: var(--esp-md) 0; background: #FFF; border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-sm); font-size: var(--texto-sm); }
         .tabela-compara th { padding: 12px; font-family: var(--font-display); font-size: var(--texto-lg); }
-        .tabela-compara th.criterio { background: var(--algodao-escuro); color: var(--bordado); }
-        .tabela-compara th.docs { background: var(--chita-azul); color: #FFF; }
-        .tabela-compara th.sheets { background: var(--chita-verde); color: #FFF; }
-        .tabela-compara td { padding: 10px 12px; border-top: 1px solid var(--linha); }
-        .tabela-compara td.rotulo { font-weight: 700; background: var(--algodao-escuro); width: 30%; }
+        .tabela-compara th.criterio { background: var(--papel-rebaixado); color: var(--tinta); }
+        .tabela-compara th.docs { background: var(--azul-ceu); color: #FFF; }
+        .tabela-compara th.sheets { background: var(--verde-folha); color: #FFF; }
+        .tabela-compara td { padding: 10px 12px; border-top: 1px solid var(--grafite-suave); }
+        .tabela-compara td.rotulo { font-weight: 700; background: var(--papel-rebaixado); width: 30%; }
     
         /* Impeccable layout + adapt: leitura linear e espaçamento confortável. */
         .etapa { --p-density: 1; }
@@ -164,7 +164,7 @@
 <li><span><strong>Redes sociais</strong> — Facebook <span class="ferramenta"><img alt="" height="26" src="/assets/logos/facebook.svg" width="26"/> Facebook</span>, Instagram <span class="ferramenta"><img alt="" height="26" src="/assets/logos/instagram.svg" width="26"/> Instagram</span>, YouTube</span></li>
 </ul></section><section class="etapa" data-etapa="2" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Seu escritório digital começa hoje</h2><p>Vocês lembram daquela carta escrita à mão que se perdeu, ou do caderninho de contas
             que sempre dava soma errada? <strong>Hoje isso acaba.</strong> Vamos aprender a criar
-            documentos e planilhas — como num escritório de verdade, só que gratuito e do seu jeito.</p><img alt="Ilustração em estilo aquarela de um casal de idosos sentado em uma mesa de madeira usando computadores em casa: um homem digita num documento de texto e uma mulher trabalha numa planilha, com caneca de café, livros e plantas ao redor, num ambiente acolhedor" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula06-escritorio-bg-16x9-v01.png" width="1536"/></section><section class="etapa" data-etapa="3" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta! Hoje nasce o seu escritório digital — continuação</h2><div class="analogia">
+            documentos e planilhas — como num escritório de verdade, só que gratuito e do seu jeito.</p><img alt="Ilustração em estilo aquarela de um casal de idosos sentado em uma mesa de madeira usando computadores em casa: um homem digita num documento de texto e uma mulher trabalha numa planilha, com caneca de café, livros e plantas ao redor, num ambiente acolhedor" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula-documentos-autonomia-bg-16x9-v01.png" width="1536"/></section><section class="etapa" data-etapa="3" data-fase-origem="1"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta! Hoje nasce o seu escritório digital — continuação</h2><div class="analogia">
                 📝 "Hoje você vai ter uma máquina de escrever moderna e um caderno quadriculado
                 que faz as contas sozinho — os dois de graça, dentro do seu Gmail."
             </div><div class="destaque">
@@ -688,7 +688,7 @@
 <p><strong>4.</strong> 👨‍👩‍👧‍👦 Desafio: <strong>compartilhar um documento</strong> com um filho ou neto — escolhendo "Ver" ou "Editar" com consciência.</p>
 </div></section><section class="etapa" data-etapa="61" data-fase-origem="18"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — continuação</h2><div class="destaque">
                 💡 <strong>Pratiquem 15 minutos por dia</strong> — é melhor que tudo de uma vez!
-                Missões são como os pontos da costura: cada uma praticada em casa deixa o aprendizado mais firme. Na próxima aula, contamos como foi.
+                Missões são com a prática de cada passo: cada uma praticada em casa deixa o aprendizado mais firme. Na próxima aula, contamos como foi.
             </div><div class="analogia">
                 🔗 <strong>Conectando tudo:</strong> Gmail → Drive → Docs → Sheets.
                 Tudo funciona junto, dentro da mesma conta — para facilitar a sua vida.
@@ -709,7 +709,7 @@
 <li>✅ Sei organizar gastos e medicamentos</li>
 <li>✅ Sei proteger minha senha</li>
 </ul><div style="text-align:center; margin-top: var(--esp-lg);">
-<div class="retalho-costurado">Aula 06 · costurada! 🎉</div>
+<div class="peca-montada">Aula 06 · etapa montada! 🎉</div>
 </div></section><section class="etapa" data-etapa="64" data-fase-origem="19"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><div class="destaque" style="margin-top: var(--esp-lg);">
                 🔮 <strong>Na próxima aula:</strong> vamos criar <strong>APRESENTAÇÕES BONITAS</strong>
                 com o Google Slides <span class="ferramenta"><img alt="" height="26" src="/assets/logos/slides.png" width="26"/> Google Slides</span> — slides para festas 🎉, convites de aniversário 🎂 e álbuns

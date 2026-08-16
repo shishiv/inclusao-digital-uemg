@@ -8,10 +8,11 @@
     <meta name="theme-color" content="#1E4466" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Aulas — Inclusão Digital UEMG</title>
   </head>
   <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -35,10 +36,14 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span>Comunidade</span>
         </a>
+        <a href="/trilhas.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 16 11 11l3 3 4-6"/><circle cx="6" cy="16" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="18" cy="8" r="1"/></svg>
+          <span>Trilhas</span>
+        </a>
       </nav>
       <div class="sidebar-footer">
         <strong>Trilha 60+</strong> — ativa<br>
-        IA · Mercado · Palestras — <em>em breve</em>
+        <a href="/trilhas.html">Conheça as próximas trilhas</a>
       </div>
     </aside>
 
@@ -54,16 +59,16 @@
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="conteudo">
       <section class="page-header">
         <h1 class="page-title">Nossas Aulas</h1>
-        <p class="page-subtitle">Cada aula interativa costura um retalho na sua colcha digital. Escolha uma aula e vamos começar!</p>
+        <p class="page-subtitle">Cada aula interativa acrescenta uma peça à sua jornada digital. Escolha uma aula e vamos começar!</p>
       </section>
 
       <section class="trilha">
         <!-- Aula 01 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula01-fundamentos-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-fundamentos-computador-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">01</div>
           <div class="aula-info">
             <h3>Sua Jornada Começa Aqui</h3>
@@ -83,7 +88,7 @@
 
         <!-- Aula 02 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula02-navegacao-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-navegacao-segura-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">02</div>
           <div class="aula-info">
             <h3>Navegando com Segurança</h3>
@@ -102,9 +107,9 @@
         </article>
 
         <!-- Aula 03 — PILOTO -->
-        <article class="aula-item" style="border-left-color: var(--chita-amarela);">
-          <img class="aula-capa" src="/assets/ilustracoes/aula-avo-videochamada-subject-9x16-v01.png" alt="Avó em videochamada com a família" width="200" height="118" loading="lazy" />
-          <div class="aula-numero" style="background: var(--chita-amarela); color: var(--bordado);">03</div>
+        <article class="aula-item" style="border-left-color: var(--marigold);">
+          <img class="aula-capa" src="/assets/ilustracoes/aula-whatsapp-familia-bg-16x9-v01.png" alt="Avó em videochamada com a família" width="200" height="118" loading="lazy" />
+          <div class="aula-numero" style="background: var(--marigold); color: var(--tinta);">03</div>
           <div class="aula-info">
             <h3>WhatsApp: Conectando Famílias <span class="etiqueta etiqueta-vermelha" style="margin-left: 8px; vertical-align: middle;">NOVA</span></h3>
             <p>Mensagens, fotos, áudios e videochamadas. Aprenda o que é um contato, como adicionar e conversar com quem ama.</p>
@@ -124,7 +129,7 @@
 
         <!-- Aula 04 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula04-midias-sociais-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-midias-compartilhar-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">04</div>
           <div class="aula-info">
             <h3>Mídias Sociais</h3>
@@ -144,7 +149,7 @@
 
         <!-- Aula 05 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula05-bau-memorias-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-memorias-digitais-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">05</div>
           <div class="aula-info">
             <h3>Seu Baú Digital de Memórias</h3>
@@ -164,7 +169,7 @@
 
         <!-- Aula 06 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula06-escritorio-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-documentos-autonomia-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">06</div>
           <div class="aula-info">
             <h3>Seu Escritório Digital Gratuito</h3>
@@ -184,7 +189,7 @@
 
         <!-- Aula 07 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula07-slides-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-apresentacao-criativa-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">07</div>
           <div class="aula-info">
             <h3>Google Slides</h3>
@@ -204,7 +209,7 @@
 
         <!-- Aula 08 -->
         <article class="aula-item">
-          <img class="aula-capa" src="/assets/ilustracoes/aula08-govbr-pix-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <img class="aula-capa" src="/assets/ilustracoes/aula-servicos-seguros-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
           <div class="aula-numero">08</div>
           <div class="aula-info">
             <h3>Gov.br e PIX</h3>
@@ -223,9 +228,9 @@
         </article>
 
         <!-- Aula 09 -->
-        <article class="aula-item" style="border-left-color: var(--chita-verde);">
-          <img class="aula-capa" src="/assets/ilustracoes/aula09-formatura-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
-          <div class="aula-numero" style="background: var(--chita-verde);">09</div>
+        <article class="aula-item" style="border-left-color: var(--verde-folha);">
+          <img class="aula-capa" src="/assets/ilustracoes/aula-celebracao-conquistas-bg-16x9-v01.png" alt="" width="200" height="118" loading="lazy" />
+          <div class="aula-numero" style="background: var(--verde-folha);">09</div>
           <div class="aula-info">
             <h3>Nossa Jornada Digital</h3>
             <p>Revisão, celebração e apresentação do Portal do Aluno — nossa grande formatura!</p>
@@ -256,6 +261,7 @@
             <a href="/aulas.html">Aulas</a>
             <a href="/pratique.html">Pratique</a>
             <a href="/comunidade.html">Comunidade</a>
+            <a href="/trilhas.html">Trilhas</a>
           </div>
           <div class="footer-column">
             <h4>Contato</h4>

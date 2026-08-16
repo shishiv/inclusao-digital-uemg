@@ -8,14 +8,14 @@
     <title>Aula 01 — Sua Jornada Começa Aqui | Inclusão Digital UEMG</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/player.css">
     <style>
         /* Extras específicos da aula 01 */
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .etapa:is([data-etapa="17"], [data-etapa="18"]) .passos-duplos { margin: var(--esp-xs) 0; gap: var(--esp-sm); }
         .etapa:is([data-etapa="17"], [data-etapa="18"]) .mini-cartao { padding: var(--esp-sm); }
@@ -28,16 +28,16 @@
         .lista-check li::before { content: '✅'; flex-shrink: 0; }
         .grade-pecas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .grade-pecas { grid-template-columns: 1fr; } }
-        .peca-casa { background: var(--retalho); border: var(--costura); border-radius: var(--raio); padding: var(--esp-md); display: flex; gap: var(--esp-sm); align-items: flex-start; }
+        .peca-casa { background: var(--papel-elevado); border: var(--divisor-grafite); border-radius: var(--raio); padding: var(--esp-md); display: flex; gap: var(--esp-sm); align-items: flex-start; }
         .peca-casa .peca-emoji { font-size: 2rem; flex-shrink: 0; }
-        .peca-casa h4 { font-family: var(--font-body); font-weight: 800; color: var(--chita-azul-escura); margin-bottom: 4px; font-size: 1.05rem; }
+        .peca-casa h4 { font-family: var(--font-body); font-weight: 800; color: var(--azul-uemg-profundo); margin-bottom: 4px; font-size: 1.05rem; }
         .peca-casa p { margin: 0; font-size: var(--texto-sm); }
         .mockup-caixa { background: #FFF; border-radius: 16px; border: 1px solid #E9EDEF; overflow: hidden; box-shadow: var(--sombra-md); margin: var(--esp-md) 0; }
         .caixa-topo { background: #EA4335; color: #FFF; padding: 12px 16px; font-weight: 700; font-size: .95rem; }
         .caixa-linha { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #F0F2F5; font-size: .9rem; }
         .caixa-linha:last-child { border-bottom: none; }
-        .caixa-linha strong { color: var(--chita-azul-escura); }
-        .senha-dica { display: inline-block; background: var(--chita-amarela-bg); border: 1px dashed var(--chita-amarela); border-radius: var(--raio-pill); padding: 4px 14px; font-weight: 700; color: var(--bordado); }
+        .caixa-linha strong { color: var(--azul-uemg-profundo); }
+        .senha-dica { display: inline-block; background: var(--marigold-suave); border: 1px solid var(--marigold); border-radius: var(--raio-pill); padding: 4px 14px; font-weight: 700; color: var(--tinta); }
 
         /* ===== Mini-mockups de reconhecimento (aula 01) ===== */
         .mm { background: #FFF; border: 1px solid #E9EDEF; border-radius: 16px; box-shadow: var(--sombra-md); overflow: hidden; width: 100%; max-width: clamp(300px, 30vw, 520px); }
@@ -47,14 +47,14 @@
         .mm-bar.cinza { background: #4A5568; }
         .mm-bar.vermelho { background: #B5372C; }
         .mm-corpo { padding: 12px 14px; }
-        .mm-rotulo { font-size: .62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bordado-suave); display: block; }
-        .mm-nota { font-size: .82rem; color: var(--bordado-suave); margin-top: 8px; line-height: 1.5; }
-        .mm-campo { border: 2px solid var(--linha-forte); border-radius: 8px; padding: 8px 10px; background: #FFF; font-size: .85rem; color: var(--bordado-suave); margin-bottom: 8px; }
+        .mm-rotulo { font-size: .62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tinta-suave); display: block; }
+        .mm-nota { font-size: .82rem; color: var(--tinta-suave); margin-top: 8px; line-height: 1.5; }
+        .mm-campo { border: 2px solid var(--grafite); border-radius: 8px; padding: 8px 10px; background: #FFF; font-size: .85rem; color: var(--tinta-suave); margin-bottom: 8px; }
         .mm-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #F0F2F5; font-size: .88rem; }
         .mm-linha:last-child { border-bottom: none; }
         /* Roadmap da jornada */
         .mm-parada { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: .9rem; }
-        .mm-num { width: 24px; height: 24px; border-radius: 50%; background: var(--chita-azul); color: #FFF; display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 800; flex-shrink: 0; }
+        .mm-num { width: 24px; height: 24px; border-radius: 50%; background: var(--azul-ceu); color: #FFF; display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 800; flex-shrink: 0; }
         /* Computador (casa digital) */
         .pc-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 12px; background: linear-gradient(160deg, #E3ECF5 0%, #F1EADA 100%); }
         .pc-monitor { width: 190px; background: #2F3E4E; border-radius: 10px; padding: 10px 10px 4px; }
@@ -70,51 +70,51 @@
         .cabo-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #F0F2F5; font-size: .88rem; }
         .cabo-linha:last-child { border-bottom: none; }
         .cabo-icone { font-size: 1.3rem; width: 34px; text-align: center; }
-        .cabo-encaixe { margin-left: auto; font-size: .72rem; font-weight: 800; color: var(--chita-verde); }
+        .cabo-encaixe { margin-left: auto; font-size: .72rem; font-weight: 800; color: var(--verde-folha); }
         /* Porta USB */
-        .usb-porta { display: flex; align-items: center; gap: 8px; background: #E8EAED; border: 2px solid var(--linha-forte); border-radius: 8px; padding: 10px 14px; font-weight: 800; color: var(--chita-azul-escura); font-size: .9rem; }
+        .usb-porta { display: flex; align-items: center; gap: 8px; background: #E8EAED; border: 2px solid var(--grafite); border-radius: 8px; padding: 10px 14px; font-weight: 800; color: var(--azul-uemg-profundo); font-size: .9rem; }
         .usb-icones { font-size: 1.5rem; letter-spacing: 6px; margin-top: 8px; }
         /* Menu Iniciar */
-        .mm-linha.power { background: var(--chita-amarela-bg); border: 2px solid var(--chita-amarela); border-radius: 10px; padding: 8px 12px; font-weight: 700; }
+        .mm-linha.power { background: var(--marigold-suave); border: 2px solid var(--marigold); border-radius: 10px; padding: 8px 12px; font-weight: 700; }
         /* Navegador */
         .nav-topo { display: flex; align-items: center; gap: 6px; background: #E8EAED; padding: 8px 12px; }
         .nav-botao { width: 12px; height: 12px; border-radius: 50%; }
         .nav-botao.vermelho { background: #EA4335; }
         .nav-botao.amarelo { background: #FBBC05; }
         .nav-botao.verde { background: #34A853; }
-        .nav-aba { background: #FFF; border-radius: 8px 8px 0 0; padding: 4px 14px; font-size: .78rem; font-weight: 600; color: var(--bordado-suave); margin-left: 6px; }
-        .nav-endereco { display: flex; align-items: center; gap: 8px; background: #FFF; border: 1px solid #DADCE0; border-radius: 999px; margin: 10px 12px; padding: 6px 14px; font-size: .85rem; color: var(--bordado-suave); }
+        .nav-aba { background: #FFF; border-radius: 8px 8px 0 0; padding: 4px 14px; font-size: .78rem; font-weight: 600; color: var(--tinta-suave); margin-left: 6px; }
+        .nav-endereco { display: flex; align-items: center; gap: 8px; background: #FFF; border: 1px solid #DADCE0; border-radius: 999px; margin: 10px 12px; padding: 6px 14px; font-size: .85rem; color: var(--tinta-suave); }
         .nav-pagina { padding: 4px 14px 14px; text-align: center; }
         /* Bilhete */
-        .bilhete { background: var(--chita-amarela-bg); border: 2px dashed var(--chita-amarela); border-radius: 10px; padding: 14px; text-align: center; font-size: .95rem; }
+        .bilhete { background: var(--marigold-suave); border: 2px solid var(--marigold); border-radius: 10px; padding: 14px; text-align: center; font-size: .95rem; }
         /* Senha */
-        .senha-campo { display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--linha-forte); border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; letter-spacing: 3px; font-size: 1rem; color: var(--chita-azul-escura); background: #FFF; }
+        .senha-campo { display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--grafite); border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; letter-spacing: 3px; font-size: 1rem; color: var(--azul-uemg-profundo); background: #FFF; }
         /* Turma */
         .turma-avatares { display: flex; justify-content: center; gap: 16px; padding: 10px 0; }
-        .turma-avatares .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--algodao-escuro); display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid var(--linha); }
+        .turma-avatares .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--papel-rebaixado); display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid var(--grafite-suave); }
         /* CPU */
         .cpu-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; }
         .cpu-torre { background: #5B6B7C; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         /* Cenas centrais (tomada, power, cadeado, envelope) */
         .tomada-cena, .power-cena, .cadeado-cena, .envelope-cena { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; text-align: center; }
         .tomada-cena .grande { font-size: 3rem; }
-        .power-btn { width: 72px; height: 72px; border-radius: 50%; background: var(--algodao-escuro); border: 4px solid var(--linha-forte); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .power-btn { width: 72px; height: 72px; border-radius: 50%; background: var(--papel-rebaixado); border: 4px solid var(--grafite); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
         .cadeado-icone { font-size: 3rem; }
         /* Ônibus (navegadores) */
         .onibus-linha { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #F0F2F5; font-size: .9rem; }
         .onibus-linha:last-child { border-bottom: none; }
         .onibus-emoji { font-size: 1.4rem; width: 38px; text-align: center; flex-shrink: 0; }
-        .onibus-destino { color: var(--bordado-suave); font-size: .8rem; margin-left: auto; }
+        .onibus-destino { color: var(--tinta-suave); font-size: .8rem; margin-left: auto; }
         /* Identidade digital */
         .identidade-linha { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #F0F2F5; font-size: .9rem; font-weight: 600; }
         .identidade-linha:last-child { border-bottom: none; }
         /* E-mail suspeito */
         .fraude-linha { padding: 7px 0; font-size: .88rem; border-bottom: 1px solid #F0F2F5; }
         .fraude-linha:last-child { border-bottom: none; }
-        .fraude-botao { display: inline-block; background: var(--chita-vermelha); color: #FFF; border-radius: 8px; padding: 8px 16px; font-weight: 700; margin: 8px 0; font-size: .85rem; }
-        .fraude-aviso { background: #FBEAEA; border: 2px dashed var(--chita-vermelha); border-radius: 10px; padding: 8px 10px; font-size: .8rem; font-weight: 700; color: #7A2620; }
+        .fraude-botao { display: inline-block; background: var(--terracota); color: #FFF; border-radius: 8px; padding: 8px 16px; font-weight: 700; margin: 8px 0; font-size: .85rem; }
+        .fraude-aviso { background: #FBEAEA; border: 2px solid var(--terracota); border-radius: 10px; padding: 8px 10px; font-size: .8rem; font-weight: 700; color: #7A2620; }
         /* Caderninho da missão */
-        .caderno-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--linha); font-size: .88rem; }
+        .caderno-linha { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--grafite-suave); font-size: .88rem; }
         .caderno-linha:last-child { border-bottom: none; }
         /* Simuladores interativos na coluna visual: não limitar altura */
         .etapa-grid .etapa-visual.simulador { align-items: flex-start; }
@@ -166,7 +166,7 @@
                 </div>
                 <div class="etapa-visual">
                     <img
-                      src="/assets/ilustracoes/aula01-fundamentos-bg-16x9-v01.png"
+                      src="/assets/ilustracoes/aula-fundamentos-computador-bg-16x9-v01.png"
                       alt="Capa da aula: senhora sorridente usando um computador com a família por perto"
                       class="ilustracao-cena"
                       width="1600" height="900"
@@ -199,7 +199,7 @@
                     <p>Hoje vamos dar <strong>os primeiros passos</strong> do mundo digital.
                     Olha só o caminho que vamos percorrer juntos:</p>
                     <div class="destaque">
-                        🧵 <strong>Fio da meada de hoje:</strong> casa (computador) → ônibus
+                        <strong>Fio da meada de hoje:</strong> casa (computador) → ônibus
                         (navegador) → correio (e-mail). Guarde essas três imagens:
                         elas explicam a aula inteira!
                     </div>
@@ -1163,11 +1163,11 @@
                         <div class="caixa-topo">📬 Simulador — escrever novo e-mail</div>
                         <div style="padding: var(--esp-md);">
                             <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-para">Para (o endereço do colega)</label>
-                            <input type="text" id="campo-para" placeholder="Ex.: colegas.digital@gmail.com" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
+                            <input type="text" id="campo-para" placeholder="Ex.: colegas.digital@gmail.com" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--grafite); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
                             <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-assunto">Assunto</label>
-                            <input type="text" id="campo-assunto" placeholder="Ex.: Minha primeira mensagem!" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
+                            <input type="text" id="campo-assunto" placeholder="Ex.: Minha primeira mensagem!" autocomplete="off" style="width:100%; padding:12px 14px; border:2px solid var(--grafite); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF;">
                             <label style="display:block; font-weight:700; font-size:.9rem; margin-bottom:4px;" for="campo-mensagem">Sua mensagem</label>
-                            <textarea id="campo-mensagem" rows="4" placeholder="Escreva aqui seu recado... Ex.: Oi, colega! Hoje aprendi a criar meu e-mail. Que alegria! 😊" style="width:100%; padding:12px 14px; border:2px solid var(--linha-forte); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF; resize:vertical;"></textarea>
+                            <textarea id="campo-mensagem" rows="4" placeholder="Escreva aqui seu recado... Ex.: Oi, colega! Hoje aprendi a criar meu e-mail. Que alegria! 😊" style="width:100%; padding:12px 14px; border:2px solid var(--grafite); border-radius:10px; font-size:var(--texto-base); font-family:var(--font-body); margin-bottom:var(--esp-sm); background:#FFF; resize:vertical;"></textarea>
                             <button class="btn btn-verde" id="btn-enviar-email" style="width:100%;">➤ Enviar mensagem</button>
                         </div>
                     </div>
@@ -1243,10 +1243,10 @@
                     <div class="mm">
                         <div class="mm-bar azul">🪪 Sua identidade digital</div>
                         <div class="mm-corpo">
-                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">seu endereço</span></div>
-                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">conversas</span></div>
-                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">família</span></div>
-                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/photos.png" alt="" width="26" height="26"> Fotos</span><span style="margin-left:auto; color:var(--bordado-suave); font-size:.8rem;">memórias</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/gmail.png" alt="" width="26" height="26"> Gmail</span><span style="margin-left:auto; color:var(--tinta-suave); font-size:.8rem;">seu endereço</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/whatsapp.svg" alt="" width="26" height="26"> WhatsApp</span><span style="margin-left:auto; color:var(--tinta-suave); font-size:.8rem;">conversas</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/facebook.svg" alt="" width="26" height="26"> Facebook</span><span style="margin-left:auto; color:var(--tinta-suave); font-size:.8rem;">família</span></div>
+                            <div class="identidade-linha"><span class="ferramenta"><img src="/assets/logos/photos.png" alt="" width="26" height="26"> Fotos</span><span style="margin-left:auto; color:var(--tinta-suave); font-size:.8rem;">memórias</span></div>
                             <p class="mm-nota">O e-mail é o seu endereço no mundo digital — muitos lugares o pedem para falar com você.</p>
                         </div>
                     </div>
@@ -1331,7 +1331,7 @@
                         <p><strong>5.</strong> Observe: <strong>não clique</strong> em nenhum e-mail que prometa prêmios ou peça dados. Se aparecer algum, guarde para contar na próxima aula!</p>
                     </div>
                     <div class="destaque">
-                        🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                        <strong>Por que isso importa:</strong> missões são com a prática de cada passo —
                         cada uma praticada em casa deixa o aprendizado mais firme.
                         Na próxima aula, contamos como foi!
                     </div>
@@ -1357,7 +1357,7 @@
 
             <div class="momento">
                 <span class="trofeu">🧵</span>
-                <h2>Você começou a costurar a colcha!</h2>
+                <h2>Você começou a montar sua jornada!</h2>
                 <p>Hoje você conheceu o computador como se fosse a sua casa,
                 aprendeu a ligar e desligar com segurança, descobriu o navegador —
                 o ônibus da cidade digital — e criou o seu próprio e-mail.
@@ -1384,13 +1384,13 @@
 
         <section class="etapa" data-etapa="47">
             <span class="etapa-badge f5">Fase 5 · Momento eu consigo</span>
-            <h2>Aula 01 costurada!</h2>
+            <h2>Aula 01 etapa montada!</h2>
             <div style="text-align:center; margin-top: var(--esp-md);">
-                <div class="retalho-costurado">Aula 01 · costurada! 🎉</div>
+                <div class="peca-montada">Aula 01 · etapa montada! 🎉</div>
             </div>
 
             <div class="destaque" style="margin-top: var(--esp-md);">
-                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos aprender
+                <strong>Continue praticando.</strong> Na próxima aula vamos aprender
                 a navegar com segurança — conhecer melhor os lugares da cidade digital,
                 reconhecer sites seguros e se proteger. Com o que você aprendeu hoje,
                 você já tem as chaves para essa viagem.
@@ -1501,12 +1501,12 @@
 
                 if (!para) {
                     campoPara.focus();
-                    campoPara.style.borderColor = 'var(--chita-vermelha)';
+                    campoPara.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 if (!mensagem) {
                     campoMensagem.focus();
-                    campoMensagem.style.borderColor = 'var(--chita-vermelha)';
+                    campoMensagem.style.borderColor = 'var(--terracota)';
                     return;
                 }
 
@@ -1520,7 +1520,7 @@
                 linha.className = 'caixa-linha';
                 linha.innerHTML = '<div><strong>Para: </strong>' + para.replace(/</g, '&lt;') +
                     (assunto ? ' — <strong>Assunto: </strong>' + assunto.replace(/</g, '&lt;') : '') +
-                    '<br><span style="color:var(--bordado-suave); font-size:.85rem;">' + mensagem.replace(/</g, '&lt;') + '</span></div>';
+                    '<br><span style="color:var(--tinta-suave); font-size:.85rem;">' + mensagem.replace(/</g, '&lt;') + '</span></div>';
                 listaEnviados.appendChild(linha);
 
                 campoPara.value = '';

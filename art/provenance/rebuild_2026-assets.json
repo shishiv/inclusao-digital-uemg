@@ -1,7 +1,7 @@
 {
   "schema": "inclusao-digital-uemg.asset-ledger.v1",
   "generatedAt": "2026-08-16",
-  "purpose": "Review evidence for SPEC.md rebuild of the Inclusão Digital UEMG portal. These assets prove the proposed visual world across every raster role; they are not yet wired into production pages.",
+  "purpose": "Review evidence and implemented asset provenance for the SPEC.md rebuild of the Inclusão Digital UEMG portal.",
   "generator": {
     "tool": "image_generate (@amaster.ai/pi-image-gen)",
     "configuredProvider": "configured image provider (Azure OpenAI v1 compatible)",
@@ -24,8 +24,21 @@
   },
   "freezeList": {
     "camera": "seated eye level, wide contextual scenes; no forced perspective, no top-down",
-    "palette": ["#1E4466 deep university blue", "#3E6C9E / sky blue", "#B5372C warm terracotta", "#E9B44C marigold", "#4E7D4A leaf green", "#FAF6EC off-white paper"],
-    "materials": ["hand-cut paper layers", "matte ink", "soft graphite outline", "light wood", "handmade paper texture"],
+    "palette": [
+      "#1E4466 deep university blue",
+      "#3E6C9E / sky blue",
+      "#B5372C warm terracotta",
+      "#E9B44C marigold",
+      "#4E7D4A leaf green",
+      "#FAF6EC off-white paper"
+    ],
+    "materials": [
+      "hand-cut paper layers",
+      "matte ink",
+      "soft graphite outline",
+      "light wood",
+      "handmade paper texture"
+    ],
     "lighting": "clear warm daylight (late morning to afternoon)",
     "people": "Brazilian adults aged 60-75, varied skin tones and genders, dignified everyday clothing, attentive and capable expressions; monitors read as equals",
     "environment": "Brazilian public-university computer laboratory in Frutal and the learner's home living room/kitchen",
@@ -45,7 +58,9 @@
       "promptSummary": "Airy Brazilian public-university computer lab; three dignified adults 60-75 learn with a young monitor as an equal; hand-cut paper style; copy-safe field left third; blank pale screens.",
       "disposition": "selected",
       "derivation": "text-to-image; composition first explored in the rejected draft below",
-      "readback": "PASS - 3 elders + 1 monitor, lab with window/noticeboard (blank shapes), plants, blank screens, clean left copy field, clean hands, no text/logos"
+      "readback": "PASS - 3 elders + 1 monitor, lab with window/noticeboard (blank shapes), plants, blank screens, clean left copy field, clean hands, no text/logos",
+      "productionFile": "public/assets/ilustracoes/home-turma-laboratorio-bg-16x9-v01.png",
+      "productionDerivation": "Byte-identical production copy; selected evidence remains preserved under rebuild_2026."
     },
     {
       "file": "public/assets/ilustracoes/rebuild_2026/aula-familia-conexao-bg-16x9-v01.png",
@@ -75,7 +90,9 @@
       "promptSummary": "Mixed-age Brazilian group at a hand-cut paper roadmap board with blank cards and colored connecting paths; university community space; copy-safe field bottom-left.",
       "disposition": "selected",
       "derivation": "text-to-image",
-      "readback": "PASS - mixed-age group, paper roadmap board with blank cards + colored paths, copy-safe bottom-left, clean hands, no text/numbers/logos"
+      "readback": "PASS - mixed-age group, paper roadmap board with blank cards + colored paths, copy-safe bottom-left, clean hands, no text/numbers/logos",
+      "productionFile": "public/assets/ilustracoes/roadmap-trilhas-futuras-bg-16x9-v01.png",
+      "productionDerivation": "Byte-identical production copy; selected evidence remains preserved under rebuild_2026."
     },
     {
       "file": "public/assets/ilustracoes/rebuild_2026/avatar-dona-lourdes-subject-1x1-v01.png",
@@ -105,7 +122,9 @@
       "promptSummary": "Low-contrast layered off-white handmade paper with faint blue/marigold stitch dashes and graphite grid; uniform, text-safe, no focal point.",
       "disposition": "selected",
       "derivation": "text-to-image",
-      "readback": "PASS - uniform low-contrast paper texture, safe for large text, no letters/numbers/logos"
+      "readback": "PASS - uniform low-contrast paper texture, safe for large text, no letters/numbers/logos",
+      "productionFile": "public/assets/ilustracoes/textura-oficina-papel-bg-16x9-v01.png",
+      "productionDerivation": "Byte-identical production copy; selected evidence remains preserved under rebuild_2026."
     },
     {
       "file": "art/rejeitados/rebuild_2026/home-turma-laboratorio-bg-16x9-draft-v01.png",
@@ -120,12 +139,193 @@
       "disposition": "rejected-draft",
       "reason": "First composition exploration for the hero. Kept as evidence of the direction; the selected hero refines it. Not wired into any page.",
       "derivation": "text-to-image"
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-fundamentos-computador-bg-16x9-v01.png",
+      "surface": "aula 01 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "982cf6938dd2e188",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-fundamentos-computador.txt",
+      "promptSummary": "Adulta 60+ aprende os primeiros passos no computador em laboratório público com monitora como igual.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - laboratório, duas pessoas capazes, telas claras sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-navegacao-segura-bg-16x9-v01.png",
+      "surface": "aula 02 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "89dcc4755dfb9837",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-navegacao-segura.txt",
+      "promptSummary": "Adulta 60+ usa computador em laboratório com uma referência visual abstrata de proteção.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - laboratório, pessoa capaz, tela clara sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-whatsapp-familia-bg-16x9-v01.png",
+      "surface": "aula 03 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "a1fa1d323461cc28",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-whatsapp-familia.txt",
+      "promptSummary": "Avó 60+ conversa com família em casa usando telefone com tela vazia.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - grupo familiar capaz, tela de telefone clara sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-midias-compartilhar-bg-16x9-v01.png",
+      "surface": "aula 04 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "0d50a3c08fbf03f8",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-midias-compartilhar.txt",
+      "promptSummary": "Casal 60+ compartilha fotos em tablet com tela vazia.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - pessoas capazes, tablet claro sem interface, quadros vazios, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-memorias-digitais-bg-16x9-v01.png",
+      "surface": "aula 05 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "966849345dd2261b",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-memorias-digitais.txt",
+      "promptSummary": "Adulta 60+ organiza fotos sem PII e computador com tela vazia.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - fotos abstratas sem PII, computador claro sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-documentos-autonomia-bg-16x9-v01.png",
+      "surface": "aula 06 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "bf185918fe34a218",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-documentos-autonomia.txt",
+      "promptSummary": "Casal 60+ trabalha em laboratório com monitor como igual e telas vazias.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - colaboração digna, telas claras sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-apresentacao-criativa-bg-16x9-v01.png",
+      "surface": "aula 07 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "eac0c69317ddeac3",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-apresentacao-criativa.txt",
+      "promptSummary": "Adulta 60+ apresenta uma ideia para colegas em laboratório.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - apresentação colaborativa, monitor claro sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-servicos-seguros-bg-16x9-v01.png",
+      "surface": "aula 08 (capa, Fase 1)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "4c5dcf4c8c2225bf",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-servicos-seguros.txt",
+      "promptSummary": "Adulto 60+ usa telefone e documentos vazios com apoio de um igual.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - documentos sem dados, telefone claro sem interface, campo livre à esquerda, sem texto ou marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/aula-celebracao-conquistas-bg-16x9-v01.png",
+      "surface": "aula 09 (capa)",
+      "role": "bg (cena ambiente)",
+      "ratio": "16:9",
+      "dimensions": "1536x864",
+      "format": "PNG",
+      "sha256_16": "a89a0691ab1095d1",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/aula-celebracao-conquistas.txt",
+      "promptSummary": "Grupo diverso 60+ e monitores celebra a aprendizagem em laboratório.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - celebração digna, papéis geométricos sem texto, telas sem interface, campo livre à esquerda, sem marcas."
+    },
+    {
+      "file": "public/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png",
+      "surface": "player (simuladores)",
+      "role": "subject (avatar)",
+      "ratio": "1:1",
+      "dimensions": "1024x1024",
+      "format": "PNG",
+      "sha256_16": "c37dbbcac87d5617",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/avatar-dona-zilda.txt",
+      "promptSummary": "Retrato da Dona Zilda para os simuladores de contato.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - retrato centralizado, respiro para recorte circular, materiais e paleta do mundo, sem texto."
+    },
+    {
+      "file": "public/assets/ilustracoes/avatar-seu-jose-subject-1x1-v01.png",
+      "surface": "player (simuladores)",
+      "role": "subject (avatar)",
+      "ratio": "1:1",
+      "dimensions": "1024x1024",
+      "format": "PNG",
+      "sha256_16": "182ccfd731e452c0",
+      "quality": "low",
+      "prompt": "art/prompts/rebuild_2026/avatar-seu-jose.txt",
+      "promptSummary": "Retrato do Seu José para os simuladores de contato.",
+      "disposition": "selected",
+      "derivation": "text-to-image; direct generation after implementation approval of the Ateliê de Autonomia world",
+      "readback": "PASS - retrato centralizado, respiro para recorte circular, materiais e paleta do mundo, sem texto."
     }
   ],
   "contactSheet": "public/assets/ilustracoes/rebuild_2026/_contact-sheet-rebuild-2026.png",
   "boundaries": {
-    "modelMayGenerate": ["ambient scenes", "invented dignified subjects", "device shells", "textures", "decorative art"],
-    "modelMayNotGenerate": ["UI/app screens", "text", "numbers", "certificates", "logos", "institutional marks", "QR codes", "charts/data", "real identifiable people without authorized reference"],
+    "modelMayGenerate": [
+      "ambient scenes",
+      "invented dignified subjects",
+      "device shells",
+      "textures",
+      "decorative art"
+    ],
+    "modelMayNotGenerate": [
+      "UI/app screens",
+      "text",
+      "numbers",
+      "certificates",
+      "logos",
+      "institutional marks",
+      "QR codes",
+      "charts/data",
+      "real identifiable people without authorized reference"
+    ],
     "identity": "No real learner, monitor, or coordinator is depicted. Subjects are invented composites; the program preserves collective PAEx authorship and never fabricates testimonials or impact numbers."
   }
 }

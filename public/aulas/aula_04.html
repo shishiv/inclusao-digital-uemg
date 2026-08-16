@@ -8,50 +8,50 @@
 <title>Aula 04 — Mídias Sociais: Seu Álbum de Família Digital | Inclusão Digital UEMG</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;family=Open+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="/assets/player.css" rel="stylesheet"/>
 <style>
         /* Extras específicos da aula 04 */
         .passos-duplos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); margin: var(--esp-md) 0; }
         @media (max-width: 768px) { .passos-duplos { grid-template-columns: 1fr; } }
-        .mini-cartao { background: var(--algodao); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); }
-        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--chita-azul-escura); }
+        .mini-cartao { background: var(--papel); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); }
+        .mini-cartao h4 { font-family: var(--font-body); font-weight: 700; margin-bottom: 8px; color: var(--azul-uemg-profundo); }
         .icone-grande { font-size: 2.6rem; display: block; margin-bottom: var(--esp-xs); }
         .lista-check { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: var(--esp-md) 0; }
         .lista-check li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--texto-base); }
         .lista-check li::before { content: '✅'; flex-shrink: 0; }
-        .etapa-badge { display: inline-block; background: var(--chita-amarela); color: var(--bordado); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
-        .etapa-badge.f1 { background: var(--chita-vermelha); color: #FFF; }
-        .etapa-badge.f2 { background: var(--chita-azul); color: #FFF; }
-        .etapa-badge.f3 { background: var(--chita-verde); color: #FFF; }
-        .etapa-badge.f4 { background: var(--chita-amarela); color: var(--bordado); }
-        .etapa-badge.f5 { background: var(--chita-azul-escura); color: var(--chita-amarela); }
+        .etapa-badge { display: inline-block; background: var(--marigold); color: var(--tinta); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: var(--raio-pill); margin-bottom: var(--esp-md); }
+        .etapa-badge.f1 { background: var(--terracota); color: #FFF; }
+        .etapa-badge.f2 { background: var(--azul-ceu); color: #FFF; }
+        .etapa-badge.f3 { background: var(--verde-folha); color: #FFF; }
+        .etapa-badge.f4 { background: var(--marigold); color: var(--tinta); }
+        .etapa-badge.f5 { background: var(--azul-uemg-profundo); color: var(--marigold); }
 
         /* ===== Simuladores das redes sociais ===== */
-        .feed-card { background: #FFF; border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
+        .feed-card { background: #FFF; border: 1px solid var(--grafite-suave); border-radius: var(--raio); overflow: hidden; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
         .feed-topo { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
         .feed-topo .feed-nome { font-weight: 700; font-size: .95rem; color: #1c1e21; }
         .feed-topo .feed-tempo { font-size: .75rem; color: #65676b; }
         .feed-texto { padding: 0 14px 10px; font-size: .98rem; color: #1c1e21; }
-        .feed-foto { margin: 0 14px 12px; border-radius: 10px; min-height: 170px; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; background: linear-gradient(135deg, #FBF0D6, #E3ECF5, #E9F0E4); border: 1px solid var(--linha); }
+        .feed-foto { margin: 0 14px 12px; border-radius: 10px; min-height: 170px; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; background: linear-gradient(135deg, #FBF0D6, #E3ECF5, #E9F0E4); border: 1px solid var(--grafite-suave); }
         .feed-acoes { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #e4e6eb; }
-        .btn-reacao { flex: 1; border: 1px solid var(--linha); background: var(--algodao); border-radius: var(--raio-pill); padding: 9px 12px; font-size: .9rem; font-weight: 700; font-family: var(--font-body); color: var(--bordado); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
-        .btn-reacao:hover { background: var(--chita-azul-bg); border-color: var(--chita-azul); }
-        .btn-reacao.ativo-curtir { background: var(--chita-azul-bg); border-color: var(--chita-azul); color: var(--chita-azul); }
-        .btn-reacao.ativo-amei { background: var(--chita-vermelha); border-color: var(--chita-vermelha); color: #FFF; }
+        .btn-reacao { flex: 1; border: 1px solid var(--grafite-suave); background: var(--papel); border-radius: var(--raio-pill); padding: 9px 12px; font-size: .9rem; font-weight: 700; font-family: var(--font-body); color: var(--tinta); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .btn-reacao:hover { background: var(--azul-ceu-suave); border-color: var(--azul-ceu); }
+        .btn-reacao.ativo-curtir { background: var(--azul-ceu-suave); border-color: var(--azul-ceu); color: var(--azul-ceu); }
+        .btn-reacao.ativo-amei { background: var(--terracota); border-color: var(--terracota); color: #FFF; }
         .feed-reacoes { padding: 0 14px 12px; font-size: .85rem; color: #65676b; min-height: 1.4em; }
-        .btn-seguir { display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--chita-verde); background: var(--chita-verde); color: #FFF; border-radius: var(--raio-pill); padding: 8px 18px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
-        .btn-seguir.ativo { background: var(--chita-verde-bg); color: var(--chita-verde); }
-        .perfil-cartao { display: flex; align-items: center; gap: 14px; background: var(--retalho); border: 1px solid var(--linha); border-radius: var(--raio); padding: var(--esp-md); max-width: 420px; margin: var(--esp-md) auto; }
-        .perfil-info .perfil-nome { font-weight: 800; color: var(--bordado); }
-        .perfil-info .perfil-desc { font-size: .9rem; color: var(--bordado-suave); }
-        .perfil-info .perfil-handle { font-size: .8rem; color: var(--chita-azul); font-weight: 700; }
-        .insta-frase { width: 100%; border: 1px solid var(--linha); border-radius: 10px; padding: 10px 12px; font-size: .92rem; font-family: var(--font-body); color: #1c1e21; margin-bottom: 8px; background: #FFF; }
-        .btn-publicar { width: 100%; border: none; background: var(--chita-azul); color: #FFF; border-radius: 10px; padding: 10px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background var(--veloz); }
-        .btn-publicar:hover { background: var(--chita-azul-escura); }
-        .post-publicado { background: #FFF; border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
-        .senha-chip { display: inline-block; background: var(--chita-verde-bg); border: 1px solid var(--chita-verde); color: var(--chita-verde); border-radius: var(--raio-pill); padding: 4px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
-        .sinal-falso { display: inline-flex; align-items: center; gap: 6px; background: var(--chita-amarela-bg); border: 1px dashed var(--chita-amarela); color: var(--bordado); border-radius: var(--raio-pill); padding: 6px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
+        .btn-seguir { display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--verde-folha); background: var(--verde-folha); color: #FFF; border-radius: var(--raio-pill); padding: 8px 18px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background-color var(--veloz), border-color var(--veloz), color var(--veloz), transform var(--veloz); }
+        .btn-seguir.ativo { background: var(--verde-folha-suave); color: var(--verde-folha); }
+        .perfil-cartao { display: flex; align-items: center; gap: 14px; background: var(--papel-elevado); border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: var(--esp-md); max-width: 420px; margin: var(--esp-md) auto; }
+        .perfil-info .perfil-nome { font-weight: 800; color: var(--tinta); }
+        .perfil-info .perfil-desc { font-size: .9rem; color: var(--tinta-suave); }
+        .perfil-info .perfil-handle { font-size: .8rem; color: var(--azul-ceu); font-weight: 700; }
+        .insta-frase { width: 100%; border: 1px solid var(--grafite-suave); border-radius: 10px; padding: 10px 12px; font-size: .92rem; font-family: var(--font-body); color: #1c1e21; margin-bottom: 8px; background: #FFF; }
+        .btn-publicar { width: 100%; border: none; background: var(--azul-ceu); color: #FFF; border-radius: 10px; padding: 10px; font-size: .95rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: background var(--veloz); }
+        .btn-publicar:hover { background: var(--azul-uemg-profundo); }
+        .post-publicado { background: #FFF; border: 1px solid var(--grafite-suave); border-radius: var(--raio); padding: 14px; max-width: 420px; margin: var(--esp-md) auto; box-shadow: var(--sombra-sm); }
+        .senha-chip { display: inline-block; background: var(--verde-folha-suave); border: 1px solid var(--verde-folha); color: var(--verde-folha); border-radius: var(--raio-pill); padding: 4px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
+        .sinal-falso { display: inline-flex; align-items: center; gap: 6px; background: var(--marigold-suave); border: 1px solid var(--marigold); color: var(--tinta); border-radius: var(--raio-pill); padding: 6px 14px; font-size: .85rem; font-weight: 700; margin: 4px 4px 0 0; }
     
 
         /* Impeccable layout + adapt: preserve a leitura; etapas densas rolam por dentro. */
@@ -112,7 +112,7 @@
             era um bicho de sete cabeças? <strong>Olhem só onde chegamos!</strong>
             Vocês já são verdadeiros <strong>navegadores digitais</strong>.</p></section>
 
-<section class="etapa" data-etapa="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como foi nossa semana com o WhatsApp ?</h3><span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span></div><div class="etapa-visual"><img alt="Avó sorridente olhando o celular em frente a um mural com corações, curtidas e símbolos de redes sociais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula04-midias-sociais-bg-16x9-v01.png" width="1536"/></div></div></section>
+<section class="etapa" data-etapa="2"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><h3>Como foi nossa semana com o WhatsApp ?</h3><span class="ferramenta"><img alt="" height="26" src="/assets/logos/whatsapp.svg" width="26"/> WhatsApp</span></div><div class="etapa-visual"><img alt="Avó sorridente olhando o celular em frente a um mural com corações, curtidas e símbolos de redes sociais" class="ilustracao-cena" height="864" src="/assets/ilustracoes/aula-midias-compartilhar-bg-16x9-v01.png" width="1536"/></div></div></section>
 
 <section class="etapa" data-etapa="3"><span class="etapa-badge f1">Fase 1 · Por que isso importa</span><h2>Bem-vindos de volta, queridos alunos! — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><p>Na semana passada, vocês aprenderam a usar o WhatsApp e se conectaram com
             suas famílias de uma forma totalmente nova. Alguns de vocês já estão:</p></div><div class="etapa-visual"><ul class="lista-check">
@@ -177,7 +177,7 @@
             e também é onde os amigos <strong>reconhecem você</strong>.
             Por isso a <strong>foto de perfil</strong> é tão importante:
             ela é o seu rosto na rede, é o que faz os amigos te acharem e te reconhecerem.</p></div><div class="etapa-visual"><div class="perfil-cartao">
-<img alt="Foto de perfil da Dona Zilda" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" style="border-radius:50%;" width="64"/>
+<img alt="Foto de perfil da Dona Zilda" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" style="border-radius:50%;" width="64"/>
 <div class="perfil-info">
 <div class="perfil-nome">Dona Zilda</div>
 <div class="perfil-handle">@dona_zilda</div>
@@ -264,7 +264,7 @@
             você pode errar à vontade. Toque no botão e veja o que acontece:</p><div style="text-align:center;">
 <button class="btn-seguir" id="btn-seguir">➕ Seguir</button>
 </div></div><div class="etapa-visual"><div class="perfil-cartao">
-<img alt="Perfil do Seu José" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-vo-seu-jose-1x1-v01.png" style="border-radius:50%;" width="64"/>
+<img alt="Perfil do Seu José" class="contato-avatar-img" height="64" src="/assets/ilustracoes/avatar-seu-jose-subject-1x1-v01.png" style="border-radius:50%;" width="64"/>
 <div class="perfil-info" style="flex:1;">
 <div class="perfil-nome">Seu José</div>
 <div class="perfil-handle">@seu_jose</div>
@@ -343,7 +343,7 @@
 
 <section class="etapa" data-etapa="26"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Curtir: o abraço à distância — continuação</h2><div class="feed-card">
 <div class="feed-topo">
-<img alt="Dona Zilda" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" width="40"/>
+<img alt="Dona Zilda" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" width="40"/>
 <div>
 <div class="feed-nome">Dona Zilda</div>
 <div class="feed-tempo">Hoje · 2 h</div>
@@ -422,7 +422,7 @@
 
 <section class="etapa" data-etapa="33"><span class="etapa-badge f3">Fase 3 · Sua vez</span><h2>Instagram: a vitrine das suas memórias — continuação</h2><div class="feed-card">
 <div class="feed-topo">
-<img alt="Meu perfil" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-vo-dona-zilda-1x1-v01.png" width="40"/>
+<img alt="Meu perfil" class="mockup-avatar-img" height="40" src="/assets/ilustracoes/avatar-dona-zilda-subject-1x1-v01.png" width="40"/>
 <div>
 <div class="feed-nome">Meu perfil</div>
 <div class="feed-tempo">Agora mesmo</div>
@@ -584,7 +584,7 @@
                 ❓ <strong>Na dúvida, perguntem!</strong> É melhor perguntar mil vezes
                 do que se arrepender depois. Estamos aqui para ajudar sempre.
             </div></div><div class="etapa-visual"><div class="destaque">
-                🧵 <strong>Regra que salva:</strong> se algo parece bom demais para ser verdade,
+                <strong>Regra que salva:</strong> se algo parece bom demais para ser verdade,
                 <strong>provavelmente é mentira!</strong>
 </div></div></div></section>
 
@@ -632,7 +632,7 @@
 </div></section>
 
 <section class="etapa" data-etapa="57"><span class="etapa-badge f4">Fase 4 · Na vida real</span><h2>Sua missão da semana — continuação</h2><div class="destaque">
-                🧵 <strong>Por que isso importa:</strong> missões são como os pontos da costura —
+                <strong>Por que isso importa:</strong> missões são com a prática de cada passo —
                 cada uma praticada em casa deixa o aprendizado mais firme.
                 <strong>Mal podemos esperar para saber como foi!</strong>
 </div></section>
@@ -656,20 +656,20 @@
 
 <section class="etapa" data-etapa="61"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração</h2><div class="momento">
 <span class="trofeu">🧵</span>
-<h2>Você costurou mais um retalho!</h2>
+<h2>Você montou mais uma etapa!</h2>
 <p>Hoje você aprendeu o que são as mídias sociais, criou (ou relembrou) seu perfil,
                 visitou o Facebook, o Instagram e o YouTube, e aprendeu a se proteger —
                 contas falsas, amizades, senhas fortes e fotos dos netos.
                 Isso é muito mais do que "usar a internet" — é <strong>autonomia</strong>.</p>
 </div><div style="text-align:center; margin-top: var(--esp-lg);">
-<div class="retalho-costurado">Aula 04 · costurada! 🎉</div>
+<div class="peca-montada">Aula 04 · etapa montada! 🎉</div>
 </div></section>
 
 <section class="etapa" data-etapa="62"><span class="etapa-badge f5">Fase 5 · Momento eu consigo</span><h2>Celebração — continuação</h2><div class="etapa-grid"><div class="etapa-texto"><div style="text-align:center; margin-top: var(--esp-md);">
 <a class="btn btn-secondary" href="/pratique.html">Revisar com quizzes</a>
 <a class="btn btn-primary" href="/aulas.html">Voltar para as aulas</a>
 </div></div><div class="etapa-visual"><div class="destaque" style="margin-top: var(--esp-lg);">
-                🧵 <strong>Continue praticando.</strong> Na próxima aula vamos abrir o nosso
+                <strong>Continue praticando.</strong> Na próxima aula vamos abrir o nosso
                 <strong>Baú Digital de Memórias</strong> — Google Drive <span class="ferramenta"><img alt="" height="26" src="/assets/logos/drive.png" width="26"/> Google Drive</span> e Google Fotos <span class="ferramenta"><img alt="" height="26" src="/assets/logos/photos.png" width="26"/> Google Fotos</span> —
                 para guardar todas essas fotos com segurança, organizadas em pastinhas.
                 Mesmo jeito de aprender: um passo de cada vez, no seu ritmo.
@@ -748,7 +748,7 @@
                 var frase = instaFrase.value.trim();
                 if (!frase) {
                     instaFrase.focus();
-                    instaFrase.style.borderColor = 'var(--chita-vermelha)';
+                    instaFrase.style.borderColor = 'var(--terracota)';
                     return;
                 }
                 if (postPublicado) return;

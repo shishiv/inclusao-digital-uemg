@@ -1,9 +1,10 @@
 // ==================================================================
 // Inclusão Digital UEMG — Portal do Aluno
-// Funcionalidades Interativas (mundo Colcha de Retalhos)
+// Funcionalidades interativas do Ateliê de Autonomia
 // ==================================================================
 
 import './style.css';
+import './atelie.css';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -190,7 +191,111 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // 6. Smooth scroll for anchor links
+  // 6. Divulgações progressivas do roadmap
+  // ==================================================================
+  document.querySelectorAll('details[data-disclosure]').forEach(details => {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
+    const syncExpandedState = () => summary.setAttribute('aria-expanded', String(details.open));
+    syncExpandedState();
+    details.addEventListener('toggle', syncExpandedState);
+  });
+
+  // 7. Formulário de sugestão de trilha
+  // ==================================================================
+  const suggestionForm = document.getElementById('form-sugestao');
+  if (suggestionForm) {
+    const status = document.getElementById('status-sugestao');
+    const endpointNote = document.getElementById('nota-endpoint');
+    const endpointConfigured = suggestionForm.dataset.endpointConfigured === 'true' &&
+      !suggestionForm.action.includes('SEU_FORM_ID');
+
+    if (endpointNote) endpointNote.hidden = endpointConfigured;
+
+    function setSuggestionFieldError(field, message) {
+      const error = document.getElementById(`erro-${field.id}`);
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (error) error.textContent = message;
+    }
+
+    function clearSuggestionErrors() {
+      suggestionForm.querySelectorAll('[aria-invalid]').forEach(field => setSuggestionFieldError(field, ''));
+    }
+
+    function validateSuggestionForm() {
+      clearSuggestionErrors();
+      const fields = [
+        [suggestionForm.elements.perfil, 'Selecione quem é você.'],
+        [suggestionForm.elements.tema, 'Escreva a trilha ou o tema que você sugere.'],
+        [suggestionForm.elements.motivo, 'Explique por que esta sugestão importa.'],
+        [suggestionForm.elements.consentimento, 'Marque a autorização para enviar sua sugestão.'],
+      ];
+      const email = suggestionForm.elements.email;
+      if (email?.value && !email.validity.valid) fields.unshift([email, 'Digite um e-mail válido ou deixe o campo em branco.']);
+
+      let firstInvalid = null;
+      fields.forEach(([field, message]) => {
+        const emptyValue = field.type === 'checkbox' ? !field.checked : !field.value.trim();
+        const invalid = emptyValue || (field.type === 'email' && field.value && !field.validity.valid);
+        if (invalid) {
+          setSuggestionFieldError(field, message);
+          if (!firstInvalid) firstInvalid = field;
+        }
+      });
+      return firstInvalid;
+    }
+
+    suggestionForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const firstInvalid = validateSuggestionForm();
+      if (firstInvalid) {
+        if (status) {
+          status.dataset.state = 'error';
+          status.textContent = 'Revise os campos indicados para enviar sua sugestão.';
+        }
+        firstInvalid.focus();
+        return;
+      }
+
+      if (!endpointConfigured) {
+        if (status) {
+          status.dataset.state = 'error';
+          status.textContent = 'O envio ainda não está configurado. A equipe precisa ligar o serviço de formulário antes de receber sugestões por aqui.';
+        }
+        return;
+      }
+
+      const submitButton = suggestionForm.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      if (status) {
+        status.dataset.state = '';
+        status.textContent = 'Enviando sua sugestão...';
+      }
+
+      try {
+        const response = await fetch(suggestionForm.action, {
+          method: 'POST',
+          body: new FormData(suggestionForm),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error('endpoint-error');
+        suggestionForm.reset();
+        if (status) {
+          status.dataset.state = 'success';
+          status.textContent = 'Sua sugestão foi enviada. Obrigado por ajudar a construir o programa.';
+        }
+      } catch {
+        if (status) {
+          status.dataset.state = 'error';
+          status.textContent = 'Não foi possível enviar agora. Tente novamente mais tarde.';
+        }
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
+
+  // 8. Smooth scroll for anchor links
   // ==================================================================
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

@@ -1,0 +1,8 @@
+surface: aula 04
+role: bg
+ratio: 16:9
+quality: low
+model: gpt-image-2
+world: Ateliê de Autonomia
+
+Dois adultos brasileiros de 60 a 75 anos compartilham fotos em um tablet enquanto conversam em uma mesa clara de casa, em atitude curiosa e capaz. O tablet mostra apenas uma tela geométrica pálida completamente em branco; quadros ao fundo também não têm imagem ou texto. Cena ampla ao nível dos olhos sentado, luz quente de dia claro. Ilustração de papel recortado artesanal em camadas, tinta fosca e contorno suave de grafite, paleta azul UEMG profundo, azul-céu, terracota, marigold, verde-folha e off-white. Deixe uma área calma à esquerda para texto. Sem palavras, letras, números, logos, marcas, dados, QR codes ou elementos de interface.
